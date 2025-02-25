@@ -33,11 +33,11 @@
           </td>
           <td
             class="side-by-side"
-            @click="openExternalWebsite"
+            @click="handleImageClick('/series/lead')"
             clickable
             v-ripple
           >
-            <img class="menu_picture" src="menu/discover.webp" />
+            <img class="menu_picture" src="menu/lead.webp" />
           </td>
         </tr>
       </tbody>

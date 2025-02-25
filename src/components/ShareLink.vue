@@ -8,15 +8,15 @@
     property="og:image"
     content="https://myfriends.network/sites/myfriends/images/standard/MyFriends-App-Facebook.jpg"
   />
-  <meta property="og:url" content="https://wisdom.mmylanguage.net.au" />
+  <meta property="og:url" content="https://dbs.mylanguage.net.au" />
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@PtCAus" />
-  <meta name="twitter:title" content="Finding Spiritual Wisdom" />
+  <meta name="twitter:title" content="Finding Spiritual Community" />
   <meta
     name="twitter:description"
-    content="In order to make any real progress in our spiritual life we know we need a reliable source of wisdom."
+    content="In order to make any real progress in our spiritual life we know we need the support of a community."
   />
   <meta
     name="twitter:image"
@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     shareUrl() {
-      var subject = "Finding Wisdom";
+      var subject = "Finding Spiritual Community";
       var message = "Here is the link";
       let url = window.location.href;
       var page = this.getLastSegment(url);
@@ -87,7 +87,7 @@ export default {
         case "life":
           return "/" + this.languageStore.getJVideoSegmentId;
         case "teachings":
-          return "/" + this.languageStore.getHisTeachingLesson;
+          return "/" + this.languageStore.getLifeLesson;
 
         default:
           return "";

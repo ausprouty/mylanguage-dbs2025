@@ -187,13 +187,13 @@ module.exports = configure(function (ctx) {
       manifestFilename: "manifest.json",
       useCredentialsForManifestTag: false,
       manifest: {  // <-- Add this section
-        name: "Finding Wisdom",
-        short_name: "Finding Wisdom",  // <-- Define short_name here
-        description: "Finding Wisdom",
+        name: "Spiritual Community",
+        short_name: "Spiritual Community",  // <-- Define short_name here
+        description: "Finding Spiritual Community",
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
-        theme_color: "#027be3",
+        theme_color: "#3e81efyarn",
         start_url: "/",  // <-- Ensure correct start_url
         scope: "/",
         icons: [
