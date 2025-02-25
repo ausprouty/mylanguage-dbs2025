@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Slovenian",
+        "hlCode": "slv00",
+        "google": "sl"
+    },
+    "menu": {
+        "next": "Naprej",
+        "nextVideo": "Naslednji video",
+        "previous": "Prejšnja",
+        "select": "Izberite",
+        "videoSegment": "Video segment",
+        "language": "Izberite Jezik"
+    },
+    "index": {
+        "para": {
+            "1": "Da bi dosegli kakršen koli resničen napredek v našem duhovnem življenju, vemo, da potrebujemo zanesljiv vir modrosti.",
+            "2": "S klikom na spodnje slike se boste podali na pot odkrivanja večne modrosti, ki jo Bog želi, da poznate in ji sledite."
+        }
+    },
+    "dbs": {
+        "title": "Velika zgodba o modrosti",
+        "para": {
+            "1": "Ta zgodba se začne s časom, preden ni bilo ljudi. Nato pripoveduje zgodbo o tem, kako sta prva dva človeka komunicirala z Bogom.«",
+            "2": "Zberite prijatelje in preberite, kako je Bog pripravil ljudi na prihod Jezusa in njegove modrosti.",
+            "3": "Izberite svoj najljubši jezik s klikom na zgornji globus sveta."
+        }
+    },
+    "life": {
+        "title": "Modrost za življenje",
+        "para": {
+            "1": "To je nekaj stvari, ki so jih učili Jezus in njegovi prvi sledilci.",
+            "2": "Mnogim ljudem se je življenje spremenilo, ko so prosili Jezusa, naj jim da moč, da te nauke uresničijo.",
+            "3": "Zberite svoje prijatelje in poglejte, kaj boste odkrili med razpravo o naslednjih vprašanjih.",
+            "4": "Izberite svoj najljubši jezik s klikom na zgornji globus sveta."
+        }
+    },
+    "jVideo": {
+        "title": "Vir modrosti",
+        "para": {
+            "1": "Jezus je vir večne modrosti. Ko gledate videoposnetek, se vprašajte: \"Kaj je Jezus delal in učil? Kako se njegova modrost razlikuje od tega, kar so povedali drugi.\"",
+            "2": "Ta video je na voljo v številnih jezikih. Če želite spremeniti jezik, kliknite zgornji globus."
+        }
+    }
+}

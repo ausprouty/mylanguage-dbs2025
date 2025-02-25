@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Xhosa",
+        "hlCode": "xos00",
+        "google": "xh"
+    },
+    "menu": {
+        "next": "Okulandelayo",
+        "nextVideo": "Ividiyo elandelayo",
+        "previous": "Ngaphambili",
+        "select": "Khetha",
+        "videoSegment": "Icandelo leVidiyo",
+        "language": "Khetha ulwimi"
+    },
+    "index": {
+        "para": {
+            "1": "Ukuze senze nayiphi na inkqubela yokwenene kubomi bethu bokomoya siyazi ukuba sifuna umthombo othembekileyo wobulumko.",
+            "2": "Ukucofa le mifanekiso ingezantsi kuya kukuqalisa kwindlela eya ekufumaneni ubulumko obungunaphakade uThixo afuna ukuba uyazi kwaye ulandele."
+        }
+    },
+    "dbs": {
+        "title": "Ibali Elizukileyo loBulumko",
+        "para": {
+            "1": "Eli bali liqala ngexesha langaphambi kokuba kubekho abantu. Emva koko ichaza ibali lendlela abantu ababini bokuqala abadibana ngayo noThixo.\"",
+            "2": "Qokelela abahlobo bakho kwaye ufunde indlela uThixo abalungiselela ngayo abantu ukufika kukaYesu kunye noBulumko bakhe.",
+            "3": "Khetha ulwimi oluthandayo ngokucofa iglowubhu yehlabathi ngaphezulu."
+        }
+    },
+    "life": {
+        "title": "Ubulumko Bobomi",
+        "para": {
+            "1": "Ezi zezinye zezinto ezafundiswa nguYesu nabalandeli bakhe bokuqala.",
+            "2": "Abantu abaninzi baye babubona ubomi babo buguquka njengoko bacela uYesu ukuba abanike amandla okwenza ezi mfundiso.",
+            "3": "Hlanganisa abahlobo bakho kwaye ubone oko ukufumanisileyo njengoko uxoxa ngale mibuzo ilandelayo.",
+            "4": "Khetha ulwimi oluthandayo ngokucofa iglowubhu yehlabathi ngaphezulu."
+        }
+    },
+    "jVideo": {
+        "title": "Umthombo Wobulumko",
+        "para": {
+            "1": "UYesu ungumthombo wobulumko obungunaphakade. Njengoko ubukele le vidiyo, zibuze: “Yintoni uYesu awayenzayo waza wayifundisa?",
+            "2": "Le vidiyo ifumaneka ngeelwimi ezininzi. Ukutshintsha ulwimi cofa iglowubhu yehlabathi ngaphezulu."
+        }
+    }
+}

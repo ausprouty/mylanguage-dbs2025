@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Shona",
+        "hlCode": "shd00",
+        "google": "sn"
+    },
+    "menu": {
+        "next": "Next",
+        "nextVideo": "Next Vhidhiyo",
+        "previous": "Previous",
+        "select": "Sarudza",
+        "videoSegment": "Vhidhiyo Chikamu",
+        "language": "Sarudza Mutauro"
+    },
+    "index": {
+        "para": {
+            "1": "Kuti tiite fambiro mberi ipi neipi yechokwadi muupenyu hwedu hwomudzimu tinoziva kuti tinoda manyuko akavimbika ouchenjeri.",
+            "2": "Kudzvanya pamifananidzo iri pazasi kuchakutanga iwe munzira yekuwana huchenjeri husingagumi uhwo Mwari vanoda kuti uzive nekutevera."
+        }
+    },
+    "dbs": {
+        "title": "Nyaya huru yeUchenjeri",
+        "para": {
+            "1": "Nyaya iyi inotanga nenguva pasati pava nevanhu. Inobva yataura nyaya yekuti vanhu vaviri vekutanga vakadyidzana sei naMwari.\"",
+            "2": "Unganidza shamwari dzako uye uverenge kuti Mwari akagadzirira sei vanhu kusvika kwaJesu neUchenjeri hwake.",
+            "3": "Sarudza mutauro waunofarira nekudzvanya pasi rose pamusoro."
+        }
+    },
+    "life": {
+        "title": "Uchenjeri Hupenyu",
+        "para": {
+            "1": "Izvi ndezvimwe zvezvinhu zvakadzidziswa naJesu nevateveri vake vepakutanga.",
+            "2": "Vanhu vakawanda vakaona upenyu hwavo huchishandurwa sezvavakakumbira Jesu kuti avape simba rekushandisa dzidziso idzi.",
+            "3": "Unganidza shamwari dzako uye uone zvauchawana paunenge uchikurukura mibvunzo inotevera.",
+            "4": "Sarudza mutauro waunofarira nekudzvanya pasi rose pamusoro."
+        }
+    },
+    "jVideo": {
+        "title": "Kunobva Uchenjeri",
+        "para": {
+            "1": "Jesu ndiye tsime reuchenjeri husingaperi. Paunenge uchiona vhidhiyo yacho, zvibvunze kuti “Jesu akaitei uye akadzidzisei? Uchenjeri hwake hwakasiyana sei nezvakataurwa nevamwe.",
+            "2": "Vhidhiyo iyi inowanikwa mumitauro yakawanda. Kuti uchinje mutauro tinya pasi rose pamusoro."
+        }
+    }
+}

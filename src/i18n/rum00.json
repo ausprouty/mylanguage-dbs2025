@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Romanian",
+        "hlCode": "rum00",
+        "google": "ro"
+    },
+    "menu": {
+        "next": "Următorul",
+        "nextVideo": "Următorul videoclip",
+        "previous": "Anterior",
+        "select": "Selecta",
+        "videoSegment": "Segment video",
+        "language": "Selectați Limbă"
+    },
+    "index": {
+        "para": {
+            "1": "Pentru a face orice progres real în viața noastră spirituală, știm că avem nevoie de o sursă de încredere de înțelepciune.",
+            "2": "Făcând clic pe imaginile de mai jos, te vei porni pe calea spre descoperirea înțelepciunii veșnice pe care Dumnezeu vrea să o cunoști și să o urmezi."
+        }
+    },
+    "dbs": {
+        "title": "Marea poveste a înțelepciunii",
+        "para": {
+            "1": "Această poveste începe cu timpul înainte de a exista oameni. Apoi spune povestea modului în care primii doi oameni au interacționat cu Dumnezeu.”,",
+            "2": "Adună-ți prietenii și citește cum a pregătit Dumnezeu oamenii pentru sosirea lui Isus și a înțelepciunii sale.",
+            "3": "Selectați limba preferată făcând clic pe globul de mai sus."
+        }
+    },
+    "life": {
+        "title": "Înțelepciune pentru viață",
+        "para": {
+            "1": "Acestea sunt câteva dintre lucrurile pe care Isus și primii săi discipoli le-au predat.",
+            "2": "Mulți oameni și-au văzut viața transformată când i-au cerut lui Isus să le dea puterea de a pune aceste învățături în acțiune.",
+            "3": "Adunați-vă prietenii și vedeți ce descoperiți în timp ce discutați următoarele întrebări.",
+            "4": "Selectați limba preferată făcând clic pe globul de mai sus."
+        }
+    },
+    "jVideo": {
+        "title": "Sursa Înțelepciunii",
+        "para": {
+            "1": "Isus este sursa înțelepciunii eterne. În timp ce vizionați videoclipul, întrebați-vă „Ce a făcut și a învățat Isus? Cum este înțelepciunea lui diferită de ceea ce au spus alții”.",
+            "2": "Acest videoclip este disponibil în mai multe limbi. Pentru a schimba limba, faceți clic pe globul de mai sus."
+        }
+    }
+}

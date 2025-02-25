@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Haitian Creole",
+        "hlCode": "hat00",
+        "google": "ht"
+    },
+    "menu": {
+        "next": "Next",
+        "nextVideo": "Next Videyo",
+        "previous": "Previous",
+        "select": "Chwazi",
+        "videoSegment": "Segman videyo",
+        "language": "Chwazi Lang"
+    },
+    "index": {
+        "para": {
+            "1": "Pou nou kapab fè okenn pwogrè reyèl nan lavi espirityèl nou an, nou konnen nou bezwen yon sous sajès serye.",
+            "2": "Klike sou imaj ki anba yo pral kòmanse ou sou yon chemen pou dekouvri sajès etènèl ke Bondye vle ou konnen ak swiv."
+        }
+    },
+    "dbs": {
+        "title": "Grand Istwa Sajès la",
+        "para": {
+            "1": "Istwa sa a kòmanse ak tan anvan te gen nenpòt moun. Apre sa, li rakonte istwa ki jan de premye moun yo te kominike avèk Bondye. \"",
+            "2": "Rasanble zanmi ou yo epi li kijan Bondye te prepare moun pou rive Jezi ak Sajès li a.",
+            "3": "Chwazi lang ou pi renmen lè w klike sou glòb mondyal ki anlè a."
+        }
+    },
+    "life": {
+        "title": "Sajès pou lavi",
+        "para": {
+            "1": "Sa yo se kèk nan bagay ke Jezi ak premye disip li yo te anseye.",
+            "2": "Anpil moun te wè lavi yo transfòme lè yo te mande Jezi pou l ba yo pouvwa pou mete ansèyman sa yo an aksyon.",
+            "3": "Rasanble zanmi ou yo epi wè sa ou dekouvri pandan w ap diskite kesyon sa yo.",
+            "4": "Chwazi lang ou pi renmen lè w klike sou glòb mondyal ki anlè a."
+        }
+    },
+    "jVideo": {
+        "title": "Sous Sajès la",
+        "para": {
+            "1": "Jezi se sous sajès etènèl la. Pandan w ap gade videyo a, mande tèt ou \"Kisa Jezi te fè ak anseye? Ki jan sajès li diferan de sa lòt moun te di.\"",
+            "2": "Videyo sa a disponib nan plizyè lang. Pou chanje lang, klike sou glòb mondyal ki anlè a."
+        }
+    }
+}

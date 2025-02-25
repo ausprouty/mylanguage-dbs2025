@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Zulu",
+        "hlCode": "zuu00",
+        "google": "zu"
+    },
+    "menu": {
+        "next": "Olandelayo",
+        "nextVideo": "Ividiyo Elandelayo",
+        "previous": "Ngaphambilini",
+        "select": "Khetha",
+        "videoSegment": "Ingxenye Yevidiyo",
+        "language": "Khetha Ulimi"
+    },
+    "index": {
+        "para": {
+            "1": "Ukuze senze noma iyiphi intuthuko yangempela ekuphileni kwethu okungokomoya siyazi ukuthi sidinga umthombo onokwethenjelwa wokuhlakanipha.",
+            "2": "Ukuchofoza izithombe ezingezansi kuzokuqala endleleni eya ekutholeni ukuhlakanipha okuphakade uNkulunkulu afuna ukwazi futhi ukulandele."
+        }
+    },
+    "dbs": {
+        "title": "Indaba Enkulu Yokuhlakanipha",
+        "para": {
+            "1": "Le ndaba iqala ngesikhathi ngaphambi kokuba kube khona abantu. Ibe isitshela indaba yokuthi abantu ababili bokuqala basebenzelana kanjani noNkulunkulu.\"",
+            "2": "Qoqa abangani bakho futhi ufunde ukuthi uNkulunkulu wabalungiselela kanjani abantu ukufika kukaJesu nokuhlakanipha kwakhe.",
+            "3": "Khetha ulimi lwakho oluthandayo ngokuchofoza imbulunga yomhlaba ngenhla."
+        }
+    },
+    "life": {
+        "title": "Ukuhlakanipha Ngokuphila",
+        "para": {
+            "1": "Lezi ngezinye zezinto uJesu nabalandeli bakhe bokuqala abazifundisa.",
+            "2": "Abantu abaningi baye babona ukuphila kwabo kushintshile njengoba becela uJesu ukuba abaphe amandla okwenza lezi zimfundiso.",
+            "3": "Qoqa abangani bakho futhi ubone ukuthi yini oyitholayo njengoba uxoxa ngale mibuzo elandelayo.",
+            "4": "Khetha ulimi lwakho oluthandayo ngokuchofoza imbulunga yomhlaba ngenhla."
+        }
+    },
+    "jVideo": {
+        "title": "Umthombo Wokuhlakanipha",
+        "para": {
+            "1": "UJesu ungumthombo wokuhlakanipha okuphakade. Njengombana ubukela ividiyo le, zibuze ukuthi, “Yini uJesu ayenza nayifundisako?",
+            "2": "Le vidiyo itholakala ngezilimi eziningi. Ukushintsha ulimi chofoza imbulunga yomhlaba ngenhla."
+        }
+    }
+}

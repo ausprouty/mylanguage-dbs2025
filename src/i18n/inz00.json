@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Indonesian",
+        "hlCode": "inz00",
+        "google": "id"
+    },
+    "menu": {
+        "next": "Berikutnya",
+        "nextVideo": "Video Berikutnya",
+        "previous": "Sebelumnya",
+        "select": "Memilih",
+        "videoSegment": "Segmen Video",
+        "language": "Pilih Bahasa"
+    },
+    "index": {
+        "para": {
+            "1": "Untuk mencapai kemajuan nyata dalam kehidupan rohani kita, kita tahu bahwa kita memerlukan sumber kebijaksanaan yang dapat diandalkan.",
+            "2": "Mengklik gambar di bawah ini akan membawa Anda pada jalan menemukan kebijaksanaan abadi yang Tuhan ingin Anda ketahui dan ikuti."
+        }
+    },
+    "dbs": {
+        "title": "Kisah Besar Kebijaksanaan",
+        "para": {
+            "1": "Kisah ini dimulai pada masa sebelum ada manusia. Kemudian menceritakan kisah bagaimana dua orang pertama berinteraksi dengan Tuhan.\",",
+            "2": "Kumpulkan teman-teman Anda dan bacalah bagaimana Tuhan mempersiapkan orang-orang untuk kedatangan Yesus dan Kebijaksanaan-Nya.",
+            "3": "Pilih bahasa favorit Anda dengan mengklik globe dunia di atas."
+        }
+    },
+    "life": {
+        "title": "Hikmah Seumur Hidup",
+        "para": {
+            "1": "Inilah beberapa hal yang Yesus dan para pengikut mula-mula ajarkan.",
+            "2": "Banyak orang telah melihat kehidupan mereka berubah ketika mereka meminta Yesus untuk memberikan mereka kekuatan untuk menerapkan ajaran-ajaran ini ke dalam tindakan.",
+            "3": "Kumpulkan teman-teman Anda dan lihat apa yang Anda temukan saat Anda mendiskusikan pertanyaan-pertanyaan berikut.",
+            "4": "Pilih bahasa favorit Anda dengan mengklik globe dunia di atas."
+        }
+    },
+    "jVideo": {
+        "title": "Sumber Kebijaksanaan",
+        "para": {
+            "1": "Yesus adalah sumber kebijaksanaan abadi. Saat Anda menonton videonya, tanyakan pada diri Anda, \"Apa yang Yesus lakukan dan ajarkan? Apa perbedaan hikmahnya dengan apa yang dikatakan orang lain.\"",
+            "2": "Video ini tersedia dalam banyak bahasa. Untuk mengubah bahasa klik globe dunia di atas."
+        }
+    }
+}

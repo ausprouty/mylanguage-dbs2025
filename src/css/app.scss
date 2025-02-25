@@ -1,0 +1,226 @@
+/* Lunar New Year Theme CSS */
+
+/* General Styles */
+body {
+  background-color: #2e2e2e; /* Dark grey for contrast */
+  color: #000; /* Soft white-gray for readability */
+}
+
+/* Bible Reference and Text */
+
+.bible-reference {
+  font-weight: bold;
+  color: #d32f2f; /* Festive red */
+  font-size: 1.2em;
+}
+
+/* Select Elements */
+.select {
+  background-color: #f0f0f0; /* Neutral background */
+  color: #d32f2f; /* Red text for focus */
+  border: 1px solid #ffcc00; /* Gold border */
+}
+
+/* Margins and Gutter Styles */
+.q-gutter-md,
+.q-mr-md,
+.q-ml-md {
+  margin-top: 10px;
+  background-color: #f39c12; /* Gold for festive highlights */
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.q-gutter-y-md,
+.q-gutter-md {
+  margin-top: 0px;
+}
+
+.q-gutter-y-md > *,
+.q-gutter-md > * {
+  margin-top: 0px;
+}
+
+/* DBS Container */
+div.dbs {
+  background-color: #f0f0f0; /* Neutral tone for readability */
+  max-width: 800px;
+  margin: auto;
+  padding: 10px;
+  border: 2px solid #d32f2f; /* Red border for emphasis */
+}
+
+/* Tables */
+table {
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #f39c12; /* Gold border */
+}
+
+td {
+  width: 50%;
+  vertical-align: top;
+  padding: 10px;
+  border-bottom: 1px solid #ffcc00; /* Gold separator */
+}
+
+/* List Items */
+li {
+  padding-top: 10px;
+}
+
+/* Titles and Headers */
+.title {
+  text-align: center;
+}
+
+h1.dbs,
+h2.dbs,
+h3.dbs,
+h4.dbs {
+  font-family: 'Arial', sans-serif; /* Modern and clean */
+  color: #d32f2f; /* Red for emphasis */
+}
+h1.dbs{
+  font-size: 3rem;
+  line-height: 3rem;
+}
+
+h2.dbs {
+  font-weight: bold;
+}
+
+h3.dbs {
+  margin-block-end: 0.3em;
+  font-size: 1.17em;
+}
+
+h4.dbs {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  font-size: 1em;
+}
+
+/* Special Table Styles */
+table.dbs {
+  border-collapse: collapse;
+  border: none;
+}
+
+td.dbs,
+th.dbs {
+  border: none;
+}
+
+td.rtl {
+  direction: rtl;
+}
+
+.ltr.dbs.link {
+  text-align: center;
+}
+
+/* Footer */
+p.copyright {
+  text-align: center;
+  color: #7f8c8d; /* Muted grey for less emphasis */
+}
+
+/* Bible Container */
+.bible-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 10px; /* Adds space between the blocks */
+  padding: 10px;
+  background-color: #f9e79f; /* Subtle gold background */
+  border-radius: 5px;
+}
+
+div.dbs{
+  background-color: #f9e79f;
+}
+li.dbs{
+  font-size:1rem;
+}
+
+div.bible-text{
+  color:#47135e;
+  font-weight:400;
+  font-size: 1rem;
+}
+
+
+.bible-text:first-child {
+  margin-right: 20px;
+}
+
+/* Hover Effects */
+.link:hover {
+  color: #f39c12; /* Gold hover */
+  text-decoration: underline;
+}
+
+/* Images */
+/* Add a cursor to indicate clickability */
+td[clickable] {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Apply a hover effect */
+td[clickable] img.menu_picture:hover {
+  transform: scale(1.05); /* Slightly enlarge the image */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Add a shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+/* Add a ripple effect when clicked */
+td[clickable]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+td[clickable]:active::after {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+  transition: 0s;
+}
+/* JNotes */
+.notes{
+  width:100%;
+  height: 100px;
+  margin-bottom: 16px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+// readmore button
+.readmore-button {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #e63946; /* Soft red */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.readmore-button:hover {
+  background-color: #d62828;
+}
+
+
+

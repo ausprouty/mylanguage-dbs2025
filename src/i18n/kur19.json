@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Kurdish",
+        "hlCode": "kur19",
+        "google": "ku"
+    },
+    "menu": {
+        "next": "Piştî",
+        "nextVideo": "Next Video",
+        "previous": "Pêşî",
+        "select": "Neqandin",
+        "videoSegment": "Beşa Vîdyoyê",
+        "language": "Ziman hilbijêrin"
+    },
+    "index": {
+        "para": {
+            "1": "Ji bo ku em di jiyana xwe ya giyanî de pêşkeftinek rastîn pêk bînin, em dizanin ku em hewceyê çavkaniyek pêbawer a şehrezayiyê ne.",
+            "2": "Bi tikandina li ser wêneyên jêrîn dê we dest bi rêyek vedîtina şehrezayiya herheyî ya ku Xwedê dixwaze ku hûn zanibin û bişopînin dest pê bike."
+        }
+    },
+    "dbs": {
+        "title": "Çîroka Mezin a Wisdom",
+        "para": {
+            "1": "Ev çîrok bi dema berî hebûna mirovan dest pê dike. Dûv re ew çîroka ku du mirovên pêşîn bi Xwedê re têkilî danîbûn vedibêje.\",",
+            "2": "Hevalên xwe kom bikin û bixwînin ka Xwedê çawa mirov ji bo hatina Jesussa û şehrezayiya wî amade kir.",
+            "3": "Bi tikandina li ser cîhana cîhanê ya li jor zimanê xweya bijare hilbijêrin."
+        }
+    },
+    "life": {
+        "title": "Wisdom for Life",
+        "para": {
+            "1": "Ev çend tişt in ku Îsa û şagirtên wî yên pêşîn hîn kirin.",
+            "2": "Gelek mirovan dît ku jiyana wan guherî dema ku wan ji Îsa xwest ku hêzê bide wan ku van hînkirinan bixin meriyetê.",
+            "3": "Hevalên xwe kom bikin û gava ku hûn pirsên jêrîn nîqaş dikin bibînin ka hûn çi kifş dikin.",
+            "4": "Bi tikandina li ser cîhana cîhanê ya li jor zimanê xweya bijare hilbijêrin."
+        }
+    },
+    "jVideo": {
+        "title": "Çavkaniya Hikmetê",
+        "para": {
+            "1": "Îsa çavkaniya şehrezayiya herheyî ye. Çaxê hûn li vîdêoyê temaşe dikin, ji xwe bipirsin: “Îsa çi kir û çi hîn kir? Çiqas şehrezayiya wî ji yên din cuda cuda ye”.",
+            "2": "Ev vîdyo bi gelek zimanan heye. Ji bo guherandina ziman li ser cîhana cîhanê ya li jor bikirtînin."
+        }
+    }
+}

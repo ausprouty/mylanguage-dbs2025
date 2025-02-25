@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Turkish",
+        "hlCode": "trk00",
+        "google": "tr"
+    },
+    "menu": {
+        "next": "Sonraki",
+        "nextVideo": "Sonraki Video",
+        "previous": "Öncesi",
+        "select": "Seçme",
+        "videoSegment": "Video Segmenti",
+        "language": "Dil Seçiniz"
+    },
+    "index": {
+        "para": {
+            "1": "Manevi yaşamımızda gerçek bir ilerleme kaydedebilmek için güvenilir bir bilgelik kaynağına ihtiyacımız olduğunu biliyoruz.",
+            "2": "Aşağıdaki resimlere tıklamak, Tanrı'nın bilmenizi ve takip etmenizi istediği sonsuz bilgeliği keşfetme yoluna girmenizi sağlayacaktır."
+        }
+    },
+    "dbs": {
+        "title": "Bilgeliğin Büyük Hikayesi",
+        "para": {
+            "1": "Bu hikaye insanların var olmadığı zamanlarla başlıyor. Daha sonra ilk iki insanın Tanrı ile nasıl etkileşime girdiğinin öyküsünü anlatıyor.\",",
+            "2": "Arkadaşlarınızı toplayın ve Tanrı'nın insanları İsa'nın ve O'nun Bilgeliğinin gelişine nasıl hazırladığını okuyun.",
+            "3": "Yukarıdaki dünya küresine tıklayarak favori dilinizi seçin."
+        }
+    },
+    "life": {
+        "title": "Yaşam Bilgeliği",
+        "para": {
+            "1": "Bunlar, İsa ve ilk takipçilerinin öğrettiği şeylerden bazılarıdır.",
+            "2": "Pek çok insan, İsa'dan bu öğretileri eyleme geçirebilmeleri için kendilerine güç vermesini istediklerinde hayatlarının değiştiğini gördü.",
+            "3": "Arkadaşlarınızı toplayın ve aşağıdaki soruları tartışırken neler keşfettiğinizi görün.",
+            "4": "Yukarıdaki dünya küresine tıklayarak favori dilinizi seçin."
+        }
+    },
+    "jVideo": {
+        "title": "Bilgeliğin Kaynağı",
+        "para": {
+            "1": "İsa sonsuz bilgeliğin kaynağıdır. Videoyu izlerken kendinize şu soruyu sorun: \"İsa ne yaptı ve öğretti? Onun bilgeliği başkalarının söylediklerinden ne kadar farklı?\"",
+            "2": "Bu video birçok dilde mevcuttur. Dili değiştirmek için yukarıdaki dünya küresine tıklayın."
+        }
+    }
+}

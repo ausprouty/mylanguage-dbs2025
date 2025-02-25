@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Nyanja (Chichewa)",
+        "hlCode": "nyj00",
+        "google": "ny"
+    },
+    "menu": {
+        "next": "Ena",
+        "nextVideo": "Kanema Wotsatira",
+        "previous": "Zam'mbuyo",
+        "select": "Sankhani",
+        "videoSegment": "Gawo lamavidiyo",
+        "language": "Sankhani Chiyankhulo"
+    },
+    "index": {
+        "para": {
+            "1": "Kuti tipite patsogolo kwenikweni m’moyo wathu wauzimu timadziwa kuti tikufunikira gwero lodalirika la nzeru.",
+            "2": "Kudina pazithunzi zomwe zili m'munsizi zidzakuyambitsani panjira yopezera nzeru zamuyaya zomwe Mulungu akufuna kuti mudziwe ndikutsata."
+        }
+    },
+    "dbs": {
+        "title": "Nkhani Yaikulu ya Nzeru",
+        "para": {
+            "1": "Nkhaniyi imayamba ndi nthawi isanakhalepo anthu. Kenako yafotokoza nkhani ya momwe anthu awiri oyamba adalumikizirana ndi Mulungu.\"",
+            "2": "Sonkhanitsani abwenzi anu ndikuwerenga momwe Mulungu adakonzera anthu kubwera kwa Yesu ndi Nzeru zake.",
+            "3": "Sankhani chilankhulo chomwe mumakonda podina padziko lonse lapansi pamwambapa."
+        }
+    },
+    "life": {
+        "title": "Nzeru Zamoyo Zonse",
+        "para": {
+            "1": "Izi ndi zina mwa zinthu zimene Yesu ndi otsatira ake oyambirira anaphunzitsa.",
+            "2": "Anthu ambiri aona kuti moyo wawo wasintha pamene anapempha Yesu kuti awapatse mphamvu zogwiritsa ntchito zimene Yesu anaphunzitsa.",
+            "3": "Sonkhanitsani anzanu ndikuwona zomwe mwapeza pamene mukukambirana mafunso otsatirawa.",
+            "4": "Sankhani chilankhulo chomwe mumakonda podina padziko lonse lapansi pamwambapa."
+        }
+    },
+    "jVideo": {
+        "title": "Gwero la Nzeru",
+        "para": {
+            "1": "Yesu ndiye gwero la nzeru zosatha. Mukamaonera vidiyoyi, dzifunseni kuti: “Kodi Yesu anachita chiyani komanso ankaphunzitsa chiyani?",
+            "2": "Vidiyoyi ikupezeka m’zinenero zambiri. Kuti musinthe chilankhulo dinani dziko lapansi pamwambapa."
+        }
+    }
+}

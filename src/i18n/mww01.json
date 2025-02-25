@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Hmong",
+        "hlCode": "mww01",
+        "google": "hmn"
+    },
+    "menu": {
+        "next": "Tom ntej no",
+        "nextVideo": "Tom ntej Video",
+        "previous": "Yav dhau los",
+        "select": "Xaiv",
+        "videoSegment": "Video Ntu",
+        "language": "Xaiv hom lus"
+    },
+    "index": {
+        "para": {
+            "1": "Txhawm rau ua kom muaj kev vam meej hauv peb lub neej ntawm sab ntsuj plig peb paub tias peb xav tau ib qho kev txawj ntse uas ntseeg tau.",
+            "2": "Nyem rau ntawm cov duab hauv qab no yuav pib koj mus rau txoj hauv kev kom pom lub tswv yim nyob mus ib txhis uas Vajtswv xav kom koj paub thiab ua raws."
+        }
+    },
+    "dbs": {
+        "title": "Zaj Dab Neeg Txawj Ntse",
+        "para": {
+            "1": "Zaj dab neeg no pib nrog lub sij hawm ua ntej muaj neeg. Tom qab ntawd nws qhia zaj dab neeg ntawm thawj ob tus neeg cuam tshuam nrog Vajtswv li cas. \"",
+            "2": "Sau koj cov phooj ywg thiab nyeem seb Vajtswv tau npaj tib neeg li cas rau kev tuaj txog ntawm Yexus thiab Nws Txoj Kev Txawj Ntse.",
+            "3": "Xaiv cov lus koj nyiam los ntawm txhaj rau lub ntiaj teb lub ntiaj teb saum toj no."
+        }
+    },
+    "life": {
+        "title": "Kev txawj ntse rau lub neej",
+        "para": {
+            "1": "Nov yog qee yam uas Yexus thiab nws cov thwjtim thaum ub tau qhia.",
+            "2": "Ntau tus tau pom lawv lub neej hloov pauv thaum lawv thov kom Yexus muab lub zog rau lawv los muab cov lus qhia no ua.",
+            "3": "Sau koj cov phooj ywg thiab saib seb koj nrhiav tau dab tsi thaum koj tham txog cov lus nug hauv qab no.",
+            "4": "Xaiv cov lus koj nyiam los ntawm txhaj rau lub ntiaj teb lub ntiaj teb saum toj no."
+        }
+    },
+    "jVideo": {
+        "title": "Qhov Chaw Txawj Ntse",
+        "para": {
+            "1": "Yexus yog lub hauv paus ntawm kev txawj ntse nyob mus ib txhis. Thaum koj saib daim vis dis aus, nug koj tus kheej tias \"Yexus ua li cas thiab qhia li cas? Nws lub tswvyim txawv li cas rau lwm tus hais.\"",
+            "2": "Daim vis dis aus no muaj ntau yam lus. Txhawm rau hloov cov lus nyem lub ntiaj teb lub ntiaj teb saum toj no."
+        }
+    }
+}

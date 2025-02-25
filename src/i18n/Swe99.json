@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Swedish",
+        "hlCode": "Swe99",
+        "google": "sv"
+    },
+    "menu": {
+        "next": "Nästa",
+        "nextVideo": "Nästa video",
+        "previous": "Tidigare",
+        "select": "Välja",
+        "videoSegment": "Videosegment",
+        "language": "Välj Språk"
+    },
+    "index": {
+        "para": {
+            "1": "För att göra några verkliga framsteg i vårt andliga liv vet vi att vi behöver en pålitlig källa till visdom.",
+            "2": "Genom att klicka på bilderna nedan kommer du att starta en väg till att upptäcka den eviga visdom som Gud vill att du ska känna till och följa."
+        }
+    },
+    "dbs": {
+        "title": "Den stora berättelsen om visdom",
+        "para": {
+            "1": "Den här historien börjar med tiden innan det fanns några människor. Den berättar sedan historien om hur de två första personerna interagerade med Gud.\"",
+            "2": "Samla dina vänner och läs hur Gud förberedde människor för Jesu ankomst och hans visdom.",
+            "3": "Välj ditt favoritspråk genom att klicka på världsgloben ovan."
+        }
+    },
+    "life": {
+        "title": "Visdom för livet",
+        "para": {
+            "1": "Det här är några av de saker som Jesus och hans tidiga efterföljare lärde ut.",
+            "2": "Många människor har sett sina liv förändras när de bad Jesus att ge dem kraften att omsätta dessa läror i handling.",
+            "3": "Samla dina vänner och se vad du upptäcker när du diskuterar följande frågor.",
+            "4": "Välj ditt favoritspråk genom att klicka på världsgloben ovan."
+        }
+    },
+    "jVideo": {
+        "title": "Källan till visdom",
+        "para": {
+            "1": "Jesus är källan till evig visdom. När du tittar på videon, fråga dig själv \"Vad gjorde och lärde Jesus ut? Hur skiljer sig hans visdom från vad andra har sagt.\"",
+            "2": "Den här videon är tillgänglig på många språk. För att ändra språk klicka på världsgloben ovan."
+        }
+    }
+}

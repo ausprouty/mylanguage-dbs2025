@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Afrikaans",
+        "hlCode": "afk00",
+        "google": "af"
+    },
+    "menu": {
+        "next": "Volgende",
+        "nextVideo": "Volgende video",
+        "previous": "Vorige",
+        "select": "Kies",
+        "videoSegment": "Video segment",
+        "language": "Kies Taal"
+    },
+    "index": {
+        "para": {
+            "1": "Om enige werklike vordering in ons geestelike lewe te maak, weet ons dat ons 'n betroubare bron van wysheid nodig het.",
+            "2": "Deur op die prente hieronder te klik, sal jy op 'n pad begin om die ewige wysheid te ontdek wat God wil hê jy moet ken en volg."
+        }
+    },
+    "dbs": {
+        "title": "Die Groot Verhaal van Wysheid",
+        "para": {
+            "1": "Hierdie storie begin met die tyd voordat daar enige mense was. Dit vertel dan die verhaal van hoe die eerste twee mense met God omgegaan het.”",
+            "2": "Versamel jou vriende en lees hoe God mense voorberei het vir die koms van Jesus en sy Wysheid.",
+            "3": "Kies jou gunsteling taal deur op die wêreldbol hierbo te klik."
+        }
+    },
+    "life": {
+        "title": "Wysheid vir die Lewe",
+        "para": {
+            "1": "Dit is van die dinge wat Jesus en sy vroeë volgelinge geleer het.",
+            "2": "Baie mense het gesien hoe hulle lewens verander toe hulle Jesus gevra het om hulle die krag te gee om hierdie leringe in werking te stel.",
+            "3": "Maak jou vriende bymekaar en kyk wat jy ontdek terwyl jy die volgende vrae bespreek.",
+            "4": "Kies jou gunsteling taal deur op die wêreldbol hierbo te klik."
+        }
+    },
+    "jVideo": {
+        "title": "Die Bron van Wysheid",
+        "para": {
+            "1": "Jesus is die bron van ewige wysheid. Terwyl jy na die video kyk, vra jouself af \"Wat het Jesus gedoen en geleer? Hoe verskil sy wysheid van wat ander gesê het.\"",
+            "2": "Hierdie video is in baie tale beskikbaar. Klik op die wêreldbol hierbo om die taal te verander."
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Catalan",
+        "hlCode": "Cat24",
+        "google": "ca"
+    },
+    "menu": {
+        "next": "A continuació",
+        "nextVideo": "Vídeo següent",
+        "previous": "Anterior",
+        "select": "Seleccioneu",
+        "videoSegment": "Segment de vídeo",
+        "language": "Seleccioneu Idioma"
+    },
+    "index": {
+        "para": {
+            "1": "Per tal de fer qualsevol progrés real en la nostra vida espiritual, sabem que necessitem una font fiable de saviesa.",
+            "2": "Si feu clic a les imatges de sota, us iniciarà el camí per descobrir la saviesa eterna que Déu vol que conegueu i que seguiu."
+        }
+    },
+    "dbs": {
+        "title": "La gran història de la saviesa",
+        "para": {
+            "1": "Aquesta història comença amb l'època abans que hi hagués gent. A continuació, explica la història de com les dues primeres persones van interactuar amb Déu\".",
+            "2": "Reuneix els teus amics i llegeix com Déu va preparar la gent per a l'arribada de Jesús i la seva saviesa.",
+            "3": "Seleccioneu el vostre idioma preferit fent clic al globus de dalt."
+        }
+    },
+    "life": {
+        "title": "Saviesa per a la vida",
+        "para": {
+            "1": "Aquestes són algunes de les coses que Jesús i els seus primers seguidors van ensenyar.",
+            "2": "Moltes persones han vist les seves vides transformades quan li van demanar a Jesús que els donés el poder de posar en pràctica aquests ensenyaments.",
+            "3": "Reuneix els teus amics i mira què descobreixes mentre discuteixes les preguntes següents.",
+            "4": "Seleccioneu el vostre idioma preferit fent clic al globus de dalt."
+        }
+    },
+    "jVideo": {
+        "title": "La Font de la Saviesa",
+        "para": {
+            "1": "Jesús és la font de la saviesa eterna. Mentre mireu el vídeo, pregunteu-vos \"Què va fer i va ensenyar Jesús? En què és diferent la seva saviesa del que han dit els altres\".",
+            "2": "Aquest vídeo està disponible en molts idiomes. Per canviar l'idioma, feu clic al globus del món de dalt."
+        }
+    }
+}

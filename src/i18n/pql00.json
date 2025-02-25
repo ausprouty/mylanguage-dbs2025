@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Polish",
+        "hlCode": "pql00",
+        "google": "pl"
+    },
+    "menu": {
+        "next": "Następny",
+        "nextVideo": "Następny film",
+        "previous": "Poprzedni",
+        "select": "Wybierać",
+        "videoSegment": "Segment wideo",
+        "language": "Wybierz Język"
+    },
+    "index": {
+        "para": {
+            "1": "Wiemy, że aby osiągnąć prawdziwy postęp w życiu duchowym, potrzebujemy niezawodnego źródła mądrości.",
+            "2": "Klikając na poniższe obrazy, rozpoczniesz drogę do odkrycia wiecznej mądrości, którą Bóg chce, abyś poznał i którą podążał."
+        }
+    },
+    "dbs": {
+        "title": "Wielka historia mądrości",
+        "para": {
+            "1": "Ta historia zaczyna się od czasów, kiedy nie było jeszcze ludzi. Następnie opowiada historię o tym, jak dwie pierwsze osoby nawiązały kontakt z Bogiem.”,",
+            "2": "Zbierz swoich przyjaciół i przeczytaj, jak Bóg przygotował ludzi na przyjście Jezusa i Jego Mądrości.",
+            "3": "Wybierz swój ulubiony język, klikając kulę ziemską powyżej."
+        }
+    },
+    "life": {
+        "title": "Mądrość na całe życie",
+        "para": {
+            "1": "Oto niektóre z nauk Jezusa i jego pierwszych naśladowców.",
+            "2": "Wiele osób widziało zmianę w swoim życiu, gdy poprosiły Jezusa, aby dał im moc wprowadzenia tych nauk w życie.",
+            "3": "Zbierz znajomych i zobacz, czego odkryjesz, omawiając poniższe pytania.",
+            "4": "Wybierz swój ulubiony język, klikając kulę ziemską powyżej."
+        }
+    },
+    "jVideo": {
+        "title": "Źródło Mądrości",
+        "para": {
+            "1": "Jezus jest źródłem wiecznej mądrości. Oglądając film, zadaj sobie pytanie: „Co Jezus robił i czego nauczał? Czym Jego mądrość różni się od tego, co mówią inni”.",
+            "2": "Ten film jest dostępny w wielu językach. Aby zmienić język, kliknij kulę ziemską powyżej."
+        }
+    }
+}

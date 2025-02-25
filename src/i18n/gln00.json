@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Galician",
+        "hlCode": "gln00",
+        "google": "gl"
+    },
+    "menu": {
+        "next": "A continuación",
+        "nextVideo": "Seguinte vídeo",
+        "previous": "Anterior",
+        "select": "Seleccione",
+        "videoSegment": "Segmento de vídeo",
+        "language": "Seleccione Idioma"
+    },
+    "index": {
+        "para": {
+            "1": "Para facer un progreso real na nosa vida espiritual, sabemos que necesitamos unha fonte fiable de sabedoría.",
+            "2": "Facendo clic nas imaxes de abaixo comezará un camiño para descubrir a sabedoría eterna que Deus quere que coñezas e sigas."
+        }
+    },
+    "dbs": {
+        "title": "A gran historia da sabedoría",
+        "para": {
+            "1": "Esta historia comeza coa época anterior a que houbese xente. Despois conta a historia de como as dúas primeiras persoas interactuaron con Deus\".",
+            "2": "Reúne aos teus amigos e le como Deus preparou á xente para a chegada de Xesús e a súa Sabedoría.",
+            "3": "Selecciona o teu idioma favorito facendo clic no globo terráqueo de arriba."
+        }
+    },
+    "life": {
+        "title": "Sabedoría para a Vida",
+        "para": {
+            "1": "Estas son algunhas das cousas que Xesús e os seus primeiros seguidores ensinaron.",
+            "2": "Moitas persoas viron as súas vidas transformadas cando lle pediron a Xesús que lles dea o poder de poñer en práctica estas ensinanzas.",
+            "3": "Reúne aos teus amigos e mira o que descobres mentres comentas as seguintes preguntas.",
+            "4": "Selecciona o teu idioma favorito facendo clic no globo terráqueo de arriba."
+        }
+    },
+    "jVideo": {
+        "title": "A fonte da sabedoría",
+        "para": {
+            "1": "Xesús é a fonte da sabedoría eterna. Mentres miras o vídeo, pregúntase \"Que fixo e ensinou Xesús? En que se diferencia a súa sabedoría do que dixeron outros\".",
+            "2": "Este vídeo está dispoñible en moitos idiomas. Para cambiar o idioma, fai clic no globo terráqueo superior."
+        }
+    }
+}

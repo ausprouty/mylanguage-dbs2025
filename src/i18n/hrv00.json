@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Croatian",
+        "hlCode": "hrv00",
+        "google": "hr"
+    },
+    "menu": {
+        "next": "Sljedeći",
+        "nextVideo": "Sljedeći video",
+        "previous": "Prethodno",
+        "select": "Odaberite",
+        "videoSegment": "Video segment",
+        "language": "Odaberite jezik"
+    },
+    "index": {
+        "para": {
+            "1": "Kako bismo stvarno napredovali u našem duhovnom životu, znamo da nam je potreban pouzdan izvor mudrosti.",
+            "2": "Klikom na slike u nastavku krenut ćete na put otkrivanja vječne mudrosti koju Bog želi da znate i slijedite."
+        }
+    },
+    "dbs": {
+        "title": "Velika priča o mudrosti",
+        "para": {
+            "1": "Ova priča počinje s vremenom prije nego što je bilo ljudi. Zatim govori priču o tome kako su prve dvije osobe komunicirale s Bogom.\"",
+            "2": "Okupite svoje prijatelje i pročitajte kako je Bog pripremao ljude za dolazak Isusa i njegove Mudrosti.",
+            "3": "Odaberite svoj omiljeni jezik klikom na svjetski globus iznad."
+        }
+    },
+    "life": {
+        "title": "Mudrost za život",
+        "para": {
+            "1": "Ovo su neke od stvari koje su poučavali Isus i njegovi rani sljedbenici.",
+            "2": "Mnogi su ljudi vidjeli kako su im se životi promijenili dok su tražili od Isusa da im da moć da ta učenja provedu u djelo.",
+            "3": "Okupite svoje prijatelje i pogledajte što ćete otkriti dok raspravljate o sljedećim pitanjima.",
+            "4": "Odaberite svoj omiljeni jezik klikom na svjetski globus iznad."
+        }
+    },
+    "jVideo": {
+        "title": "Izvor mudrosti",
+        "para": {
+            "1": "Isus je izvor vječne mudrosti. Dok gledate video, zapitajte se \"Što je Isus činio i poučavao? Kako se njegova mudrost razlikuje od onoga što su drugi rekli.\"",
+            "2": "Ovaj video je dostupan na mnogim jezicima. Za promjenu jezika kliknite gornji globus."
+        }
+    }
+}

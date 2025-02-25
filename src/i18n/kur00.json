@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Kurdish (Sorani)",
+        "hlCode": "kur00",
+        "google": "ckb"
+    },
+    "menu": {
+        "next": "",
+        "nextVideo": "",
+        "previous": "",
+        "select": "",
+        "videoSegment": "",
+        "language": ""
+    },
+    "index": {
+        "para": {
+            "1": "",
+            "2": ""
+        }
+    },
+    "dbs": {
+        "title": "",
+        "para": {
+            "1": "",
+            "2": "",
+            "3": ""
+        }
+    },
+    "life": {
+        "title": "",
+        "para": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": ""
+        }
+    },
+    "jVideo": {
+        "title": "",
+        "para": {
+            "1": "",
+            "2": ""
+        }
+    }
+}

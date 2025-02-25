@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Hawaiian",
+        "hlCode": "haw98",
+        "google": "haw"
+    },
+    "menu": {
+        "next": "Aʻe",
+        "nextVideo": "Video aʻe",
+        "previous": "Mamua",
+        "select": "E koho",
+        "videoSegment": "Māhele wikiō",
+        "language": "E koho i ka ʻōlelo"
+    },
+    "index": {
+        "para": {
+            "1": "I mea e holomua maoli ai ko mākou ola ʻuhane, ʻike mākou pono mākou i kahi kumu hilinaʻi o ka naʻauao.",
+            "2": "Ke kaomi ʻana i nā kiʻi ma lalo nei e hoʻomaka ʻoe i ke ala e ʻike ai i ka naʻauao mau loa a ke Akua e makemake ai e ʻike a hahai ʻoe."
+        }
+    },
+    "dbs": {
+        "title": "Ka Moolelo Nui o ka Naauao",
+        "para": {
+            "1": "Hoʻomaka kēia moʻolelo me ka wā ma mua o ka loaʻa ʻana o kekahi poʻe. A laila e haʻi i ka moʻolelo o ka launa ʻana o nā kānaka ʻelua me ke Akua.\",",
+            "2": "E hōʻuluʻulu i kou mau hoaaloha a heluhelu i ka hoʻomākaukau ʻana o ke Akua i nā kānaka no ka hiki ʻana mai o Iesū a me kona Naʻauao.",
+            "3": "E koho i kāu ʻōlelo punahele ma ke kaomi ʻana i ka honua honua ma luna."
+        }
+    },
+    "life": {
+        "title": "Naauao no ke Ola",
+        "para": {
+            "1": "ʻO kēia kekahi o nā mea a Iesu a me kāna mau haumāna mua i aʻo ai.",
+            "2": "Nui ka poʻe i ʻike i ko lākou ola ʻana i ka hoʻololi ʻana i ko lākou noi ʻana iā Iesū e hāʻawi iā lākou i ka mana e hoʻokō ai i kēia mau aʻo ʻana.",
+            "3": "E hōʻuluʻulu i kāu mau hoaaloha a ʻike i nā mea āu i ʻike ai i kāu kūkākūkā ʻana i kēia mau nīnau.",
+            "4": "E koho i kāu ʻōlelo punahele ma ke kaomi ʻana i ka honua honua ma luna."
+        }
+    },
+    "jVideo": {
+        "title": "Ke Kumu o ka Naauao",
+        "para": {
+            "1": "O Iesu ke kumu o ka naauao mau. I kou nānā ʻana i ke wikiō, e nīnau iā ʻoe iho \"He aha ka mea a Iesu i hana ai a aʻo ai? Pehea ka ʻokoʻa o kona naʻauao mai ka ʻōlelo a kekahi.\"",
+            "2": "Loaʻa kēia wikiō ma nā ʻōlelo he nui. No ka hoʻololi ʻana i ka ʻōlelo, kaomi i ka honua honua ma luna."
+        }
+    }
+}

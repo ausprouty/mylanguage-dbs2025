@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Estonian",
+        "hlCode": "est00",
+        "google": "et"
+    },
+    "menu": {
+        "next": "Edasi",
+        "nextVideo": "Järgmine video",
+        "previous": "Eelmine",
+        "select": "Valige",
+        "videoSegment": "Video segment",
+        "language": "Valige keel"
+    },
+    "index": {
+        "para": {
+            "1": "Me teame, et meie vaimses elus tõelise edu saavutamiseks vajame usaldusväärset tarkuseallikat.",
+            "2": "Allolevatel piltidel klõpsamine alustab teid igavese tarkuse avastamisel, mida Jumal soovib, et te teaksite ja järgiksite."
+        }
+    },
+    "dbs": {
+        "title": "Suur tarkuse lugu",
+        "para": {
+            "1": "See lugu algab ajast, enne kui veel inimesi oli. Seejärel räägib see loo sellest, kuidas kaks esimest inimest Jumalaga suhtlesid.",
+            "2": "Koguge oma sõbrad ja lugege, kuidas Jumal valmistas inimesi Jeesuse ja Tema Tarkuse saabumiseks.",
+            "3": "Valige oma lemmikkeel, klõpsates ülaltoodud maailma maakeral."
+        }
+    },
+    "life": {
+        "title": "Elutarkus",
+        "para": {
+            "1": "Need on mõned asjad, mida Jeesus ja tema esimesed järgijad õpetasid.",
+            "2": "Paljud inimesed on näinud oma elu muutumas, kui nad palusid Jeesusel anda neile vägi neid õpetusi ellu viia.",
+            "3": "Koguge oma sõbrad ja vaadake, mida te järgmiste küsimuste arutamisel avastate.",
+            "4": "Valige oma lemmikkeel, klõpsates ülaltoodud maailma maakeral."
+        }
+    },
+    "jVideo": {
+        "title": "Tarkuse Allikas",
+        "para": {
+            "1": "Jeesus on igavese tarkuse allikas. Videot vaadates küsi endalt: \"Mida Jeesus tegi ja õpetas? Mille poolest erineb tema tarkus sellest, mida teised on öelnud.\"",
+            "2": "See video on saadaval paljudes keeltes. Keele muutmiseks klõpsake ülalpool maailma maakera."
+        }
+    }
+}

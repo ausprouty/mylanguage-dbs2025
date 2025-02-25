@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Hungarian",
+        "hlCode": "hng00",
+        "google": "hu"
+    },
+    "menu": {
+        "next": "Következő",
+        "nextVideo": "Következő Videó",
+        "previous": "Előző",
+        "select": "Válassza ki",
+        "videoSegment": "Videó szegmens",
+        "language": "Válassza a Nyelv lehetőséget"
+    },
+    "index": {
+        "para": {
+            "1": "Tudjuk, hogy a bölcsesség megbízható forrására van szükségünk ahhoz, hogy valódi előrehaladást érjünk el spirituális életünkben.",
+            "2": "Az alábbi képekre kattintva elindulsz azon az úton, amely az örök bölcsesség felfedezéséhez vezet, amelyet Isten szeretné, hogy ismerj és kövess."
+        }
+    },
+    "dbs": {
+        "title": "A bölcsesség nagy története",
+        "para": {
+            "1": "Ez a történet azzal az idővel kezdődik, amikor még nem voltak emberek. Aztán azt a történetet meséli el, hogy az első két ember hogyan érintkezett Istennel.\"",
+            "2": "Gyűjtsd össze barátaidat, és olvasd el, hogyan készítette fel Isten az embereket Jézus és Bölcsessége érkezésére.",
+            "3": "Válassza ki kedvenc nyelvét a fenti világgömbre kattintva."
+        }
+    },
+    "life": {
+        "title": "Bölcsesség az életre",
+        "para": {
+            "1": "Ez néhány dolog, amit Jézus és korai követői tanítottak.",
+            "2": "Sok ember élete átalakulóban volt, amikor arra kérték Jézust, hogy adjon nekik hatalmat e tanítások gyakorlati megvalósítására.",
+            "3": "Gyűjtsd össze barátaidat, és nézd meg, mit fedezel fel, miközben megbeszéled a következő kérdéseket.",
+            "4": "Válassza ki kedvenc nyelvét a fenti világgömbre kattintva."
+        }
+    },
+    "jVideo": {
+        "title": "A Bölcsesség Forrása",
+        "para": {
+            "1": "Jézus az örök bölcsesség forrása. Miközben nézed a videót, tedd fel magadnak a kérdést: \"Mit tett és tanított Jézus? Miben különbözik az ő bölcsessége attól, amit mások mondtak.\"",
+            "2": "Ez a videó számos nyelven elérhető. A nyelv megváltoztatásához kattintson a fenti világgömbre."
+        }
+    }
+}

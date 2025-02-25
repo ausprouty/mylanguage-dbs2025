@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Frisian",
+        "hlCode": "Fri29",
+        "google": "fy"
+    },
+    "menu": {
+        "next": "Folgjende",
+        "nextVideo": "Folgjende Video",
+        "previous": "Foarige",
+        "select": "Selektearje",
+        "videoSegment": "Video Segment",
+        "language": "Selektearje Taal"
+    },
+    "index": {
+        "para": {
+            "1": "Om echte foarútgong te meitsjen yn ús geastlik libben witte wy dat wy in betroubere boarne fan wiisheid nedich binne.",
+            "2": "Klikje op de ôfbyldings hjirûnder sil jo begjinne op in paad nei it ûntdekken fan 'e ivige wiisheid dy't God wol dat jo witte en folgje."
+        }
+    },
+    "dbs": {
+        "title": "It grutte ferhaal fan wiisheid",
+        "para": {
+            "1": "Dit ferhaal begjint mei de tiid foardat der minsken wiene. It fertelt dan it ferhaal fan hoe't de earste twa minsken omgean mei God.\",",
+            "2": "Sammelje jo freonen en lês hoe't God minsken taret op 'e komst fan Jezus en syn wiisheid.",
+            "3": "Selektearje jo favorite taal troch te klikken op de wrâldbol hjirboppe."
+        }
+    },
+    "life": {
+        "title": "Wisdom for Life",
+        "para": {
+            "1": "Dit binne guon fan 'e dingen dy't Jezus en syn iere folgers learden.",
+            "2": "In protte minsken hawwe har libben feroare sjoen doe't se Jezus fregen om har de krêft te jaan om dizze learingen yn aksje te bringen.",
+            "3": "Sammelje jo freonen en sjoch wat jo ûntdekke as jo de folgjende fragen besprekke.",
+            "4": "Selektearje jo favorite taal troch te klikken op de wrâldbol hjirboppe."
+        }
+    },
+    "jVideo": {
+        "title": "De boarne fan wiisheid",
+        "para": {
+            "1": "Jezus is de boarne fan ivige wiisheid. As jo ​​​​de fideo besjen, freegje jo sels \"Wat hat Jezus dien en leard? Hoe is syn wiisheid oars as wat oaren hawwe sein.\"",
+            "2": "Dizze fideo is beskikber yn in protte talen. Klikje op de wrâldbol hjirboppe om de taal te feroarjen."
+        }
+    }
+}

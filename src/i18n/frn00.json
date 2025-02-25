@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "French",
+        "hlCode": "frn00",
+        "google": "fr"
+    },
+    "menu": {
+        "next": "Suivant",
+        "nextVideo": "Vidéo suivante",
+        "previous": "Précédent",
+        "select": "Sélectionner",
+        "videoSegment": "Segment vidéo",
+        "language": "Sélectionnez la langue"
+    },
+    "index": {
+        "para": {
+            "1": "Afin de réaliser de réels progrès dans notre vie spirituelle, nous savons que nous avons besoin d’une source fiable de sagesse.",
+            "2": "En cliquant sur les images ci-dessous, vous découvrirez la sagesse éternelle que Dieu veut que vous connaissiez et suiviez."
+        }
+    },
+    "dbs": {
+        "title": "La grande histoire de la sagesse",
+        "para": {
+            "1": "Cette histoire commence à l’époque avant qu’il n’y ait des hommes. Il raconte ensuite l'histoire de la façon dont les deux premières personnes ont interagi avec Dieu.\",",
+            "2": "Rassemblez vos amis et lisez comment Dieu a préparé les gens à l'arrivée de Jésus et de sa Sagesse.",
+            "3": "Sélectionnez votre langue préférée en cliquant sur le globe terrestre ci-dessus."
+        }
+    },
+    "life": {
+        "title": "La sagesse pour la vie",
+        "para": {
+            "1": "Ce sont quelques-unes des choses que Jésus et ses premiers disciples ont enseignées.",
+            "2": "De nombreuses personnes ont vu leur vie transformée lorsqu’elles ont demandé à Jésus de leur donner le pouvoir de mettre ces enseignements en pratique.",
+            "3": "Rassemblez vos amis et voyez ce que vous découvrez en discutant des questions suivantes.",
+            "4": "Sélectionnez votre langue préférée en cliquant sur le globe terrestre ci-dessus."
+        }
+    },
+    "jVideo": {
+        "title": "La source de la sagesse",
+        "para": {
+            "1": "Jésus est la source de la sagesse éternelle. Pendant que vous regardez la vidéo, demandez-vous : « Qu'est-ce que Jésus a fait et enseigné ? En quoi sa sagesse est-elle différente de ce que d'autres ont dit. »",
+            "2": "Cette vidéo est disponible dans de nombreuses langues. Pour changer la langue, cliquez sur le globe terrestre ci-dessus."
+        }
+    }
+}

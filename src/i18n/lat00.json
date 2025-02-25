@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Latvian",
+        "hlCode": "lat00",
+        "google": "lv"
+    },
+    "menu": {
+        "next": "Tālāk",
+        "nextVideo": "Nākamais video",
+        "previous": "Iepriekšējais",
+        "select": "Izvēlieties",
+        "videoSegment": "Video segments",
+        "language": "Izvēlieties valodu"
+    },
+    "index": {
+        "para": {
+            "1": "Mēs zinām, ka mums ir vajadzīgs uzticams gudrības avots, lai panāktu reālu progresu mūsu garīgajā dzīvē.",
+            "2": "Noklikšķinot uz zemāk redzamajiem attēliem, jūs sāksit ceļu uz mūžīgās gudrības atklāšanu, kuru Dievs vēlas, lai jūs zinātu un sekotu."
+        }
+    },
+    "dbs": {
+        "title": "Lielais gudrības stāsts",
+        "para": {
+            "1": "Šis stāsts sākas ar laiku, kad vēl nebija cilvēku. Pēc tam tas stāsta par to, kā pirmie divi cilvēki mijiedarbojās ar Dievu.",
+            "2": "Sapulcini savus draugus un lasi, kā Dievs sagatavoja cilvēkus Jēzus un Viņa Gudrības atnākšanai.",
+            "3": "Izvēlieties savu iecienītāko valodu, noklikšķinot uz pasaules zemeslodes augstāk."
+        }
+    },
+    "life": {
+        "title": "Dzīves gudrība",
+        "para": {
+            "1": "Šīs ir dažas no lietām, ko mācīja Jēzus un viņa pirmie sekotāji.",
+            "2": "Daudzi cilvēki ir redzējuši, kā viņu dzīve ir mainījusies, jo viņi lūdza Jēzum dot viņiem spēku īstenot šīs mācības.",
+            "3": "Sapulciniet savus draugus un uzziniet, ko atklājat, apspriežot tālāk minētos jautājumus.",
+            "4": "Izvēlieties savu iecienītāko valodu, noklikšķinot uz pasaules zemeslodes augstāk."
+        }
+    },
+    "jVideo": {
+        "title": "Gudrības Avots",
+        "para": {
+            "1": "Jēzus ir mūžīgās gudrības avots. Skatoties video, pajautājiet sev: \"Ko Jēzus darīja un mācīja? Kā viņa gudrība atšķiras no citu teiktā.\"",
+            "2": "Šis video ir pieejams daudzās valodās. Lai mainītu valodu, noklikšķiniet uz pasaules globusa augšpusē."
+        }
+    }
+}

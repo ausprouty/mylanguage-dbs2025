@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Spanish",
+        "hlCode": "spn00",
+        "google": "es"
+    },
+    "menu": {
+        "next": "Próximo",
+        "nextVideo": "Siguiente Vídeo",
+        "previous": "Anterior",
+        "select": "Seleccionar",
+        "videoSegment": "Segmento de vídeo",
+        "language": "Seleccionar idioma"
+    },
+    "index": {
+        "para": {
+            "1": "Para lograr un progreso real en nuestra vida espiritual, sabemos que necesitamos una fuente confiable de sabiduría.",
+            "2": "Al hacer clic en las imágenes a continuación, iniciará un camino para descubrir la sabiduría eterna que Dios quiere que conozca y siga."
+        }
+    },
+    "dbs": {
+        "title": "La gran historia de la sabiduría",
+        "para": {
+            "1": "Esta historia comienza con la época anterior a que existieran personas. Luego cuenta la historia de cómo las dos primeras personas interactuaron con Dios.",
+            "2": "Reúne a tus amigos y lee cómo Dios preparó a las personas para la llegada de Jesús y su Sabiduría.",
+            "3": "Seleccione su idioma favorito haciendo clic en el globo terráqueo de arriba."
+        }
+    },
+    "life": {
+        "title": "Sabiduría para la vida",
+        "para": {
+            "1": "Estas son algunas de las cosas que enseñaron Jesús y sus primeros seguidores.",
+            "2": "Muchas personas han visto sus vidas transformadas cuando le pidieron a Jesús que les diera el poder de poner en práctica estas enseñanzas.",
+            "3": "Reúne a tus amigos y mira lo que descubres mientras discutes las siguientes preguntas.",
+            "4": "Seleccione su idioma favorito haciendo clic en el globo terráqueo de arriba."
+        }
+    },
+    "jVideo": {
+        "title": "La fuente de la sabiduría",
+        "para": {
+            "1": "Jesús es la fuente de la sabiduría eterna. Mientras mira el video, pregúntese: \"¿Qué hizo y enseñó Jesús? ¿En qué se diferencia su sabiduría de lo que otros han dicho?\".",
+            "2": "Este vídeo está disponible en muchos idiomas. Para cambiar el idioma, haga clic en el globo terráqueo de arriba."
+        }
+    }
+}

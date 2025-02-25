@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Lithuanian",
+        "hlCode": "lit00",
+        "google": "lt"
+    },
+    "menu": {
+        "next": "Prossimo",
+        "nextVideo": "Prossimo video",
+        "previous": "Precedente",
+        "select": "Selezionare",
+        "videoSegment": "Segmento video",
+        "language": "Seleziona lingua"
+    },
+    "index": {
+        "para": {
+            "1": "Per poter compiere un reale progresso nella nostra vita spirituale, sappiamo di aver bisogno di una fonte affidabile di saggezza.",
+            "2": "Cliccando sulle immagini qui sotto inizierai un percorso alla scoperta della saggezza eterna che Dio vuole che tu conosca e segua."
+        }
+    },
+    "dbs": {
+        "title": "La grande storia della saggezza",
+        "para": {
+            "1": "Questa storia inizia con il tempo prima che esistessero le persone. Poi racconta la storia di come le prime due persone hanno interagito con Dio.\",",
+            "2": "Raduna i tuoi amici e leggi come Dio ha preparato le persone per l'arrivo di Gesù e della sua Sapienza.",
+            "3": "Seleziona la tua lingua preferita facendo clic sul mappamondo in alto."
+        }
+    },
+    "life": {
+        "title": "Saggezza per la vita",
+        "para": {
+            "1": "Queste sono alcune delle cose insegnate da Gesù e dai suoi primi seguaci.",
+            "2": "Molte persone hanno visto la propria vita trasformarsi quando hanno chiesto a Gesù di dare loro il potere di mettere in pratica questi insegnamenti.",
+            "3": "Raduna i tuoi amici e guarda cosa scopri mentre discuti le seguenti domande.",
+            "4": "Seleziona la tua lingua preferita facendo clic sul mappamondo in alto."
+        }
+    },
+    "jVideo": {
+        "title": "La fonte della saggezza",
+        "para": {
+            "1": "Gesù è la fonte della saggezza eterna. Mentre guardi il video, chiediti: \"Cosa ha fatto e insegnato Gesù? In che modo la sua saggezza è diversa da ciò che hanno detto gli altri\".",
+            "2": "Questo video è disponibile in molte lingue. Per cambiare la lingua, fai clic sul mappamondo in alto."
+        }
+    }
+}

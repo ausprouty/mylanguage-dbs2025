@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Irish",
+        "hlCode": "Iri99",
+        "google": "ga"
+    },
+    "menu": {
+        "next": "Ar aghaidh",
+        "nextVideo": "An Chéad Fhís Eile",
+        "previous": "Roimhe Seo",
+        "select": "Roghnaigh",
+        "videoSegment": "Deighleog Físe",
+        "language": "Roghnaigh Teanga"
+    },
+    "index": {
+        "para": {
+            "1": "Chun aon dul chun cinn fíor a dhéanamh inár saol spioradálta tá a fhios againn go bhfuil foinse iontaofa eagna de dhíth orainn.",
+            "2": "Má chliceálann tú ar na híomhánna thíos cuirfear tús leat ar chonair chun an eagna síoraí a bhfuil Dia ag iarraidh ort a bheith ar an eolas agus a leanúint."
+        }
+    },
+    "dbs": {
+        "title": "Mórscéal na hEagna",
+        "para": {
+            "1": "Tosaíonn an scéal seo leis an am sula raibh aon daoine. Insíonn sé ansin an scéal faoin gcaoi ar oibrigh an chéad bheirt le Dia.”,",
+            "2": "Cruinnigh do chairde agus léigh mar a d’ullmhaigh Dia daoine do theacht Íosa agus a Eagna.",
+            "3": "Roghnaigh an teanga is fearr leat trí chliceáil ar an gcruinneog dhomhanda thuas."
+        }
+    },
+    "life": {
+        "title": "Eagna don Saol",
+        "para": {
+            "1": "Seo cuid de na rudaí a mhúin Íosa agus a lucht leanúna go luath.",
+            "2": "Is iomaí duine a chonaic a saol claochlaithe agus iad ag iarraidh ar Íosa an chumhacht a thabhairt dóibh na teagascacha seo a chur i ngníomh.",
+            "3": "Bailigh do chairde agus féach cad a aimsíonn tú agus tú ag plé na ceisteanna seo a leanas.",
+            "4": "Roghnaigh an teanga is fearr leat trí chliceáil ar an gcruinneog dhomhanda thuas."
+        }
+    },
+    "jVideo": {
+        "title": "Foinse na hEagna",
+        "para": {
+            "1": "Is é Íosa foinse na eagna síoraí. Agus tú ag féachaint ar an bhfíseán, fiafraigh díot féin \"Cad a rinne agus a theagasc Íosa? Cén chaoi a bhfuil a eagna difriúil ón méid a dúirt daoine eile.\"",
+            "2": "Tá an físeán seo ar fáil i go leor teangacha. Chun an teanga a athrú cliceáil ar an gcloigeann domhanda thuas."
+        }
+    }
+}

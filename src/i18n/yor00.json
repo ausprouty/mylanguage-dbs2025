@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Yoruba",
+        "hlCode": "yor00",
+        "google": "yo"
+    },
+    "menu": {
+        "next": "Itele",
+        "nextVideo": "Fidio to nbọ",
+        "previous": "Ti tẹlẹ",
+        "select": "Yan",
+        "videoSegment": "Fidio Apa",
+        "language": "Yan Ede"
+    },
+    "index": {
+        "para": {
+            "1": "Láti lè ní ìtẹ̀síwájú gidi èyíkéyìí nínú ìgbésí ayé wa nípa tẹ̀mí a mọ̀ pé a nílò orísun ọgbọ́n tí ó ṣeé gbára lé.",
+            "2": "Tite lori awọn aworan ti o wa ni isalẹ yoo bẹrẹ ọ ni ọna lati ṣawari ọgbọn ayeraye ti Ọlọrun fẹ ki o mọ ati tẹle."
+        }
+    },
+    "dbs": {
+        "title": "Itan nla ti Ọgbọn",
+        "para": {
+            "1": "Itan yii bẹrẹ pẹlu akoko ṣaaju ki eniyan kankan wa. Lẹhinna o sọ itan ti bi awọn eniyan meji akọkọ ṣe ṣe ajọṣepọ pẹlu Ọlọrun.”,",
+            "2": "Kó àwọn ọ̀rẹ́ rẹ jọ kí o sì ka bí Ọlọ́run ṣe múra àwọn èèyàn sílẹ̀ fún dídé Jésù àti Ọgbọ́n rẹ̀.",
+            "3": "Yan ede ayanfẹ rẹ nipa tite lori agbaye agbaye loke."
+        }
+    },
+    "life": {
+        "title": "Ọgbọn fun Life",
+        "para": {
+            "1": "Ìwọ̀nyí jẹ́ díẹ̀ lára ​​ohun tí Jésù àtàwọn ọmọlẹ́yìn rẹ̀ ìjímìjí kọ́ni.",
+            "2": "Ọ̀pọ̀ èèyàn ló ti rí bí ìgbésí ayé wọn ṣe yí pa dà nígbà tí wọ́n ní kí Jésù fún wọn lágbára láti fi àwọn ẹ̀kọ́ wọ̀nyí sílò.",
+            "3": "Pe awọn ọrẹ rẹ jọ ki o wo ohun ti o rii bi o ṣe n jiroro awọn ibeere wọnyi.",
+            "4": "Yan ede ayanfẹ rẹ nipa tite lori agbaye agbaye loke."
+        }
+    },
+    "jVideo": {
+        "title": "Orisun Ogbon",
+        "para": {
+            "1": "Jesu ni orisun ọgbọn ayeraye. Bi o ṣe n wo fidio naa, beere lọwọ ararẹ \"Kini Jesu ṣe ati kọni? Bawo ni ọgbọn rẹ ṣe yatọ si ohun ti awọn miiran ti sọ.\"",
+            "2": "Fidio yii wa ni ọpọlọpọ awọn ede. Lati yi ede pada tẹ agbaye agbaye loke."
+        }
+    }
+}

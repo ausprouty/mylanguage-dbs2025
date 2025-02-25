@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Icelandic",
+        "hlCode": "Ice99",
+        "google": "is"
+    },
+    "menu": {
+        "next": "Næst",
+        "nextVideo": "Næsta myndband",
+        "previous": "Fyrri",
+        "select": "Veldu",
+        "videoSegment": "Vídeóhluti",
+        "language": "Veldu Tungumál"
+    },
+    "index": {
+        "para": {
+            "1": "Til þess að ná raunverulegum framförum í andlegu lífi okkar vitum við að við þurfum áreiðanlega uppsprettu visku.",
+            "2": "Með því að smella á myndirnar hér að neðan mun þú byrja á leið til að uppgötva þá eilífu visku sem Guð vill að þú þekkir og fylgist með."
+        }
+    },
+    "dbs": {
+        "title": "Stóra saga viskunnar",
+        "para": {
+            "1": "Þessi saga byrjar á tímanum áður en fólk var til. Það segir síðan söguna af því hvernig fyrstu tvær manneskjurnar höfðu samskipti við Guð.“",
+            "2": "Safnaðu vinum þínum og lestu hvernig Guð undirbjó fólk fyrir komu Jesú og visku hans.",
+            "3": "Veldu uppáhalds tungumálið þitt með því að smella á heimshnöttinn hér að ofan."
+        }
+    },
+    "life": {
+        "title": "Viska fyrir lífið",
+        "para": {
+            "1": "Þetta er eitthvað af því sem Jesús og fyrstu fylgjendur hans kenndu.",
+            "2": "Margir hafa séð líf sitt umbreytast þegar þeir báðu Jesú að gefa þeim kraft til að koma þessum kenningum í framkvæmd.",
+            "3": "Safnaðu vinum þínum og sjáðu hvað þú uppgötvar þegar þú ræðir eftirfarandi spurningar.",
+            "4": "Veldu uppáhalds tungumálið þitt með því að smella á heimshnöttinn hér að ofan."
+        }
+    },
+    "jVideo": {
+        "title": "Uppspretta viskunnar",
+        "para": {
+            "1": "Jesús er uppspretta eilífrar visku. Þegar þú horfir á myndbandið skaltu spyrja sjálfan þig \"Hvað gerði Jesús og kenndi? Hvernig er viska hans frábrugðin því sem aðrir hafa sagt.\"",
+            "2": "Þetta myndband er fáanlegt á mörgum tungumálum. Til að breyta tungumálinu smelltu á heimshnöttinn hér að ofan."
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Cebuano",
+        "hlCode": "ceb00",
+        "google": "ceb"
+    },
+    "menu": {
+        "next": "Sunod",
+        "nextVideo": "Sunod nga Video",
+        "previous": "Kaniadto",
+        "select": "Pagpili",
+        "videoSegment": "Segment sa Video",
+        "language": "Pilia ang Pinulongan"
+    },
+    "index": {
+        "para": {
+            "1": "Aron makahimo sa bisan unsang tinuod nga pag-uswag sa atong espirituhanong kinabuhi nahibal-an naton nga kinahanglan naton ang usa ka kasaligan nga tinubdan sa kaalam.",
+            "2": "Ang pag-klik sa mga hulagway sa ubos magsugod nimo sa dalan sa pagdiskubre sa mahangturong kaalam nga gusto sa Dios nga imong mahibaloan ug sundon."
+        }
+    },
+    "dbs": {
+        "title": "Ang Dakong Istorya sa Kaalam",
+        "para": {
+            "1": "Kini nga istorya nagsugod sa panahon sa wala pa ang mga tawo. Dayon kini nagsaysay sa istorya kon sa unsang paagi ang unang duha ka tawo nakig-uban sa Diyos.”,",
+            "2": "Tiguma ang imong mga higala ug basaha giunsa pag-andam sa Dios ang mga tawo alang sa pag-abot ni Jesus ug sa iyang Kaalam.",
+            "3": "Pilia ang imong paborito nga pinulongan pinaagi sa pag-klik sa kalibutan sa ibabaw."
+        }
+    },
+    "life": {
+        "title": "Kaalam Alang sa Kinabuhi",
+        "para": {
+            "1": "Kini ang pipila sa mga butang nga gitudlo ni Jesus ug sa iyang unang mga sumusunod.",
+            "2": "Daghang mga tawo ang nakakita sa ilang kinabuhi nga nabag-o samtang sila mihangyo kang Jesus nga hatagan sila ug gahum sa pagbuhat niini nga mga pagtulon-an.",
+            "3": "Tiguma ang imong mga higala ug tan-awa unsay imong nadiskobrehan samtang imong hisgutan ang mosunod nga mga pangutana.",
+            "4": "Pilia ang imong paborito nga pinulongan pinaagi sa pag-klik sa kalibutan sa ibabaw."
+        }
+    },
+    "jVideo": {
+        "title": "Ang Tuboran sa Kaalam",
+        "para": {
+            "1": "Si Jesus mao ang tinubdan sa walay katapusan nga kaalam. Samtang nagtan-aw ka sa video, pangutan-a ang imong kaugalingon \"Unsa ang gibuhat ug gitudlo ni Jesus? Sa unsang paagi lahi ang iyang kaalam sa gisulti sa uban.\"",
+            "2": "Kini nga video anaa sa daghang pinulongan. Para usbon ang lengguwahe i-klik ang kalibutan nga globe sa ibabaw."
+        }
+    }
+}

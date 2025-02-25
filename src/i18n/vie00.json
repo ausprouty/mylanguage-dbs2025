@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Vietnamese",
+        "hlCode": "vie00",
+        "google": "vi"
+    },
+    "menu": {
+        "next": "Kế tiếp",
+        "nextVideo": "Video tiếp theo",
+        "previous": "Trước",
+        "select": "Lựa chọn",
+        "videoSegment": "Đoạn video",
+        "language": "Chọn ngôn ngữ"
+    },
+    "index": {
+        "para": {
+            "1": "Để đạt được bất kỳ tiến bộ thực sự nào trong đời sống tâm linh, chúng ta biết mình cần một nguồn trí tuệ đáng tin cậy.",
+            "2": "Nhấp vào những hình ảnh bên dưới sẽ giúp bạn bắt đầu con đường khám phá sự khôn ngoan vĩnh cửu mà Chúa muốn bạn biết và noi theo."
+        }
+    },
+    "dbs": {
+        "title": "Câu chuyện vĩ đại của trí tuệ",
+        "para": {
+            "1": "Câu chuyện này bắt đầu từ thời trước khi có con người. Sau đó, nó kể câu chuyện về cách hai người đầu tiên tương tác với Chúa.\",",
+            "2": "Tập hợp bạn bè của bạn và đọc cách Thiên Chúa chuẩn bị cho mọi người cho sự xuất hiện của Chúa Giêsu và Trí tuệ của Ngài.",
+            "3": "Chọn ngôn ngữ yêu thích của bạn bằng cách nhấp vào quả địa cầu thế giới ở trên."
+        }
+    },
+    "life": {
+        "title": "Trí tuệ cho cuộc sống",
+        "para": {
+            "1": "Đây là một số điều mà Chúa Giê-su và các môn đồ ban đầu của ngài đã dạy.",
+            "2": "Nhiều người đã thấy cuộc sống của họ được biến đổi khi họ cầu xin Chúa Giêsu ban cho họ sức mạnh để áp dụng những lời dạy này vào hành động.",
+            "3": "Hãy tập hợp bạn bè của bạn và xem bạn khám phá được điều gì khi thảo luận những câu hỏi sau đây.",
+            "4": "Chọn ngôn ngữ yêu thích của bạn bằng cách nhấp vào quả địa cầu thế giới ở trên."
+        }
+    },
+    "jVideo": {
+        "title": "Nguồn trí tuệ",
+        "para": {
+            "1": "Chúa Giêsu là nguồn khôn ngoan vĩnh cửu. Khi xem video, hãy tự hỏi \"Chúa Giê-su đã làm gì và dạy gì? Sự khôn ngoan của ngài khác với những gì người khác đã nói như thế nào?\"",
+            "2": "Video này có sẵn bằng nhiều ngôn ngữ. Để thay đổi ngôn ngữ hãy nhấp vào quả địa cầu thế giới ở trên."
+        }
+    }
+}

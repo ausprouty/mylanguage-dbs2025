@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Malay",
+        "hlCode": "mli00",
+        "google": "ms"
+    },
+    "menu": {
+        "next": "Seterusnya",
+        "nextVideo": "Video Seterusnya",
+        "previous": "Sebelumnya",
+        "select": "Pilih",
+        "videoSegment": "Segmen Video",
+        "language": "Pilih Bahasa"
+    },
+    "index": {
+        "para": {
+            "1": "Untuk membuat apa-apa kemajuan sebenar dalam kehidupan rohani kita, kita tahu kita memerlukan sumber kebijaksanaan yang boleh dipercayai.",
+            "2": "Mengklik pada imej di bawah akan memulakan anda pada jalan untuk menemui kebijaksanaan kekal yang Tuhan ingin anda ketahui dan ikuti."
+        }
+    },
+    "dbs": {
+        "title": "Kisah Agung Hikmah",
+        "para": {
+            "1": "Kisah ini bermula dengan zaman sebelum ada orang. Ia kemudian menceritakan kisah bagaimana dua orang pertama berinteraksi dengan Tuhan.\",",
+            "2": "Kumpulkan rakan-rakan anda dan baca bagaimana Tuhan menyediakan manusia untuk kedatangan Yesus dan Kebijaksanaan-Nya.",
+            "3": "Pilih bahasa kegemaran anda dengan mengklik pada glob dunia di atas."
+        }
+    },
+    "life": {
+        "title": "Hikmah untuk Kehidupan",
+        "para": {
+            "1": "Ini adalah beberapa perkara yang diajar oleh Yesus dan para pengikutnya yang awal.",
+            "2": "Ramai orang telah melihat kehidupan mereka berubah apabila mereka meminta Yesus untuk memberi mereka kuasa untuk melaksanakan ajaran ini.",
+            "3": "Kumpul rakan anda dan lihat perkara yang anda temui semasa anda membincangkan soalan berikut.",
+            "4": "Pilih bahasa kegemaran anda dengan mengklik pada glob dunia di atas."
+        }
+    },
+    "jVideo": {
+        "title": "Sumber Kebijaksanaan",
+        "para": {
+            "1": "Yesus adalah sumber hikmat yang kekal. Semasa anda menonton video, tanya diri anda \"Apakah yang Yesus lakukan dan ajar? Bagaimanakah kebijaksanaan-Nya berbeza daripada apa yang dikatakan oleh orang lain.\"",
+            "2": "Video ini tersedia dalam banyak bahasa. Untuk menukar bahasa klik glob dunia di atas."
+        }
+    }
+}

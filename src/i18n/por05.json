@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Portuguese (Portugal, Brazil)",
+        "hlCode": "por05",
+        "google": "pt"
+    },
+    "menu": {
+        "next": "Próximo",
+        "nextVideo": "Próximo vídeo",
+        "previous": "Anterior",
+        "select": "Selecione",
+        "videoSegment": "Segmento de vídeo",
+        "language": "Selecione o idioma"
+    },
+    "index": {
+        "para": {
+            "1": "Para fazermos algum progresso real em nossa vida espiritual, sabemos que precisamos de uma fonte confiável de sabedoria.",
+            "2": "Clicar nas imagens abaixo o iniciará no caminho para descobrir a sabedoria eterna que Deus deseja que você conheça e siga."
+        }
+    },
+    "dbs": {
+        "title": "A Grande História da Sabedoria",
+        "para": {
+            "1": "Esta história começa com o tempo antes de existirem pessoas. Em seguida, conta a história de como as duas primeiras pessoas interagiram com Deus.\",",
+            "2": "Reúna seus amigos e leia como Deus preparou as pessoas para a chegada de Jesus e sua Sabedoria.",
+            "3": "Selecione seu idioma favorito clicando no globo acima."
+        }
+    },
+    "life": {
+        "title": "Sabedoria para a Vida",
+        "para": {
+            "1": "Estas são algumas das coisas que Jesus e seus primeiros seguidores ensinaram.",
+            "2": "Muitas pessoas viram suas vidas transformadas quando pediram a Jesus que lhes desse o poder de colocar esses ensinamentos em prática.",
+            "3": "Reúna seus amigos e veja o que você descobre ao discutir as seguintes questões.",
+            "4": "Selecione seu idioma favorito clicando no globo acima."
+        }
+    },
+    "jVideo": {
+        "title": "A Fonte da Sabedoria",
+        "para": {
+            "1": "Jesus é a fonte da sabedoria eterna. Ao assistir ao vídeo, pergunte-se: \"O que Jesus fez e ensinou? Como sua sabedoria difere do que outros disseram.\"",
+            "2": "Este vídeo está disponível em vários idiomas. Para alterar o idioma, clique no globo mundial acima."
+        }
+    }
+}

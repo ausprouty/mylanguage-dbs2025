@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Hausa",
+        "hlCode": "hua00",
+        "google": "ha"
+    },
+    "menu": {
+        "next": "Na gaba",
+        "nextVideo": "Bidiyo na gaba",
+        "previous": "A baya",
+        "select": "Zaɓi",
+        "videoSegment": "Bangaren Bidiyo",
+        "language": "Zaɓi Harshe"
+    },
+    "index": {
+        "para": {
+            "1": "Domin mu sami ci gaba na gaske a rayuwarmu ta ruhaniya mun san muna bukatar tushen hikima mai aminci.",
+            "2": "Danna Hotunan da ke ƙasa zai fara da ku a kan hanyar gano madawwamiyar hikimar da Allah yake so ku sani kuma ku bi."
+        }
+    },
+    "dbs": {
+        "title": "Babban Labarin Hikima",
+        "para": {
+            "1": "Wannan labarin ya fara ne da lokacin kafin a sami mutane. Sannan ya ba da labarin yadda mutane biyun farko suka yi mu’amala da Allah.”,",
+            "2": "Ka tara abokanka ka karanta yadda Allah ya shirya mutane don zuwan Yesu da Hikimarsa.",
+            "3": "Zaɓi harshen da kuka fi so ta danna kan duniyar duniyar da ke sama."
+        }
+    },
+    "life": {
+        "title": "Hikimar Rayuwa",
+        "para": {
+            "1": "Waɗannan wasu abubuwa ne da Yesu da mabiyansa na farko suka koyar.",
+            "2": "Mutane da yawa sun ga yadda rayuwarsu ta canja sa’ad da suka roƙi Yesu ya ba su ikon yin waɗannan koyarwar.",
+            "3": "Ka tara abokanka kuma ka ga abin da ka gano yayin da kake tattauna tambayoyi masu zuwa.",
+            "4": "Zaɓi harshen da kuka fi so ta danna kan duniyar duniyar da ke sama."
+        }
+    },
+    "jVideo": {
+        "title": "Tushen Hikima",
+        "para": {
+            "1": "Yesu shine tushen hikima ta har abada. Yayin da kake kallon bidiyon, ka tambayi kanka \"Menene Yesu ya yi kuma ya koyar? Ta yaya hikimarsa ta bambanta da abin da wasu suka faɗa.\"",
+            "2": "Ana samun wannan bidiyon a cikin yaruka da yawa. Don canza harshe danna duniyar duniyar da ke sama."
+        }
+    }
+}

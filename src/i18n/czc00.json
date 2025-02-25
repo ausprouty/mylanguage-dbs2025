@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Czech",
+        "hlCode": "czc00",
+        "google": "cs"
+    },
+    "menu": {
+        "next": "Další",
+        "nextVideo": "Další video",
+        "previous": "Předchozí",
+        "select": "Vybrat",
+        "videoSegment": "Video segment",
+        "language": "Vyberte Jazyk"
+    },
+    "index": {
+        "para": {
+            "1": "Víme, že potřebujeme spolehlivý zdroj moudrosti, abychom dosáhli jakéhokoli skutečného pokroku v našem duchovním životě.",
+            "2": "Kliknutím na obrázky níže se vydáte na cestu k objevení věčné moudrosti, kterou Bůh chce, abyste znali a následovali."
+        }
+    },
+    "dbs": {
+        "title": "Velký příběh moudrosti",
+        "para": {
+            "1": "Tento příběh začíná v době, kdy ještě neexistovali nějací lidé. Poté vypráví příběh o tom, jak první dva lidé jednali s Bohem.\",",
+            "2": "Shromážděte své přátele a přečtěte si, jak Bůh připravil lidi na příchod Ježíše a jeho Moudrosti.",
+            "3": "Vyberte svůj oblíbený jazyk kliknutím na zeměkouli výše."
+        }
+    },
+    "life": {
+        "title": "Moudrost pro život",
+        "para": {
+            "1": "To jsou některé z věcí, které Ježíš a jeho první následovníci učili.",
+            "2": "Mnoho lidí vidělo, jak se jejich životy proměnily, když požádali Ježíše, aby jim dal moc uvést toto učení do praxe.",
+            "3": "Shromážděte své přátele a uvidíte, co objevíte, když budete diskutovat o následujících otázkách.",
+            "4": "Vyberte svůj oblíbený jazyk kliknutím na zeměkouli výše."
+        }
+    },
+    "jVideo": {
+        "title": "Zdroj moudrosti",
+        "para": {
+            "1": "Ježíš je zdrojem věčné moudrosti. Při sledování videa se zeptejte sami sebe: „Co Ježíš dělal a učil? V čem se jeho moudrost liší od toho, co říkali ostatní.“",
+            "2": "Toto video je dostupné v mnoha jazycích. Chcete-li změnit jazyk, klikněte na zeměkouli výše."
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Albanian",
+        "hlCode": "aln00",
+        "google": "sq"
+    },
+    "menu": {
+        "next": "Tjetra",
+        "nextVideo": "Videoja e radhës",
+        "previous": "E mëparshme",
+        "select": "Zgjidhni",
+        "videoSegment": "Segmenti i videos",
+        "language": "Zgjidhni gjuhën"
+    },
+    "index": {
+        "para": {
+            "1": "Për të bërë ndonjë përparim të vërtetë në jetën tonë shpirtërore, ne e dimë se kemi nevojë për një burim të besueshëm mençurie.",
+            "2": "Klikimi mbi imazhet e mëposhtme do t'ju fillojë në një rrugë drejt zbulimit të urtësisë së përjetshme që Perëndia dëshiron që ju të dini dhe të ndiqni."
+        }
+    },
+    "dbs": {
+        "title": "Historia e Madhe e Urtësisë",
+        "para": {
+            "1": "Kjo histori fillon me kohën para se të kishte njerëz. Më pas tregon historinë se si dy njerëzit e parë ndërvepruan me Zotin.\",",
+            "2": "Mblidhni miqtë tuaj dhe lexoni se si Perëndia i përgatiti njerëzit për ardhjen e Jezusit dhe Urtësisë së tij.",
+            "3": "Zgjidhni gjuhën tuaj të preferuar duke klikuar mbi globin botëror më lart."
+        }
+    },
+    "life": {
+        "title": "Mençuria për jetën",
+        "para": {
+            "1": "Këto janë disa nga gjërat që mësuan Jezusi dhe pasuesit e tij të hershëm.",
+            "2": "Shumë njerëz e kanë parë jetën e tyre të transformuar ndërsa i kërkuan Jezusit t'u jepte atyre fuqinë për t'i vënë në veprim këto mësime.",
+            "3": "Mblidhni miqtë tuaj dhe shikoni se çfarë zbuloni ndërsa diskutoni pyetjet e mëposhtme.",
+            "4": "Zgjidhni gjuhën tuaj të preferuar duke klikuar mbi globin botëror më lart."
+        }
+    },
+    "jVideo": {
+        "title": "Burimi i Urtësisë",
+        "para": {
+            "1": "Jezusi është burimi i urtësisë së përjetshme. Ndërsa shikoni videon, pyesni veten \"Çfarë bëri dhe mësoi Jezusi? Si ndryshon mençuria e tij nga ajo që kanë thënë të tjerët.\"",
+            "2": "Kjo video është e disponueshme në shumë gjuhë. Për të ndryshuar gjuhën, klikoni globin botëror më lart."
+        }
+    }
+}

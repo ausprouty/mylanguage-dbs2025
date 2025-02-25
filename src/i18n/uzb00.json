@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Uzbek",
+        "hlCode": "uzb00",
+        "google": "uz"
+    },
+    "menu": {
+        "next": "Keyingisi",
+        "nextVideo": "Keyingi Video",
+        "previous": "Oldingi",
+        "select": "Tanlang",
+        "videoSegment": "Video segmenti",
+        "language": "Tilni tanlang"
+    },
+    "index": {
+        "para": {
+            "1": "Ma'naviy hayotimizda har qanday haqiqiy taraqqiyotga erishish uchun bizga ishonchli donolik manbai kerakligini bilamiz.",
+            "2": "Quyidagi rasmlarni bosish sizni Xudo bilishingiz va amal qilishingizni xohlagan abadiy donolikni kashf qilish yo'liga boshlaydi."
+        }
+    },
+    "dbs": {
+        "title": "Donolikning buyuk hikoyasi",
+        "para": {
+            "1": "Bu hikoya odamlar borligidan oldingi vaqtdan boshlanadi. Keyin u birinchi ikki kishining Xudo bilan qanday munosabatda bo'lganligi haqida hikoya qiladi.\"",
+            "2": "Do'stlaringizni to'plang va Xudo odamlarni Isoning kelishi va Uning donoligi uchun qanday tayyorlaganini o'qing.",
+            "3": "Yuqoridagi globusni bosish orqali sevimli tilingizni tanlang."
+        }
+    },
+    "life": {
+        "title": "Hayot uchun donolik",
+        "para": {
+            "1": "Bular Iso va uning ilk izdoshlari o'rgatgan ba'zi narsalardir.",
+            "2": "Ko'p odamlar bu ta'limotlarni amalga oshirish uchun Isodan ularga kuch berishini so'raganlarida, hayotlari o'zgarganini ko'rdi.",
+            "3": "Do'stlaringizni yig'ing va quyidagi savollarni muhokama qilayotganda nimani kashf qilayotganingizni ko'ring.",
+            "4": "Yuqoridagi globusni bosish orqali sevimli tilingizni tanlang."
+        }
+    },
+    "jVideo": {
+        "title": "Donolik manbai",
+        "para": {
+            "1": "Iso abadiy donolikning manbaidir. Videoni tomosha qilar ekansiz, o‘zingizdan so‘rang: “Iso nima qildi va o‘rgatdi? Uning donoligi boshqalar aytganidan nimasi bilan farq qiladi?”.",
+            "2": "Ushbu video ko'p tillarda mavjud. Tilni o'zgartirish uchun yuqoridagi dunyo globusini bosing."
+        }
+    }
+}

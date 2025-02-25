@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Sesotho",
+        "hlCode": "sot01",
+        "google": "st"
+    },
+    "menu": {
+        "next": "E 'ngoe",
+        "nextVideo": "Video e latelang",
+        "previous": "E fetileng",
+        "select": "Khetha",
+        "videoSegment": "Karolo ea Video",
+        "language": "Kgetha Puo"
+    },
+    "index": {
+        "para": {
+            "1": "E le hore re ka etsa tsoelo-pele leha e le efe ea sebele bophelong ba rōna ba moea rea ​​tseba hore re hloka mohloli o tšepahalang oa bohlale.",
+            "2": "Ho tobetsa litšoantšo tse ka tlase ho tla u qalisa tseleng ea ho fumana bohlale bo sa feleng boo Molimo a batlang hore u bo tsebe le ho bo latela."
+        }
+    },
+    "dbs": {
+        "title": "Pale e Kgolo ya Bohlale",
+        "para": {
+            "1": "Pale ena e qala ka nako ea pele ho ne ho e-na le batho. Joale e bua pale ea kamoo batho ba babeli ba pele ba ileng ba sebelisana le Molimo kateng.”",
+            "2": "Bokella metsoalle ea hau 'me u bale kamoo Molimo a lokiselitseng batho ho fihla ha Jesu le Bohlale ba hae.",
+            "3": "Khetha puo eo u e ratang ka ho tobetsa lefats'e ka holimo."
+        }
+    },
+    "life": {
+        "title": "Bohlale Bakeng sa Bophelo",
+        "para": {
+            "1": "Tsena ke tse ling tsa lintho tseo Jesu le balateli ba hae ba pele ba ileng ba li ruta.",
+            "2": "Batho ba bangata ba bone bophelo ba bona bo fetohile ha ba ntse ba kōpa Jesu hore a ba fe matla a ho sebelisa lithuto tsena.",
+            "3": "Bokella metsoalle ea hau 'me u bone seo u se fumanang ha le ntse le tšohla lipotso tse latelang.",
+            "4": "Khetha puo eo u e ratang ka ho tobetsa lefats'e ka holimo."
+        }
+    },
+    "jVideo": {
+        "title": "Mohloli oa Bohlale",
+        "para": {
+            "1": "Jesu ke mohloli oa bohlale bo sa feleng. Ha u ntse u shebella video, ipotse: \"Jesu o ile a etsa'ng le ho ruta eng? Bohlale ba hae bo fapane joang le seo ba bang ba se buileng.\"",
+            "2": "Video ena e fumaneha ka lipuo tse ngata. Ho fetola puo, tobetsa lefatše ka holimo."
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Konkani",
+        "hlCode": "gom00",
+        "google": "gom"
+    },
+    "menu": {
+        "next": "",
+        "nextVideo": "",
+        "previous": "",
+        "select": "",
+        "videoSegment": "",
+        "language": ""
+    },
+    "index": {
+        "para": {
+            "1": "",
+            "2": ""
+        }
+    },
+    "dbs": {
+        "title": "",
+        "para": {
+            "1": "",
+            "2": "",
+            "3": ""
+        }
+    },
+    "life": {
+        "title": "",
+        "para": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": ""
+        }
+    },
+    "jVideo": {
+        "title": "",
+        "para": {
+            "1": "",
+            "2": ""
+        }
+    }
+}

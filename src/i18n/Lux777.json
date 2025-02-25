@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Luxembourgish",
+        "hlCode": "Lux777",
+        "google": "lb"
+    },
+    "menu": {
+        "next": "Nächst",
+        "nextVideo": "Nächste Video",
+        "previous": "Virdrun",
+        "select": "Wielt",
+        "videoSegment": "Video Segment",
+        "language": "Wielt Sprooch"
+    },
+    "index": {
+        "para": {
+            "1": "Fir e richtege Fortschrëtt an eisem spirituellen Liewen ze maachen, wësse mer datt mir eng zouverlässeg Quell vu Wäisheet brauchen.",
+            "2": "Klickt op d'Biller hei drënner wäert Iech op e Wee starten fir déi éiweg Wäisheet z'entdecken, déi Gott wëllt datt Dir wësst a verfollegt."
+        }
+    },
+    "dbs": {
+        "title": "Déi grouss Geschicht vu Wäisheet",
+        "para": {
+            "1": "Dës Geschicht fänkt mat der Zäit ier et Leit waren. Et erzielt dann d'Geschicht wéi déi éischt zwee Leit mat Gott interagéiert hunn.",
+            "2": "Sammelt Är Frënn a liest wéi Gott d'Leit op d'Arrivée vum Jesus a seng Wäisheet virbereet huet.",
+            "3": "Wielt Är Liiblingssprooch andeems Dir op de Weltglobe uewen klickt."
+        }
+    },
+    "life": {
+        "title": "Wäisheet fir Liewen",
+        "para": {
+            "1": "Dëst sinn e puer vun de Saachen déi de Jesus a seng fréi Unhänger geléiert hunn.",
+            "2": "Vill Leit hunn hiert Liewen transforméiert gesinn wéi se de Jesus gefrot hunn hinnen d'Kraaft ze ginn fir dës Léier an Handlung ëmzesetzen.",
+            "3": "Sammelt Är Frënn a kuckt wat Dir entdeckt wann Dir déi folgend Froen diskutéiert.",
+            "4": "Wielt Är Liiblingssprooch andeems Dir op de Weltglobe uewen klickt."
+        }
+    },
+    "jVideo": {
+        "title": "D'Quell vu Wäisheet",
+        "para": {
+            "1": "De Jesus ass d'Quell vun der éiweger Wäisheet. Wéi Dir de Video kuckt, frot Iech selwer \"Wat huet de Jesus gemaach a geléiert? Wéi ass seng Wäisheet anescht wéi dat wat anerer gesot hunn.\"",
+            "2": "Dëse Video ass a ville Sprooche verfügbar. Fir d'Sprooch z'änneren, klickt op de Weltglob uewen."
+        }
+    }
+}

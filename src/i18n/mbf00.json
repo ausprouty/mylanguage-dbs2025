@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Maori",
+        "hlCode": "mbf00",
+        "google": "mi"
+    },
+    "menu": {
+        "next": "Whai muri",
+        "nextVideo": "Ataata Panuku",
+        "previous": "Tuhinga o mua",
+        "select": "Tīpakohia",
+        "videoSegment": "Waahanga Ataata",
+        "language": "Tīpakohia te Reo"
+    },
+    "index": {
+        "para": {
+            "1": "No te haere i mua mau i roto i to tatou oraraa i te pae varua, ua ite tatou e e hinaaro tatou i te hoê puna papu no te paari.",
+            "2": "Ma te paoti i te mau hoho‘a i raro nei e haamata outou i nia i te hoê e‘a no te ite i te paari mure ore ta te Atua e hinaaro ia ite outou e ia pee."
+        }
+    },
+    "dbs": {
+        "title": "Ko te korero nui mo te whakaaro nui",
+        "para": {
+            "1": "Ka timata tenei korero i te wa i mua i te noho tangata. Ka korerohia te korero mo te taunekeneke o nga tangata tuatahi ki te Atua.\",",
+            "2": "A haaputu mai i to oe mau hoa e a taio e mea nafea te Atua i te faaineineraa i te taata no te taeraa mai o Iesu e to ’na paari.",
+            "3": "Tīpakohia tō reo tino pai mā te pāwhiri i te ao o runga."
+        }
+    },
+    "life": {
+        "title": "Te Paari mo te Ora",
+        "para": {
+            "1": "Teie te tahi mau mea ta Iesu e ta ’na mau pǐpǐ matamua i haapii.",
+            "2": "E rave rahi taata tei ite i to ratou oraraa i te tauiraa a ani ai ratou ia Iesu ia horoa mai i te mana no te faaohipa i teie mau haapiiraa.",
+            "3": "Huihuia o hoa ka kite i nga mea ka kitea e koe i a koe e korerorero ana i nga patai e whai ake nei.",
+            "4": "Tīpakohia tō reo tino pai mā te pāwhiri i te ao o runga."
+        }
+    },
+    "jVideo": {
+        "title": "Te Puna o te Paari",
+        "para": {
+            "1": "O Iesu te tumu o te paari mure ore. I a koe e matakitaki ana i te ataata, ui ki a koe ano \"He aha ta Ihu i mahi ai, i whakaako ai? He aha te rereke o tona mohio ki nga korero a etahi atu.\"",
+            "2": "Kei te wātea tenei ataata i roto i nga reo maha. Hei huri i te reo pawhiria te ao o runga."
+        }
+    }
+}

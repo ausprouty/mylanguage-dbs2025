@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Malagasy",
+        "hlCode": "plt00",
+        "google": "mg"
+    },
+    "menu": {
+        "next": "Manaraka",
+        "nextVideo": "Vidéo manaraka",
+        "previous": "Teo aloha",
+        "select": "Select",
+        "videoSegment": "Segment Video",
+        "language": "Select Language"
+    },
+    "index": {
+        "para": {
+            "1": "Mba hampandrosoana marina ny fiainantsika ara-panahy dia fantatsika fa mila loharanon-pahendrena azo itokisana isika.",
+            "2": "Ny fipihana ireo sary etsy ambany dia hanomboka anao amin’ny lalana iray hahitanao ny fahendrena mandrakizay izay tian’Andriamanitra ho fantatrao sy arahinao."
+        }
+    },
+    "dbs": {
+        "title": "Ny Tantara Lehibe momba ny Fahendrena",
+        "para": {
+            "1": "Ity tantara ity dia manomboka amin'ny fotoana talohan'ny nisian'ny olona. Avy eo dia mitantara ny fomba nifandraisan’ireo olona roa voalohany tamin’Andriamanitra.”,",
+            "2": "Angony ny namanao ary vakio ny fomba nanomanan’Andriamanitra ny olona ho amin’ny fahatongavan’i Jesosy sy ny Fahendreny.",
+            "3": "Fidio ny fiteny tianao indrindra amin'ny fipihana ny tontolon'izao tontolo izao etsy ambony."
+        }
+    },
+    "life": {
+        "title": "Fahendrena ho amin’ny fiainana",
+        "para": {
+            "1": "Izany no sasany amin’ireo zavatra nampianarin’i Jesosy sy ny mpanara-dia azy voalohany.",
+            "2": "Olona maro no nahita fa niova ny fiainany rehefa nangataka an’i Jesosy mba hanome azy ireo hery hampiharana ireo fampianarana ireo.",
+            "3": "Angony ny namanao ary jereo ny zavatra hitanao rehefa mifanakalo hevitra momba ireto fanontaniana manaraka ireto ianao.",
+            "4": "Fidio ny fiteny tianao indrindra amin'ny fipihana ny tontolon'izao tontolo izao etsy ambony."
+        }
+    },
+    "jVideo": {
+        "title": "Ny Loharanon’ny Fahendrena",
+        "para": {
+            "1": "Jesosy no loharanon’ny fahendrena mandrakizay. Rehefa mijery ilay video ianao, dia manontania tena hoe: “Inona no nataon’i Jesosy sy nampianariny? Inona no maha samy hafa ny fahendreny amin’izay lazain’ny hafa.”",
+            "2": "Ity video ity dia misy amin'ny fiteny maro. Raha hanova ny fiteny dia tsindrio ny tontolon'izao tontolo izao etsy ambony."
+        }
+    }
+}

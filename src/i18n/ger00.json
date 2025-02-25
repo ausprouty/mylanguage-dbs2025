@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "German",
+        "hlCode": "ger00",
+        "google": "de"
+    },
+    "menu": {
+        "next": "Nächste",
+        "nextVideo": "Nächstes Video",
+        "previous": "Vorherige",
+        "select": "Wählen",
+        "videoSegment": "Videosegment",
+        "language": "Wählen Sie Sprache aus"
+    },
+    "index": {
+        "para": {
+            "1": "Um in unserem spirituellen Leben echte Fortschritte zu machen, wissen wir, dass wir eine zuverlässige Quelle der Weisheit brauchen.",
+            "2": "Wenn Sie auf die Bilder unten klicken, werden Sie auf den Weg gebracht, die ewige Weisheit zu entdecken, die Gott möchte, dass Sie sie kennen und befolgen."
+        }
+    },
+    "dbs": {
+        "title": "Die große Geschichte der Weisheit",
+        "para": {
+            "1": "Diese Geschichte beginnt mit der Zeit, bevor es überhaupt Menschen gab. Anschließend wird die Geschichte erzählt, wie die ersten beiden Menschen mit Gott interagierten.",
+            "2": "Versammeln Sie Ihre Freunde und lesen Sie, wie Gott die Menschen auf die Ankunft Jesu und seiner Weisheit vorbereitet hat.",
+            "3": "Wählen Sie Ihre Lieblingssprache aus, indem Sie oben auf die Weltkugel klicken."
+        }
+    },
+    "life": {
+        "title": "Weisheit fürs Leben",
+        "para": {
+            "1": "Dies sind einige der Dinge, die Jesus und seine frühen Anhänger lehrten.",
+            "2": "Viele Menschen haben erlebt, wie sich ihr Leben verändert hat, als sie Jesus um die Kraft gebeten haben, diese Lehren in die Tat umzusetzen.",
+            "3": "Versammeln Sie Ihre Freunde und sehen Sie, was Sie entdecken, während Sie die folgenden Fragen besprechen.",
+            "4": "Wählen Sie Ihre Lieblingssprache aus, indem Sie oben auf die Weltkugel klicken."
+        }
+    },
+    "jVideo": {
+        "title": "Die Quelle der Weisheit",
+        "para": {
+            "1": "Jesus ist die Quelle ewiger Weisheit. Fragen Sie sich beim Ansehen des Videos: „Was hat Jesus getan und gelehrt? Wie unterscheidet sich seine Weisheit von dem, was andere gesagt haben?“",
+            "2": "Dieses Video ist in vielen Sprachen verfügbar. Um die Sprache zu ändern, klicken Sie oben auf die Weltkugel."
+        }
+    }
+}

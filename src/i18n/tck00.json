@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Turkmen",
+        "hlCode": "tck00",
+        "google": "tk"
+    },
+    "menu": {
+        "next": "Indiki",
+        "nextVideo": "Indiki wideo",
+        "previous": "Öňki",
+        "select": "Saýlaň",
+        "videoSegment": "Wideo segmenti",
+        "language": "Dil saýlaň"
+    },
+    "index": {
+        "para": {
+            "1": "Ruhy durmuşymyzda haýsydyr bir hakyky ösüş gazanmak üçin ygtybarly paýhas çeşmesiniň gerekdigini bilýäris.",
+            "2": "Aşakdaky suratlara bassaňyz, Hudaýyň siziň bilmegiňizi we yzarlamagyňyzy isleýän baky paýhasyny açmagyň ýoluna başlar."
+        }
+    },
+    "dbs": {
+        "title": "Paýhasyň beýik hekaýasy",
+        "para": {
+            "1": "Bu hekaýa hiç kim bolmanka başlaýar. Soňra ilkinji iki adamyň Hudaý bilen nähili gatnaşygy barada gürrüň berýär. \",",
+            "2": "Dostlaryňyzy ýygnaň we Hudaýyň Isanyň gelmegine we hikmetine adamlary nädip taýýarlandygyny okaň.",
+            "3": "Aboveokardaky dünýä obeer şaryna basyp halaýan diliňizi saýlaň."
+        }
+    },
+    "life": {
+        "title": "Durmuş üçin paýhas",
+        "para": {
+            "1": "Bular Isanyň we irki şägirtleriniň öwreden käbir zatlary.",
+            "2": "Köp adamlar Isadan bu taglymatlary durmuşa geçirmek üçin güýç bermegini haýyş edip, durmuşlarynyň üýtgändigini gördüler.",
+            "3": "Dostlaryňyzy ýygnaň we aşakdaky soraglary ara alyp maslahatlaşanyňyzda nämäni açýandygyňyzy görüň.",
+            "4": "Aboveokardaky dünýä obeer şaryna basyp halaýan diliňizi saýlaň."
+        }
+    },
+    "jVideo": {
+        "title": "Paýhasyň çeşmesi",
+        "para": {
+            "1": "Isa baky paýhasyň çeşmesidir. Wideony görüp, özüňize \"Isa näme etdi we öwretdi? Onuň paýhasy beýlekileriň aýdanlaryndan nähili tapawutlanýar?\"",
+            "2": "Bu wideo köp dilde elýeterlidir. Dili üýtgetmek üçin ýokardaky dünýä obeer şaryna basyň."
+        }
+    }
+}

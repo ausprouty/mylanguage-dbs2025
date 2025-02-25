@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Bhojpuri",
+        "hlCode": "bwf00",
+        "google": "bs"
+    },
+    "menu": {
+        "next": "Dalje",
+        "nextVideo": "Sljedeći video",
+        "previous": "Prethodno",
+        "select": "Odaberite",
+        "videoSegment": "Video segment",
+        "language": "Odaberite Jezik"
+    },
+    "index": {
+        "para": {
+            "1": "Da bismo ostvarili pravi napredak u svom duhovnom životu, znamo da nam je potreban pouzdan izvor mudrosti.",
+            "2": "Klikom na slike u nastavku pokrenut će vas put ka otkrivanju vječne mudrosti koju Bog želi da znate i slijedite."
+        }
+    },
+    "dbs": {
+        "title": "Velika priča o mudrosti",
+        "para": {
+            "1": "Ova priča počinje s vremenom prije nego što je bilo ljudi. Zatim priča priču o tome kako su prva dva čovjeka stupila u interakciju s Bogom.\"",
+            "2": "Okupite svoje prijatelje i pročitajte kako je Bog pripremio ljude za dolazak Isusa i njegove mudrosti.",
+            "3": "Odaberite svoj omiljeni jezik klikom na svjetski globus iznad."
+        }
+    },
+    "life": {
+        "title": "Mudrost za život",
+        "para": {
+            "1": "Ovo su neke od stvari koje su poučavali Isus i njegovi prvi sljedbenici.",
+            "2": "Mnogi ljudi su vidjeli kako se njihovi životi mijenjaju dok su tražili od Isusa da im da moć da ova učenja provedu u djelo.",
+            "3": "Okupite svoje prijatelje i pogledajte šta ćete otkriti dok razgovarate o sljedećim pitanjima.",
+            "4": "Odaberite svoj omiljeni jezik klikom na svjetski globus iznad."
+        }
+    },
+    "jVideo": {
+        "title": "Izvor mudrosti",
+        "para": {
+            "1": "Isus je izvor vječne mudrosti. Dok gledate video, zapitajte se \"Šta je Isus učinio i poučavao? Kako se njegova mudrost razlikuje od onoga što su drugi rekli.\"",
+            "2": "Ovaj video je dostupan na mnogim jezicima. Za promjenu jezika kliknite na globus iznad."
+        }
+    }
+}

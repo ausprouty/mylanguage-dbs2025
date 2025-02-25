@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Basque",
+        "hlCode": "Bas29",
+        "google": "eu"
+    },
+    "menu": {
+        "next": "Hurrengoa",
+        "nextVideo": "Hurrengo bideoa",
+        "previous": "Aurrekoa",
+        "select": "Hautatu",
+        "videoSegment": "Bideo-segmentua",
+        "language": "Hautatu Hizkuntza"
+    },
+    "index": {
+        "para": {
+            "1": "Gure bizitza espiritualean benetako aurrerapena egiteko, jakinduria iturri fidagarri bat behar dugula badakigu.",
+            "2": "Beheko irudietan klik eginez gero, Jainkoak ezagutzea eta jarraitzea nahi duen betiereko jakituria ezagutzeko bidea hasiko zaitu."
+        }
+    },
+    "dbs": {
+        "title": "Jakinduriaren Istorio Handia",
+        "para": {
+            "1": "Istorio hau jendea zegoen aurreko garaiarekin hasten da. Ondoren, lehenengo bi pertsonak Jainkoarekin nola elkarreragiten zuten kontatzen du\".",
+            "2": "Bildu zure lagunak eta irakurri nola prestatu zituen Jainkoak jendea Jesusen eta bere Jakinduriaren etorrerarako.",
+            "3": "Hautatu zure hizkuntza gogokoena goiko munduko globoan klik eginez."
+        }
+    },
+    "life": {
+        "title": "Bizitzako jakinduria",
+        "para": {
+            "1": "Hauek dira Jesusek eta bere lehen jarraitzaileek irakatsi zituzten gauza batzuk.",
+            "2": "Jende askok bere bizitza eraldatua ikusi du Jesusi irakaspen hauek martxan jartzeko ahalmena emateko eskatu ziotelako.",
+            "3": "Bildu lagunak eta ikusi zer deskubritzen duzun galdera hauek eztabaidatzen dituzun bitartean.",
+            "4": "Hautatu zure hizkuntza gogokoena goiko munduko globoan klik eginez."
+        }
+    },
+    "jVideo": {
+        "title": "Jakinduriaren iturria",
+        "para": {
+            "1": "Jesus betiko jakinduriaren iturria da. Bideoa ikusten duzun bitartean, galdetu zeure buruari: \"Zer egin eta irakatsi zuen Jesusek? Zertan desberdintzen da bere jakinduria besteek esandakoarekin\".",
+            "2": "Bideo hau hizkuntza askotan dago eskuragarri. Hizkuntza aldatzeko, egin klik goiko mundu-globoan."
+        }
+    }
+}

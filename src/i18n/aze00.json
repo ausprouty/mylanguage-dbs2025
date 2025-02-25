@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "",
+        "hlCode": "aze00",
+        "google": "az"
+    },
+    "menu": {
+        "next": "Sonrakı",
+        "nextVideo": "Növbəti Video",
+        "previous": "Əvvəlki",
+        "select": "seçin",
+        "videoSegment": "Video Seqmenti",
+        "language": "Dil seçin"
+    },
+    "index": {
+        "para": {
+            "1": "Ruhani həyatımızda hər hansı bir real irəliləyiş əldə etmək üçün biz bilirik ki, bizə etibarlı müdriklik mənbəyi lazımdır.",
+            "2": "Aşağıdakı şəkillərə klikləməklə, sizi Allahın bilmənizi və əməl etməyinizi istədiyi əbədi hikməti kəşf etmək yolunda başlayacaqsınız."
+        }
+    },
+    "dbs": {
+        "title": "Hikmətin Böyük Hekayəsi",
+        "para": {
+            "1": "Bu hekayə insanların varlığından əvvəlki dövrlə başlayır. Daha sonra ilk iki insanın Allahla necə əlaqə saxlaması hekayəsini izah edir.\"",
+            "2": "Dostlarınızı toplayın və Allahın insanları İsanın gəlişi və Onun Hikməti üçün necə hazırladığını oxuyun.",
+            "3": "Yuxarıdakı dünya qlobusuna klikləməklə sevimli dilinizi seçin."
+        }
+    },
+    "life": {
+        "title": "Həyat üçün hikmət",
+        "para": {
+            "1": "Bunlar İsanın və onun ilk davamçılarının öyrətdiyi bəzi şeylərdir.",
+            "2": "Bir çox insanlar İsadan bu təlimləri həyata keçirmək üçün onlara güc verməsini istədikdə həyatlarının dəyişdiyini gördülər.",
+            "3": "Dostlarınızı toplayın və aşağıdakı sualları müzakirə edərkən nə kəşf etdiyinizə baxın.",
+            "4": "Yuxarıdakı dünya qlobusuna klikləməklə sevimli dilinizi seçin."
+        }
+    },
+    "jVideo": {
+        "title": "Hikmətin Mənbəyi",
+        "para": {
+            "1": "İsa əbədi müdrikliyin mənbəyidir. Videoya baxarkən özünüzdən soruşun: \"İsa nə etdi və öyrətdi? Onun müdrikliyi başqalarının söylədiklərindən nə ilə fərqlənir\".",
+            "2": "Bu video bir çox dillərdə mövcuddur. Dili dəyişmək üçün yuxarıdakı dünya qlobusuna klikləyin."
+        }
+    }
+}

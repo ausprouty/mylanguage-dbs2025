@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Slovak",
+        "hlCode": "slo00",
+        "google": "sk"
+    },
+    "menu": {
+        "next": "Ďalej",
+        "nextVideo": "Ďalšie video",
+        "previous": "Predchádzajúce",
+        "select": "Vyberte",
+        "videoSegment": "Video segment",
+        "language": "Vyberte Jazyk"
+    },
+    "index": {
+        "para": {
+            "1": "Vieme, že na to, aby sme dosiahli skutočný pokrok v našom duchovnom živote, potrebujeme spoľahlivý zdroj múdrosti.",
+            "2": "Kliknutím na obrázky nižšie sa dostanete na cestu k objaveniu večnej múdrosti, ktorú Boh chce, aby ste poznali a nasledovali."
+        }
+    },
+    "dbs": {
+        "title": "Veľký príbeh múdrosti",
+        "para": {
+            "1": "Tento príbeh sa začína v čase, keď ešte neexistovali ľudia. Potom rozpráva príbeh o tom, ako prví dvaja ľudia interagovali s Bohom.\",",
+            "2": "Zhromaždite priateľov a prečítajte si, ako Boh pripravil ľudí na príchod Ježiša a jeho Múdrosti.",
+            "3": "Vyberte si svoj obľúbený jazyk kliknutím na zemeguľu vyššie."
+        }
+    },
+    "life": {
+        "title": "Múdrosť pre život",
+        "para": {
+            "1": "Toto sú niektoré z vecí, ktoré učil Ježiš a jeho raní nasledovníci.",
+            "2": "Mnohí ľudia videli, ako sa ich životy zmenili, keď požiadali Ježiša, aby im dal moc uviesť tieto učenia do praxe.",
+            "3": "Zhromaždite svojich priateľov a zistite, čo objavíte, keď budete diskutovať o nasledujúcich otázkach.",
+            "4": "Vyberte si svoj obľúbený jazyk kliknutím na zemeguľu vyššie."
+        }
+    },
+    "jVideo": {
+        "title": "Zdroj múdrosti",
+        "para": {
+            "1": "Ježiš je zdrojom večnej múdrosti. Pri pozeraní videa si položte otázku: \"Čo robil a učil Ježiš? V čom sa jeho múdrosť líši od toho, čo hovorili iní.\"",
+            "2": "Toto video je dostupné v mnohých jazykoch. Ak chcete zmeniť jazyk, kliknite na zemeguľu vyššie."
+        }
+    }
+}

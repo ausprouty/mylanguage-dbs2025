@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Esperanto",
+        "hlCode": "epo19",
+        "google": "eo"
+    },
+    "menu": {
+        "next": "Poste",
+        "nextVideo": "Sekva Video",
+        "previous": "Antaŭa",
+        "select": "Elektu",
+        "videoSegment": "Video Segmento",
+        "language": "Elektu Lingvon"
+    },
+    "index": {
+        "para": {
+            "1": "Por fari ajnan realan progreson en nia spirita vivo ni scias, ke ni bezonas fidindan fonton de saĝo.",
+            "2": "Alklakante la bildojn sube komencos vin sur vojo por malkovri la eternan saĝon, kiun Dio volas, ke vi sciu kaj sekvu."
+        }
+    },
+    "dbs": {
+        "title": "La Grandioza Rakonto de Saĝeco",
+        "para": {
+            "1": "Ĉi tiu rakonto komenciĝas kun la tempo antaŭ ol ekzistis iuj homoj. Ĝi tiam rakontas la rakonton de kiel la unuaj du homoj interagis kun dio.\",",
+            "2": "Kunvenigu viajn amikojn kaj legu kiel Dio preparis homojn por la alveno de Jesuo kaj lia Saĝo.",
+            "3": "Elektu vian plej ŝatatan lingvon klakante sur la monda globo supre."
+        }
+    },
+    "life": {
+        "title": "Saĝo por Vivo",
+        "para": {
+            "1": "Ĉi tiuj estas kelkaj el la aferoj, kiujn Jesuo kaj liaj fruaj sekvantoj instruis.",
+            "2": "Multaj homoj vidis siajn vivojn transformitajn dum ili petis Jesuon doni al ili la potencon efektivigi ĉi tiujn instruojn.",
+            "3": "Kunvenigu viajn amikojn kaj vidu kion vi malkovras dum vi diskutas la sekvajn demandojn.",
+            "4": "Elektu vian plej ŝatatan lingvon klakante sur la monda globo supre."
+        }
+    },
+    "jVideo": {
+        "title": "La Fonto de Saĝo",
+        "para": {
+            "1": "Jesuo estas la fonto de eterna saĝo. Dum vi spektas la videon, demandu vin \"Kion faris kaj instruis Jesuo? Kiel lia saĝeco diferencas de tio, kion aliaj diris.\"",
+            "2": "Ĉi tiu video estas havebla en multaj lingvoj. Por ŝanĝi la lingvon alklaku la mondan globon supre."
+        }
+    }
+}

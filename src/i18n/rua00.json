@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Kinyarwanda",
+        "hlCode": "rua00",
+        "google": "rw"
+    },
+    "menu": {
+        "next": "Ibikurikira",
+        "nextVideo": "Video ikurikira",
+        "previous": "Mbere",
+        "select": "Hitamo",
+        "videoSegment": "Igice cya Video",
+        "language": "Hitamo Ururimi"
+    },
+    "index": {
+        "para": {
+            "1": "Kugirango tugere ku ntera nyayo mubuzima bwacu bwumwuka tuzi ko dukeneye isoko yizewe yubwenge.",
+            "2": "Kanda kumashusho hepfo bizagutangira munzira yo kuvumbura ubwenge bwiteka Imana ishaka ko umenya kandi ukurikiza."
+        }
+    },
+    "dbs": {
+        "title": "Inkuru Nkuru y'Ubwenge",
+        "para": {
+            "1": "Iyi nkuru itangirana nigihe mbere yuko habaho abantu. Hanyuma iravuga inkuru yukuntu abantu babiri ba mbere basabana nImana. \",",
+            "2": "Koranya inshuti zawe hanyuma usome uburyo Imana yateguye abantu ukuza kwa Yesu n'Ubwenge bwayo.",
+            "3": "Hitamo ururimi ukunda ukanze kwisi yose hejuru."
+        }
+    },
+    "life": {
+        "title": "Ubwenge Kubuzima",
+        "para": {
+            "1": "Ibi ni bimwe mubintu Yesu n'abayoboke be ba mbere bigishije.",
+            "2": "Abantu benshi babonye ubuzima bwabo bwahindutse mugihe basabye Yesu kubaha imbaraga zo gushyira izi nyigisho mubikorwa.",
+            "3": "Kusanya inshuti zawe urebe ibyo wavumbuye mugihe muganira kubibazo bikurikira.",
+            "4": "Hitamo ururimi ukunda ukanze kwisi yose hejuru."
+        }
+    },
+    "jVideo": {
+        "title": "Inkomoko y'Ubwenge",
+        "para": {
+            "1": "Yesu ni isoko y'ubwenge bw'iteka. Mugihe ureba videwo, ibaze ubwawe \"Yesu yakoze iki kandi yigisha? Ubwenge bwe butandukaniye he nibyo abandi bavuze.\"",
+            "2": "Iyi videwo iraboneka mu ndimi nyinshi. Guhindura imvugo kanda isi yisi hejuru."
+        }
+    }
+}

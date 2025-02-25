@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Filipino (Tagalog)",
+        "hlCode": "tagl00",
+        "google": "fil"
+    },
+    "menu": {
+        "next": "Susunod",
+        "nextVideo": "Susunod na Video",
+        "previous": "Nakaraang",
+        "select": "Pumili",
+        "videoSegment": "Segment ng Video",
+        "language": "Piliin ang Wika"
+    },
+    "index": {
+        "para": {
+            "1": "Upang makagawa ng anumang tunay na pag-unlad sa ating espirituwal na buhay alam nating kailangan natin ng mapagkakatiwalaang pinagmumulan ng karunungan.",
+            "2": "Ang pag-click sa mga larawan sa ibaba ay magsisimula sa iyong landas sa pagtuklas ng walang hanggang karunungan na nais ng Diyos na malaman at sundin mo."
+        }
+    },
+    "dbs": {
+        "title": "Ang Dakilang Kwento ng Karunungan",
+        "para": {
+            "1": "Ang kwentong ito ay nagsisimula sa panahon bago pa nagkaroon ng mga tao. Isinalaysay nito ang kuwento kung paano nakipag-ugnayan ang unang dalawang tao sa Diyos.\",",
+            "2": "Ipunin ang iyong mga kaibigan at basahin kung paano inihanda ng Diyos ang mga tao para sa pagdating ni Hesus at sa kanyang Karunungan.",
+            "3": "Piliin ang iyong paboritong wika sa pamamagitan ng pag-click sa mundong globo sa itaas."
+        }
+    },
+    "life": {
+        "title": "Karunungan para sa Buhay",
+        "para": {
+            "1": "Ito ang ilan sa mga bagay na itinuro ni Jesus at ng kaniyang unang mga tagasunod.",
+            "2": "Nakita ng maraming tao na nagbago ang kanilang buhay nang hilingin nila kay Jesus na bigyan sila ng kapangyarihang isakatuparan ang mga turong ito.",
+            "3": "Ipunin ang iyong mga kaibigan at tingnan kung ano ang iyong natuklasan habang tinatalakay mo ang mga sumusunod na tanong.",
+            "4": "Piliin ang iyong paboritong wika sa pamamagitan ng pag-click sa mundong globo sa itaas."
+        }
+    },
+    "jVideo": {
+        "title": "Ang Pinagmumulan ng Karunungan",
+        "para": {
+            "1": "Si Hesus ang pinagmumulan ng walang hanggang karunungan. Habang pinapanood mo ang video, tanungin ang iyong sarili \"Ano ang ginawa at itinuro ni Jesus? Paano naiiba ang kanyang karunungan sa sinabi ng iba.\"",
+            "2": "Available ang video na ito sa maraming wika. Upang baguhin ang wika i-click ang mundong globo sa itaas."
+        }
+    }
+}

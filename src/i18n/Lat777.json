@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Latin",
+        "hlCode": "Lat777",
+        "google": "la"
+    },
+    "menu": {
+        "next": "Proximum",
+        "nextVideo": "Proxima Video",
+        "previous": "Antecedens",
+        "select": "Lego",
+        "videoSegment": "Vide Segmentum",
+        "language": "Linguae Selectae"
+    },
+    "index": {
+        "para": {
+            "1": "Ad omnem vero profectum in nostra vita spirituali cognoscimus certo fonte sapientiae indigere.",
+            "2": "Imagines infra strepentes te incipiet in via ad inveniendam sapientiam aeternam quam Deus te scire et sequi vult."
+        }
+    },
+    "dbs": {
+        "title": "The Grand Historiae Sapientiae",
+        "para": {
+            "1": "Haec fabula incipit ex tempore antequam aliqui essent. Deinde narrat quomodo primi duo homines cum Deo interact.",
+            "2": "Colligite amicos vestros et legite quomodo praeparavit Deus populum ad adventum Iesu et Sapientiam eius.",
+            "3": "Linguam gratam elige strepitando in orbe terrarum supra."
+        }
+    },
+    "life": {
+        "title": "Sapientia ad vitam",
+        "para": {
+            "1": "Haec sunt quaedam quae docuit Iesus et discipuli eius.",
+            "2": "Multi homines vitam suam transformatam viderunt Iesu rogaverunt ut eis dare potestatem has doctrinas in agendis tradendi.",
+            "3": "Colligite amicos tuos et vide quid invenias sicut de sequentibus quaestionibus discutias.",
+            "4": "Linguam gratam elige strepitando in orbe terrarum supra."
+        }
+    },
+    "jVideo": {
+        "title": "Fons Sapientiae",
+        "para": {
+            "1": "Iesus est fons aeternae sapientiae. Ut video, te ipsum interroga \"Quid fecit et docet Iesus? Quomodo alia sapientia eius est quam alii dixerunt\".",
+            "2": "Hoc video in multis linguis praesto est. Linguam commutare super orbem terrarum deprime."
+        }
+    }
+}

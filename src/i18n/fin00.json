@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Finnish",
+        "hlCode": "fin00",
+        "google": "fi"
+    },
+    "menu": {
+        "next": "Seuraavaksi",
+        "nextVideo": "Seuraava video",
+        "previous": "Edellinen",
+        "select": "Valitse",
+        "videoSegment": "Video-osio",
+        "language": "Valitse Kieli"
+    },
+    "index": {
+        "para": {
+            "1": "Voidaksemme saavuttaa todellista edistystä hengellisessä elämässämme tiedämme tarvitsevamme luotettavan viisauden lähteen.",
+            "2": "Alla olevien kuvien napsauttaminen aloittaa sinut polulla löytääksesi sen ikuisen viisauden, jonka Jumala haluaa sinun tietävän ja noudattavan."
+        }
+    },
+    "dbs": {
+        "title": "Suuri viisauden tarina",
+        "para": {
+            "1": "Tämä tarina alkaa ajasta ennen kuin ihmisiä oli olemassa. Sitten se kertoo tarinan siitä, kuinka kaksi ensimmäistä ihmistä olivat vuorovaikutuksessa Jumalan kanssa.\"",
+            "2": "Kokoa ystäväsi ja lue, kuinka Jumala valmisti ihmisiä Jeesuksen ja hänen viisautensa saapumiseen.",
+            "3": "Valitse suosikkikielesi napsauttamalla yllä olevaa maailmanpalloa."
+        }
+    },
+    "life": {
+        "title": "Elämän viisautta",
+        "para": {
+            "1": "Nämä ovat joitain asioita, joita Jeesus ja hänen varhaiset seuraajansa opettivat.",
+            "2": "Monet ihmiset ovat nähneet elämänsä muuttuneen, kun he pyysivät Jeesusta antamaan heille voiman toteuttaa nämä opetukset.",
+            "3": "Kokoa ystäväsi ja katso, mitä löydät, kun keskustelet seuraavista kysymyksistä.",
+            "4": "Valitse suosikkikielesi napsauttamalla yllä olevaa maailmanpalloa."
+        }
+    },
+    "jVideo": {
+        "title": "Viisauden lähde",
+        "para": {
+            "1": "Jeesus on ikuisen viisauden lähde. Kun katsot videota, kysy itseltäsi: \"Mitä Jeesus teki ja opetti? Miten hänen viisautensa eroaa siitä, mitä muut ovat sanoneet.\"",
+            "2": "Tämä video on saatavilla useilla kielillä. Voit vaihtaa kieltä napsauttamalla yllä olevaa maailmanpalloa."
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Somali",
+        "hlCode": "som00",
+        "google": "so"
+    },
+    "menu": {
+        "next": "Xiga",
+        "nextVideo": "Muqaalka Xiga",
+        "previous": "Hore",
+        "select": "Dooro",
+        "videoSegment": "Qaybta Video",
+        "language": "Dooro Luuqad"
+    },
+    "index": {
+        "para": {
+            "1": "Si aan horumar dhab ah ugu samayno nolosheenna ruuxiga ah waxaan ognahay inaan u baahanahay il xikmad oo la isku halayn karo.",
+            "2": "Gujista sawirada hoose waxay kuu bilaabaysaa waddo aad ku ogaan karto xikmadda weligeed ah ee uu Eebbe doonayo inaad ogaato oo aad raacdo."
+        }
+    },
+    "dbs": {
+        "title": "Sheekadii Wayn Ee Xikmada",
+        "para": {
+            "1": "Sheekadani waxay ka bilaabmatay waqti ka hor intaanay jirin dad. Waxay markaa ka sheekaynaysaa sidii ay labadii qof ee hore ula falgaleen Ilaah.\"",
+            "2": "Soo ururi asxaabtaada oo akhri sida Eebbe dadka ugu diyaariyey imaatinka Ciise iyo xigmaddiisa.",
+            "3": "Dooro luqadda aad jeceshahay adiga oo gujinaya adduunka kore."
+        }
+    },
+    "life": {
+        "title": "Xikmada Nolosha",
+        "para": {
+            "1": "Kuwani waa qaar ka mid ah waxyaalihii ay Ciise iyo xertiisii ​​hore bareen.",
+            "2": "Dad badan ayaa arkay noloshoodii oo is beddeshay markay Ciise waydiisteen inuu siiyo awood ay wax baritaankan ku dhaqmaan.",
+            "3": "Soo ururi asxaabtaada oo arag waxaad ogaatid markaad ka hadlayso su'aalahan soo socda.",
+            "4": "Dooro luqadda aad jeceshahay adiga oo gujinaya adduunka kore."
+        }
+    },
+    "jVideo": {
+        "title": "Isha Caqliga",
+        "para": {
+            "1": "Ciise waa isha xigmadda weligeed ah. Markaad daawato muuqaalka, is weydii \"Muxuu Ciise sameeyey oo baray? Sidee bay xikmaddiisu uga duwan tahay waxay dadka kale sheegeen.\"",
+            "2": "Muuqaalkan waxa lagu heli karaa luqado badan. Si aad u bedesho luqadda dhagsii adduunka kore."
+        }
+    }
+}

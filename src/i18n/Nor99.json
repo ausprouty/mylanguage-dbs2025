@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Norwegian",
+        "hlCode": "Nor99",
+        "google": "no"
+    },
+    "menu": {
+        "next": "Neste",
+        "nextVideo": "Neste video",
+        "previous": "Tidligere",
+        "select": "Velge",
+        "videoSegment": "Videosegment",
+        "language": "Velg Språk"
+    },
+    "index": {
+        "para": {
+            "1": "For å gjøre noen reelle fremskritt i vårt åndelige liv vet vi at vi trenger en pålitelig kilde til visdom.",
+            "2": "Ved å klikke på bildene nedenfor vil du starte en vei til å oppdage den evige visdommen som Gud vil at du skal kjenne og følge."
+        }
+    },
+    "dbs": {
+        "title": "Den store historien om visdom",
+        "para": {
+            "1": "Denne historien starter med tiden før det var noen mennesker. Den forteller deretter historien om hvordan de to første menneskene samhandlet med Gud.\",",
+            "2": "Samle vennene dine og les hvordan Gud forberedte mennesker på Jesu ankomst og hans visdom.",
+            "3": "Velg ditt favorittspråk ved å klikke på verdenskloden ovenfor."
+        }
+    },
+    "life": {
+        "title": "Visdom for livet",
+        "para": {
+            "1": "Dette er noen av tingene som Jesus og hans tidlige etterfølgere lærte.",
+            "2": "Mange mennesker har sett livene deres forvandlet seg da de ba Jesus om å gi dem kraften til å sette disse læresetningene ut i livet.",
+            "3": "Samle vennene dine og se hva du oppdager mens du diskuterer følgende spørsmål.",
+            "4": "Velg ditt favorittspråk ved å klikke på verdenskloden ovenfor."
+        }
+    },
+    "jVideo": {
+        "title": "Kilden til visdom",
+        "para": {
+            "1": "Jesus er kilden til evig visdom. Mens du ser på videoen, spør deg selv \"Hva gjorde og lærte Jesus? Hvordan er hans visdom forskjellig fra hva andre har sagt.\"",
+            "2": "Denne videoen er tilgjengelig på mange språk. For å endre språk, klikk på verdenskloden ovenfor."
+        }
+    }
+}

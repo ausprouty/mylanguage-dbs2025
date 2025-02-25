@@ -1,0 +1,45 @@
+{
+    "language": {
+        "EnglishName": "Samoan",
+        "hlCode": "smy00",
+        "google": "sm"
+    },
+    "menu": {
+        "next": "Sosoo ai",
+        "nextVideo": "Le isi Vitio",
+        "previous": "Muamua",
+        "select": "Filifili",
+        "videoSegment": "Vaega Vitio",
+        "language": "Filifili Gagana"
+    },
+    "index": {
+        "para": {
+            "1": "Ina ia faia so o se agaʻigaʻi i luma moni i lo tatou olaga faaleagaga, ua tatou iloa tatou te manaʻomia se puna maufaatuatuaina o le atamai.",
+            "2": "O le kilikiina o ata o loo i lalo o le a amata ai oe i luga o se ala i le mauaina o le poto e faavavau lea e finagalo le Atua e te iloa ma mulimuli ai."
+        }
+    },
+    "dbs": {
+        "title": "Le Tala Tele o le Poto",
+        "para": {
+            "1": "O lenei tala e amata i le taimi a o lei i ai ni tagata. Ona taʻu mai lea o le tala i le auala na fegalegaleai ai tagata muamua e toʻalua ma le Atua.\",",
+            "2": "Faapotopoto au uo ma faitau pe na faapefea ona saunia e le Atua tagata mo le afio mai o Iesu ma lona Poto.",
+            "3": "Filifili lau gagana e te fiafia i ai e ala i le kiliki i luga ole lalolagi kelope."
+        }
+    },
+    "life": {
+        "title": "Poto mo le Ola",
+        "para": {
+            "1": "O nisi nei o mea na aʻoaʻo atu e Iesu ma ona uluaʻi soo.",
+            "2": "E toatele tagata ua vaaia le suia o o latou olaga a o latou ole atu ia Iesu e tuuina atu ia i latou le mana e faatino ai nei aoaoga.",
+            "3": "Faapotopoto au uo ma vaai mea e te mauaina a o e talanoaina fesili nei.",
+            "4": "Filifili lau gagana e te fiafia i ai e ala i le kiliki i luga ole lalolagi kelope."
+        }
+    },
+    "jVideo": {
+        "title": "Le Puna o le Poto",
+        "para": {
+            "1": "O Iesu o le puna o le poto e faavavau. A o e matamata i le vitio, fesili ifo ia te oe lava \"O le a le mea na faia ma aoao atu e Iesu? E faapefea ona ese lona atamai mai mea na fai mai ai isi.\"",
+            "2": "E maua lenei vitio i le tele o gagana. Ina ia sui le gagana kiliki le lalolagi kelope i luga."
+        }
+    }
+}
