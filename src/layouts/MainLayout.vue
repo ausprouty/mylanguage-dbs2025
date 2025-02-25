@@ -6,7 +6,7 @@
 
         <q-toolbar-title>
           <router-link to="/index" exact class="toolbar-title">
-            Finding Wisdom
+            Discovering Community
           </router-link>
         </q-toolbar-title>
 

@@ -1,24 +1,22 @@
-/* Lunar New Year Theme CSS */
 
 /* General Styles */
 body {
-  background-color: #2e2e2e; /* Dark grey for contrast */
-  color: #000; /* Soft white-gray for readability */
+  background-color: $dark;
+  color: #fff; // White text for readability
 }
 
 /* Bible Reference and Text */
-
 .bible-reference {
   font-weight: bold;
-  color: #d32f2f; /* Festive red */
+  color: $accent;
   font-size: 1.2em;
 }
 
 /* Select Elements */
 .select {
-  background-color: #f0f0f0; /* Neutral background */
-  color: #d32f2f; /* Red text for focus */
-  border: 1px solid #ffcc00; /* Gold border */
+  background-color: $neutral;
+  color: $accent;
+  border: 1px solid $secondary;
 }
 
 /* Margins and Gutter Styles */
@@ -26,7 +24,7 @@ body {
 .q-mr-md,
 .q-ml-md {
   margin-top: 10px;
-  background-color: #f39c12; /* Gold for festive highlights */
+  background-color: $warning;
   margin-left: 0px;
   margin-right: 0px;
 }
@@ -43,25 +41,25 @@ body {
 
 /* DBS Container */
 div.dbs {
-  background-color: #f0f0f0; /* Neutral tone for readability */
+  background-color: $neutral;
   max-width: 800px;
   margin: auto;
   padding: 10px;
-  border: 2px solid #d32f2f; /* Red border for emphasis */
+  border: 2px solid $accent;
 }
 
 /* Tables */
 table {
   width: 100%;
   max-width: 800px;
-  border: 1px solid #f39c12; /* Gold border */
+  border: 1px solid $warning;
 }
 
 td {
   width: 50%;
   vertical-align: top;
   padding: 10px;
-  border-bottom: 1px solid #ffcc00; /* Gold separator */
+  border-bottom: 1px solid $secondary;
 }
 
 /* List Items */
@@ -70,18 +68,15 @@ li {
 }
 
 /* Titles and Headers */
-.title {
-  text-align: center;
-}
-
 h1.dbs,
 h2.dbs,
 h3.dbs,
 h4.dbs {
-  font-family: 'Arial', sans-serif; /* Modern and clean */
-  color: #d32f2f; /* Red for emphasis */
+  font-family: 'Arial', sans-serif;
+  color: $accent;
 }
-h1.dbs{
+
+h1.dbs {
   font-size: 3rem;
   line-height: 3rem;
 }
@@ -123,32 +118,32 @@ td.rtl {
 /* Footer */
 p.copyright {
   text-align: center;
-  color: #7f8c8d; /* Muted grey for less emphasis */
+  color: $shadow;
 }
 
 /* Bible Container */
 .bible-container {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  gap: 10px; /* Adds space between the blocks */
+  flex-direction: column;
+  gap: 10px;
   padding: 10px;
-  background-color: #f9e79f; /* Subtle gold background */
+  background-color: $gold-highlight;
   border-radius: 5px;
 }
 
-div.dbs{
-  background-color: #f9e79f;
-}
-li.dbs{
-  font-size:1rem;
+div.dbs {
+  background-color: $gold-highlight;
 }
 
-div.bible-text{
-  color:#47135e;
-  font-weight:400;
+li.dbs {
   font-size: 1rem;
 }
 
+div.bible-text {
+  color: $minor2;
+  font-weight: 400;
+  font-size: 1rem;
+}
 
 .bible-text:first-child {
   margin-right: 20px;
@@ -156,26 +151,23 @@ div.bible-text{
 
 /* Hover Effects */
 .link:hover {
-  color: #f39c12; /* Gold hover */
+  color: $warning;
   text-decoration: underline;
 }
 
-/* Images */
-/* Add a cursor to indicate clickability */
+/* Clickable Images */
 td[clickable] {
   cursor: pointer;
   position: relative;
   overflow: hidden;
 }
 
-/* Apply a hover effect */
 td[clickable] img.menu_picture:hover {
-  transform: scale(1.05); /* Slightly enlarge the image */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Add a shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  transform: scale(1.05);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Add a ripple effect when clicked */
 td[clickable]::after {
   content: '';
   position: absolute;
@@ -196,20 +188,21 @@ td[clickable]:active::after {
   opacity: 1;
   transition: 0s;
 }
-/* JNotes */
-.notes{
-  width:100%;
+
+/* Notes */
+.notes {
+  width: 100%;
   height: 100px;
   margin-bottom: 16px;
   padding: 8px;
   font-size: 14px;
 }
 
-// readmore button
+// Readmore Button
 .readmore-button {
   display: inline-block;
   padding: 8px 15px;
-  background-color: #e63946; /* Soft red */
+  background-color: $accent;
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -219,8 +212,5 @@ td[clickable]:active::after {
 }
 
 .readmore-button:hover {
-  background-color: #d62828;
+  background-color: darken($accent, 10%);
 }
-
-
-

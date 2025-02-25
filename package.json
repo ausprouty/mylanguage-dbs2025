@@ -1,8 +1,8 @@
 {
-  "name": "finding_wisdom",
+  "name": "dbs2025",
   "version": "0.0.1",
-  "description": "Finding Wisdom",
-  "productName": "Finding Wisdom",
+  "description": "Discovering Spiritual Community",
+  "productName": "Discovering Spiritual Community",
   "author": "ausprouty <bob.prouty@powertochange.org.au>",
   "private": true,
   "scripts": {
