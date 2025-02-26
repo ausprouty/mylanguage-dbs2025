@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Chun aon dul chun cinn fíor a dhéanamh inár saol spioradálta tá a fhios againn go bhfuil foinse iontaofa eagna de dhíth orainn.",
-            "2": "Má chliceálann tú ar na híomhánna thíos cuirfear tús leat ar chonair chun an eagna síoraí a bhfuil Dia ag iarraidh ort a bheith ar an eolas agus a leanúint."
+            "1": "Ní aistear aonair é fás spioradálta — tarlaíonn sé sa phobal. Teastaíonn eagna uainn go léir a bhfuil muinín againn as agus daoine a spreagann sinn ar an mbealach. Cabhróidh na ceachtanna thíos leat a fháil amach conas a mhúnlaíonn eagna Dé saolta, a chothaíonn fíorchaidrimh, agus a nochtann a ghrá agus a chúram duit.",
+            "2": "Bailigh do chairde agus tús a iniúchadh! Cliceáil ar na híomhánna thíos chun tús a chur le do thuras — ní hamháin eagna a fhionnadh, ach caidreamh le Dia agus leis an bpobal spioradálta a dtugann sé cuireadh duit teacht isteach ann."
         }
     },
     "dbs": {
-        "title": "Mórscéal na hEagna",
+        "title": "Pobail Spioradálta a Fhionnadh",
         "para": {
-            "1": "Tosaíonn an scéal seo leis an am sula raibh aon daoine. Insíonn sé ansin an scéal faoin gcaoi ar oibrigh an chéad bheirt le Dia.”,",
-            "2": "Cruinnigh do chairde agus léigh mar a d’ullmhaigh Dia daoine do theacht Íosa agus a Eagna.",
+            "1": "Tugann Fionnachtain Pobail Spioradálta tú ar thuras tríd an stair, ag fiosrú conas a bhí baint ag daoine le Dia ón tús – trí dhúshláin, trí cheisteanna agus trí chuimhneacháin a d’athraigh an saol. Má tá tú fiosrach faoi chreideamh, cuspóir, agus cad a chiallaíonn sé a bheith muintearas, is áit iontach é an tsraith seo le tosú.",
+            "2": "Cruinnigh do chairde agus léigh mar a d’ullmhaigh Dia daoine do theacht Íosa agus don phobal spioradálta a thosaigh sé.",
             "3": "Roghnaigh an teanga is fearr leat trí chliceáil ar an gcruinneog dhomhanda thuas."
         }
     },
     "life": {
-        "title": "Eagna don Saol",
+        "title": "Ceisteanna Saoil",
         "para": {
-            "1": "Seo cuid de na rudaí a mhúin Íosa agus a lucht leanúna go luath.",
-            "2": "Is iomaí duine a chonaic a saol claochlaithe agus iad ag iarraidh ar Íosa an chumhacht a thabhairt dóibh na teagascacha seo a chur i ngníomh.",
+            "1": "Fiosraíonn Life Issues teagasc praiticiúla Íosa agus a lucht leanúna tosaigh — eagna a d’athraigh saolta leis na céadta bliain. Is iomaí duine a d’fhulaing claochlú trí chuireadh a thabhairt d’Íosa cuidiú leo na fírinní seo a mhaireachtáil. An bhféadfadh sé seo a bheith fíor duitse freisin?",
+            "2": "Bailigh do chairde agus féach cad a aimsíonn tú agus tú ag plé na ceisteanna seo a leanas.",
             "3": "Bailigh do chairde agus féach cad a aimsíonn tú agus tú ag plé na ceisteanna seo a leanas.",
             "4": "Roghnaigh an teanga is fearr leat trí chliceáil ar an gcruinneog dhomhanda thuas."
         }
     },
     "jVideo": {
-        "title": "Foinse na hEagna",
+        "title": "Saol Íosa",
         "para": {
-            "1": "Is é Íosa foinse na eagna síoraí. Agus tú ag féachaint ar an bhfíseán, fiafraigh díot féin \"Cad a rinne agus a theagasc Íosa? Cén chaoi a bhfuil a eagna difriúil ón méid a dúirt daoine eile.\"",
+            "1": "Mhúnlaigh focail agus gníomhartha Íosa an stair, ag tairiscint eagna a sheasann óna chéile. Agus tú ag féachaint ar an bhfíseán seo, fiafraigh díot féin: Cad a mhúin Íosa? Conas a chuirtear a eagna i gcomparáid lena bhfuil ráite ag daoine eile - agus cad a d'fhéadfadh a chiallaíonn duitse?",
             "2": "Tá an físeán seo ar fáil i go leor teangacha. Chun an teanga a athrú cliceáil ar an gcloigeann domhanda thuas."
+        }
+    },
+    "lead": {
+        "title": "Ceannaireacht a Fhionnadh",
+        "para": {
+            "1": "Scrúdaíonn Fionnachtana na Ceannaireachta na prionsabail a mhúin Íosa dá cheannairí — an eagna a mhúnlaigh ceannaireacht seirbhíseach do na glúnta. Is iomaí duine a d’fhulaing claochlú trí bheith ag brath ar Íosa chun cabhrú leo ceannaireacht a dhéanamh le cuspóir agus le hionracas. An bhféadfadh sé seo do cheannaireacht a mhúnlú freisin?",
+            "2": "Bailigh do chairde agus féach cad a aimsíonn tú agus tú ag plé na ceisteanna seo a leanas.",
+            "3": "Roghnaigh an teanga is fearr leat trí chliceáil ar an gcruinneog dhomhanda thuas."
         }
     }
 }

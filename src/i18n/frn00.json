@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Afin de réaliser de réels progrès dans notre vie spirituelle, nous savons que nous avons besoin d’une source fiable de sagesse.",
-            "2": "En cliquant sur les images ci-dessous, vous découvrirez la sagesse éternelle que Dieu veut que vous connaissiez et suiviez."
+            "1": "La croissance spirituelle n’est pas un voyage en solo : elle se produit en communauté. Nous avons tous besoin d’une sagesse en laquelle nous pouvons avoir confiance et de personnes qui nous encouragent tout au long du chemin. Les leçons ci-dessous vous aideront à découvrir comment la sagesse de Dieu façonne la vie, construit de véritables relations et révèle son amour et son attention pour vous.",
+            "2": "Rassemblez vos amis et commencez à explorer ! Cliquez sur les images ci-dessous pour commencer votre voyage — en découvrant non seulement la sagesse, mais aussi une relation avec Dieu et la communauté spirituelle à laquelle il vous invite."
         }
     },
     "dbs": {
-        "title": "La grande histoire de la sagesse",
+        "title": "Découvrir la communauté spirituelle",
         "para": {
-            "1": "Cette histoire commence à l’époque avant qu’il n’y ait des hommes. Il raconte ensuite l'histoire de la façon dont les deux premières personnes ont interagi avec Dieu.\",",
-            "2": "Rassemblez vos amis et lisez comment Dieu a préparé les gens à l'arrivée de Jésus et de sa Sagesse.",
+            "1": "Découvrir la communauté spirituelle vous emmène dans un voyage à travers l'histoire, explorant comment les gens se sont connectés avec Dieu depuis le tout début, à travers des défis, des questions et des moments qui changent la vie. Si vous êtes curieux de connaître la foi, le but et ce que signifie appartenir, cette série est un excellent point de départ.",
+            "2": "Rassemblez vos amis et lisez comment Dieu a préparé les gens à l’arrivée de Jésus et de la communauté spirituelle qu’il a fondée.",
             "3": "Sélectionnez votre langue préférée en cliquant sur le globe terrestre ci-dessus."
         }
     },
     "life": {
-        "title": "La sagesse pour la vie",
+        "title": "Problèmes de vie",
         "para": {
-            "1": "Ce sont quelques-unes des choses que Jésus et ses premiers disciples ont enseignées.",
-            "2": "De nombreuses personnes ont vu leur vie transformée lorsqu’elles ont demandé à Jésus de leur donner le pouvoir de mettre ces enseignements en pratique.",
+            "1": "Life Issues explore les enseignements pratiques de Jésus et de ses premiers disciples – une sagesse qui a changé des vies pendant des siècles. Beaucoup ont connu une transformation en invitant Jésus à les aider à vivre ces vérités. Est-ce que cela pourrait être vrai pour vous aussi ?",
+            "2": "Rassemblez vos amis et voyez ce que vous découvrez en discutant des questions suivantes.",
             "3": "Rassemblez vos amis et voyez ce que vous découvrez en discutant des questions suivantes.",
             "4": "Sélectionnez votre langue préférée en cliquant sur le globe terrestre ci-dessus."
         }
     },
     "jVideo": {
-        "title": "La source de la sagesse",
+        "title": "La vie de Jésus",
         "para": {
-            "1": "Jésus est la source de la sagesse éternelle. Pendant que vous regardez la vidéo, demandez-vous : « Qu'est-ce que Jésus a fait et enseigné ? En quoi sa sagesse est-elle différente de ce que d'autres ont dit. »",
+            "1": "Les paroles et les actions de Jésus ont façonné l’histoire, offrant une sagesse qui se démarque. Pendant que vous regardez cette vidéo, demandez-vous : qu’a enseigné Jésus ? Comment sa sagesse se compare-t-elle à ce que d’autres ont dit – et qu’est-ce que cela pourrait signifier pour vous ?",
             "2": "Cette vidéo est disponible dans de nombreuses langues. Pour changer la langue, cliquez sur le globe terrestre ci-dessus."
+        }
+    },
+    "lead": {
+        "title": "Découvrir le leadership",
+        "para": {
+            "1": "À la découverte du leadership explore les principes que Jésus a enseignés à ses dirigeants – une sagesse qui a façonné un leadership au cœur de serviteur pendant des générations. Beaucoup ont connu une transformation en comptant sur Jésus pour les aider à diriger avec détermination et intégrité. Cela pourrait-il également façonner votre leadership ?",
+            "2": "Rassemblez vos amis et voyez ce que vous découvrez en discutant des questions suivantes.",
+            "3": "Sélectionnez votre langue préférée en cliquant sur le globe terrestre ci-dessus."
         }
     }
 }

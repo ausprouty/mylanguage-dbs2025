@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "För att göra några verkliga framsteg i vårt andliga liv vet vi att vi behöver en pålitlig källa till visdom.",
-            "2": "Genom att klicka på bilderna nedan kommer du att starta en väg till att upptäcka den eviga visdom som Gud vill att du ska känna till och följa."
+            "1": "Andlig tillväxt är inte en ensamresa – det sker i gemenskapen. Vi behöver alla visdom vi kan lita på och människor som uppmuntrar oss på vägen. Lektionerna nedan hjälper dig att upptäcka hur Guds visdom formar liv, bygger äkta relationer och avslöjar hans kärlek och omsorg om dig.",
+            "2": "Samla dina vänner och börja utforska! Klicka på bilderna nedan för att börja din resa – upptäck inte bara visdom, utan en relation med Gud och den andliga gemenskap han bjuder in dig till."
         }
     },
     "dbs": {
-        "title": "Den stora berättelsen om visdom",
+        "title": "Upptäck andlig gemenskap",
         "para": {
-            "1": "Den här historien börjar med tiden innan det fanns några människor. Den berättar sedan historien om hur de två första personerna interagerade med Gud.\"",
-            "2": "Samla dina vänner och läs hur Gud förberedde människor för Jesu ankomst och hans visdom.",
+            "1": "Discovering Spiritual Community tar dig med på en resa genom historien och utforskar hur människor har anslutit till Gud från allra första början – genom utmaningar, frågor och livsförändrande ögonblick. Om du är nyfiken på tro, syfte och vad det innebär att tillhöra, är den här serien ett bra ställe att börja.",
+            "2": "Samla dina vänner och läs hur Gud förberedde människor för Jesu ankomst och den andliga gemenskap han startade.",
             "3": "Välj ditt favoritspråk genom att klicka på världsgloben ovan."
         }
     },
     "life": {
-        "title": "Visdom för livet",
+        "title": "Livsfrågor",
         "para": {
-            "1": "Det här är några av de saker som Jesus och hans tidiga efterföljare lärde ut.",
-            "2": "Många människor har sett sina liv förändras när de bad Jesus att ge dem kraften att omsätta dessa läror i handling.",
+            "1": "Life Issues utforskar Jesu och hans tidiga efterföljares praktiska läror – visdom som har förändrat liv i århundraden. Många har upplevt förvandling genom att bjuda in Jesus att hjälpa dem att leva ut dessa sanningar. Kan detta vara sant för dig också?",
+            "2": "Samla dina vänner och se vad du upptäcker när du diskuterar följande frågor.",
             "3": "Samla dina vänner och se vad du upptäcker när du diskuterar följande frågor.",
             "4": "Välj ditt favoritspråk genom att klicka på världsgloben ovan."
         }
     },
     "jVideo": {
-        "title": "Källan till visdom",
+        "title": "Jesu liv",
         "para": {
-            "1": "Jesus är källan till evig visdom. När du tittar på videon, fråga dig själv \"Vad gjorde och lärde Jesus ut? Hur skiljer sig hans visdom från vad andra har sagt.\"",
+            "1": "Jesu ord och handlingar har format historien och erbjuder en visdom som skiljer sig åt. När du tittar på den här videon, fråga dig själv: Vad lärde Jesus ut? Hur jämför hans visdom med vad andra har sagt - och vad kan det betyda för dig?",
             "2": "Den här videon är tillgänglig på många språk. För att ändra språk klicka på världsgloben ovan."
+        }
+    },
+    "lead": {
+        "title": "Upptäcka ledarskap",
+        "para": {
+            "1": "Discovering Leadership utforskar principerna som Jesus lärde sina ledare – visdom som har format ledarskap i tjänarhjärtat i generationer. Många har upplevt förvandling genom att förlita sig på Jesus för att hjälpa dem leda med mål och integritet. Kan detta forma ditt ledarskap också?",
+            "2": "Samla dina vänner och se vad du upptäcker när du diskuterar följande frågor.",
+            "3": "Välj ditt favoritspråk genom att klicka på världsgloben ovan."
         }
     }
 }

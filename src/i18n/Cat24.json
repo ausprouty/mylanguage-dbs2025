@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Per tal de fer qualsevol progrés real en la nostra vida espiritual, sabem que necessitem una font fiable de saviesa.",
-            "2": "Si feu clic a les imatges de sota, us iniciarà el camí per descobrir la saviesa eterna que Déu vol que conegueu i que seguiu."
+            "1": "El creixement espiritual no és un viatge en solitari, sinó que passa en comunitat. Tots necessitem saviesa en la qual puguem confiar i persones que ens animen en el camí. Les lliçons següents us ajudaran a descobrir com la saviesa de Déu modela les vides, construeix relacions genuïnes i revela el seu amor i cura per vosaltres.",
+            "2": "Reuneix els teus amics i comença a explorar! Feu clic a les imatges següents per començar el vostre viatge, descobrint no només la saviesa, sinó una relació amb Déu i la comunitat espiritual a la qual us convida."
         }
     },
     "dbs": {
-        "title": "La gran història de la saviesa",
+        "title": "Descobrint la comunitat espiritual",
         "para": {
-            "1": "Aquesta història comença amb l'època abans que hi hagués gent. A continuació, explica la història de com les dues primeres persones van interactuar amb Déu\".",
-            "2": "Reuneix els teus amics i llegeix com Déu va preparar la gent per a l'arribada de Jesús i la seva saviesa.",
+            "1": "Discovering Spiritual Community us porta a un viatge per la història, explorant com la gent s'ha connectat amb Déu des del principi, a través de reptes, preguntes i moments que canvien la vida. Si teniu curiositat sobre la fe, el propòsit i el que significa pertànyer, aquesta sèrie és un bon lloc per començar.",
+            "2": "Reuneix els teus amics i llegeix com Déu va preparar la gent per a l'arribada de Jesús i la comunitat espiritual que va començar.",
             "3": "Seleccioneu el vostre idioma preferit fent clic al globus de dalt."
         }
     },
     "life": {
-        "title": "Saviesa per a la vida",
+        "title": "Problemes de vida",
         "para": {
-            "1": "Aquestes són algunes de les coses que Jesús i els seus primers seguidors van ensenyar.",
-            "2": "Moltes persones han vist les seves vides transformades quan li van demanar a Jesús que els donés el poder de posar en pràctica aquests ensenyaments.",
+            "1": "Life Issues explora els ensenyaments pràctics de Jesús i els seus primers seguidors, una saviesa que ha canviat vides durant segles. Molts han experimentat la transformació convidant Jesús a ajudar-los a viure aquestes veritats. Això també podria ser cert per a tu?",
+            "2": "Reuneix els teus amics i mira què descobreixes mentre discuteixes les preguntes següents.",
             "3": "Reuneix els teus amics i mira què descobreixes mentre discuteixes les preguntes següents.",
             "4": "Seleccioneu el vostre idioma preferit fent clic al globus de dalt."
         }
     },
     "jVideo": {
-        "title": "La Font de la Saviesa",
+        "title": "La vida de Jesús",
         "para": {
-            "1": "Jesús és la font de la saviesa eterna. Mentre mireu el vídeo, pregunteu-vos \"Què va fer i va ensenyar Jesús? En què és diferent la seva saviesa del que han dit els altres\".",
+            "1": "Les paraules i les accions de Jesús han donat forma a la història, oferint una saviesa que es diferencia. Mentre mireu aquest vídeo, pregunteu-vos: Què va ensenyar Jesús? Com es compara la seva saviesa amb el que han dit els altres, i què podria significar per a tu?",
             "2": "Aquest vídeo està disponible en molts idiomes. Per canviar l'idioma, feu clic al globus del món de dalt."
+        }
+    },
+    "lead": {
+        "title": "Descobrint el lideratge",
+        "para": {
+            "1": "Discovering Leadership explora els principis que Jesús va ensenyar als seus líders: saviesa que ha donat forma al lideratge amb cor de servidor durant generacions. Molts han experimentat la transformació confiant en Jesús per ajudar-los a liderar amb propòsit i integritat. Això també podria donar forma al teu lideratge?",
+            "2": "Reuneix els teus amics i mira què descobreixes mentre discuteixes les preguntes següents.",
+            "3": "Seleccioneu el vostre idioma preferit fent clic al globus de dalt."
         }
     }
 }

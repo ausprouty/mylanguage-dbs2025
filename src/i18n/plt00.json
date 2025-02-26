@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Mba hampandrosoana marina ny fiainantsika ara-panahy dia fantatsika fa mila loharanon-pahendrena azo itokisana isika.",
-            "2": "Ny fipihana ireo sary etsy ambany dia hanomboka anao amin’ny lalana iray hahitanao ny fahendrena mandrakizay izay tian’Andriamanitra ho fantatrao sy arahinao."
+            "1": "Ny fitomboana ara-panahy dia tsy dia mandeha irery - mitranga eo amin'ny fiaraha-monina izany. Mila fahendrena azo itokisana sy olona mampahery antsika eny an-dalana isika rehetra. Ireo lesona etsy ambany dia hanampy anao hahita ny fomba mamolavola ny fiainan’ny fahendren’Andriamanitra, manorina fifandraisana marina, ary manambara ny fitiavany sy ny fiahiany anao.",
+            "2": "Angony ny namanao ary manomboka mikaroka! Kitiho ireo sary etsy ambany mba hanombohana ny dianao - tsy hahita fahendrena fotsiny, fa fifandraisana amin'Andriamanitra sy ny fiaraha-monina ara-panahy izay manasa anao hiditra."
         }
     },
     "dbs": {
-        "title": "Ny Tantara Lehibe momba ny Fahendrena",
+        "title": "Fiaraha-monina ara-panahy",
         "para": {
-            "1": "Ity tantara ity dia manomboka amin'ny fotoana talohan'ny nisian'ny olona. Avy eo dia mitantara ny fomba nifandraisan’ireo olona roa voalohany tamin’Andriamanitra.”,",
-            "2": "Angony ny namanao ary vakio ny fomba nanomanan’Andriamanitra ny olona ho amin’ny fahatongavan’i Jesosy sy ny Fahendreny.",
+            "1": "Ny Fiaraha-monina ara-panahy dia mitondra anao amin'ny dia amin'ny tantara, mikaroka ny fomba nifandraisan'ny olona tamin'Andriamanitra hatrany am-piandohana—tamin'ny alalan'ny fanamby, fanontaniana ary fotoana hanovana fiainana. Raha mahaliana anao ny momba ny finoana sy ny tanjona ary ny dikan'ny hoe maha-izy azy dia toerana tsara hanombohana ity andiany ity.",
+            "2": "Angony ny namanao ary vakio ny fomba nanomanan’Andriamanitra ny olona ho amin’ny fahatongavan’i Jesosy sy ny fiaraha-monina ara-panahy natombony.",
             "3": "Fidio ny fiteny tianao indrindra amin'ny fipihana ny tontolon'izao tontolo izao etsy ambony."
         }
     },
     "life": {
-        "title": "Fahendrena ho amin’ny fiainana",
+        "title": "Olana amin'ny fiainana",
         "para": {
-            "1": "Izany no sasany amin’ireo zavatra nampianarin’i Jesosy sy ny mpanara-dia azy voalohany.",
-            "2": "Olona maro no nahita fa niova ny fiainany rehefa nangataka an’i Jesosy mba hanome azy ireo hery hampiharana ireo fampianarana ireo.",
+            "1": "Ny Life Issues dia mandinika ny fampianaran'i Jesosy sy ireo mpanara-dia azy voalohany — fahendrena izay nanova fiainana nandritra ny taonjato maro. Maro no niaina fiovana tamin’ny fanasana an’i Jesosy mba hanampy azy ireo hiaina ireo fahamarinana ireo. Mety ho anao koa ve izany?",
+            "2": "Angony ny namanao ary jereo ny zavatra hitanao rehefa mifanakalo hevitra momba ireto fanontaniana manaraka ireto ianao.",
             "3": "Angony ny namanao ary jereo ny zavatra hitanao rehefa mifanakalo hevitra momba ireto fanontaniana manaraka ireto ianao.",
             "4": "Fidio ny fiteny tianao indrindra amin'ny fipihana ny tontolon'izao tontolo izao etsy ambony."
         }
     },
     "jVideo": {
-        "title": "Ny Loharanon’ny Fahendrena",
+        "title": "Ny fiainan’i Jesosy",
         "para": {
-            "1": "Jesosy no loharanon’ny fahendrena mandrakizay. Rehefa mijery ilay video ianao, dia manontania tena hoe: “Inona no nataon’i Jesosy sy nampianariny? Inona no maha samy hafa ny fahendreny amin’izay lazain’ny hafa.”",
+            "1": "Nanova ny tantara ny tenin’i Jesosy sy ny zavatra nataony, ka nanome fahendrena miavaka. Rehefa mijery an’io video io ianao, dia manontania tena hoe: Inona no nampianarin’i Jesosy? Manao ahoana ny fahendreny raha ampitahaina amin’izay nolazain’ny hafa — ary inona no mety ho vokatr’izany aminao?",
             "2": "Ity video ity dia misy amin'ny fiteny maro. Raha hanova ny fiteny dia tsindrio ny tontolon'izao tontolo izao etsy ambony."
+        }
+    },
+    "lead": {
+        "title": "Discovering Leadership",
+        "para": {
+            "1": "Ny Discovering Leadership dia mandinika ireo fitsipika nampianarin'i Jesosy ireo mpitarika azy — fahendrena izay namolavola ny fitarihana am-po ho an'ny mpanompo hatramin'ny taranaka fara mandimby. Maro no niaina fiovana tamin’ny fianteherana tamin’i Jesosy mba hanampy azy ireo hitarika amin’ny tanjona sy ny tsy fivadihana. Mety hamolavola ny fitarihanao koa ve izany?",
+            "2": "Angony ny namanao ary jereo ny zavatra hitanao rehefa mifanakalo hevitra momba ireto fanontaniana manaraka ireto ianao.",
+            "3": "Fidio ny fiteny tianao indrindra amin'ny fipihana ny tontolon'izao tontolo izao etsy ambony."
         }
     }
 }

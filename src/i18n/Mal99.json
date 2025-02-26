@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Sabiex nagħmlu xi progress reali fil-ħajja spiritwali tagħna nafu li għandna bżonn sors affidabbli ta’ għerf.",
-            "2": "Meta tikklikkja fuq l-immaġini ta’ hawn taħt se tibda inti fi triq biex tiskopri l-għerf etern li Alla jrid li tkun taf u ssegwi."
+            "1": "It-tkabbir spiritwali mhuwiex vjaġġ waħdu - jiġri fil-komunità. Ilkoll għandna bżonn għerf li nistgħu nafdaw u nies li jħeġġuna tul it-triq. Il-lezzjonijiet hawn taħt jgħinuk tiskopri kif l-għerf t’Alla jsawwar il-ħajja, jibni relazzjonijiet ġenwini, u juri l-imħabba u l-kura Tiegħu għalik.",
+            "2": "Iġbor sħabek u ibda tesplora! Ikklikkja fuq l-immaġini hawn taħt biex tibda l-vjaġġ tiegħek — tiskopri mhux biss l-għerf, iżda relazzjoni ma’ Alla u l-komunità spiritwali li Hu jistiednek fiha."
         }
     },
     "dbs": {
-        "title": "L-Istorja Kbira tal-Għerf",
+        "title": "Niskopru Komunità Spiritwali",
         "para": {
-            "1": "Din l-istorja tibda biż-żmien qabel ma kien hemm xi nies. Imbagħad jirrakkonta l-istorja ta’ kif l-ewwel żewġ persuni interaġixxew ma’ Alla.”",
-            "2": "Iġbor lil sħabek u aqra kif Alla ħejja lin-nies għall-wasla ta’ Ġesù u l-Għerf tiegħu.",
+            "1": "Discovering Spiritual Community tieħdok fuq vjaġġ fl-istorja, tesplora kif in-nies qabbdu ma’ Alla mill-bidu nett—permezz ta’ sfidi, mistoqsijiet, u mumenti li jbiddlu l-ħajja. Jekk int kurjuż dwar il-fidi, l-iskop, u xi jfisser li tagħmel parti, din is-serje hija post tajjeb ħafna biex tibda.",
+            "2": "Iġbor lil sħabek u aqra kif Alla ħejja lin-nies għall-wasla ta’ Ġesù u l-komunità spiritwali li beda.",
             "3": "Agħżel il-lingwa favorita tiegħek billi tikklikkja fuq il-globu dinji hawn fuq."
         }
     },
     "life": {
-        "title": "Għerf għall-Ħajja",
+        "title": "Kwistjonijiet tal-Ħajja",
         "para": {
-            "1": "Dawn huma xi wħud mill-​affarijiet li għallmu Ġesù u s-​segwaċi tal-​bidu tiegħu.",
-            "2": "Ħafna nies raw ħajjithom mibdula hekk kif talbu lil Ġesù biex jagħtihom il-qawwa biex iwettqu dan it-tagħlim.",
+            "1": "Life Issues jesplora t-tagħlim prattiku ta’ Ġesù u s-segwaċi tal-bidu tiegħu — għerf li biddel il-ħajja għal sekli sħaħ. Ħafna esperjenzaw trasformazzjoni billi stiednu lil Ġesù biex jgħinhom jgħixu dawn il-​veritajiet. Dan jista’ jkun veru għalik ukoll?",
+            "2": "Iġbor sħabek u ara x'tiskopri hekk kif tiddiskuti l-mistoqsijiet li ġejjin.",
             "3": "Iġbor sħabek u ara x'tiskopri hekk kif tiddiskuti l-mistoqsijiet li ġejjin.",
             "4": "Agħżel il-lingwa favorita tiegħek billi tikklikkja fuq il-globu dinji hawn fuq."
         }
     },
     "jVideo": {
-        "title": "Is-Sors tal-Għerf",
+        "title": "Il-Ħajja ta’ Ġesù",
         "para": {
-            "1": "Ġesù huwa s-sors tal-għerf etern. Hekk kif tara l-filmat, staqsi lilek innifsek \"Ġesù x'għamel u għallem? L-għerf tiegħu kif huwa differenti minn dak li qalu oħrajn.\"",
+            "1": "Il-kliem u l-azzjonijiet ta’ Ġesù sawru l-istorja, u offrew għerf li jispikka. Hekk kif tara dan il-video, staqsi lilek innifsek: Ġesù x’għallem? L-għerf tiegħu kif jitqabbel ma’ dak li qalu oħrajn — u xi jista’ jfisser għalik?",
             "2": "Dan il-video huwa disponibbli f'ħafna lingwi. Biex tibdel il-lingwa ikklikkja fuq il-globu tad-dinja hawn fuq."
+        }
+    },
+    "lead": {
+        "title": "Niskopru t-Tmexxija",
+        "para": {
+            "1": "Discovering Leadership tesplora l-prinċipji li Ġesù għallem lill-mexxejja tiegħu — għerf li sawwar tmexxija b’qalb ta’ qaddejja għal ġenerazzjonijiet. Ħafna esperjenzaw trasformazzjoni billi qagħdu fuq Ġesù biex jgħinhom imexxu bi skop u integrità. Dan jista’ jsawwar it-tmexxija tiegħek ukoll?",
+            "2": "Iġbor sħabek u ara x'tiskopri hekk kif tiddiskuti l-mistoqsijiet li ġejjin.",
+            "3": "Agħżel il-lingwa favorita tiegħek billi tikklikkja fuq il-globu dinji hawn fuq."
         }
     }
 }

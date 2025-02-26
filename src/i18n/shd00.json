@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Kuti tiite fambiro mberi ipi neipi yechokwadi muupenyu hwedu hwomudzimu tinoziva kuti tinoda manyuko akavimbika ouchenjeri.",
-            "2": "Kudzvanya pamifananidzo iri pazasi kuchakutanga iwe munzira yekuwana huchenjeri husingagumi uhwo Mwari vanoda kuti uzive nekutevera."
+            "1": "Kukura pamweya hakusi rwendo rwega - zvinoitika munharaunda. Isu tose tinoda uchenjeri hwatinogona kuvimba nevanhu vanotikurudzira munzira. Zvidzidzo zviri pasi apa zvichakubatsira kuona kuti huchenjeri hwaMwari hunoumba sei hupenyu, hunovaka hukama hwechokwadi, uye hunoburitsa rudo Rwake nekukuchengeta.",
+            "2": "Unganidza shamwari dzako uye tanga kuongorora! Dzvanya pamifananidzo iri pazasi kuti utange rwendo rwako - kuwana kwete huchenjeri chete, asi hukama naMwari uye nenharaunda yemweya yaanokukoka kuti upinde."
         }
     },
     "dbs": {
-        "title": "Nyaya huru yeUchenjeri",
+        "title": "Kuwana Nharaunda Yekunamata",
         "para": {
-            "1": "Nyaya iyi inotanga nenguva pasati pava nevanhu. Inobva yataura nyaya yekuti vanhu vaviri vekutanga vakadyidzana sei naMwari.\"",
-            "2": "Unganidza shamwari dzako uye uverenge kuti Mwari akagadzirira sei vanhu kusvika kwaJesu neUchenjeri hwake.",
+            "1": "Kuziva Nharaunda Yekunamata kunokutora parwendo kuburikidza nenhoroondo, uchiongorora kuti vanhu vakabatana sei naMwari kubva pakutanga-kuburikidza nematambudziko, mibvunzo, uye nguva dzinochinja hupenyu. Kana iwe uchida kuziva nezvekutenda, chinangwa, uye kuti zvinorevei kuva wevako, iyi nhevedzano inzvimbo yakanaka yekutanga.",
+            "2": "Unganidza shamwari dzako uye uverenge kuti Mwari akagadzirira sei vanhu kusvika kwaJesu uye nenharaunda yemweya yaakatanga.",
             "3": "Sarudza mutauro waunofarira nekudzvanya pasi rose pamusoro."
         }
     },
     "life": {
-        "title": "Uchenjeri Hupenyu",
+        "title": "Nyaya Dzehupenyu",
         "para": {
-            "1": "Izvi ndezvimwe zvezvinhu zvakadzidziswa naJesu nevateveri vake vepakutanga.",
-            "2": "Vanhu vakawanda vakaona upenyu hwavo huchishandurwa sezvavakakumbira Jesu kuti avape simba rekushandisa dzidziso idzi.",
+            "1": "Nyaya dzeUpenyu dzinoongorora dzidziso dzinoshanda dzaJesu nevateveri vake vepakutanga - uchenjeri hwakachinja hupenyu kwemazana emakore. Vakawanda vakaona kuchinjwa nokukoka Jesu kuti avabatsire kurarama maererano nechokwadi ichi. Izvi zvingava zvechokwadi kwauriwo here?",
+            "2": "Unganidza shamwari dzako uye uone zvauchawana paunenge uchikurukura mibvunzo inotevera.",
             "3": "Unganidza shamwari dzako uye uone zvauchawana paunenge uchikurukura mibvunzo inotevera.",
             "4": "Sarudza mutauro waunofarira nekudzvanya pasi rose pamusoro."
         }
     },
     "jVideo": {
-        "title": "Kunobva Uchenjeri",
+        "title": "Hupenyu hwaJesu",
         "para": {
-            "1": "Jesu ndiye tsime reuchenjeri husingaperi. Paunenge uchiona vhidhiyo yacho, zvibvunze kuti “Jesu akaitei uye akadzidzisei? Uchenjeri hwake hwakasiyana sei nezvakataurwa nevamwe.",
+            "1": "Mashoko aJesu nezviito zvakaumba nhoroondo yezvakaitika kare, zvichipa uchenjeri hwakasiyana. Sezvaunoona vhidhiyo iyi, zvibvunze kuti: Jesu akadzidzisei? Uchenjeri hwake hunofananidzwa sei nezvakataurwa nevamwe - uye zvingarevei kwauri?",
             "2": "Vhidhiyo iyi inowanikwa mumitauro yakawanda. Kuti uchinje mutauro tinya pasi rose pamusoro."
+        }
+    },
+    "lead": {
+        "title": "Kuwana Hutungamiri",
+        "para": {
+            "1": "Kuwana Hutungamiri kunoongorora misimboti yakadzidziswa naJesu vatungamiri vake - huchenjeri hwakaumba hutungamiri hwemoyo wemuranda kwezvizvarwa. Vazhinji vakawana shanduko nekuvimba naJesu kuti avabatsire kutungamira nechinangwa uye nekuvimbika. Izvi zvingaumba hutungamiri hwako zvakare here?",
+            "2": "Unganidza shamwari dzako uye uone zvauchawana paunenge uchikurukura mibvunzo inotevera.",
+            "3": "Sarudza mutauro waunofarira nekudzvanya pasi rose pamusoro."
         }
     }
 }

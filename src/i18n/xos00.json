@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Ukuze senze nayiphi na inkqubela yokwenene kubomi bethu bokomoya siyazi ukuba sifuna umthombo othembekileyo wobulumko.",
-            "2": "Ukucofa le mifanekiso ingezantsi kuya kukuqalisa kwindlela eya ekufumaneni ubulumko obungunaphakade uThixo afuna ukuba uyazi kwaye ulandele."
+            "1": "Ukukhula ngokomoya ayilohambo lwedwa- luyenzeka ekuhlaleni. Sonke sifuna ubulumko esinokuthembela kubo kunye nabantu abasikhuthazayo endleleni. Ezi zifundo zingezantsi ziya kukunceda ufumanise indlela ubulumko bukaThixo obubumba ngayo ubomi, bakhe ubudlelwane bokwenyani, kwaye butyhile uthando nenkathalo yakhe ngawe.",
+            "2": "Qokelela abahlobo bakho kwaye uqale ukuhlola! Cofa kule mifanekiso ingezantsi ukuze uqalise uhambo lwakho - ungafumani nje ubulumko, kodwa ubudlelwane noThixo kunye noluntu lwasemoyeni akumemela kulo."
         }
     },
     "dbs": {
-        "title": "Ibali Elizukileyo loBulumko",
+        "title": "Ukufumanisa uluntu loMoya",
         "para": {
-            "1": "Eli bali liqala ngexesha langaphambi kokuba kubekho abantu. Emva koko ichaza ibali lendlela abantu ababini bokuqala abadibana ngayo noThixo.\"",
-            "2": "Qokelela abahlobo bakho kwaye ufunde indlela uThixo abalungiselela ngayo abantu ukufika kukaYesu kunye noBulumko bakhe.",
+            "1": "Ukufumana uLuntu loMoya kukuthatha uhambo ngembali, uphonononga indlela abantu abanxibelelene ngayo noThixo kwasekuqaleni-ngemingeni, imibuzo, kunye namaxesha okutshintsha ubomi. Ukuba unomdla wokwazi ukholo, injongo, kunye nokuba kuthetha ukuthini ukuba ngowakho, olu ngcelele yindawo entle yokuqalisa.",
+            "2": "Hlanganisa abahlobo bakho kwaye ufunde indlela uThixo awalungiselela ngayo abantu ukufika kukaYesu kunye noluntu lwasemoyeni awaluqalayo.",
             "3": "Khetha ulwimi oluthandayo ngokucofa iglowubhu yehlabathi ngaphezulu."
         }
     },
     "life": {
-        "title": "Ubulumko Bobomi",
+        "title": "Imiba yoBomi",
         "para": {
-            "1": "Ezi zezinye zezinto ezafundiswa nguYesu nabalandeli bakhe bokuqala.",
-            "2": "Abantu abaninzi baye babubona ubomi babo buguquka njengoko bacela uYesu ukuba abanike amandla okwenza ezi mfundiso.",
+            "1": "Imiba yoBomi ihlolisisa iimfundiso eziluncedo zikaYesu nabalandeli bakhe bokuqala—ubulumko obuye batshintsha ubomi babantu kangangeenkulungwane. Abaninzi baye balubona utshintsho ngokumema uYesu ukuba abancede baphile ngokuvisisana nezi nyaniso. Ngaba oku kunokuba yinyaniso nakuwe?",
+            "2": "Hlanganisa abahlobo bakho kwaye ubone oko ukufumanisileyo njengoko uxoxa ngale mibuzo ilandelayo.",
             "3": "Hlanganisa abahlobo bakho kwaye ubone oko ukufumanisileyo njengoko uxoxa ngale mibuzo ilandelayo.",
             "4": "Khetha ulwimi oluthandayo ngokucofa iglowubhu yehlabathi ngaphezulu."
         }
     },
     "jVideo": {
-        "title": "Umthombo Wobulumko",
+        "title": "Ubomi bukaYesu",
         "para": {
-            "1": "UYesu ungumthombo wobulumko obungunaphakade. Njengoko ubukele le vidiyo, zibuze: “Yintoni uYesu awayenzayo waza wayifundisa?",
+            "1": "Amazwi nezenzo zikaYesu ziye zayitshintsha imbali, zisinika ubulumko obahlukileyo. Njengoko ubukele le vidiyo, zibuze: Wafundisa ntoni uYesu? Ubulumko bakhe buthelekiseka njani noko bakutshoyo—kwaye bunokuthetha ntoni kuwe?",
             "2": "Le vidiyo ifumaneka ngeelwimi ezininzi. Ukutshintsha ulwimi cofa iglowubhu yehlabathi ngaphezulu."
+        }
+    },
+    "lead": {
+        "title": "Ukufumanisa ubuNkokheli",
+        "para": {
+            "1": "Ukufumana ubuNkokeli kuhlola imigaqo uYesu awayifundisa iinkokeli zakhe—ubulumko obuye babumba ubunkokeli obunentliziyo yomkhonzi kwizizukulwana ngezizukulwana. Abaninzi baye balubona utshintsho ngokuthembela kuYesu ukuba abancede bakhokele ngenjongo nangengqibelelo. Ngaba oku kungabumba ubunkokeli bakho nawe?",
+            "2": "Hlanganisa abahlobo bakho kwaye ubone oko ukufumanisileyo njengoko uxoxa ngale mibuzo ilandelayo.",
+            "3": "Khetha ulwimi oluthandayo ngokucofa iglowubhu yehlabathi ngaphezulu."
         }
     }
 }

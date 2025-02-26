@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Aron makahimo sa bisan unsang tinuod nga pag-uswag sa atong espirituhanong kinabuhi nahibal-an naton nga kinahanglan naton ang usa ka kasaligan nga tinubdan sa kaalam.",
-            "2": "Ang pag-klik sa mga hulagway sa ubos magsugod nimo sa dalan sa pagdiskubre sa mahangturong kaalam nga gusto sa Dios nga imong mahibaloan ug sundon."
+            "1": "Ang espirituhanong pagtubo dili usa ka solo nga panaw - kini mahitabo sa komunidad. Kitang tanan nanginahanglan ug kaalam nga atong masaligan ug mga tawo nga nagdasig kanato sa dalan. Ang mga leksyon sa ubos makatabang nimo sa pagdiskubre kon sa unsang paagi ang kaalam sa Dios naghulma sa kinabuhi, nagtukod og tinuod nga mga relasyon, ug nagpadayag sa Iyang gugma ug pag-atiman kanimo.",
+            "2": "Tiguma ang imong mga higala ug magsugod sa pagsuhid! I-klik ang mga hulagway sa ubos aron masugdan ang imong panaw — pagdiskubre dili lang sa kaalam, kondili usa ka relasyon sa Dios ug sa espirituhanong komunidad nga Iyang gidapit kanimo."
         }
     },
     "dbs": {
-        "title": "Ang Dakong Istorya sa Kaalam",
+        "title": "Pagdiskobre sa Espirituwal nga Komunidad",
         "para": {
-            "1": "Kini nga istorya nagsugod sa panahon sa wala pa ang mga tawo. Dayon kini nagsaysay sa istorya kon sa unsang paagi ang unang duha ka tawo nakig-uban sa Diyos.”,",
-            "2": "Tiguma ang imong mga higala ug basaha giunsa pag-andam sa Dios ang mga tawo alang sa pag-abot ni Jesus ug sa iyang Kaalam.",
+            "1": "Ang Pagdiskubre sa Espirituwal nga Komunidad magdala kanimo sa usa ka panaw sa kasaysayan, pagsuhid kung giunsa ang mga tawo nga nalambigit sa Diyos gikan sa sinugdanan—pinaagi sa mga hagit, pangutana, ug mga higayon nga nagbag-o sa kinabuhi. Kung interesado ka bahin sa pagtuo, katuyoan, ug kung unsa ang kahulugan sa pagkasakop, kini nga serye usa ka maayong lugar nga magsugod.",
+            "2": "Tiguma ang imong mga higala ug basaha kung giunsa pag-andam sa Dios ang mga tawo alang sa pag-abot ni Jesus ug ang espirituhanong komunidad nga iyang gisugdan.",
             "3": "Pilia ang imong paborito nga pinulongan pinaagi sa pag-klik sa kalibutan sa ibabaw."
         }
     },
     "life": {
-        "title": "Kaalam Alang sa Kinabuhi",
+        "title": "Mga Isyu sa Kinabuhi",
         "para": {
-            "1": "Kini ang pipila sa mga butang nga gitudlo ni Jesus ug sa iyang unang mga sumusunod.",
-            "2": "Daghang mga tawo ang nakakita sa ilang kinabuhi nga nabag-o samtang sila mihangyo kang Jesus nga hatagan sila ug gahum sa pagbuhat niini nga mga pagtulon-an.",
+            "1": "Ang Mga Isyu sa Kinabuhi nagsusi sa praktikal nga mga pagtulon-an ni Jesus ug sa iyang unang mga sumusunod — kaalam nga nakapausab sa kinabuhi sa daghang siglo. Daghan ang nakasinati sa pagbag-o pinaagi sa pagdapit kang Jesus sa pagtabang kanila sa pagsunod niini nga mga kamatuoran. Tinuod ba usab kini kanimo?",
+            "2": "Tiguma ang imong mga higala ug tan-awa unsay imong nadiskobrehan samtang imong hisgutan ang mosunod nga mga pangutana.",
             "3": "Tiguma ang imong mga higala ug tan-awa unsay imong nadiskobrehan samtang imong hisgutan ang mosunod nga mga pangutana.",
             "4": "Pilia ang imong paborito nga pinulongan pinaagi sa pag-klik sa kalibutan sa ibabaw."
         }
     },
     "jVideo": {
-        "title": "Ang Tuboran sa Kaalam",
+        "title": "Ang Kinabuhi ni Jesus",
         "para": {
-            "1": "Si Jesus mao ang tinubdan sa walay katapusan nga kaalam. Samtang nagtan-aw ka sa video, pangutan-a ang imong kaugalingon \"Unsa ang gibuhat ug gitudlo ni Jesus? Sa unsang paagi lahi ang iyang kaalam sa gisulti sa uban.\"",
-            "2": "Kini nga video anaa sa daghang pinulongan. Para usbon ang lengguwahe i-klik ang kalibutan nga globe sa ibabaw."
+            "1": "Ang mga pulong ug mga buhat ni Jesus nag-umol sa kasaysayan, nga naghatag ug kaalam nga lahi. Samtang nagtan-aw ka niini nga video, pangutan-a ang imong kaugalingon: Unsa ang gitudlo ni Jesus? Sa unsang paagi ang iyang kaalam itandi sa gisulti sa uban—ug unsay kahulogan niini para kanimo?",
+            "2": "Kini nga video anaa sa daghang pinulongan. Aron usbon ang pinulongan i-klik ang kalibutan nga globo sa ibabaw."
+        }
+    },
+    "lead": {
+        "title": "Pagdiskobre sa Pagpangulo",
+        "para": {
+            "1": "Ang Discovering Leadership nagtuki sa mga prinsipyo nga gitudlo ni Jesus sa iyang mga lider — kaalam nga nag-umol sa kasingkasing sa sulugoon nga pagpangulo sa mga henerasyon. Daghan ang nakasinati ug kausaban pinaagi sa pagsalig kang Jesus sa pagtabang kanila sa pagpangulo nga may katuyoan ug integridad. Makahulma ba usab kini sa imong pagpangulo?",
+            "2": "Tiguma ang imong mga higala ug tan-awa unsay imong nadiskobrehan samtang imong hisgutan ang mosunod nga mga pangutana.",
+            "3": "Pilia ang imong paborito nga pinulongan pinaagi sa pag-klik sa kalibutan sa ibabaw."
         }
     }
 }

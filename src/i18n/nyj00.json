@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Kuti tipite patsogolo kwenikweni m’moyo wathu wauzimu timadziwa kuti tikufunikira gwero lodalirika la nzeru.",
-            "2": "Kudina pazithunzi zomwe zili m'munsizi zidzakuyambitsani panjira yopezera nzeru zamuyaya zomwe Mulungu akufuna kuti mudziwe ndikutsata."
+            "1": "Kukula kwauzimu sikuyenda payekha - zimachitika mdera. Tonsefe timafunika nzeru zimene tingakhulupirire komanso anthu amene amatilimbikitsa. Maphunziro amene ali m’munsiwa adzakuthandizani kuzindikira mmene nzeru za Mulungu zimasinthira miyoyo ya anthu, kumanga ubale weniweni, ndi kuwulula chikondi chake ndi chisamaliro chake kwa inu.",
+            "2": "Sonkhanitsani anzanu ndikuyamba kufufuza! Dinani pazithunzi zomwe zili pansipa kuti muyambe ulendo wanu - kupeza osati nzeru zokha, komanso ubale ndi Mulungu ndi gulu lauzimu lomwe akukuitaniranimo."
         }
     },
     "dbs": {
-        "title": "Nkhani Yaikulu ya Nzeru",
+        "title": "Kupeza Gulu Lauzimu",
         "para": {
-            "1": "Nkhaniyi imayamba ndi nthawi isanakhalepo anthu. Kenako yafotokoza nkhani ya momwe anthu awiri oyamba adalumikizirana ndi Mulungu.\"",
-            "2": "Sonkhanitsani abwenzi anu ndikuwerenga momwe Mulungu adakonzera anthu kubwera kwa Yesu ndi Nzeru zake.",
+            "1": "Kuzindikira Gulu Lauzimu kumakutengerani paulendo wodutsa m'mbiri, ndikuwunika momwe anthu adalumikizirana ndi Mulungu kuyambira pachiyambi - kudzera mu zovuta, mafunso, ndi nthawi zosintha moyo. Ngati mukufuna kudziwa za chikhulupiriro, cholinga, ndi tanthauzo la kukhala nawo, mndandanda uwu ndi malo abwino kuyamba.",
+            "2": "Sonkhanitsani abwenzi anu ndikuwerenga momwe Mulungu adakonzera anthu kubwera kwa Yesu ndi gulu lauzimu lomwe adayambitsa.",
             "3": "Sankhani chilankhulo chomwe mumakonda podina padziko lonse lapansi pamwambapa."
         }
     },
     "life": {
-        "title": "Nzeru Zamoyo Zonse",
+        "title": "Nkhani Za Moyo",
         "para": {
-            "1": "Izi ndi zina mwa zinthu zimene Yesu ndi otsatira ake oyambirira anaphunzitsa.",
-            "2": "Anthu ambiri aona kuti moyo wawo wasintha pamene anapempha Yesu kuti awapatse mphamvu zogwiritsa ntchito zimene Yesu anaphunzitsa.",
+            "1": "Life Issues imafotokoza ziphunzitso zothandiza za Yesu ndi otsatira ake oyambirira—nzeru zomwe zasintha miyoyo kwa zaka mazana ambiri. Anthu ambiri asintha chifukwa chopempha Yesu kuti awathandize kutsatira mfundo za choonadi zimenezi. Kodi zimenezi zingakhale zoona kwa inunso?",
+            "2": "Sonkhanitsani anzanu ndikuwona zomwe mwapeza pamene mukukambirana mafunso otsatirawa.",
             "3": "Sonkhanitsani anzanu ndikuwona zomwe mwapeza pamene mukukambirana mafunso otsatirawa.",
             "4": "Sankhani chilankhulo chomwe mumakonda podina padziko lonse lapansi pamwambapa."
         }
     },
     "jVideo": {
-        "title": "Gwero la Nzeru",
+        "title": "Moyo wa Yesu",
         "para": {
-            "1": "Yesu ndiye gwero la nzeru zosatha. Mukamaonera vidiyoyi, dzifunseni kuti: “Kodi Yesu anachita chiyani komanso ankaphunzitsa chiyani?",
+            "1": "Mawu ndi zochita za Yesu zasintha kwambiri mbiri yakale, ndipo zimatipatsa nzeru zapadera. Mukamaonera vidiyoyi, dzifunseni kuti: Kodi Yesu ankaphunzitsa chiyani? Kodi nzeru zake zikufanana bwanji ndi zimene ena anena—ndipo zingatanthauze chiyani kwa inu?",
             "2": "Vidiyoyi ikupezeka m’zinenero zambiri. Kuti musinthe chilankhulo dinani dziko lapansi pamwambapa."
+        }
+    },
+    "lead": {
+        "title": "Kupeza Utsogoleri",
+        "para": {
+            "1": "Kuzindikira Utsogoleri kumasanthula mfundo zomwe Yesu adaphunzitsa atsogoleri ake - nzeru zomwe zaumba utsogoleri wamtima wantchito kwa mibadwomibadwo. Ambiri asintha chifukwa chodalira Yesu kuti awathandize kutsogolera ndi cholinga komanso moona mtima. Kodi izi zingapangitsenso utsogoleri wanu?",
+            "2": "Sonkhanitsani anzanu ndikuwona zomwe mwapeza pamene mukukambirana mafunso otsatirawa.",
+            "3": "Sankhani chilankhulo chomwe mumakonda podina padziko lonse lapansi pamwambapa."
         }
     }
 }

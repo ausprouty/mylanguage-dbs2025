@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Vieme, že na to, aby sme dosiahli skutočný pokrok v našom duchovnom živote, potrebujeme spoľahlivý zdroj múdrosti.",
-            "2": "Kliknutím na obrázky nižšie sa dostanete na cestu k objaveniu večnej múdrosti, ktorú Boh chce, aby ste poznali a nasledovali."
+            "1": "Duchovný rast nie je samostatná cesta – deje sa v komunite. Všetci potrebujeme múdrosť, ktorej môžeme dôverovať, a ľudí, ktorí nás na ceste povzbudzujú. Nižšie uvedené lekcie vám pomôžu objaviť, ako Božia múdrosť formuje životy, buduje skutočné vzťahy a odhaľuje Jeho lásku a starostlivosť o vás.",
+            "2": "Zhromaždite svojich priateľov a začnite objavovať! Kliknite na obrázky nižšie a začnite svoju cestu – objavte nielen múdrosť, ale aj vzťah s Bohom a duchovným spoločenstvom, do ktorého vás pozýva."
         }
     },
     "dbs": {
-        "title": "Veľký príbeh múdrosti",
+        "title": "Objavovanie duchovného spoločenstva",
         "para": {
-            "1": "Tento príbeh sa začína v čase, keď ešte neexistovali ľudia. Potom rozpráva príbeh o tom, ako prví dvaja ľudia interagovali s Bohom.\",",
-            "2": "Zhromaždite priateľov a prečítajte si, ako Boh pripravil ľudí na príchod Ježiša a jeho Múdrosti.",
+            "1": "Objavovanie duchovnej komunity vás zavedie na cestu históriou, skúmajúc, ako sa ľudia od samého začiatku spájali s Bohom – cez výzvy, otázky a momenty, ktoré menia život. Ak ste zvedaví na vieru, účel a čo znamená patriť, táto séria je skvelým miestom, kde začať.",
+            "2": "Zhromaždite priateľov a prečítajte si, ako Boh pripravil ľudí na príchod Ježiša a duchovné spoločenstvo, ktoré založil.",
             "3": "Vyberte si svoj obľúbený jazyk kliknutím na zemeguľu vyššie."
         }
     },
     "life": {
-        "title": "Múdrosť pre život",
+        "title": "Životné problémy",
         "para": {
-            "1": "Toto sú niektoré z vecí, ktoré učil Ježiš a jeho raní nasledovníci.",
-            "2": "Mnohí ľudia videli, ako sa ich životy zmenili, keď požiadali Ježiša, aby im dal moc uviesť tieto učenia do praxe.",
+            "1": "Life Issues skúma praktické učenie Ježiša a jeho prvých nasledovníkov – múdrosť, ktorá zmenila životy po stáročia. Mnohí zažili premenu tým, že pozvali Ježiša, aby im pomohol žiť tieto pravdy. Môže to byť pravda aj u vás?",
+            "2": "Zhromaždite svojich priateľov a zistite, čo objavíte, keď budete diskutovať o nasledujúcich otázkach.",
             "3": "Zhromaždite svojich priateľov a zistite, čo objavíte, keď budete diskutovať o nasledujúcich otázkach.",
             "4": "Vyberte si svoj obľúbený jazyk kliknutím na zemeguľu vyššie."
         }
     },
     "jVideo": {
-        "title": "Zdroj múdrosti",
+        "title": "Život Ježiša",
         "para": {
-            "1": "Ježiš je zdrojom večnej múdrosti. Pri pozeraní videa si položte otázku: \"Čo robil a učil Ježiš? V čom sa jeho múdrosť líši od toho, čo hovorili iní.\"",
+            "1": "Ježišove slová a činy formovali dejiny a ponúkajú múdrosť, ktorá stojí mimo. Pri pozeraní tohto videa si položte otázku: Čo učil Ježiš? Ako sa jeho múdrosť porovnáva s tým, čo povedali iní – a čo by to mohlo znamenať pre vás?",
             "2": "Toto video je dostupné v mnohých jazykoch. Ak chcete zmeniť jazyk, kliknite na zemeguľu vyššie."
+        }
+    },
+    "lead": {
+        "title": "Objavovanie vodcovstva",
+        "para": {
+            "1": "Objavovanie vodcovstva skúma princípy, ktoré Ježiš učil svojich vodcov – múdrosť, ktorá formovala vodcovstvo so služobníckym srdcom po celé generácie. Mnohí zažili premenu tým, že sa spoliehali na Ježiša, ktorý im pomáha viesť cielene a bezúhonne. Mohlo by to formovať aj vaše vedenie?",
+            "2": "Zhromaždite svojich priateľov a zistite, čo objavíte, keď budete diskutovať o nasledujúcich otázkach.",
+            "3": "Vyberte si svoj obľúbený jazyk kliknutím na zemeguľu vyššie."
         }
     }
 }

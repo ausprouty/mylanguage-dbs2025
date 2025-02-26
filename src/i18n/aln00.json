@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Për të bërë ndonjë përparim të vërtetë në jetën tonë shpirtërore, ne e dimë se kemi nevojë për një burim të besueshëm mençurie.",
-            "2": "Klikimi mbi imazhet e mëposhtme do t'ju fillojë në një rrugë drejt zbulimit të urtësisë së përjetshme që Perëndia dëshiron që ju të dini dhe të ndiqni."
+            "1": "Rritja shpirtërore nuk është një udhëtim i vetëm - ndodh në komunitet. Ne të gjithë kemi nevojë për mençuri të cilës mund t'i besojmë dhe njerëz që na inkurajojnë gjatë rrugës. Mësimet e mëposhtme do t'ju ndihmojnë të zbuloni se si mençuria e Perëndisë i formëson jetët, ndërton marrëdhënie të vërteta dhe zbulon dashurinë dhe kujdesin e Tij për ju.",
+            "2": "Mblidhni miqtë tuaj dhe filloni të eksploroni! Klikoni mbi imazhet më poshtë për të filluar udhëtimin tuaj - duke zbuluar jo vetëm mençurinë, por një marrëdhënie me Perëndinë dhe komunitetin shpirtëror në të cilin Ai ju fton."
         }
     },
     "dbs": {
-        "title": "Historia e Madhe e Urtësisë",
+        "title": "Zbulimi i Komunitetit Shpirtëror",
         "para": {
-            "1": "Kjo histori fillon me kohën para se të kishte njerëz. Më pas tregon historinë se si dy njerëzit e parë ndërvepruan me Zotin.\",",
-            "2": "Mblidhni miqtë tuaj dhe lexoni se si Perëndia i përgatiti njerëzit për ardhjen e Jezusit dhe Urtësisë së tij.",
+            "1": "Zbulimi i Komunitetit Shpirtëror ju çon në një udhëtim nëpër histori, duke eksploruar se si njerëzit janë lidhur me Perëndinë që në fillim - përmes sfidave, pyetjeve dhe momenteve që ndryshojnë jetën. Nëse jeni kurioz për besimin, qëllimin dhe çfarë do të thotë të përkasësh, kjo seri është një vend i mrekullueshëm për të filluar.",
+            "2": "Mblidhni miqtë tuaj dhe lexoni se si Perëndia i përgatiti njerëzit për ardhjen e Jezusit dhe komunitetin shpirtëror që ai filloi.",
             "3": "Zgjidhni gjuhën tuaj të preferuar duke klikuar mbi globin botëror më lart."
         }
     },
     "life": {
-        "title": "Mençuria për jetën",
+        "title": "Çështjet e Jetës",
         "para": {
-            "1": "Këto janë disa nga gjërat që mësuan Jezusi dhe pasuesit e tij të hershëm.",
-            "2": "Shumë njerëz e kanë parë jetën e tyre të transformuar ndërsa i kërkuan Jezusit t'u jepte atyre fuqinë për t'i vënë në veprim këto mësime.",
+            "1": "Life Issues eksploron mësimet praktike të Jezusit dhe ndjekësve të tij të hershëm - mençuri që ka ndryshuar jetë për shekuj. Shumë e kanë përjetuar transformimin duke e ftuar Jezusin që t'i ndihmojë t'i kuptojnë këto të vërteta. A mund të jetë kjo e vërtetë edhe për ju?",
+            "2": "Mblidhni miqtë tuaj dhe shikoni se çfarë zbuloni ndërsa diskutoni pyetjet e mëposhtme.",
             "3": "Mblidhni miqtë tuaj dhe shikoni se çfarë zbuloni ndërsa diskutoni pyetjet e mëposhtme.",
             "4": "Zgjidhni gjuhën tuaj të preferuar duke klikuar mbi globin botëror më lart."
         }
     },
     "jVideo": {
-        "title": "Burimi i Urtësisë",
+        "title": "Jeta e Jezusit",
         "para": {
-            "1": "Jezusi është burimi i urtësisë së përjetshme. Ndërsa shikoni videon, pyesni veten \"Çfarë bëri dhe mësoi Jezusi? Si ndryshon mençuria e tij nga ajo që kanë thënë të tjerët.\"",
+            "1": "Fjalët dhe veprimet e Jezusit kanë formësuar historinë, duke ofruar një urtësi që qëndron veçmas. Ndërsa shikoni këtë video, pyesni veten: Çfarë mësoi Jezusi? Si krahasohet mençuria e tij me atë që kanë thënë të tjerët - dhe çfarë mund të thotë për ju?",
             "2": "Kjo video është e disponueshme në shumë gjuhë. Për të ndryshuar gjuhën, klikoni globin botëror më lart."
+        }
+    },
+    "lead": {
+        "title": "Zbulimi i Lidershipit",
+        "para": {
+            "1": "Zbulimi i Udhëheqjes eksploron parimet që Jezusi u mësoi udhëheqësve të tij - urtësi që ka formësuar udhëheqjen me zemër shërbëtore për breza. Shumë prej tyre kanë përjetuar transformim duke u mbështetur te Jezusi për t'i ndihmuar ata të udhëheqin me qëllim dhe integritet. A mund të formojë kjo edhe lidershipin tuaj?",
+            "2": "Mblidhni miqtë tuaj dhe shikoni se çfarë zbuloni ndërsa diskutoni pyetjet e mëposhtme.",
+            "3": "Zgjidhni gjuhën tuaj të preferuar duke klikuar mbi globin botëror më lart."
         }
     }
 }

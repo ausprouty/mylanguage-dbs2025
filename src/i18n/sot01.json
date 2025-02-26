@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "E le hore re ka etsa tsoelo-pele leha e le efe ea sebele bophelong ba rōna ba moea rea ​​tseba hore re hloka mohloli o tšepahalang oa bohlale.",
-            "2": "Ho tobetsa litšoantšo tse ka tlase ho tla u qalisa tseleng ea ho fumana bohlale bo sa feleng boo Molimo a batlang hore u bo tsebe le ho bo latela."
+            "1": "Khōlo ea moea ha se leeto la motho a le mong - e etsahala sechabeng. Kaofela re hloka bohlale boo re ka bo tšepang le batho ba re khothatsang ha re le tseleng. Lithuto tse ka tlase li tla u thusa ho fumana kamoo bohlale ba Molimo bo bōpang bophelo, bo ahang likamano tsa 'nete, le ho senola lerato le tlhokomelo ea Hae ho uena.",
+            "2": "Bokella metsoalle ea hau 'me u qale ho hlahloba! Tobetsa litšoantšong tse ka tlase ho qala leeto la hau - ho fumana eseng bohlale feela, empa kamano le Molimo le sechaba sa moea seo A u memelang ho sona."
         }
     },
     "dbs": {
-        "title": "Pale e Kgolo ya Bohlale",
+        "title": "Ho Fumana Sechaba sa Moea",
         "para": {
-            "1": "Pale ena e qala ka nako ea pele ho ne ho e-na le batho. Joale e bua pale ea kamoo batho ba babeli ba pele ba ileng ba sebelisana le Molimo kateng.”",
-            "2": "Bokella metsoalle ea hau 'me u bale kamoo Molimo a lokiselitseng batho ho fihla ha Jesu le Bohlale ba hae.",
+            "1": "Ho fumana Sechaba sa Semoea ho u nka leetong ho pholletsa le nalane, ho lekola ka moo batho ba hokahaneng le Molimo ho tloha qalong-ka liqholotso, lipotso, le linako tse fetolang bophelo. Haeba u labalabela ho tseba ka tumelo, morero, le hore na ho bolela'ng ho ba karolo, letoto lena ke sebaka se setle sa ho qala.",
+            "2": "Bokella metsoalle ea hau 'me u bale kamoo Molimo a ileng a lokisetsa batho ho fihla ha Jesu le sechaba sa moea seo a se qalileng.",
             "3": "Khetha puo eo u e ratang ka ho tobetsa lefats'e ka holimo."
         }
     },
     "life": {
-        "title": "Bohlale Bakeng sa Bophelo",
+        "title": "Mathata a Bophelo",
         "para": {
-            "1": "Tsena ke tse ling tsa lintho tseo Jesu le balateli ba hae ba pele ba ileng ba li ruta.",
-            "2": "Batho ba bangata ba bone bophelo ba bona bo fetohile ha ba ntse ba kōpa Jesu hore a ba fe matla a ho sebelisa lithuto tsena.",
+            "1": "Mathata a Bophelo a hlahloba lithuto tse sebetsang tsa Jesu le balateli ba hae ba pele—bohlale bo fetotseng bophelo ka makholo a lilemo. Ba bangata ba bone phetoho eo ka ho mema Jesu hore a ba thuse ho phela tumellanong le linnete tsena. Na see e ka ba ’nete le ho uena?",
+            "2": "Bokella metsoalle ea hau 'me u bone seo u se fumanang ha le ntse le tšohla lipotso tse latelang.",
             "3": "Bokella metsoalle ea hau 'me u bone seo u se fumanang ha le ntse le tšohla lipotso tse latelang.",
             "4": "Khetha puo eo u e ratang ka ho tobetsa lefats'e ka holimo."
         }
     },
     "jVideo": {
-        "title": "Mohloli oa Bohlale",
+        "title": "Bophelo ba Jesu",
         "para": {
-            "1": "Jesu ke mohloli oa bohlale bo sa feleng. Ha u ntse u shebella video, ipotse: \"Jesu o ile a etsa'ng le ho ruta eng? Bohlale ba hae bo fapane joang le seo ba bang ba se buileng.\"",
+            "1": "Mantsoe a Jesu le liketso tsa hae li thehile histori, li fana ka bohlale bo ikhethang. Ha u ntse u shebella video ena, ipotse: Jesu o ile a ruta eng? Bohlale ba hae bo bapisoa joang le seo ba bang ba se buileng—’me bo ka bolela’ng ho uena?",
             "2": "Video ena e fumaneha ka lipuo tse ngata. Ho fetola puo, tobetsa lefatše ka holimo."
+        }
+    },
+    "lead": {
+        "title": "Ho sibolla Boetapele",
+        "para": {
+            "1": "Ho sibolla Boetapele ho hlahloba melao-motheo eo Jesu a e rutileng baetapele ba hae—bohlale bo ’nileng ba bōpa boetapele ba lipelo tsa bahlanka ka meloko. Ba bangata ba bone phetoho ka ho itšetleha ka Jesu hore a ba thuse ho etella pele ka morero le ka botšepehi. Na see se ka ama boetapele ba hau le bona?",
+            "2": "Bokella metsoalle ea hau 'me u bone seo u se fumanang ha le ntse le tšohla lipotso tse latelang.",
+            "3": "Khetha puo eo u e ratang ka ho tobetsa lefats'e ka holimo."
         }
     }
 }

@@ -10,36 +10,44 @@
         "previous": "Öncesi",
         "select": "Seçme",
         "videoSegment": "Video Segmenti",
-        "language": "Dil Seçiniz"
+        "language": "Dil Seçin"
     },
     "index": {
         "para": {
-            "1": "Manevi yaşamımızda gerçek bir ilerleme kaydedebilmek için güvenilir bir bilgelik kaynağına ihtiyacımız olduğunu biliyoruz.",
-            "2": "Aşağıdaki resimlere tıklamak, Tanrı'nın bilmenizi ve takip etmenizi istediği sonsuz bilgeliği keşfetme yoluna girmenizi sağlayacaktır."
+            "1": "Ruhsal gelişim tek başına yapılan bir yolculuk değildir; topluluk içinde gerçekleşir. Hepimizin güvenebileceğimiz bilgeliğe ve bu yolda bizi cesaretlendiren insanlara ihtiyacı var. Aşağıdaki dersler, Tanrı'nın bilgeliğinin yaşamları nasıl şekillendirdiğini, gerçek ilişkiler kurduğunu ve O'nun size olan sevgisini ve ilgisini nasıl ortaya çıkardığını keşfetmenize yardımcı olacaktır.",
+            "2": "Arkadaşlarınızı toplayın ve keşfetmeye başlayın! Yolculuğunuza başlamak için aşağıdaki resimlere tıklayın; yalnızca bilgeliği değil, aynı zamanda Tanrı ve O'nun sizi davet ettiği manevi toplulukla olan ilişkiyi de keşfedebilirsiniz."
         }
     },
     "dbs": {
-        "title": "Bilgeliğin Büyük Hikayesi",
+        "title": "Manevi Topluluğu Keşfetmek",
         "para": {
-            "1": "Bu hikaye insanların var olmadığı zamanlarla başlıyor. Daha sonra ilk iki insanın Tanrı ile nasıl etkileşime girdiğinin öyküsünü anlatıyor.\",",
-            "2": "Arkadaşlarınızı toplayın ve Tanrı'nın insanları İsa'nın ve O'nun Bilgeliğinin gelişine nasıl hazırladığını okuyun.",
+            "1": "Spiritüel Topluluğu Keşfetmek sizi tarih boyunca bir yolculuğa çıkarıyor; insanların en başından beri zorluklar, sorular ve yaşamı değiştiren anlarla Tanrı ile nasıl bağlantı kurduğunu keşfediyor. İnanç, amaç ve ait olmanın ne demek olduğunu merak ediyorsanız bu dizi harika bir başlangıç ​​olabilir.",
+            "2": "Arkadaşlarınızı toplayın ve Tanrı'nın insanları İsa'nın gelişine ve onun başlattığı ruhani topluluğa nasıl hazırladığını okuyun.",
             "3": "Yukarıdaki dünya küresine tıklayarak favori dilinizi seçin."
         }
     },
     "life": {
-        "title": "Yaşam Bilgeliği",
+        "title": "Yaşam Sorunları",
         "para": {
-            "1": "Bunlar, İsa ve ilk takipçilerinin öğrettiği şeylerden bazılarıdır.",
-            "2": "Pek çok insan, İsa'dan bu öğretileri eyleme geçirebilmeleri için kendilerine güç vermesini istediklerinde hayatlarının değiştiğini gördü.",
+            "1": "Life Issues, İsa'nın ve onun ilk takipçilerinin pratik öğretilerini, yani yüzyıllardır hayatları değiştiren bilgeliği araştırıyor. Birçoğu İsa'yı bu gerçekleri yaşamalarına yardım etmeye davet ederek dönüşüm yaşadı. Bu sizin için de geçerli olabilir mi?",
+            "2": "Arkadaşlarınızı toplayın ve aşağıdaki soruları tartışırken neler keşfettiğinizi görün.",
             "3": "Arkadaşlarınızı toplayın ve aşağıdaki soruları tartışırken neler keşfettiğinizi görün.",
             "4": "Yukarıdaki dünya küresine tıklayarak favori dilinizi seçin."
         }
     },
     "jVideo": {
-        "title": "Bilgeliğin Kaynağı",
+        "title": "İsa'nın Hayatı",
         "para": {
-            "1": "İsa sonsuz bilgeliğin kaynağıdır. Videoyu izlerken kendinize şu soruyu sorun: \"İsa ne yaptı ve öğretti? Onun bilgeliği başkalarının söylediklerinden ne kadar farklı?\"",
+            "1": "İsa'nın sözleri ve eylemleri, farklı bir bilgelik sunarak tarihi şekillendirdi. Bu videoyu izlerken kendinize şunu sorun: İsa ne öğretti? Onun bilgeliği başkalarının söyledikleriyle kıyaslandığında nasıldır ve bu sizin için ne anlama gelebilir?",
             "2": "Bu video birçok dilde mevcuttur. Dili değiştirmek için yukarıdaki dünya küresine tıklayın."
+        }
+    },
+    "lead": {
+        "title": "Liderliği Keşfetmek",
+        "para": {
+            "1": "Liderliği Keşfetmek, İsa'nın liderlerine öğrettiği ilkeleri, yani nesiller boyu hizmetkar yürekli liderliği şekillendiren bilgeliği araştırıyor. Birçoğu, amaç ve dürüstlükle liderlik etmelerine yardım etmesi için İsa'ya güvenerek dönüşümü deneyimledi. Bu sizin liderliğinizi de şekillendirebilir mi?",
+            "2": "Arkadaşlarınızı toplayın ve aşağıdaki soruları tartışırken neler keşfettiğinizi görün.",
+            "3": "Yukarıdaki dünya küresine tıklayarak favori dilinizi seçin."
         }
     }
 }

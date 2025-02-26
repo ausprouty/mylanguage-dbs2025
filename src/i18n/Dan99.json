@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "For at gøre nogen reelle fremskridt i vores åndelige liv ved vi, at vi har brug for en pålidelig kilde til visdom.",
-            "2": "Ved at klikke på billederne nedenfor vil du begynde på en vej til at opdage den evige visdom, som Gud ønsker, at du skal kende og følge."
+            "1": "Åndelig vækst er ikke en solorejse - det sker i fællesskabet. Vi har alle brug for visdom, vi kan stole på, og mennesker, der opmuntrer os undervejs. Lektionerne nedenfor vil hjælpe dig med at opdage, hvordan Guds visdom former liv, opbygger ægte forhold og afslører hans kærlighed og omsorg for dig.",
+            "2": "Saml dine venner og begynd at udforske! Klik på billederne nedenfor for at begynde din rejse – opdager ikke bare visdom, men et forhold til Gud og det åndelige fællesskab, han inviterer dig ind i."
         }
     },
     "dbs": {
-        "title": "Den store historie om visdom",
+        "title": "Opdag åndeligt fællesskab",
         "para": {
-            "1": "Denne historie starter med tiden før der var nogen mennesker. Det fortæller derefter historien om, hvordan de første to mennesker interagerede med Gud.\"",
-            "2": "Saml dine venner og læs, hvordan Gud forberedte mennesker til Jesu ankomst og hans visdom.",
+            "1": "Discovering Spiritual Community tager dig med på en rejse gennem historien og udforsker, hvordan mennesker har forbundet med Gud lige fra begyndelsen – gennem udfordringer, spørgsmål og livsændrende øjeblikke. Hvis du er nysgerrig efter tro, formål og hvad det vil sige at høre til, er denne serie et godt sted at starte.",
+            "2": "Saml dine venner og læs, hvordan Gud forberedte mennesker til Jesu ankomst og det åndelige fællesskab, han startede.",
             "3": "Vælg dit yndlingssprog ved at klikke på verdensgloben ovenfor."
         }
     },
     "life": {
-        "title": "Visdom for livet",
+        "title": "Livsproblemer",
         "para": {
-            "1": "Dette er nogle af de ting, som Jesus og hans tidlige tilhængere lærte.",
-            "2": "Mange mennesker har set deres liv blive forvandlet, da de bad Jesus om at give dem kraften til at omsætte disse lærdomme til handling.",
+            "1": "Life Issues udforsker Jesu og hans tidlige tilhængeres praktiske lære - visdom, der har ændret liv i århundreder. Mange har oplevet forvandling ved at invitere Jesus til at hjælpe dem med at udleve disse sandheder. Kunne dette også være sandt for dig?",
+            "2": "Saml dine venner og se, hvad du opdager, mens du diskuterer følgende spørgsmål.",
             "3": "Saml dine venner og se, hvad du opdager, mens du diskuterer følgende spørgsmål.",
             "4": "Vælg dit yndlingssprog ved at klikke på verdensgloben ovenfor."
         }
     },
     "jVideo": {
-        "title": "Kilden til visdom",
+        "title": "Jesu liv",
         "para": {
-            "1": "Jesus er kilden til evig visdom. Mens du ser videoen, så spørg dig selv \"Hvad gjorde og underviste Jesus i? Hvordan er hans visdom anderledes end hvad andre har sagt.\"",
-            "2": "Denne video er tilgængelig på mange sprog. For at ændre sproget, klik på verdenskloden ovenfor."
+            "1": "Jesu ord og handlinger har formet historien og tilbyder en visdom, der skiller sig ud. Mens du ser denne video, så spørg dig selv: Hvad lærte Jesus? Hvordan er hans visdom sammenlignet med, hvad andre har sagt - og hvad kan det betyde for dig?",
+            "2": "Denne video er tilgængelig på mange sprog. Klik på verdenskloden ovenfor for at ændre sproget."
+        }
+    },
+    "lead": {
+        "title": "At opdage lederskab",
+        "para": {
+            "1": "Discovering Leadership udforsker de principper, Jesus lærte sine ledere – visdom, der har formet tjenerhjertet ledelse i generationer. Mange har oplevet forvandling ved at stole på, at Jesus hjælper dem med at lede med formål og integritet. Kunne dette også forme dit lederskab?",
+            "2": "Saml dine venner og se, hvad du opdager, mens du diskuterer følgende spørgsmål.",
+            "3": "Vælg dit yndlingssprog ved at klikke på verdensgloben ovenfor."
         }
     }
 }

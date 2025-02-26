@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Gure bizitza espiritualean benetako aurrerapena egiteko, jakinduria iturri fidagarri bat behar dugula badakigu.",
-            "2": "Beheko irudietan klik eginez gero, Jainkoak ezagutzea eta jarraitzea nahi duen betiereko jakituria ezagutzeko bidea hasiko zaitu."
+            "1": "Hazkunde espirituala ez da bakarkako bidaia bat, komunitatean gertatzen da. Denok behar dugu konfiantza dugun jakinduria eta bidean animatzen gaituzten pertsonak. Beheko ikasgaiek Jainkoaren jakituriak bizitzak nola moldatzen dituen, benetako harremanak nola eraikitzen dituen eta zureganako zuen maitasuna eta zaintza erakusten lagunduko dizute.",
+            "2": "Bildu zure lagunak eta hasi esploratzen! Egin klik beheko irudietan zure bidaia hasteko, jakinduria ez ezik, Jainkoarekin eta hark gonbidatzen zaituen komunitate espiritualarekin harremana ezagutuz."
         }
     },
     "dbs": {
-        "title": "Jakinduriaren Istorio Handia",
+        "title": "Espiritu Komunitatea deskubritzea",
         "para": {
-            "1": "Istorio hau jendea zegoen aurreko garaiarekin hasten da. Ondoren, lehenengo bi pertsonak Jainkoarekin nola elkarreragiten zuten kontatzen du\".",
-            "2": "Bildu zure lagunak eta irakurri nola prestatu zituen Jainkoak jendea Jesusen eta bere Jakinduriaren etorrerarako.",
+            "1": "Discovering Spiritual Community historian zehar bidaia batera eramango zaitu, jendeak Jainkoarekin nola konektatu duen aztertzen hasiera-hasieratik, erronken, galderen eta bizitza aldatzeko uneen bidez. Fedeari, xedeari eta zer esan nahi duen jakin-mina baduzu, serie hau hasteko leku paregabea da.",
+            "2": "Bildu zure lagunak eta irakurri nola prestatu zituen Jainkoak jendea Jesusen etorrerarako eta berak sortu zuen komunitate espiritualerako.",
             "3": "Hautatu zure hizkuntza gogokoena goiko munduko globoan klik eginez."
         }
     },
     "life": {
-        "title": "Bizitzako jakinduria",
+        "title": "Bizitza Gaiak",
         "para": {
-            "1": "Hauek dira Jesusek eta bere lehen jarraitzaileek irakatsi zituzten gauza batzuk.",
-            "2": "Jende askok bere bizitza eraldatua ikusi du Jesusi irakaspen hauek martxan jartzeko ahalmena emateko eskatu ziotelako.",
+            "1": "Life Issues-ek Jesusen eta bere lehen jarraitzaileen irakaspen praktikoak aztertzen ditu, mendeetan zehar bizitza aldatu duen jakinduria. Askok eraldaketa bizi izan dute Jesusek egia horiek bizitzen laguntzera gonbidatuz. Hau zuretzat ere egia izan al daiteke?",
+            "2": "Bildu lagunak eta ikusi zer deskubritzen duzun galdera hauek eztabaidatzen dituzun bitartean.",
             "3": "Bildu lagunak eta ikusi zer deskubritzen duzun galdera hauek eztabaidatzen dituzun bitartean.",
             "4": "Hautatu zure hizkuntza gogokoena goiko munduko globoan klik eginez."
         }
     },
     "jVideo": {
-        "title": "Jakinduriaren iturria",
+        "title": "Jesusen Bizitza",
         "para": {
-            "1": "Jesus betiko jakinduriaren iturria da. Bideoa ikusten duzun bitartean, galdetu zeure buruari: \"Zer egin eta irakatsi zuen Jesusek? Zertan desberdintzen da bere jakinduria besteek esandakoarekin\".",
+            "1": "Jesusen hitzek eta ekintzek historia moldatu dute, bereizten den jakinduria eskainiz. Bideo hau ikusten duzun bitartean, galdetu zeure buruari: Zer irakatsi zion Jesusek? Nola alderatzen da bere jakinduria besteek esandakoarekin, eta zer esan nahi du zuretzat?",
             "2": "Bideo hau hizkuntza askotan dago eskuragarri. Hizkuntza aldatzeko, egin klik goiko mundu-globoan."
+        }
+    },
+    "lead": {
+        "title": "Lidergoa ezagutzea",
+        "para": {
+            "1": "Discovering Leadership-ek Jesusek bere buruzagiei irakatsi zizkien printzipioak aztertzen ditu: belaunaldiz belaunaldi zerbitzari bihotzeko lidergoa eratu duen jakinduria. Askok eraldaketa bizi izan dute Jesusengan konfiantza izan dezaten helburuz eta zintzotasunez gidatzen laguntzeko. Horrek zure lidergoa ere molda dezake?",
+            "2": "Bildu lagunak eta ikusi zer deskubritzen duzun galdera hauek eztabaidatzen dituzun bitartean.",
+            "3": "Hautatu zure hizkuntza gogokoena goiko munduko globoan klik eginez."
         }
     }
 }

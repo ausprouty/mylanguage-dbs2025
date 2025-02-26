@@ -6,7 +6,7 @@
     },
     "menu": {
         "next": "Próximo",
-        "nextVideo": "Siguiente Vídeo",
+        "nextVideo": "Siguiente vídeo",
         "previous": "Anterior",
         "select": "Seleccionar",
         "videoSegment": "Segmento de vídeo",
@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Para lograr un progreso real en nuestra vida espiritual, sabemos que necesitamos una fuente confiable de sabiduría.",
-            "2": "Al hacer clic en las imágenes a continuación, iniciará un camino para descubrir la sabiduría eterna que Dios quiere que conozca y siga."
+            "1": "El crecimiento espiritual no es un viaje en solitario: ocurre en comunidad. Todos necesitamos sabiduría en la que podamos confiar y personas que nos alienten en el camino. Las lecciones siguientes le ayudarán a descubrir cómo la sabiduría de Dios da forma a sus vidas, construye relaciones genuinas y revela su amor y cuidado por usted.",
+            "2": "¡Reúne a tus amigos y comienza a explorar! Haga clic en las imágenes a continuación para comenzar su viaje, descubriendo no solo la sabiduría, sino también una relación con Dios y la comunidad espiritual a la que Él lo invita."
         }
     },
     "dbs": {
-        "title": "La gran historia de la sabiduría",
+        "title": "Descubriendo la comunidad espiritual",
         "para": {
-            "1": "Esta historia comienza con la época anterior a que existieran personas. Luego cuenta la historia de cómo las dos primeras personas interactuaron con Dios.",
-            "2": "Reúne a tus amigos y lee cómo Dios preparó a las personas para la llegada de Jesús y su Sabiduría.",
+            "1": "Descubriendo la Comunidad Espiritual te lleva en un viaje a través de la historia, explorando cómo las personas se han conectado con Dios desde el principio, a través de desafíos, preguntas y momentos que cambian la vida. Si tiene curiosidad sobre la fe, el propósito y lo que significa pertenecer, esta serie es un excelente lugar para comenzar.",
+            "2": "Reúne a tus amigos y lee cómo Dios preparó a las personas para la llegada de Jesús y la comunidad espiritual que él inició.",
             "3": "Seleccione su idioma favorito haciendo clic en el globo terráqueo de arriba."
         }
     },
     "life": {
-        "title": "Sabiduría para la vida",
+        "title": "Problemas de la vida",
         "para": {
-            "1": "Estas son algunas de las cosas que enseñaron Jesús y sus primeros seguidores.",
-            "2": "Muchas personas han visto sus vidas transformadas cuando le pidieron a Jesús que les diera el poder de poner en práctica estas enseñanzas.",
+            "1": "Life Issues explora las enseñanzas prácticas de Jesús y sus primeros seguidores: sabiduría que ha cambiado vidas durante siglos. Muchos han experimentado una transformación al invitar a Jesús a ayudarlos a vivir estas verdades. ¿Podría ser esto cierto para usted también?",
+            "2": "Reúne a tus amigos y mira lo que descubres mientras discutes las siguientes preguntas.",
             "3": "Reúne a tus amigos y mira lo que descubres mientras discutes las siguientes preguntas.",
             "4": "Seleccione su idioma favorito haciendo clic en el globo terráqueo de arriba."
         }
     },
     "jVideo": {
-        "title": "La fuente de la sabiduría",
+        "title": "La vida de Jesús",
         "para": {
-            "1": "Jesús es la fuente de la sabiduría eterna. Mientras mira el video, pregúntese: \"¿Qué hizo y enseñó Jesús? ¿En qué se diferencia su sabiduría de lo que otros han dicho?\".",
+            "1": "Las palabras y acciones de Jesús han dado forma a la historia, ofreciendo una sabiduría que se distingue. Mientras miras este video, pregúntate: ¿Qué enseñó Jesús? ¿Cómo se compara su sabiduría con lo que otros han dicho y qué podría significar para usted?",
             "2": "Este vídeo está disponible en muchos idiomas. Para cambiar el idioma, haga clic en el globo terráqueo de arriba."
+        }
+    },
+    "lead": {
+        "title": "Descubriendo el liderazgo",
+        "para": {
+            "1": "Descubriendo el Liderazgo explora los principios que Jesús enseñó a sus líderes: sabiduría que ha dado forma a un liderazgo con corazón de siervo durante generaciones. Muchos han experimentado una transformación al confiar en Jesús para que los ayude a liderar con propósito e integridad. ¿Podría esto moldear también su liderazgo?",
+            "2": "Reúne a tus amigos y mira lo que descubres mientras discutes las siguientes preguntas.",
+            "3": "Seleccione su idioma favorito haciendo clic en el globo terráqueo de arriba."
         }
     }
 }

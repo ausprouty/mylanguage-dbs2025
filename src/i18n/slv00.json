@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Da bi dosegli kakršen koli resničen napredek v našem duhovnem življenju, vemo, da potrebujemo zanesljiv vir modrosti.",
-            "2": "S klikom na spodnje slike se boste podali na pot odkrivanja večne modrosti, ki jo Bog želi, da poznate in ji sledite."
+            "1": "Duhovna rast ni samostojno potovanje - dogaja se v skupnosti. Vsi potrebujemo modrost, ki ji lahko zaupamo, in ljudi, ki nas spodbujajo na tej poti. Spodnje lekcije vam bodo pomagale odkriti, kako Božja modrost oblikuje življenja, gradi pristne odnose in razodeva njegovo ljubezen in skrb za vas.",
+            "2": "Zberite prijatelje in začnite raziskovati! Kliknite na spodnje slike, da začnete svoje potovanje — odkrivanje ne le modrosti, ampak tudi odnosa z Bogom in duhovno skupnostjo, v katero vas vabi."
         }
     },
     "dbs": {
-        "title": "Velika zgodba o modrosti",
+        "title": "Odkrivanje duhovne skupnosti",
         "para": {
-            "1": "Ta zgodba se začne s časom, preden ni bilo ljudi. Nato pripoveduje zgodbo o tem, kako sta prva dva človeka komunicirala z Bogom.«",
-            "2": "Zberite prijatelje in preberite, kako je Bog pripravil ljudi na prihod Jezusa in njegove modrosti.",
+            "1": "Discovering Spiritual Community vas popelje na potovanje skozi zgodovino, kjer raziskujete, kako so se ljudje od samega začetka povezali z Bogom – skozi izzive, vprašanja in trenutke, ki so spremenili življenje. Če vas zanima vera, namen in kaj pomeni pripadati, je ta serija odličen kraj za začetek.",
+            "2": "Zberite prijatelje in preberite, kako je Bog pripravil ljudi na prihod Jezusa in duhovne skupnosti, ki jo je ustanovil.",
             "3": "Izberite svoj najljubši jezik s klikom na zgornji globus sveta."
         }
     },
     "life": {
-        "title": "Modrost za življenje",
+        "title": "Življenjska vprašanja",
         "para": {
-            "1": "To je nekaj stvari, ki so jih učili Jezus in njegovi prvi sledilci.",
-            "2": "Mnogim ljudem se je življenje spremenilo, ko so prosili Jezusa, naj jim da moč, da te nauke uresničijo.",
+            "1": "Life Issues raziskuje praktične nauke Jezusa in njegovih prvih sledilcev – modrost, ki je stoletja spreminjala življenja. Mnogi so doživeli preobrazbo, ko so povabili Jezusa, naj jim pomaga živeti te resnice. Bi to lahko veljalo tudi za vas?",
+            "2": "Zberite svoje prijatelje in poglejte, kaj boste odkrili med razpravo o naslednjih vprašanjih.",
             "3": "Zberite svoje prijatelje in poglejte, kaj boste odkrili med razpravo o naslednjih vprašanjih.",
             "4": "Izberite svoj najljubši jezik s klikom na zgornji globus sveta."
         }
     },
     "jVideo": {
-        "title": "Vir modrosti",
+        "title": "Jezusovo življenje",
         "para": {
-            "1": "Jezus je vir večne modrosti. Ko gledate videoposnetek, se vprašajte: \"Kaj je Jezus delal in učil? Kako se njegova modrost razlikuje od tega, kar so povedali drugi.\"",
+            "1": "Jezusove besede in dejanja so oblikovali zgodovino in ponudili modrost, ki se razlikuje. Ko boste gledali ta video, se vprašajte: Kaj je Jezus učil? Kakšna je njegova modrost v primerjavi s tem, kar so povedali drugi – in kaj bi to lahko pomenilo za vas?",
             "2": "Ta video je na voljo v številnih jezikih. Če želite spremeniti jezik, kliknite zgornji globus."
+        }
+    },
+    "lead": {
+        "title": "Odkrivanje voditeljstva",
+        "para": {
+            "1": "Discovering Leadership raziskuje načela, ki jih je Jezus učil svoje voditelje – modrost, ki je že generacije oblikovala vodenje s služabniškim srcem. Mnogi so doživeli preobrazbo, ko so se zanašali na Jezusa, da jim je pomagal voditi z namenom in poštenostjo. Bi to lahko oblikovalo tudi vaše vodenje?",
+            "2": "Zberite svoje prijatelje in poglejte, kaj boste odkrili med razpravo o naslednjih vprašanjih.",
+            "3": "Izberite svoj najljubši jezik s klikom na zgornji globus sveta."
         }
     }
 }

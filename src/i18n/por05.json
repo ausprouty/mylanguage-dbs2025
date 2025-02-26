@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Para fazermos algum progresso real em nossa vida espiritual, sabemos que precisamos de uma fonte confiável de sabedoria.",
-            "2": "Clicar nas imagens abaixo o iniciará no caminho para descobrir a sabedoria eterna que Deus deseja que você conheça e siga."
+            "1": "O crescimento espiritual não é uma jornada individual – acontece em comunidade. Todos nós precisamos de sabedoria em que possamos confiar e de pessoas que nos encorajem ao longo do caminho. As lições abaixo irão ajudá-lo a descobrir como a sabedoria de Deus molda vidas, constrói relacionamentos genuínos e revela Seu amor e cuidado por você.",
+            "2": "Reúna seus amigos e comece a explorar! Clique nas imagens abaixo para começar sua jornada – descobrindo não apenas sabedoria, mas um relacionamento com Deus e a comunidade espiritual para a qual Ele o convida."
         }
     },
     "dbs": {
-        "title": "A Grande História da Sabedoria",
+        "title": "Descobrindo a comunidade espiritual",
         "para": {
-            "1": "Esta história começa com o tempo antes de existirem pessoas. Em seguida, conta a história de como as duas primeiras pessoas interagiram com Deus.\",",
-            "2": "Reúna seus amigos e leia como Deus preparou as pessoas para a chegada de Jesus e sua Sabedoria.",
+            "1": "Discovering Spiritual Community leva você a uma viagem pela história, explorando como as pessoas se conectaram com Deus desde o início – através de desafios, perguntas e momentos de mudança de vida. Se você está curioso sobre fé, propósito e o que significa pertencer, esta série é um ótimo lugar para começar.",
+            "2": "Reúna seus amigos e leia como Deus preparou as pessoas para a chegada de Jesus e a comunidade espiritual que ele iniciou.",
             "3": "Selecione seu idioma favorito clicando no globo acima."
         }
     },
     "life": {
-        "title": "Sabedoria para a Vida",
+        "title": "Questões da vida",
         "para": {
-            "1": "Estas são algumas das coisas que Jesus e seus primeiros seguidores ensinaram.",
-            "2": "Muitas pessoas viram suas vidas transformadas quando pediram a Jesus que lhes desse o poder de colocar esses ensinamentos em prática.",
-            "3": "Reúna seus amigos e veja o que você descobre ao discutir as seguintes questões.",
+            "1": "Life Issues explora os ensinamentos práticos de Jesus e seus primeiros seguidores – sabedoria que mudou vidas durante séculos. Muitos experimentaram a transformação ao convidar Jesus para ajudá-los a viver estas verdades. Isso poderia ser verdade para você também?",
+            "2": "Reúna seus amigos e veja o que você descobre ao discutir as questões a seguir.",
+            "3": "Reúna seus amigos e veja o que você descobre ao discutir as questões a seguir.",
             "4": "Selecione seu idioma favorito clicando no globo acima."
         }
     },
     "jVideo": {
-        "title": "A Fonte da Sabedoria",
+        "title": "A Vida de Jesus",
         "para": {
-            "1": "Jesus é a fonte da sabedoria eterna. Ao assistir ao vídeo, pergunte-se: \"O que Jesus fez e ensinou? Como sua sabedoria difere do que outros disseram.\"",
+            "1": "As palavras e ações de Jesus moldaram a história, oferecendo uma sabedoria que se destaca. Ao assistir a este vídeo, pergunte-se: O que Jesus ensinou? Como a sabedoria dele se compara ao que outros disseram – e o que isso pode significar para você?",
             "2": "Este vídeo está disponível em vários idiomas. Para alterar o idioma, clique no globo mundial acima."
+        }
+    },
+    "lead": {
+        "title": "Descobrindo a Liderança",
+        "para": {
+            "1": "Descobrindo a Liderança explora os princípios que Jesus ensinou aos seus líderes – sabedoria que moldou a liderança com coração de servo por gerações. Muitos experimentaram a transformação ao confiar em Jesus para ajudá-los a liderar com propósito e integridade. Isso poderia moldar sua liderança também?",
+            "2": "Reúna seus amigos e veja o que você descobre ao discutir as questões a seguir.",
+            "3": "Selecione seu idioma favorito clicando no globo acima."
         }
     }
 }

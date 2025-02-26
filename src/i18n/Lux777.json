@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Fir e richtege Fortschrëtt an eisem spirituellen Liewen ze maachen, wësse mer datt mir eng zouverlässeg Quell vu Wäisheet brauchen.",
-            "2": "Klickt op d'Biller hei drënner wäert Iech op e Wee starten fir déi éiweg Wäisheet z'entdecken, déi Gott wëllt datt Dir wësst a verfollegt."
+            "1": "Spirituelle Wuesstum ass keng Solo Rees - et geschitt an der Gemeinschaft. Mir brauchen all Wäisheet, déi mir kënne vertrauen a Leit, déi eis laanscht de Wee encouragéieren. D'Lektioune hei ënnen hëllefen Iech z'entdecken wéi d'Wäisheet vu Gott d'Liewe formt, echt Bezéiungen baut an seng Léift a Betreiung fir Iech opzeweisen.",
+            "2": "Sammelt Är Frënn a fänkt un ze entdecken! Klickt op d'Biller hei drënner fir Är Rees unzefänken - net nëmme Wäisheet z'entdecken, awer eng Bezéiung mat Gott an der spiritueller Gemeinschaft, op déi hien Iech invitéiert."
         }
     },
     "dbs": {
-        "title": "Déi grouss Geschicht vu Wäisheet",
+        "title": "Entdeckt spirituell Gemeinschaft",
         "para": {
-            "1": "Dës Geschicht fänkt mat der Zäit ier et Leit waren. Et erzielt dann d'Geschicht wéi déi éischt zwee Leit mat Gott interagéiert hunn.",
-            "2": "Sammelt Är Frënn a liest wéi Gott d'Leit op d'Arrivée vum Jesus a seng Wäisheet virbereet huet.",
-            "3": "Wielt Är Liiblingssprooch andeems Dir op de Weltglobe uewen klickt."
+            "1": "Spiritual Community Entdeckung hëlt Iech op eng Rees duerch d'Geschicht, entdeckt wéi d'Leit vun Ufank un mat Gott verbonne sinn - duerch Erausfuerderungen, Froen a Liewensverännerende Momenter. Wann Dir virwëtzeg sidd iwwer Glawen, Zweck, a wat et heescht ze gehéieren, ass dës Serie eng super Plaz fir unzefänken.",
+            "2": "Sammelt Är Frënn a liest wéi Gott d'Leit virbereet huet fir d'Arrivée vum Jesus an déi spirituell Gemeinschaft déi hien ugefaang huet.",
+            "3": "Wielt Är Liiblingssprooch andeems Dir op de Weltglob uewen klickt."
         }
     },
     "life": {
-        "title": "Wäisheet fir Liewen",
+        "title": "Liewen Themen",
         "para": {
-            "1": "Dëst sinn e puer vun de Saachen déi de Jesus a seng fréi Unhänger geléiert hunn.",
-            "2": "Vill Leit hunn hiert Liewen transforméiert gesinn wéi se de Jesus gefrot hunn hinnen d'Kraaft ze ginn fir dës Léier an Handlung ëmzesetzen.",
+            "1": "Life Issues entdeckt déi praktesch Léier vu Jesus a senge fréie Matleefer - Wäisheet déi d'Liewe fir Jorhonnerte geännert huet. Vill hunn Transformatioun erlieft andeems de Jesus invitéiert huet fir hinnen ze hëllefen dës Wourechten auszeliewen. Konnt dat och fir Iech richteg sinn?",
+            "2": "Sammelt Är Frënn a kuckt wat Dir entdeckt wann Dir déi folgend Froen diskutéiert.",
             "3": "Sammelt Är Frënn a kuckt wat Dir entdeckt wann Dir déi folgend Froen diskutéiert.",
-            "4": "Wielt Är Liiblingssprooch andeems Dir op de Weltglobe uewen klickt."
+            "4": "Wielt Är Liiblingssprooch andeems Dir op de Weltglob uewen klickt."
         }
     },
     "jVideo": {
-        "title": "D'Quell vu Wäisheet",
+        "title": "D'Liewen vum Jesus",
         "para": {
-            "1": "De Jesus ass d'Quell vun der éiweger Wäisheet. Wéi Dir de Video kuckt, frot Iech selwer \"Wat huet de Jesus gemaach a geléiert? Wéi ass seng Wäisheet anescht wéi dat wat anerer gesot hunn.\"",
+            "1": "Dem Jesus seng Wierder an Handlungen hunn d'Geschicht geformt, eng Wäisheet ubidden déi auserneen steet. Wéi Dir dëse Video kuckt, frot Iech selwer: Wat huet de Jesus geléiert? Wéi vergläicht seng Wäisheet mat deem wat anerer gesot hunn - a wat kéint et fir Iech bedeiten?",
             "2": "Dëse Video ass a ville Sprooche verfügbar. Fir d'Sprooch z'änneren, klickt op de Weltglob uewen."
+        }
+    },
+    "lead": {
+        "title": "Entdeckt Leadership",
+        "para": {
+            "1": "Entdeckt Leadership exploréiert d'Prinzipien, déi de Jesus senge Leader geléiert huet - Wäisheet, déi déngschthäerzeg Leedung fir Generatiounen geformt huet. Vill hunn Transformatioun erlieft andeems se op de Jesus vertrauen fir hinnen ze hëllefen mat Zweck an Integritéit ze féieren. Konnt dëst Är Leedung och gestalten?",
+            "2": "Sammelt Är Frënn a kuckt wat Dir entdeckt wann Dir déi folgend Froen diskutéiert.",
+            "3": "Wielt Är Liiblingssprooch andeems Dir op de Weltglob uewen klickt."
         }
     }
 }

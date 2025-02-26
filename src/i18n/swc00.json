@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Ili kufanya maendeleo yoyote ya kweli katika maisha yetu ya kiroho tunajua tunahitaji chanzo chenye kutegemeka cha hekima.",
-            "2": "Kubofya picha zilizo hapa chini kutakuanzisha kwenye njia ya kugundua hekima ya milele ambayo Mungu anataka uijue na kuifuata."
+            "1": "Ukuaji wa kiroho sio safari ya mtu binafsi - hufanyika katika jamii. Sote tunahitaji hekima tunayoweza kuamini na watu wanaotutia moyo njiani. Masomo yaliyo hapa chini yatakusaidia kugundua jinsi hekima ya Mungu hutengeneza maisha, hujenga mahusiano ya kweli, na kufichua upendo na utunzaji Wake kwako.",
+            "2": "Kusanya marafiki zako na anza kuchunguza! Bofya picha zilizo hapa chini ili kuanza safari yako - kugundua si hekima tu, lakini uhusiano na Mungu na jumuiya ya kiroho Anakualika."
         }
     },
     "dbs": {
-        "title": "Hadithi Kuu ya Hekima",
+        "title": "Kugundua Jumuiya ya Kiroho",
         "para": {
-            "1": "Hadithi hii inaanza na wakati kabla ya kuwa na watu wowote. Kisha inasimulia hadithi ya jinsi watu wawili wa kwanza walivyotangamana na Mungu.\"",
-            "2": "Kusanya marafiki zako na usome jinsi Mungu alivyotayarisha watu kwa ajili ya kuwasili kwa Yesu na Hekima yake.",
+            "1": "Kugundua Jumuiya ya Kiroho hukuchukua katika safari kupitia historia, kuchunguza jinsi watu wameunganishwa na Mungu tangu mwanzo—kupitia changamoto, maswali, na nyakati za kubadilisha maisha. Ikiwa una hamu ya kujua kuhusu imani, kusudi, na maana ya kuwa mshiriki, mfululizo huu ni mahali pazuri pa kuanzia.",
+            "2": "Kusanya marafiki zako na usome jinsi Mungu alivyowatayarisha watu kwa ajili ya ujio wa Yesu na jumuiya ya kiroho aliyoianzisha.",
             "3": "Chagua lugha yako uipendayo kwa kubofya ulimwengu wa dunia hapo juu."
         }
     },
     "life": {
-        "title": "Hekima kwa Maisha",
+        "title": "Masuala ya Maisha",
         "para": {
-            "1": "Hayo ni baadhi ya mambo ambayo Yesu na wafuasi wake wa mapema walifundisha.",
-            "2": "Watu wengi wameona maisha yao yakibadilishwa walipomwomba Yesu awape uwezo wa kutekeleza mafundisho haya.",
+            "1": "Masuala ya Maisha yanachunguza mafundisho ya vitendo ya Yesu na wafuasi wake wa mapema - hekima ambayo imebadilisha maisha kwa karne nyingi. Wengi wamepitia mabadiliko kwa kumwalika Yesu awasaidie kuishi kwa kupatana na kweli hizi. Je, hii inaweza kuwa kweli kwako pia?",
+            "2": "Kusanya marafiki zako na uone kile unachogundua unapojadili maswali yafuatayo.",
             "3": "Kusanya marafiki zako na uone kile unachogundua unapojadili maswali yafuatayo.",
             "4": "Chagua lugha yako uipendayo kwa kubofya ulimwengu wa dunia hapo juu."
         }
     },
     "jVideo": {
-        "title": "Chanzo cha Hekima",
+        "title": "Maisha ya Yesu",
         "para": {
-            "1": "Yesu ndiye chanzo cha hekima ya milele. Unapotazama video, jiulize \"Yesu alifanya nini na kufundisha nini? Hekima yake ni tofauti gani na yale ambayo wengine wamesema.\"",
+            "1": "Maneno na matendo ya Yesu yametokeza historia, na kutoa hekima isiyo na kifani. Unapotazama video hii, jiulize: Yesu alifundisha nini? Hekima yake inalinganaje na yale ambayo wengine wamesema - na inaweza kumaanisha nini kwako?",
             "2": "Video hii inapatikana katika lugha nyingi. Ili kubadilisha lugha bofya ulimwengu wa dunia hapo juu."
+        }
+    },
+    "lead": {
+        "title": "Kugundua Uongozi",
+        "para": {
+            "1": "Kugundua Uongozi huchunguza kanuni ambazo Yesu alifundisha viongozi wake - hekima ambayo imeunda uongozi wa moyo wa mtumishi kwa vizazi. Wengi wamepitia mabadiliko kwa kumtegemea Yesu ili awasaidie kuongoza kwa kusudi na uadilifu. Je, hii inaweza kuunda uongozi wako pia?",
+            "2": "Kusanya marafiki zako na uone kile unachogundua unapojadili maswali yafuatayo.",
+            "3": "Chagua lugha yako uipendayo kwa kubofya ulimwengu wa dunia hapo juu."
         }
     }
 }

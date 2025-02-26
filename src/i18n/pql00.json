@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Wiemy, że aby osiągnąć prawdziwy postęp w życiu duchowym, potrzebujemy niezawodnego źródła mądrości.",
-            "2": "Klikając na poniższe obrazy, rozpoczniesz drogę do odkrycia wiecznej mądrości, którą Bóg chce, abyś poznał i którą podążał."
+            "1": "Rozwój duchowy nie jest podróżą w pojedynkę – dzieje się we wspólnocie. Wszyscy potrzebujemy mądrości, której możemy zaufać, i ludzi, którzy będą nas zachęcać po drodze. Poniższe lekcje pomogą ci odkryć, jak Boża mądrość kształtuje życie, buduje prawdziwe relacje oraz objawia Jego miłość i troskę o ciebie.",
+            "2": "Zbierz znajomych i rozpocznij odkrywanie! Kliknij poniższe obrazy, aby rozpocząć swoją podróż — odkrywając nie tylko mądrość, ale także relację z Bogiem i duchową wspólnotą, do której Cię zaprasza."
         }
     },
     "dbs": {
-        "title": "Wielka historia mądrości",
+        "title": "Odkrywanie wspólnoty duchowej",
         "para": {
-            "1": "Ta historia zaczyna się od czasów, kiedy nie było jeszcze ludzi. Następnie opowiada historię o tym, jak dwie pierwsze osoby nawiązały kontakt z Bogiem.”,",
-            "2": "Zbierz swoich przyjaciół i przeczytaj, jak Bóg przygotował ludzi na przyjście Jezusa i Jego Mądrości.",
+            "1": "Discovering Spiritual Community zabierze Cię w podróż przez historię, odkrywając, jak ludzie łączyli się z Bogiem od samego początku – poprzez wyzwania, pytania i momenty zmieniające życie. Jeśli ciekawi Cię wiara, cel i znaczenie przynależności, ta seria jest doskonałym miejscem na rozpoczęcie.",
+            "2": "Zbierz swoich przyjaciół i przeczytaj, jak Bóg przygotował ludzi na przyjście Jezusa i zapoczątkowaną przez niego wspólnotę duchową.",
             "3": "Wybierz swój ulubiony język, klikając kulę ziemską powyżej."
         }
     },
     "life": {
-        "title": "Mądrość na całe życie",
+        "title": "Problemy życiowe",
         "para": {
-            "1": "Oto niektóre z nauk Jezusa i jego pierwszych naśladowców.",
-            "2": "Wiele osób widziało zmianę w swoim życiu, gdy poprosiły Jezusa, aby dał im moc wprowadzenia tych nauk w życie.",
+            "1": "Life Issues bada praktyczne nauki Jezusa i jego pierwszych naśladowców – mądrość, która od wieków zmieniała życie. Wiele osób doświadczyło przemiany, prosząc Jezusa, aby pomógł im żyć tymi prawdami. Czy to może dotyczyć również Ciebie?",
+            "2": "Zbierz znajomych i zobacz, czego odkryjesz, omawiając poniższe pytania.",
             "3": "Zbierz znajomych i zobacz, czego odkryjesz, omawiając poniższe pytania.",
             "4": "Wybierz swój ulubiony język, klikając kulę ziemską powyżej."
         }
     },
     "jVideo": {
-        "title": "Źródło Mądrości",
+        "title": "Życie Jezusa",
         "para": {
-            "1": "Jezus jest źródłem wiecznej mądrości. Oglądając film, zadaj sobie pytanie: „Co Jezus robił i czego nauczał? Czym Jego mądrość różni się od tego, co mówią inni”.",
+            "1": "Słowa i czyny Jezusa ukształtowały historię, oferując mądrość, która się wyróżnia. Oglądając ten film, zadaj sobie pytanie: Czego nauczał Jezus? Jak jego mądrość wypada w porównaniu z tym, co powiedzieli inni — i co może to oznaczać dla ciebie?",
             "2": "Ten film jest dostępny w wielu językach. Aby zmienić język, kliknij kulę ziemską powyżej."
+        }
+    },
+    "lead": {
+        "title": "Odkrywanie przywództwa",
+        "para": {
+            "1": "Discovering Leadership bada zasady, których Jezus nauczał swoich przywódców – mądrość, która od pokoleń kształtuje przywództwo o sercu służebnym. Wiele osób doświadczyło przemiany dzięki poleganiu na Jezusie, który pomógł im przewodzić w sposób celowy i uczciwy. Czy to może ukształtować również Twoje przywództwo?",
+            "2": "Zbierz znajomych i zobacz, czego odkryjesz, omawiając poniższe pytania.",
+            "3": "Wybierz swój ulubiony język, klikając kulę ziemską powyżej."
         }
     }
 }

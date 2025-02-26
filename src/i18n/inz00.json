@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Untuk mencapai kemajuan nyata dalam kehidupan rohani kita, kita tahu bahwa kita memerlukan sumber kebijaksanaan yang dapat diandalkan.",
-            "2": "Mengklik gambar di bawah ini akan membawa Anda pada jalan menemukan kebijaksanaan abadi yang Tuhan ingin Anda ketahui dan ikuti."
+            "1": "Pertumbuhan spiritual bukanlah sebuah perjalanan yang dilakukan sendirian – hal ini terjadi dalam komunitas. Kita semua membutuhkan kebijaksanaan yang dapat kita percayai dan orang-orang yang menyemangati kita selama ini. Pelajaran di bawah ini akan membantu Anda menemukan bagaimana hikmat Tuhan membentuk kehidupan, membangun hubungan yang sejati, dan mengungkapkan kasih serta perhatian-Nya kepada Anda.",
+            "2": "Kumpulkan teman-teman Anda dan mulailah menjelajah! Klik pada gambar di bawah untuk memulai perjalanan Anda — menemukan bukan hanya kebijaksanaan, namun juga hubungan dengan Tuhan dan komunitas spiritual yang Dia undang untuk Anda masuki."
         }
     },
     "dbs": {
-        "title": "Kisah Besar Kebijaksanaan",
+        "title": "Menemukan Komunitas Spiritual",
         "para": {
-            "1": "Kisah ini dimulai pada masa sebelum ada manusia. Kemudian menceritakan kisah bagaimana dua orang pertama berinteraksi dengan Tuhan.\",",
-            "2": "Kumpulkan teman-teman Anda dan bacalah bagaimana Tuhan mempersiapkan orang-orang untuk kedatangan Yesus dan Kebijaksanaan-Nya.",
+            "1": "Menemukan Komunitas Spiritual membawa Anda pada perjalanan melalui sejarah, menjelajahi bagaimana manusia terhubung dengan Tuhan sejak awal—melalui tantangan, pertanyaan, dan momen yang mengubah hidup. Jika Anda penasaran tentang iman, tujuan, dan apa artinya menjadi bagian, seri ini adalah awal yang baik.",
+            "2": "Kumpulkan teman-teman Anda dan bacalah bagaimana Tuhan mempersiapkan orang-orang untuk kedatangan Yesus dan komunitas spiritual yang Ia dirikan.",
             "3": "Pilih bahasa favorit Anda dengan mengklik globe dunia di atas."
         }
     },
     "life": {
-        "title": "Hikmah Seumur Hidup",
+        "title": "Masalah Kehidupan",
         "para": {
-            "1": "Inilah beberapa hal yang Yesus dan para pengikut mula-mula ajarkan.",
-            "2": "Banyak orang telah melihat kehidupan mereka berubah ketika mereka meminta Yesus untuk memberikan mereka kekuatan untuk menerapkan ajaran-ajaran ini ke dalam tindakan.",
+            "1": "Life Issues mengeksplorasi ajaran praktis Yesus dan para pengikut awalnya — kebijaksanaan yang telah mengubah kehidupan selama berabad-abad. Banyak orang telah mengalami transformasi dengan mengundang Yesus untuk membantu mereka menghidupi kebenaran ini. Apakah ini juga berlaku bagi Anda?",
+            "2": "Kumpulkan teman-teman Anda dan lihat apa yang Anda temukan saat Anda mendiskusikan pertanyaan-pertanyaan berikut.",
             "3": "Kumpulkan teman-teman Anda dan lihat apa yang Anda temukan saat Anda mendiskusikan pertanyaan-pertanyaan berikut.",
             "4": "Pilih bahasa favorit Anda dengan mengklik globe dunia di atas."
         }
     },
     "jVideo": {
-        "title": "Sumber Kebijaksanaan",
+        "title": "Kehidupan Yesus",
         "para": {
-            "1": "Yesus adalah sumber kebijaksanaan abadi. Saat Anda menonton videonya, tanyakan pada diri Anda, \"Apa yang Yesus lakukan dan ajarkan? Apa perbedaan hikmahnya dengan apa yang dikatakan orang lain.\"",
+            "1": "Kata-kata dan tindakan Yesus telah membentuk sejarah, menawarkan hikmah yang berbeda. Saat Anda menonton video ini, tanyakan pada diri Anda: Apa yang Yesus ajarkan? Bagaimana kebijaksanaannya dibandingkan dengan apa yang dikatakan orang lain — dan apa pengaruhnya bagi Anda?",
             "2": "Video ini tersedia dalam banyak bahasa. Untuk mengubah bahasa klik globe dunia di atas."
+        }
+    },
+    "lead": {
+        "title": "Menemukan Kepemimpinan",
+        "para": {
+            "1": "Discovering Leadership mengeksplorasi prinsip-prinsip yang Yesus ajarkan kepada para pemimpinnya — kebijaksanaan yang telah membentuk kepemimpinan yang berhati pelayan selama beberapa generasi. Banyak orang telah mengalami transformasi dengan mengandalkan Yesus untuk membantu mereka memimpin dengan tujuan dan integritas. Bisakah hal ini juga membentuk kepemimpinan Anda?",
+            "2": "Kumpulkan teman-teman Anda dan lihat apa yang Anda temukan saat Anda mendiskusikan pertanyaan-pertanyaan berikut.",
+            "3": "Pilih bahasa favorit Anda dengan mengklik globe dunia di atas."
         }
     }
 }

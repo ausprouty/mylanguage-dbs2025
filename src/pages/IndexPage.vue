@@ -11,7 +11,7 @@
             clickable
             v-ripple
           >
-            <img class="menu_picture" src="menu/source.webp" />
+            <img class="menu_picture" src="menu/video.png" />
           </td>
           <td
             class="side-by-side"
@@ -19,7 +19,7 @@
             clickable
             v-ripple
           >
-            <img class="menu_picture" src="menu/wisdom.webp" />
+            <img class="menu_picture" src="menu/life.png" />
           </td>
         </tr>
         <tr class="full-width">
@@ -29,7 +29,7 @@
             clickable
             v-ripple
           >
-            <img class="menu_picture" src="menu/grand.webp" />
+            <img class="menu_picture" src="menu/dbs.png" />
           </td>
           <td
             class="side-by-side"
@@ -37,7 +37,7 @@
             clickable
             v-ripple
           >
-            <img class="menu_picture" src="menu/lead.webp" />
+            <img class="menu_picture" src="menu/lead.png" />
           </td>
         </tr>
       </tbody>

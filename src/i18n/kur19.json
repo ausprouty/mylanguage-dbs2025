@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Ji bo ku em di jiyana xwe ya giyanî de pêşkeftinek rastîn pêk bînin, em dizanin ku em hewceyê çavkaniyek pêbawer a şehrezayiyê ne.",
-            "2": "Bi tikandina li ser wêneyên jêrîn dê we dest bi rêyek vedîtina şehrezayiya herheyî ya ku Xwedê dixwaze ku hûn zanibin û bişopînin dest pê bike."
+            "1": "Pêşkeftina giyanî ne rêwîtiyek solo ye - ew di civakê de çêdibe. Em hemî hewceyê şehrezayiya ku em dikarin pê bawer bin û mirovên ku di rê de me teşwîq dikin hewce ne. Dersên li jêr wê ji we re bibin alîkar ku hûn pêbihesin ku şehrezayiya Xwedê çawa jiyanên dirust dike, têkiliyên rastîn ava dike, û hezkirin û lênihêrîna wî ji we re eşkere dike.",
+            "2": "Hevalên xwe kom bikin û dest bi keşfê bikin! Li ser wêneyên jêrîn bikirtînin da ku rêwîtiya xwe dest pê bikin - ne tenê şehrezayiyê, lê têkiliyek bi Xwedê û civata giyanî re ku Ew we vedixwîne kifş bikin."
         }
     },
     "dbs": {
-        "title": "Çîroka Mezin a Wisdom",
+        "title": "Vedîtina Civata Ruhanî",
         "para": {
-            "1": "Ev çîrok bi dema berî hebûna mirovan dest pê dike. Dûv re ew çîroka ku du mirovên pêşîn bi Xwedê re têkilî danîbûn vedibêje.\",",
-            "2": "Hevalên xwe kom bikin û bixwînin ka Xwedê çawa mirov ji bo hatina Jesussa û şehrezayiya wî amade kir.",
+            "1": "Vedîtina Civata Ruhanî we di nav dîrokê de rêwîtiyek digire, lêkolîn dike ka mirov çawa ji destpêkê ve bi Xwedê re têkildar bûne - bi dijwarî, pirs û demên ku jiyanê diguherînin. Heke hûn li ser bawerî, armanc, û wateya ku tê çi wateyê meraq dikin, ev rêz ji bo destpêkirinê cîhek girîng e.",
+            "2": "Hevalên xwe kom bikin û bixwînin ka Xwedê çawa mirov ji bo hatina Jesussa û civata giyanî ya ku wî dest pê kir amade kir.",
             "3": "Bi tikandina li ser cîhana cîhanê ya li jor zimanê xweya bijare hilbijêrin."
         }
     },
     "life": {
-        "title": "Wisdom for Life",
+        "title": "Pirsgirêkên Jiyanê",
         "para": {
-            "1": "Ev çend tişt in ku Îsa û şagirtên wî yên pêşîn hîn kirin.",
-            "2": "Gelek mirovan dît ku jiyana wan guherî dema ku wan ji Îsa xwest ku hêzê bide wan ku van hînkirinan bixin meriyetê.",
+            "1": "Pirsgirêkên Jiyanê hînkirinên pratîkî yên Jesussa û şagirtên wî yên pêşîn - şehrezayiya ku bi sedsalan jiyan guherandiye vedikole. Gelekan bi vexwendina Îsa vegerandin ku alîkariya wan bike ku van rastiyan bijîn. Dibe ku ev ji bo we jî rast be?",
+            "2": "Hevalên xwe kom bikin û gava ku hûn pirsên jêrîn nîqaş dikin bibînin ka hûn çi kifş dikin.",
             "3": "Hevalên xwe kom bikin û gava ku hûn pirsên jêrîn nîqaş dikin bibînin ka hûn çi kifş dikin.",
             "4": "Bi tikandina li ser cîhana cîhanê ya li jor zimanê xweya bijare hilbijêrin."
         }
     },
     "jVideo": {
-        "title": "Çavkaniya Hikmetê",
+        "title": "Jiyana Îsa",
         "para": {
-            "1": "Îsa çavkaniya şehrezayiya herheyî ye. Çaxê hûn li vîdêoyê temaşe dikin, ji xwe bipirsin: “Îsa çi kir û çi hîn kir? Çiqas şehrezayiya wî ji yên din cuda cuda ye”.",
+            "1": "Gotin û kirinên Îsa dîrok şekil dane, û şehrezayiyek ku ji hev cihê radiweste pêşkêş dike. Çaxê hûn li vê vîdêo temaşe dikin, ji xwe bipirsin: Îsa çi hîn kir? Aqilmendiya wî bi ya ku yên din gotine re çawa dide hev - û ew dikare ji bo we çi wateyê bide?",
             "2": "Ev vîdyo bi gelek zimanan heye. Ji bo guherandina ziman li ser cîhana cîhanê ya li jor bikirtînin."
+        }
+    },
+    "lead": {
+        "title": "Keşifkirina Rêbertiyê",
+        "para": {
+            "1": "Vedîtina Rêbertiyê prensîbên ku Jesussa hînî rêberên xwe kir vedikole - şehrezayiya ku ji bo nifşan rêberiya dilpak çêkir. Gelekan bi îtbariya xwe li ser Îsa ku alîkariya wan bike ku bi mebest û durustî rêve bibin, veguhertin dîtin. Ma ev dikare serokatiya we jî çêbike?",
+            "2": "Hevalên xwe kom bikin û gava ku hûn pirsên jêrîn nîqaş dikin bibînin ka hûn çi kifş dikin.",
+            "3": "Bi tikandina li ser cîhana cîhanê ya li jor zimanê xweya bijare hilbijêrin."
         }
     }
 }

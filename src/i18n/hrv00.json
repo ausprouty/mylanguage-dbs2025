@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Kako bismo stvarno napredovali u našem duhovnom životu, znamo da nam je potreban pouzdan izvor mudrosti.",
-            "2": "Klikom na slike u nastavku krenut ćete na put otkrivanja vječne mudrosti koju Bog želi da znate i slijedite."
+            "1": "Duhovni rast nije solo putovanje - događa se u zajednici. Svima nam je potrebna mudrost kojoj možemo vjerovati i ljudi koji nas ohrabruju na tom putu. Lekcije u nastavku pomoći će vam otkriti kako Božja mudrost oblikuje živote, gradi istinske odnose i otkriva Njegovu ljubav i brigu za vas.",
+            "2": "Okupite prijatelje i počnite istraživati! Kliknite na slike ispod kako biste započeli svoje putovanje — otkrivajući ne samo mudrost, već i odnos s Bogom i duhovnom zajednicom u koju vas On poziva."
         }
     },
     "dbs": {
-        "title": "Velika priča o mudrosti",
+        "title": "Otkrivanje duhovne zajednice",
         "para": {
-            "1": "Ova priča počinje s vremenom prije nego što je bilo ljudi. Zatim govori priču o tome kako su prve dvije osobe komunicirale s Bogom.\"",
-            "2": "Okupite svoje prijatelje i pročitajte kako je Bog pripremao ljude za dolazak Isusa i njegove Mudrosti.",
+            "1": "Discovering Spiritual Community vodi vas na putovanje kroz povijest, istražujući kako su se ljudi povezivali s Bogom od samog početka - kroz izazove, pitanja i trenutke koji su promijenili život. Ako vas zanima vjera, svrha i što znači pripadati, ova je serija odlično mjesto za početak.",
+            "2": "Okupite svoje prijatelje i pročitajte kako je Bog pripremao ljude za Isusov dolazak i duhovnu zajednicu koju je on pokrenuo.",
             "3": "Odaberite svoj omiljeni jezik klikom na svjetski globus iznad."
         }
     },
     "life": {
-        "title": "Mudrost za život",
+        "title": "Životna pitanja",
         "para": {
-            "1": "Ovo su neke od stvari koje su poučavali Isus i njegovi rani sljedbenici.",
-            "2": "Mnogi su ljudi vidjeli kako su im se životi promijenili dok su tražili od Isusa da im da moć da ta učenja provedu u djelo.",
+            "1": "Životna pitanja istražuju praktična učenja Isusa i njegovih ranih sljedbenika — mudrost koja je stoljećima mijenjala živote. Mnogi su doživjeli preobrazbu pozivajući Isusa da im pomogne živjeti te istine. Može li to vrijediti i za vas?",
+            "2": "Okupite svoje prijatelje i pogledajte što ćete otkriti dok raspravljate o sljedećim pitanjima.",
             "3": "Okupite svoje prijatelje i pogledajte što ćete otkriti dok raspravljate o sljedećim pitanjima.",
             "4": "Odaberite svoj omiljeni jezik klikom na svjetski globus iznad."
         }
     },
     "jVideo": {
-        "title": "Izvor mudrosti",
+        "title": "Isusov život",
         "para": {
-            "1": "Isus je izvor vječne mudrosti. Dok gledate video, zapitajte se \"Što je Isus činio i poučavao? Kako se njegova mudrost razlikuje od onoga što su drugi rekli.\"",
+            "1": "Isusove riječi i djela oblikovali su povijest, nudeći mudrost koja se izdvaja. Dok gledate ovaj video, zapitajte se: Što je Isus naučavao? Kako se njegova mudrost može usporediti s onim što su drugi rekli - i što bi to moglo značiti za vas?",
             "2": "Ovaj video je dostupan na mnogim jezicima. Za promjenu jezika kliknite gornji globus."
+        }
+    },
+    "lead": {
+        "title": "Otkrivanje vodstva",
+        "para": {
+            "1": "Discovering Leadership istražuje načela kojima je Isus poučio svoje vođe - mudrost koja je generacijama oblikovala vodstvo sa srcem sluge. Mnogi su doživjeli preobrazbu oslanjajući se na Isusa da im pomogne voditi sa svrhom i poštenjem. Može li to oblikovati i vaše vodstvo?",
+            "2": "Okupite svoje prijatelje i pogledajte što ćete otkriti dok raspravljate o sljedećim pitanjima.",
+            "3": "Odaberite svoj omiljeni jezik klikom na svjetski globus iznad."
         }
     }
 }

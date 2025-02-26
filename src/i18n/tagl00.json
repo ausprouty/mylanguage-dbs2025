@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Upang makagawa ng anumang tunay na pag-unlad sa ating espirituwal na buhay alam nating kailangan natin ng mapagkakatiwalaang pinagmumulan ng karunungan.",
-            "2": "Ang pag-click sa mga larawan sa ibaba ay magsisimula sa iyong landas sa pagtuklas ng walang hanggang karunungan na nais ng Diyos na malaman at sundin mo."
+            "1": "Ang espirituwal na pag-unlad ay hindi isang solong paglalakbay - nangyayari ito sa komunidad. Lahat tayo ay nangangailangan ng karunungan na mapagkakatiwalaan natin at mga taong naghihikayat sa atin sa daan. Ang mga aralin sa ibaba ay tutulong sa iyo na matuklasan kung paano hinuhubog ng karunungan ng Diyos ang buhay, bubuo ng mga tunay na relasyon, at inihahayag ang Kanyang pagmamahal at pangangalaga sa iyo.",
+            "2": "Ipunin ang iyong mga kaibigan at simulan ang paggalugad! Mag-click sa mga larawan sa ibaba upang simulan ang iyong paglalakbay — pagtuklas hindi lamang ng karunungan, ngunit isang relasyon sa Diyos at sa espirituwal na komunidad na inaanyayahan ka Niya."
         }
     },
     "dbs": {
-        "title": "Ang Dakilang Kwento ng Karunungan",
+        "title": "Pagtuklas ng Espirituwal na Komunidad",
         "para": {
-            "1": "Ang kwentong ito ay nagsisimula sa panahon bago pa nagkaroon ng mga tao. Isinalaysay nito ang kuwento kung paano nakipag-ugnayan ang unang dalawang tao sa Diyos.\",",
-            "2": "Ipunin ang iyong mga kaibigan at basahin kung paano inihanda ng Diyos ang mga tao para sa pagdating ni Hesus at sa kanyang Karunungan.",
+            "1": "Ang pagtuklas sa Espirituwal na Komunidad ay magdadala sa iyo sa isang paglalakbay sa kasaysayan, pagtuklas kung paano nakipag-ugnayan ang mga tao sa Diyos mula pa sa simula—sa pamamagitan ng mga hamon, tanong, at mga sandali na nagbabago sa buhay. Kung gusto mong malaman ang tungkol sa pananampalataya, layunin, at kung ano ang ibig sabihin ng pag-aari, ang seryeng ito ay isang magandang lugar upang magsimula.",
+            "2": "Ipunin ang iyong mga kaibigan at basahin kung paano inihanda ng Diyos ang mga tao para sa pagdating ni Hesus at ang espirituwal na komunidad na kanyang sinimulan.",
             "3": "Piliin ang iyong paboritong wika sa pamamagitan ng pag-click sa mundong globo sa itaas."
         }
     },
     "life": {
-        "title": "Karunungan para sa Buhay",
+        "title": "Mga Isyu sa Buhay",
         "para": {
-            "1": "Ito ang ilan sa mga bagay na itinuro ni Jesus at ng kaniyang unang mga tagasunod.",
-            "2": "Nakita ng maraming tao na nagbago ang kanilang buhay nang hilingin nila kay Jesus na bigyan sila ng kapangyarihang isakatuparan ang mga turong ito.",
+            "1": "Tinutuklas ng Mga Isyu sa Buhay ang mga praktikal na turo ni Jesus at ng kanyang mga naunang tagasunod — karunungan na nagpabago sa buhay sa loob ng maraming siglo. Marami ang nakaranas ng pagbabago sa pamamagitan ng pag-anyaya kay Jesus na tulungan silang isabuhay ang mga katotohanang ito. Totoo rin kaya ito para sa iyo?",
+            "2": "Ipunin ang iyong mga kaibigan at tingnan kung ano ang iyong natuklasan habang tinatalakay mo ang mga sumusunod na tanong.",
             "3": "Ipunin ang iyong mga kaibigan at tingnan kung ano ang iyong natuklasan habang tinatalakay mo ang mga sumusunod na tanong.",
             "4": "Piliin ang iyong paboritong wika sa pamamagitan ng pag-click sa mundong globo sa itaas."
         }
     },
     "jVideo": {
-        "title": "Ang Pinagmumulan ng Karunungan",
+        "title": "Ang Buhay ni Hesus",
         "para": {
-            "1": "Si Hesus ang pinagmumulan ng walang hanggang karunungan. Habang pinapanood mo ang video, tanungin ang iyong sarili \"Ano ang ginawa at itinuro ni Jesus? Paano naiiba ang kanyang karunungan sa sinabi ng iba.\"",
+            "1": "Ang mga salita at pagkilos ni Jesus ay humubog sa kasaysayan, na nag-aalok ng karunungan na natatangi. Habang pinapanood mo ang video na ito, tanungin ang iyong sarili: Ano ang itinuro ni Jesus? Paano maihahambing ang kanyang karunungan sa sinabi ng iba — at ano ang maaaring maging kahulugan nito para sa iyo?",
             "2": "Available ang video na ito sa maraming wika. Upang baguhin ang wika i-click ang mundong globo sa itaas."
+        }
+    },
+    "lead": {
+        "title": "Pagtuklas ng Pamumuno",
+        "para": {
+            "1": "Tinutuklas ng Discovering Leadership ang mga prinsipyong itinuro ni Jesus sa kanyang mga pinuno — karunungan na humubog sa tapat na pamumuno sa loob ng mga henerasyon. Marami ang nakaranas ng pagbabago sa pamamagitan ng pag-asa kay Jesus upang tulungan silang mamuno nang may layunin at integridad. Maaari rin bang hubugin nito ang iyong pamumuno?",
+            "2": "Ipunin ang iyong mga kaibigan at tingnan kung ano ang iyong natuklasan habang tinatalakay mo ang mga sumusunod na tanong.",
+            "3": "Piliin ang iyong paboritong wika sa pamamagitan ng pag-click sa mundong globo sa itaas."
         }
     }
 }

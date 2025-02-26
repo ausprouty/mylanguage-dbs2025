@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Me teame, et meie vaimses elus tõelise edu saavutamiseks vajame usaldusväärset tarkuseallikat.",
-            "2": "Allolevatel piltidel klõpsamine alustab teid igavese tarkuse avastamisel, mida Jumal soovib, et te teaksite ja järgiksite."
+            "1": "Vaimne kasv ei ole üksi - see toimub kogukonnas. Me kõik vajame tarkust, mida saame usaldada, ja inimesi, kes meid teel julgustavad. Allpool olevad õppetunnid aitavad teil avastada, kuidas Jumala tarkus kujundab elusid, loob tõelisi suhteid ning ilmutab Tema armastust ja hoolitsust teie vastu.",
+            "2": "Koguge oma sõbrad ja alustage avastamist! Oma teekonna alustamiseks klõpsake allolevatel piltidel – avastage mitte ainult tarkust, vaid ka suhet Jumalaga ja vaimse kogukonnaga, kuhu Ta teid kutsub."
         }
     },
     "dbs": {
-        "title": "Suur tarkuse lugu",
+        "title": "Vaimse kogukonna avastamine",
         "para": {
-            "1": "See lugu algab ajast, enne kui veel inimesi oli. Seejärel räägib see loo sellest, kuidas kaks esimest inimest Jumalaga suhtlesid.",
-            "2": "Koguge oma sõbrad ja lugege, kuidas Jumal valmistas inimesi Jeesuse ja Tema Tarkuse saabumiseks.",
+            "1": "Vaimse kogukonna avastamine viib teid rännakule läbi ajaloo, uurides, kuidas inimesed on algusest peale Jumalaga ühenduses olnud – läbi väljakutsete, küsimuste ja elumuutvate hetkede. Kui olete huvitatud usust, eesmärgist ja sellest, mida tähendab kuulumine, on see sari suurepärane koht alustamiseks.",
+            "2": "Koguge oma sõbrad ja lugege, kuidas Jumal valmistas inimesi ette Jeesuse ja tema loodud vaimse kogukonna saabumiseks.",
             "3": "Valige oma lemmikkeel, klõpsates ülaltoodud maailma maakeral."
         }
     },
     "life": {
-        "title": "Elutarkus",
+        "title": "Eluprobleemid",
         "para": {
-            "1": "Need on mõned asjad, mida Jeesus ja tema esimesed järgijad õpetasid.",
-            "2": "Paljud inimesed on näinud oma elu muutumas, kui nad palusid Jeesusel anda neile vägi neid õpetusi ellu viia.",
+            "1": "Life Issues uurib Jeesuse ja tema esimeste järgijate praktilisi õpetusi – tarkust, mis on sajandeid elusid muutnud. Paljud on kogenud muutumist, kutsudes Jeesust aitama neid tõdesid järgida. Kas see võib ka teie puhul tõsi olla?",
+            "2": "Koguge oma sõbrad ja vaadake, mida te järgmiste küsimuste arutamisel avastate.",
             "3": "Koguge oma sõbrad ja vaadake, mida te järgmiste küsimuste arutamisel avastate.",
             "4": "Valige oma lemmikkeel, klõpsates ülaltoodud maailma maakeral."
         }
     },
     "jVideo": {
-        "title": "Tarkuse Allikas",
+        "title": "Jeesuse elu",
         "para": {
-            "1": "Jeesus on igavese tarkuse allikas. Videot vaadates küsi endalt: \"Mida Jeesus tegi ja õpetas? Mille poolest erineb tema tarkus sellest, mida teised on öelnud.\"",
+            "1": "Jeesuse sõnad ja teod on kujundanud ajalugu, pakkudes tarkust, mis eristub. Seda videot vaadates küsi endalt: mida Jeesus õpetas? Kuidas on tema tarkus võrreldav sellega, mida teised on öelnud – ja mida see võiks teie jaoks tähendada?",
             "2": "See video on saadaval paljudes keeltes. Keele muutmiseks klõpsake ülalpool maailma maakera."
+        }
+    },
+    "lead": {
+        "title": "Juhtimise avastamine",
+        "para": {
+            "1": "Juhtimise avastamine uurib põhimõtteid, mida Jeesus oma juhtidele õpetas – tarkust, mis on põlvkondade jooksul kujundanud teenija südamega juhtimist. Paljud on kogenud muutumist, tuginedes Jeesusele, kes aitab neil sihikindlalt ja ausalt juhtida. Kas see võib kujundada ka teie juhtimist?",
+            "2": "Koguge oma sõbrad ja vaadake, mida te järgmiste küsimuste arutamisel avastate.",
+            "3": "Valige oma lemmikkeel, klõpsates ülaltoodud maailma maakeral."
         }
     }
 }

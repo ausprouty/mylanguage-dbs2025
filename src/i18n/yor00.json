@@ -14,32 +14,40 @@
     },
     "index": {
         "para": {
-            "1": "Láti lè ní ìtẹ̀síwájú gidi èyíkéyìí nínú ìgbésí ayé wa nípa tẹ̀mí a mọ̀ pé a nílò orísun ọgbọ́n tí ó ṣeé gbára lé.",
-            "2": "Tite lori awọn aworan ti o wa ni isalẹ yoo bẹrẹ ọ ni ọna lati ṣawari ọgbọn ayeraye ti Ọlọrun fẹ ki o mọ ati tẹle."
+            "1": "Idagbasoke ti ẹmi kii ṣe irin-ajo adashe - o ṣẹlẹ ni agbegbe. Gbogbo wa nilo ọgbọn ti a le gbẹkẹle ati awọn eniyan ti o gba wa niyanju ni ọna. Àwọn ẹ̀kọ́ tó wà nísàlẹ̀ yìí yóò ràn ọ́ lọ́wọ́ láti ṣàwárí bí ọgbọ́n Ọlọ́run ṣe ń ṣe ìgbé ayérayé, tí ń kọ́ àwọn ìbáṣepọ̀ tòótọ́ sílẹ̀, tí ó sì fi ìfẹ́ àti ìtọ́jú Rẹ̀ hàn fún ọ.",
+            "2": "Kojọ awọn ọrẹ rẹ ki o bẹrẹ ṣawari! Tẹ awọn aworan ti o wa ni isalẹ lati bẹrẹ irin-ajo rẹ - iṣawari kii ṣe ọgbọn nikan, ṣugbọn ibatan pẹlu Ọlọrun ati agbegbe ti ẹmi ti O pe ọ sinu."
         }
     },
     "dbs": {
-        "title": "Itan nla ti Ọgbọn",
+        "title": "Awari Ẹmí Community",
         "para": {
-            "1": "Itan yii bẹrẹ pẹlu akoko ṣaaju ki eniyan kankan wa. Lẹhinna o sọ itan ti bi awọn eniyan meji akọkọ ṣe ṣe ajọṣepọ pẹlu Ọlọrun.”,",
-            "2": "Kó àwọn ọ̀rẹ́ rẹ jọ kí o sì ka bí Ọlọ́run ṣe múra àwọn èèyàn sílẹ̀ fún dídé Jésù àti Ọgbọ́n rẹ̀.",
+            "1": "Ṣiṣawari Agbegbe Ẹmi mu ọ lọ si irin-ajo nipasẹ itan-akọọlẹ, ṣawari bi awọn eniyan ṣe ti sopọ pẹlu Ọlọrun lati ibẹrẹ-nipasẹ awọn italaya, awọn ibeere, ati awọn akoko iyipada igbesi aye. Ti o ba ni iyanilenu nipa igbagbọ, idi, ati kini o tumọ si lati jẹ, jara yii jẹ aaye nla lati bẹrẹ.",
+            "2": "Kó àwọn ọ̀rẹ́ rẹ jọ kí o sì ka bí Ọlọ́run ṣe múra àwọn èèyàn sílẹ̀ de dídé Jésù àti àgbègbè tẹ̀mí tó bẹ̀rẹ̀.",
             "3": "Yan ede ayanfẹ rẹ nipa tite lori agbaye agbaye loke."
         }
     },
     "life": {
-        "title": "Ọgbọn fun Life",
+        "title": "Awọn ọrọ igbesi aye",
         "para": {
-            "1": "Ìwọ̀nyí jẹ́ díẹ̀ lára ​​ohun tí Jésù àtàwọn ọmọlẹ́yìn rẹ̀ ìjímìjí kọ́ni.",
-            "2": "Ọ̀pọ̀ èèyàn ló ti rí bí ìgbésí ayé wọn ṣe yí pa dà nígbà tí wọ́n ní kí Jésù fún wọn lágbára láti fi àwọn ẹ̀kọ́ wọ̀nyí sílò.",
+            "1": "Awọn ọrọ igbesi aye ṣawari awọn ẹkọ ti o wulo ti Jesu ati awọn ọmọ-ẹhin rẹ akọkọ - ọgbọn ti o ti yi igbesi aye pada fun awọn ọgọrun ọdun. Mẹsusu ko tindo numimọ diọdo tọn gbọn oylọ-basina Jesu nado gọalọna yé nado hẹn nugbo ehelẹ di. Njẹ eyi le jẹ otitọ fun iwọ paapaa?",
+            "2": "Pe awọn ọrẹ rẹ jọ ki o wo ohun ti o rii bi o ṣe n jiroro awọn ibeere wọnyi.",
             "3": "Pe awọn ọrẹ rẹ jọ ki o wo ohun ti o rii bi o ṣe n jiroro awọn ibeere wọnyi.",
             "4": "Yan ede ayanfẹ rẹ nipa tite lori agbaye agbaye loke."
         }
     },
     "jVideo": {
-        "title": "Orisun Ogbon",
+        "title": "Igbesi aye Jesu",
         "para": {
-            "1": "Jesu ni orisun ọgbọn ayeraye. Bi o ṣe n wo fidio naa, beere lọwọ ararẹ \"Kini Jesu ṣe ati kọni? Bawo ni ọgbọn rẹ ṣe yatọ si ohun ti awọn miiran ti sọ.\"",
+            "1": "Hodidọ po nuyiwa Jesu tọn lẹ po ko deanana whenuho, bo namẹ nuyọnẹn he gbọnvo. Bó o ṣe ń wo fídíò yìí, bi ara rẹ pé: Kí ni Jésù fi kọ́ni? Báwo ni ọgbọ́n rẹ̀ ṣe wéra pẹ̀lú ohun tí àwọn ẹlòmíràn sọ—àti kí ni ó lè túmọ̀ sí fún ọ?",
             "2": "Fidio yii wa ni ọpọlọpọ awọn ede. Lati yi ede pada tẹ agbaye agbaye loke."
+        }
+    },
+    "lead": {
+        "title": "Awari Leadership",
+        "para": {
+            "1": "Ṣíṣàwárí Aṣáájú ṣàwárí àwọn ìlànà tí Jésù kọ́ àwọn aṣáájú rẹ̀—ọgbọ́n tí ó ti ṣe aṣáájú-ọ̀nà-ọkàn ìránṣẹ́ fún àwọn ìrandíran. Ọ̀pọ̀lọpọ̀ ti ní ìrírí ìyípadà nípa gbígbẹ́kẹ̀lé Jésù láti ràn wọ́n lọ́wọ́ láti darí pẹ̀lú ète àti ìwà títọ́. Njẹ eyi le ṣe apẹrẹ olori rẹ paapaa?",
+            "2": "Pe awọn ọrẹ rẹ jọ ki o wo ohun ti o rii bi o ṣe n jiroro awọn ibeere wọnyi.",
+            "3": "Yan ede ayanfẹ rẹ nipa tite lori agbaye agbaye loke."
         }
     }
 }
