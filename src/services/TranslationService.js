@@ -11,7 +11,7 @@ export async function getCommonContent(languageCodeHL, study) {
     return parsed;
   }
   // Fallback: API call if content is not found locally
-  const url = `/api/translate/commonContent/${languageCodeHL}/${study}`;
+  const url = `api/translate/commonContent/${languageCodeHL}/${study}`;
   console.log("Fetching CommonContent from API:", url);
 
   try {
@@ -46,7 +46,7 @@ export async function getLessonContent(languageCodeHL, study, lesson) {
   }
 
   // Fallback: API call if content is not found locally
-  const url = `/api/translate/lessonContent/${languageCodeHL}/${study}/${lesson}`;
+  const url = `api/translate/lessonContent/${languageCodeHL}/${study}/${lesson}`;
   console.log("Fetching lesson content from API:", url);
 
   try {

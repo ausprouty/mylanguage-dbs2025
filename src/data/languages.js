@@ -73,4 +73,4 @@ export const languages = [{"id":10,"name":"Afrikaans","ethnicName":"Afrikaans","
   {"id":790,"name":"Welsh","ethnicName":"Cymraeg","languageCodeIso":"cym","languageCodeHL":"wls00","languageCodeJF":14815},
   {"id":796,"name":"Xhosa","ethnicName":"isiXhosa","languageCodeIso":"xho","languageCodeHL":"xos00","languageCodeJF":13408},
   {"id":807,"name":"Yoruba","ethnicName":"Yor\u00f9b\u00e1","languageCodeIso":"yor","languageCodeHL":"yor00","languageCodeJF":1308},
-  {"id":816,"name":"Zulu","ethnicName":"isiZulu","languageCodeIso":"zul","languageCodeHL":"zuu00","languageCodeJF":7547}]}
+  {"id":816,"name":"Zulu","ethnicName":"isiZulu","languageCodeIso":"zul","languageCodeHL":"zuu00","languageCodeJF":7547}]
