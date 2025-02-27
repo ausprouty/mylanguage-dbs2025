@@ -108,9 +108,14 @@ export const useLanguageStore = defineStore("languageStore", {
     },
     getLanguageCodeJFSelected: (state) => {
       if (state.languageSelected == null){
+        console.log ('getLanguageCodeJFSelected state is null')
         var local = localStorage.getItem("languageSelected", '{"languageSelected":{"languageCodeHL":"eng00","languageCodeJF":529}}');
           state.languageSelected = JSON.parse(local)
       }
+      else{
+        console.log ('getLanguageCodeJFSelected state is NOT null')
+      }
+      console.log(state.languageSelected.languageCodeJF)
       return state.languageSelected.languageCodeJF
     },
     getLanguageSelected: (state) => {

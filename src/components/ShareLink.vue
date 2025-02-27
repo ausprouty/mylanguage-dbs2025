@@ -1,8 +1,8 @@
 <template>
-  <meta property="og:title" content="Finding Spiritual Wisdom" />
+  <meta property="og:title" content="Finding Spiritual Community" />
   <meta
     property="og:description"
-    content="In order to make any real progress in our spiritual life we know we need a reliable source of wisdom."
+    content="Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you."
   />
   <meta
     property="og:image"
@@ -16,7 +16,7 @@
   <meta name="twitter:title" content="Finding Spiritual Community" />
   <meta
     name="twitter:description"
-    content="In order to make any real progress in our spiritual life we know we need the support of a community."
+    content="Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you."
   />
   <meta
     name="twitter:image"
@@ -34,28 +34,50 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import { useLanguageStore } from "stores/LanguageStore";
+
 export default {
   name: "ShareLink",
   setup() {
     const languageStore = useLanguageStore();
-    return {
-      languageStore,
-    };
-  },
-  methods: {
-    shareUrl() {
-      var subject = "Finding Spiritual Community";
-      var message = "Here is the link";
-      let url = window.location.href;
-      var page = this.getLastSegment(url);
-      console.log(page);
-      url += this.getLessonNumber(page);
-      url += this.getLanguage(page);
 
-      // we need to reformat this because it may be a local address on an SD card
-      // may return  file:///C:/xampp73/htdocs/MC2French/folder/content/M2/fra/tc/index.html
-      // and you want https://app.mc2.online/content/M2/fra/tc/index.html
+    const getUrlLink = computed(() => {
+      const rootUrl = window.location.origin;
+      const pathAfterOrigin = window.location.pathname + window.location.search + window.location.hash;
+
+      if (pathAfterOrigin.includes("video")) {
+        return videoUrlLink(rootUrl);
+      } else if (pathAfterOrigin.includes("series")) {
+        return seriesUrlLink(rootUrl);
+      } else {
+        return rootUrl;
+      }
+    });
+     //"/jvideo/:lesson?/:languageCodeHL?/:languageCodeJF?",
+     const videoUrlLink = (rootUrl) => {
+      const languageCodeJF = languageStore.getLanguageCodeJFSelected;
+      console.log("Language Code JF:", languageCodeJF); // Debugging
+      const languageCodeHL = languageStore.getLanguageCodeHLSelected;
+      console.log("Language Code HL:", languageCodeHL); // Debugging
+      const lesson = languageStore.getLessonNumber;
+
+      return `${rootUrl}/jvideo/${lesson || ''}/${languageCodeHL || ''}/${languageCodeJF || ''}`;
+    };
+
+    // "/series/:study?/:lesson?/:languageCodeHL?",
+    const seriesUrlLink = (rootUrl) => {
+      const languageCodeHL2 = languageStore.getlanguageCodeHLSelected;
+      const series = languageStore.getCurrentStudy;
+      const lesson2 = languageStore.getLessonNumber;
+      return `${rootUrl}/series/${series}/${lesson2 || ''}/${languageCodeHL2 || ''}`;
+    };
+
+    const shareUrl = () => {
+      const subject = "Finding Spiritual Community";
+      const message = "Here is the link";
+      const url = getUrlLink.value; // Ensure computed property is accessed with `.value`
+
       if ("share" in navigator) {
         navigator.share({
           title: subject,
@@ -63,51 +85,20 @@ export default {
           url: url,
         });
       } else {
-        var body = message + ": " + url;
-        // Here we use the WhatsApp API as fallback; remember to encode your text for URI
-        //location.href = 'mailto:?body=' + encodeURIComponent(text + ' - ') + location.href + ';subject=' + encodeURIComponent(title);
+        const body = `${message}: ${url}`;
         location.href = getMailtoUrl("", subject, body);
       }
-    },
-    getLastSegment(url) {
-      const parsedUrl = new URL(url);
-      const pathSegments = parsedUrl.pathname
-        .split("/")
-        .filter((segment) => segment !== ""); // Remove empty segments
-      return pathSegments[pathSegments.length - 1];
-    },
-    getLessonNumber(page) {
-      switch (page) {
-        case "book":
-          return "/" + this.languageStore.getDbsLesson;
-        case "following":
-          return "/" + this.languageStore.getFollowingHimSegment;
-        case "leadership":
-          return "/" + this.languageStore.getLeadershipLesson;
-        case "life":
-          return "/" + this.languageStore.getJVideoSegmentId;
-        case "teachings":
-          return "/" + this.languageStore.getLifeLesson;
+    };
 
-        default:
-          return "";
-      }
-    },
-    getLanguage(page) {
-      switch (page) {
-        case "book":
-        case "following":
-        case "leadership":
-        case "life":
-        case "teachings":
-          return "/" + this.languageStore.getLanguageCodeHLSelected;
-        default:
-          return "";
-      }
-    },
+    return {
+      languageStore,
+      shareUrl,
+      getUrlLink,
+    };
   },
 };
 </script>
+
 <style scoped>
 .shareLink {
   padding-right: 40px;

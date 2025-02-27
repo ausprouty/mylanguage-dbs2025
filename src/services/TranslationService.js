@@ -65,7 +65,7 @@ export async function getLessonContent(languageCodeHL, study, lesson) {
 
     return data;
   } catch (error) {
-    console.error(`Error fetching lesson content: ${error}`);
+    console.error(`Error fetching lesson content for ${url} : ${error}`);
     throw error; // Rethrow to allow the caller to handle the error
   }
 }
