@@ -23,23 +23,21 @@
     content="https://myfriends.network/sites/myfriends/images/standard/MyFriends-App-Twitter.jpg"
   />
 
-  <q-btn
-    class="shareLink"
-    flat
-    dense
-    round
-    @click="shareUrl"
-    icon="share"
-  ></q-btn>
+  <div class="share-container">
+    <q-btn class="shareLink" flat dense round @click="shareUrl" icon="share" />
+    <q-btn class="copyLink" flat dense round @click="copyToClipboard(getUrlLink.value)" icon="content_copy" />
+  </div>
 </template>
 
 <script>
 import { computed } from "vue";
+import { useQuasar } from "quasar";
 import { useLanguageStore } from "stores/LanguageStore";
 
 export default {
   name: "ShareLink",
   setup() {
+    const $q = useQuasar();
     const languageStore = useLanguageStore();
 
     const getUrlLink = computed(() => {
@@ -54,45 +52,77 @@ export default {
         return rootUrl;
       }
     });
-     //"/jvideo/:lesson?/:languageCodeHL?/:languageCodeJF?",
-     const videoUrlLink = (rootUrl) => {
+
+    const videoUrlLink = (rootUrl) => {
       const languageCodeJF = languageStore.getLanguageCodeJFSelected;
-      console.log("Language Code JF:", languageCodeJF); // Debugging
       const languageCodeHL = languageStore.getLanguageCodeHLSelected;
-      console.log("Language Code HL:", languageCodeHL); // Debugging
       const lesson = languageStore.getLessonNumber;
 
-      return `${rootUrl}/jvideo/${lesson || ''}/${languageCodeHL || ''}/${languageCodeJF || ''}`;
+      return `${rootUrl}/jvideo/${lesson || ""}/${languageCodeHL || ""}/${languageCodeJF || ""}`;
     };
 
-    // "/series/:study?/:lesson?/:languageCodeHL?",
     const seriesUrlLink = (rootUrl) => {
-      const languageCodeHL2 = languageStore.getlanguageCodeHLSelected;
+      const languageCodeHL2 = languageStore.getLanguageCodeHLSelected;
       const series = languageStore.getCurrentStudy;
       const lesson2 = languageStore.getLessonNumber;
-      return `${rootUrl}/series/${series}/${lesson2 || ''}/${languageCodeHL2 || ''}`;
+      return `${rootUrl}/series/${series || ""}/${lesson2 || ""}/${languageCodeHL2 || ""}`;
     };
 
-    const shareUrl = () => {
+    const shareUrl = async () => {
       const subject = "Finding Spiritual Community";
       const message = "Here is the link";
-      const url = getUrlLink.value; // Ensure computed property is accessed with `.value`
+      const url = getUrlLink.value;
 
-      if ("share" in navigator) {
-        navigator.share({
-          title: subject,
-          text: message,
-          url: url,
-        });
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: subject, text: message, url });
+          $q.notify({ type: "positive", message: "Shared successfully!" });
+        } catch (error) {
+          console.error("Error sharing:", error);
+          $q.notify({ type: "negative", message: "Sharing failed!" });
+        }
       } else {
-        const body = `${message}: ${url}`;
-        location.href = getMailtoUrl("", subject, body);
+        $q.notify({ type: "warning", message: "Sharing not supported. Using fallback." });
+        shareFallback(url, subject, message);
+      }
+    };
+
+    const shareFallback = (url, subject, message) => {
+      const encodedSubject = encodeURIComponent(subject);
+      const encodedMessage = encodeURIComponent(`${message}: ${url}`);
+
+      const shareOptions = {
+        email: `mailto:?subject=${encodedSubject}&body=${encodedMessage}`,
+        whatsapp: `https://api.whatsapp.com/send?text=${encodedMessage}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+        twitter: `https://twitter.com/intent/tweet?text=${encodedMessage}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+      };
+
+      $q.dialog({
+        title: "Share via",
+        message: "Choose a platform:",
+        options: Object.keys(shareOptions).map((platform) => ({
+          label: platform.charAt(0).toUpperCase() + platform.slice(1),
+          handler: () => window.open(shareOptions[platform], "_blank"),
+        })),
+        cancel: true,
+      });
+    };
+
+    const copyToClipboard = async (text) => {
+      try {
+        await navigator.clipboard.writeText(text);
+        $q.notify({ type: "positive", message: "Link copied to clipboard!" });
+      } catch (err) {
+        console.error("Failed to copy:", err);
+        $q.notify({ type: "negative", message: "Failed to copy the link." });
       }
     };
 
     return {
-      languageStore,
       shareUrl,
+      copyToClipboard,
       getUrlLink,
     };
   },
@@ -100,7 +130,13 @@ export default {
 </script>
 
 <style scoped>
-.shareLink {
+.share-container {
+  display: flex;
+  gap: 10px;
+}
+
+.shareLink,
+.copyLink {
   padding-right: 40px;
 }
 </style>

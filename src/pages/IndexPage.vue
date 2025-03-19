@@ -11,7 +11,7 @@
             clickable
             v-ripple
           >
-            <img class="menu_picture" src="menu/video.png" />
+            <img class="menu_picture" src="menu/JesusLife.webp" />
           </td>
           <td
             class="side-by-side"
@@ -19,7 +19,7 @@
             clickable
             v-ripple
           >
-            <img class="menu_picture" src="menu/life.png" />
+            <img class="menu_picture" src="menu/LifePrinciples.webp" />
           </td>
         </tr>
         <tr class="full-width">
@@ -29,7 +29,7 @@
             clickable
             v-ripple
           >
-            <img class="menu_picture" src="menu/dbs.png" />
+            <img class="menu_picture" src="menu/Community.webp" />
           </td>
           <td
             class="side-by-side"
@@ -37,7 +37,7 @@
             clickable
             v-ripple
           >
-            <img class="menu_picture" src="menu/lead.png" />
+            <img class="menu_picture" src="menu/Leadership.webp" />
           </td>
         </tr>
       </tbody>

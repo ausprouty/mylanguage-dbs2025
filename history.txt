@@ -6,6 +6,14 @@ ALWAYS USE YARN -- NOT NPM
 
 Now using node v18.18.0
 
+where to get ai icons: https://icongeneratorai.com/collection
+favicons: https://favicon.io/
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
 yarn add --dev dotenv
 https://quasar.dev/quasar-cli-vite/handling-process-env
 

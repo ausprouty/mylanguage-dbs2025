@@ -188,8 +188,8 @@ module.exports = configure(function (ctx) {
       useCredentialsForManifestTag: false,
       manifest: {  // <-- Add this section
         name: "Spiritual Community",
-        short_name: "Spiritual Community",  // <-- Define short_name here
-        description: "Finding Spiritual Community",
+        short_name: "Discover Community",  // <-- Define short_name here
+        description: "Discover Spiritual Community",
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
