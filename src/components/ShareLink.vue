@@ -1,5 +1,5 @@
 <template>
-  <meta property="og:title" content="Finding Spiritual Community" />
+  <meta property="og:title" content="Discovering Spiritual Community" />
   <meta
     property="og:description"
     content="Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you."
@@ -13,7 +13,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@PtCAus" />
-  <meta name="twitter:title" content="Finding Spiritual Community" />
+  <meta name="twitter:title" content="Discovering Spiritual Community" />
   <meta
     name="twitter:description"
     content="Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you."
@@ -69,7 +69,7 @@ export default {
     };
 
     const shareUrl = async () => {
-      const subject = "Finding Spiritual Community";
+      const subject = "Discovering Spiritual Community";
       const message = "Here is the link";
       const url = getUrlLink.value;
 

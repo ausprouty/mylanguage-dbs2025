@@ -1,0 +1,290 @@
+{
+  "af": {
+    "languageCodeHL": "afk00",
+    "languageCodeJF": 1444.0
+  },
+  "ar": {
+    "languageCodeHL": "arq00",
+    "languageCodeJF": 13562.0
+  },
+  "az": {
+    "languageCodeHL": "aze00",
+    "languageCodeJF": 689.0
+  },
+  "bg": {
+    "languageCodeHL": "blg00",
+    "languageCodeJF": 1964.0
+  },
+  "bn": {
+    "languageCodeHL": "bng00",
+    "languageCodeJF": 139081.0
+  },
+  "ca": {
+    "languageCodeHL": "cat24",
+    "languageCodeJF": NaN
+  },
+  "cs": {
+    "languageCodeHL": "czc00",
+    "languageCodeJF": 4432.0
+  },
+  "cy": {
+    "languageCodeHL": "wls00",
+    "languageCodeJF": 14815.0
+  },
+  "da": {
+    "languageCodeHL": "dan99",
+    "languageCodeJF": 4454.0
+  },
+  "de": {
+    "languageCodeHL": "ger00",
+    "languageCodeJF": 1106.0
+  },
+  "el": {
+    "languageCodeHL": "grk00",
+    "languageCodeJF": 483.0
+  },
+  "en": {
+    "languageCodeHL": "eng00",
+    "languageCodeJF": 529.0
+  },
+  "eo": {
+    "languageCodeHL": "epo19",
+    "languageCodeJF": NaN
+  },
+  "es": {
+    "languageCodeHL": "spn00",
+    "languageCodeJF": 21028.0
+  },
+  "eu": {
+    "languageCodeHL": "bas29",
+    "languageCodeJF": NaN
+  },
+  "fa": {
+    "languageCodeHL": "pes00",
+    "languageCodeJF": 6788.0
+  },
+  "fi": {
+    "languageCodeHL": "fin00",
+    "languageCodeJF": 4820.0
+  },
+  "fr": {
+    "languageCodeHL": "frn00",
+    "languageCodeJF": 496.0
+  },
+  "gu": {
+    "languageCodeHL": "gjr00",
+    "languageCodeJF": 6600.0
+  },
+  "ha": {
+    "languageCodeHL": "hua00",
+    "languageCodeJF": 1341.0
+  },
+  "he": {
+    "languageCodeHL": "hbr00",
+    "languageCodeJF": 6930.0
+  },
+  "hi": {
+    "languageCodeHL": "hnd00",
+    "languageCodeJF": 53300.0
+  },
+  "hr": {
+    "languageCodeHL": "hrv00",
+    "languageCodeJF": 1109.0
+  },
+  "ht": {
+    "languageCodeHL": "hat00",
+    "languageCodeJF": 4473.0
+  },
+  "hu": {
+    "languageCodeHL": "hng00",
+    "languageCodeJF": 1107.0
+  },
+  "hy": {
+    "languageCodeHL": "arm00",
+    "languageCodeJF": 20550.0
+  },
+  "in": {
+    "languageCodeHL": "inz00",
+    "languageCodeJF": 16639.0
+  },
+  "is": {
+    "languageCodeHL": "ice99",
+    "languageCodeJF": 5563.0
+  },
+  "it": {
+    "languageCodeHL": "itn00",
+    "languageCodeJF": 4415.0
+  },
+  "ja": {
+    "languageCodeHL": "jpn00",
+    "languageCodeJF": 7083.0
+  },
+  "ka": {
+    "languageCodeHL": "geo00",
+    "languageCodeJF": 5112.0
+  },
+  "kk": {
+    "languageCodeHL": "kaz99",
+    "languageCodeJF": 371.0
+  },
+  "kn": {
+    "languageCodeHL": "kjv00",
+    "languageCodeJF": 6318.0
+  },
+  "ko": {
+    "languageCodeHL": "kkn00",
+    "languageCodeJF": 24000.0
+  },
+  "la": {
+    "languageCodeHL": "lat777",
+    "languageCodeJF": NaN
+  },
+  "lt": {
+    "languageCodeHL": "lit00",
+    "languageCodeJF": 7698.0
+  },
+  "lv": {
+    "languageCodeHL": "lat00",
+    "languageCodeJF": 7519.0
+  },
+  "mg": {
+    "languageCodeHL": "plt00",
+    "languageCodeJF": 7761.0
+  },
+  "mi": {
+    "languageCodeHL": "mbf00",
+    "languageCodeJF": 9198.0
+  },
+  "ml": {
+    "languageCodeHL": "mjs00",
+    "languageCodeJF": 19985.0
+  },
+  "mn": {
+    "languageCodeHL": "khk00",
+    "languageCodeJF": 18259.0
+  },
+  "mr": {
+    "languageCodeHL": "mrt00",
+    "languageCodeJF": 6174.0
+  },
+  "ne": {
+    "languageCodeHL": "nep00",
+    "languageCodeJF": 1370.0
+  },
+  "nl": {
+    "languageCodeHL": "dut99",
+    "languageCodeJF": 1269.0
+  },
+  "no": {
+    "languageCodeHL": "nor99",
+    "languageCodeJF": 10393.0
+  },
+  "ny": {
+    "languageCodeHL": "nyj00",
+    "languageCodeJF": 20857.0
+  },
+  "pl": {
+    "languageCodeHL": "pql00",
+    "languageCodeJF": 4451.0
+  },
+  "ps": {
+    "languageCodeHL": "pbu00",
+    "languageCodeJF": 374.0
+  },
+  "pt": {
+    "languageCodeHL": "por05",
+    "languageCodeJF": 1872.0
+  },
+  "ro": {
+    "languageCodeHL": "rum00",
+    "languageCodeJF": 5546.0
+  },
+  "ru": {
+    "languageCodeHL": "rus00",
+    "languageCodeJF": 1944.0
+  },
+  "rw": {
+    "languageCodeHL": "rua00",
+    "languageCodeJF": 20900.0
+  },
+  "sk": {
+    "languageCodeHL": "slo00",
+    "languageCodeJF": 5545.0
+  },
+  "sl": {
+    "languageCodeHL": "slv00",
+    "languageCodeJF": 1112.0
+  },
+  "sm": {
+    "languageCodeHL": "smy00",
+    "languageCodeJF": 530.0
+  },
+  "sn": {
+    "languageCodeHL": "shd00",
+    "languageCodeJF": NaN
+  },
+  "so": {
+    "languageCodeHL": "som00",
+    "languageCodeJF": 4466.0
+  },
+  "sq": {
+    "languageCodeHL": "aln00",
+    "languageCodeJF": 20526.0
+  },
+  "sv": {
+    "languageCodeHL": "swe99",
+    "languageCodeJF": 4823.0
+  },
+  "ta": {
+    "languageCodeHL": "tcv00",
+    "languageCodeJF": 5871.0
+  },
+  "te": {
+    "languageCodeHL": "tcw00",
+    "languageCodeJF": 5848.0
+  },
+  "tg": {
+    "languageCodeHL": "pet00",
+    "languageCodeJF": NaN
+  },
+  "th": {
+    "languageCodeHL": "thj00",
+    "languageCodeJF": 13169.0
+  },
+  "tk": {
+    "languageCodeHL": "tck00",
+    "languageCodeJF": 420.0
+  },
+  "tr": {
+    "languageCodeHL": "trk00",
+    "languageCodeJF": 1942.0
+  },
+  "uk": {
+    "languageCodeHL": "ukr00",
+    "languageCodeJF": 12876.0
+  },
+  "ur": {
+    "languageCodeHL": "urd00",
+    "languageCodeJF": 407.0
+  },
+  "uz": {
+    "languageCodeHL": "uzb00",
+    "languageCodeJF": 3888.0
+  },
+  "vi": {
+    "languageCodeHL": "vie00",
+    "languageCodeJF": 22500.0
+  },
+  "xh": {
+    "languageCodeHL": "xos00",
+    "languageCodeJF": 13408.0
+  },
+  "yo": {
+    "languageCodeHL": "yor00",
+    "languageCodeJF": 1308.0
+  },
+  "zu": {
+    "languageCodeHL": "zuu00",
+    "languageCodeJF": 7547.0
+  }
+}

@@ -29,8 +29,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
-    boot: ["axios", 'localStorage', 'i18n'],
-
+    boot: ["axios", 'localStorage', 'i18n', 'language-init'],
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
 
@@ -61,7 +60,7 @@ module.exports = configure(function (ctx) {
         chain.module
           .rule('i18n-resource')
             .test(/\.(json5?|ya?ml)$/)
-              .include.add(path.resolve(__dirname, './src/i18n'))
+              .include.add(path.resolve(__dirname, './src/i18n/languages'))
               .end()
             .type('javascript/auto')
             .use('i18n-resource')
