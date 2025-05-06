@@ -71,31 +71,7 @@ const showPreviousLesson = () => {
   padding: 40px 20px; /* Space above and below */
 }
 
-/* Styles for rounded navigation buttons */
-.nav-button {
-  display: flex;
-  align-items: center;
-  background-color: #3498db; /* Blue background */
-  color: white; /* White text */
-  padding: 5px 15px; /* Spacing inside the button */
-  border-radius: 50px; /* Makes it rounded */
-  font-size: 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
-  transition: background 0.3s ease, transform 0.2s ease;
-}
 
-/* Hover effect (background changes when hovering anywhere inside the button) */
-.nav-button:hover {
-  background-color: darkred; /* Darker red on hover */
-  transform: scale(1.05);
-}
-
-/* Active effect (when button is pressed) */
-.nav-button.active {
-  background-color: #8b0000; /* Even darker red when clicked */
-}
 
 /* Previous button on the left */
 .prev {

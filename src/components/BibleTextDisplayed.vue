@@ -37,17 +37,5 @@ export default {
   line-height: 1.5;
 }
 
-.readmore-button {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 3px;
-}
 
-.readmore-button:hover {
-  background-color: #0056b3;
-}
 </style>
