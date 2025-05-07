@@ -155,22 +155,14 @@ export const languageActions = {
     }
     this.languages = newLanguages;
   },
-
-  updateLanguageSelected(languageCodeHL, languageCodeJF, value = 3) {
-    if (
-      !validateNonEmptyString(languageCodeHL) ||
-      !validatePositiveInteger(languageCodeJF)
-    ) {
-      console.warn(
-        `updateLanguageSelected: Invalid language codes '${languageCodeHL}', '${languageCodeJF}'. No change made.`
-      );
+  updateLanguageObjectSelected(languageObject) {
+    console.log('updateLanguageObjectSelected called with:', languageObject);
+    if (!languageObject) {
+      console.warn('updateLanguageObjectSelected: Invalid languageObject input.');
       return;
     }
-    this.languageSelected = {
-      languageCodeHL,
-      languageCodeJF,
-      value,
-    };
+    this.languageSelected = languageObject;
+
   },
 
   updatePreviousPage(newPage) {

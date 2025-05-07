@@ -35,7 +35,7 @@ const emit = defineEmits(["updateLesson"]);
 
 const languageStore = useLanguageStore();
 const minLesson = ref(1);
-const maxLesson = computed(() => languageStore.maxLesson(props.study));
+const maxLesson = computed(() => languageStore.maxLesson);
 
 // ✅ Ensure `currentLesson` is always a number
 const currentLesson = computed(() => {

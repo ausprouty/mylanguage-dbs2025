@@ -75,7 +75,8 @@ const currentLanguageCodeJF =
 languageStore.setLessonNumber(currentStudy, currentLesson);
 languageStore.updateLanguageSelected(
   currentLanguageCodeHL,
-  currentLanguageCodeJF
+  currentLanguageCodeJF,
+  languageId
 );
 
 // Initialize the composable

@@ -15,11 +15,12 @@ import { useI18n } from 'vue-i18n';
 import { useLanguageStore } from 'stores/LanguageStore';
 import languages from 'src/i18n/metadata/consolidated_languages.json';
 
+
 const { availableLocales, locale, setLocaleMessage } = useI18n();
 const languageStore = useLanguageStore();
 
 // Use state directly from Pinia store (no function call)
-const selectedLanguage = ref(languageStore.selectedLanguage);
+const selectedLanguage = ref(languageStore.languageSelected?.id || null);
 
 // Compute language options list
 const languageOptions = computed(() =>
@@ -32,18 +33,20 @@ const languageOptions = computed(() =>
 );
 
 // Watch for store updates to sync `selectedLanguage`
-watch(() => languageStore.selectedLanguageId, (newVal) => {
-  selectedLanguage.value = newVal;
-});
+watch(
+  () => languageStore.languageSelected,
+  (newVal) => {
+    selectedLanguage.value = newVal?.id || null;
+  },
+  { immediate: true }
+);
 
 // Handle language change
 const handleLanguageChange = async (selectedLanguageId) => {
-  const selectedOption = languageOptions.value.find(
-    (option) => option.value === selectedLanguageId
-  );
+  const languageObject = languages.find(lang => lang.id === selectedLanguageId);
 
-  if (selectedOption) {
-    const { languageCodeHL, languageCodeJF } = selectedOption;
+  if (languageObject) {
+    const { languageCodeHL } = languageObject;
 
     if (!availableLocales.includes(languageCodeHL)) {
       const messages = await import(`../i18n/languages/${languageCodeHL}.json`);
@@ -52,7 +55,8 @@ const handleLanguageChange = async (selectedLanguageId) => {
 
     locale.value = languageCodeHL;
     console.log('Language options is updating language selected');
-    languageStore.updateLanguageSelected(languageCodeHL, languageCodeJF);
+    languageStore.updateLanguageSelected(languageObject);
   }
 };
+
 </script>

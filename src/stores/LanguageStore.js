@@ -23,15 +23,9 @@ export const useLanguageStore = defineStore("languageStore", {
       jvideo: 61,
     },
     languages: [],
-    languageSelected: {
-      languageCodeHL: "eng00",
-      languageCodeJF: 529,
-      value: 3,
-    },
+    languageSelected:{},
     followingHimSegment: "1-0-0",
     jVideoSegments: {
-      languageCodeHL: "eng00",
-      languageCodeJF: "529",
       segments: [],
       currentId: 1,
     },

@@ -62,22 +62,20 @@ const DEFAULTS = {
 // Set defaults if parameters are not provided
 const currentStudy = route.params.study || DEFAULTS.study;
 const currentLesson = route.params.lesson || DEFAULTS.lesson;
-const currentLanguageCodeHL =
-  route.params.languageCodeHL || DEFAULTS.languageCodeHL;
+
 
 // Update store on initial load
 languageStore.setCurrentStudy(currentStudy);
 languageStore.setLessonNumber(currentStudy, currentLesson);
-languageStore.updateLanguageSelected(currentLanguageCodeHL);
 
 // Initialize the composable
 const { commonContent, topics, loadCommonContent } = useCommonContent(
   currentStudy,
-  currentLanguageCodeHL
+  languageStore.languageSelected.languageCodeHL
 );
 
 // Reactive computed properties
-const computedLanguage = computed(() => languageStore.languageCodeHLSelected);
+const computedLanguage = computed(() => languageStore.languageSelected.languageCodeHL);
 const computedLessonNumber = computed(() => languageStore.lessonNumber);
 
 // Load common content when the component mounts

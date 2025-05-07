@@ -1,7 +1,8 @@
 export const languageGetters = {
-  languageCodeHLSelected: (state) => state.languageSelected.languageCodeHL,
+  languageCodeHLSelected: (state) => state.languageSelected.isNaNlanguageCodeHL,
   languageCodeJFSelected: (state) => state.languageSelected.languageCodeJF,
-  languageValue: (state) => state.languageSelected.value,
+  languageIdSelected: (state) => state.languageSelected.languageId,
+  languageObjectSelected: (state) => state.languageSelected,
 
   lessonNumberForStudy: (state) => {
     const study = state.currentStudy;
