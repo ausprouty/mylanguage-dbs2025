@@ -7,7 +7,7 @@
 
     <div>
       <SeriesPassageSelect
-        :study = "route.params.study"
+        :study="route.params.study"
         :topics="topics"
         :lesson="computedLessonNumber"
         @updateLesson="updateLesson"
@@ -33,15 +33,15 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue';
-import { useRoute } from 'vue-router';
-import { useI18n } from 'vue-i18n';
-import { useLanguageStore } from 'stores/LanguageStore';
-import { useCommonContent } from 'src/composables/useCommonContent';
+import { ref, computed, onMounted, watch } from "vue";
+import { useRoute } from "vue-router";
+import { useI18n } from "vue-i18n";
+import { useLanguageStore } from "stores/LanguageStore";
+import { useCommonContent } from "src/composables/useCommonContent";
 
-import SeriesPassageSelect from 'src/components/Series/SeriesPassageSelect.vue';
-import SeriesSegmentNavigator from 'src/components/Series/SeriesSegmentNavigator.vue';
-import SeriesLessonContent from 'src/components/Series/SeriesLessonContent.vue';
+import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
+import SeriesSegmentNavigator from "src/components/Series/SeriesSegmentNavigator.vue";
+import SeriesLessonContent from "src/components/Series/SeriesLessonContent.vue";
 
 // Access the current route
 const route = useRoute();
@@ -54,15 +54,16 @@ const languageStore = useLanguageStore();
 
 // Default values
 const DEFAULTS = {
-  study: 'dbs',
-  lesson: '1',
-  languageCodeHL: 'eng00',
+  study: "dbs",
+  lesson: "1",
+  languageCodeHL: "eng00",
 };
 
 // Set defaults if parameters are not provided
 const currentStudy = route.params.study || DEFAULTS.study;
 const currentLesson = route.params.lesson || DEFAULTS.lesson;
-const currentLanguageCodeHL = route.params.languageCodeHL || DEFAULTS.languageCodeHL;
+const currentLanguageCodeHL =
+  route.params.languageCodeHL || DEFAULTS.languageCodeHL;
 
 // Update store on initial load
 languageStore.setCurrentStudy(currentStudy);
@@ -70,11 +71,14 @@ languageStore.setLessonNumber(currentStudy, currentLesson);
 languageStore.updateLanguageSelected(currentLanguageCodeHL);
 
 // Initialize the composable
-const { commonContent, topics, loadCommonContent } = useCommonContent(currentStudy, currentLanguageCodeHL);
+const { commonContent, topics, loadCommonContent } = useCommonContent(
+  currentStudy,
+  currentLanguageCodeHL
+);
 
 // Reactive computed properties
-const computedLanguage = computed(() => languageStore.getLanguageCodeHLSelected);
-const computedLessonNumber = computed(() => languageStore.getLessonNumber);
+const computedLanguage = computed(() => languageStore.languageCodeHLSelected);
+const computedLessonNumber = computed(() => languageStore.lessonNumber);
 
 // Load common content when the component mounts
 onMounted(() => {

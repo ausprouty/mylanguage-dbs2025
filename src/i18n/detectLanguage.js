@@ -1,18 +1,17 @@
-import languageMap from 'src/i18n/languageMap.json';
+import languages from 'src/i18n/metadata/consolidated_languages.json';
 
 export function getBrowserLanguageHL() {
   const browserLang = navigator.language || navigator.userLanguage;
-  const langCode = browserLang.split('-')[0].toLowerCase();
+  const isoCode = browserLang.split('-')[0].toLowerCase();
 
-  const entry = languageMap[langCode];
-  return entry && entry.languageCodeHL ? entry.languageCodeHL : 'eng00';
+  const match = languages.find(
+    lang => lang.languageCodeIso.startsWith(isoCode)
+  );
+
+  return match?.languageCodeHL || 'eng00';
 }
 
 export function getLanguageCodeJF(languageCodeHL) {
-  for (const entry of Object.values(languageMap)) {
-    if (entry.languageCodeHL === languageCodeHL) {
-      return entry.languageCodeJF || '529';
-    }
-  }
-  return '529';
+  const match = languages.find(lang => lang.languageCodeHL === languageCodeHL);
+  return match?.languageCodeJF?.toString() || '529';
 }

@@ -43,8 +43,15 @@
       </tbody>
     </table>
     <br />
-    <br /><p class="icon"><img class="icon" src="images/settings.png" @click="handleImageClick('/reset')"
-      clickable /></p>
+    <br />
+    <p class="icon">
+      <img
+        class="icon"
+        src="images/settings.png"
+        @click="handleImageClick('/reset')"
+        clickable
+      />
+    </p>
   </q-page>
 </template>
 
@@ -70,7 +77,7 @@ const handleImageClick = (to) => {
 
 // Function to open an external website based on the selected language
 const openExternalWebsite = async () => {
-  const url = `api/ask/${languageStore.getLanguageCodeHLSelected}`;
+  const url = `api/ask/${languageStore.languageCodeHLSelected}`;
   console.log(url);
   try {
     const response = await legacyApi.get(url);
@@ -120,10 +127,10 @@ td.side-by-side {
 tr.full-width {
   width: 100%;
 }
-p.icon{
+p.icon {
   text-align: center;
 }
-img.icon{
+img.icon {
   height: 30px;
 }
 </style>

@@ -35,7 +35,7 @@ const emit = defineEmits(["updateLesson"]);
 
 const languageStore = useLanguageStore();
 const minLesson = ref(1);
-const maxLesson = computed(() => languageStore.getMaxLesson(props.study));
+const maxLesson = computed(() => languageStore.maxLesson(props.study));
 
 // ✅ Ensure `currentLesson` is always a number
 const currentLesson = computed(() => {
@@ -70,8 +70,6 @@ const showPreviousLesson = () => {
   position: relative;
   padding: 40px 20px; /* Space above and below */
 }
-
-
 
 /* Previous button on the left */
 .prev {

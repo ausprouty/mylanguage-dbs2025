@@ -3,8 +3,9 @@ import {
   getBrowserLanguageHL,
   getLanguageCodeJF,
 } from "src/i18n/detectLanguage";
-import { useLanguageStore } from "src/stores/LanguageStore";
 import { loadLanguageAsync } from "src/i18n/loadLanguage";
+import { useLanguageStore } from "src/stores/LanguageStore";
+
 
 export default boot(async () => {
   const languageStore = useLanguageStore();
@@ -17,5 +18,5 @@ export default boot(async () => {
   languageStore.updateLanguageSelected(browserLanguageHL, languageCodeJF);
 
   // Load the appropriate language JSON
-  await loadLanguageAsync(languageCodeJF);
+  await loadLanguageAsync(browserLanguageHL);
 });

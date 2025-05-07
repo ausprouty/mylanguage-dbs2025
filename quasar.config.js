@@ -14,6 +14,12 @@ const path = require('node:path')
 //https://quasar.dev/quasar-cli-webpack/handling-process-env#adding-to-process-env
 module.exports = configure(function (ctx) {
   return {
+    vite: {
+      test: {
+        globals: true,
+        environment: 'jsdom'
+      }
+    },
     eslint: {
       // fix: true,
       // include: [],

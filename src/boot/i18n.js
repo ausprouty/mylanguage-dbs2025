@@ -5,7 +5,7 @@ const i18n = createI18n({
   fallbackLocale: 'eng00',
   legacy: false,
   globalInjection: true,
-  messages: {eng00}, // Load dynamically later
+  messages: {}, // Load dynamically later
 });
 
 export default ({ app }) => {

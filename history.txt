@@ -32,6 +32,6 @@ For Tables: https://youtu.be/u4d6PeQje1Q
 
 icongenie generate -m pwa -i c:/ampp/htdocs/mylanguage-hindu/public/icons/android-chrome-512x512.png
 
-
+yarn test
 yarn quasar dev -m pwa  -- turn on xampp to right
 yarn quasar build -m pwa

@@ -13,7 +13,7 @@
 import { ref, computed, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useLanguageStore } from 'stores/LanguageStore';
-import { languages } from '/src/data/languages.js';
+import languages from 'src/i18n/metadata/consolidated_languages.json';
 
 const { availableLocales, locale, setLocaleMessage } = useI18n();
 const languageStore = useLanguageStore();
@@ -32,7 +32,7 @@ const languageOptions = computed(() =>
 );
 
 // Watch for store updates to sync `selectedLanguage`
-watch(() => languageStore.selectedLanguage, (newVal) => {
+watch(() => languageStore.selectedLanguageId, (newVal) => {
   selectedLanguage.value = newVal;
 });
 
@@ -46,7 +46,7 @@ const handleLanguageChange = async (selectedLanguageId) => {
     const { languageCodeHL, languageCodeJF } = selectedOption;
 
     if (!availableLocales.includes(languageCodeHL)) {
-      const messages = await import(`../i18n/${languageCodeHL}.json`);
+      const messages = await import(`../i18n/languages/${languageCodeHL}.json`);
       setLocaleMessage(languageCodeHL, messages.default);
     }
 

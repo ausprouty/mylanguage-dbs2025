@@ -25,7 +25,14 @@
 
   <div class="share-container">
     <q-btn class="shareLink" flat dense round @click="shareUrl" icon="share" />
-    <q-btn class="copyLink" flat dense round @click="copyToClipboard(getUrlLink.value)" icon="content_copy" />
+    <q-btn
+      class="copyLink"
+      flat
+      dense
+      round
+      @click="copyToClipboard(getUrlLink.value)"
+      icon="content_copy"
+    />
   </div>
 </template>
 
@@ -42,7 +49,10 @@ export default {
 
     const getUrlLink = computed(() => {
       const rootUrl = window.location.origin;
-      const pathAfterOrigin = window.location.pathname + window.location.search + window.location.hash;
+      const pathAfterOrigin =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
 
       if (pathAfterOrigin.includes("video")) {
         return videoUrlLink(rootUrl);
@@ -54,18 +64,22 @@ export default {
     });
 
     const videoUrlLink = (rootUrl) => {
-      const languageCodeJF = languageStore.getLanguageCodeJFSelected;
-      const languageCodeHL = languageStore.getLanguageCodeHLSelected;
-      const lesson = languageStore.getLessonNumber;
+      const languageCodeJF = languageStore.languageCodeJFSelected;
+      const languageCodeHL = languageStore.languageCodeHLSelected;
+      const lesson = languageStore.lessonNumber;
 
-      return `${rootUrl}/jvideo/${lesson || ""}/${languageCodeHL || ""}/${languageCodeJF || ""}`;
+      return `${rootUrl}/jvideo/${lesson || ""}/${languageCodeHL || ""}/${
+        languageCodeJF || ""
+      }`;
     };
 
     const seriesUrlLink = (rootUrl) => {
-      const languageCodeHL2 = languageStore.getLanguageCodeHLSelected;
-      const series = languageStore.getCurrentStudy;
-      const lesson2 = languageStore.getLessonNumber;
-      return `${rootUrl}/series/${series || ""}/${lesson2 || ""}/${languageCodeHL2 || ""}`;
+      const languageCodeHL2 = languageStore.languageCodeHLSelected;
+      const series = languageStore.currentStudy;
+      const lesson2 = languageStore.lessonNumber;
+      return `${rootUrl}/series/${series || ""}/${lesson2 || ""}/${
+        languageCodeHL2 || ""
+      }`;
     };
 
     const shareUrl = async () => {
@@ -82,7 +96,10 @@ export default {
           $q.notify({ type: "negative", message: "Sharing failed!" });
         }
       } else {
-        $q.notify({ type: "warning", message: "Sharing not supported. Using fallback." });
+        $q.notify({
+          type: "warning",
+          message: "Sharing not supported. Using fallback.",
+        });
         shareFallback(url, subject, message);
       }
     };
@@ -94,9 +111,13 @@ export default {
       const shareOptions = {
         email: `mailto:?subject=${encodedSubject}&body=${encodedMessage}`,
         whatsapp: `https://api.whatsapp.com/send?text=${encodedMessage}`,
-        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          url
+        )}`,
         twitter: `https://twitter.com/intent/tweet?text=${encodedMessage}`,
-        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+          url
+        )}`,
       };
 
       $q.dialog({
