@@ -16,3 +16,11 @@ export function getBrowserLanguageObject() {
 
   return match || languages.find(lang => lang.languageCodeHL === 'eng00');
 }
+
+export function getLanguageObjectFromHL(langCodeFromRoute) {
+
+  const match = languages.find(
+    lang => lang.languageCodeIso.startsWith(langCodeFromRoute)
+  );
+  return match || languages.find(lang => lang.languageCodeHL === 'eng00');
+}
