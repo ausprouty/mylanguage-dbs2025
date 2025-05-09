@@ -76,7 +76,7 @@ const { commonContent, topics, loadCommonContent } = useCommonContent(
 
 // Reactive computed properties
 const computedLanguage = computed(() => languageStore.languageSelected.languageCodeHL);
-const computedLessonNumber = computed(() => languageStore.lessonNumber);
+const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
 
 // Load common content when the component mounts
 onMounted(() => {

@@ -12,24 +12,27 @@ import {
 } from "./validators";
 
 export const languageActions = {
-  async loadCommonContent(language, study) {
-    if (this.commonContent[language]?.[study]) {
-      return this.commonContent[language][study];
+  async loadCommonContent(languageCodeHL, study) {
+    if (this.commonContent[languageCodeHL]?.[study]) {
+      return this.commonContent[languageCodeHL][study];
     }
-    const content = await getCommonContent(language, study);
-    if (!this.commonContent[language]) {
-      this.commonContent[language] = {};
+    const content = await getCommonContent(languageCodeHL, study);
+    if (!this.commonContent[languageCodeHL]) {
+      this.commonContent[languageCodeHL] = {};
     }
-    this.commonContent[language][study] = content;
+    this.commonContent[languageCodeHL][study] = content;
     return content;
   },
 
-  async loadLessonContent(language, study, lesson) {
-    if (!this.lessonContent[language]) {
-      this.lessonContent[language] = {};
+  async loadLessonContent(languageCodeHL, study, lesson) {
+    console.log (languageCodeHL)
+    console.log (study)
+    console.log (lesson)
+    if (!this.lessonContent[languageCodeHL]) {
+      this.lessonContent[languageCodeHL] = {};
     }
-    if (!this.lessonContent[language][study]) {
-      this.lessonContent[language][study] = {};
+    if (!this.lessonContent[languageCodeHL][study]) {
+      this.lessonContent[languageCodeHL][study] = {};
     }
 
     const validatedLesson = validateLessonNumber(lesson);
@@ -40,13 +43,13 @@ export const languageActions = {
       return null;
     }
 
-    if (this.lessonContent[language][study][validatedLesson]) {
-      return this.lessonContent[language][study][validatedLesson];
+    if (this.lessonContent[languageCodeHL][study][validatedLesson]) {
+      return this.lessonContent[languageCodeHL][study][validatedLesson];
     }
 
     try {
-      const content = await getLessonContent(language, study, validatedLesson);
-      this.lessonContent[language][study][validatedLesson] = content;
+      const content = await getLessonContent(languageCodeHL, study, validatedLesson);
+      this.lessonContent[languageCodeHL][study][validatedLesson] = content;
       return content;
     } catch (error) {
       console.error("Failed to fetch lesson content:", error);
@@ -54,15 +57,15 @@ export const languageActions = {
     }
   },
 
-  async loadVideoUrls(language, study) {
-    if (this.videoUrls[language]?.[study]) {
-      return this.videoUrls[language][study];
+  async loadVideoUrls(languageCodeHL, study) {
+    if (this.videoUrls[languageCodeHL]?.[study]) {
+      return this.videoUrls[languageCodeHL][study];
     }
-    const content = await getJesusVideoUrls(language, study);
-    if (!this.videoUrls[language]) {
-      this.videoUrls[language] = {};
+    const content = await getJesusVideoUrls(languageCodeHL, study);
+    if (!this.videoUrls[languageCodeHL]) {
+      this.videoUrls[languageCodeHL] = {};
     }
-    this.videoUrls[language][study] = content;
+    this.videoUrls[languageCodeHL][study] = content;
     return content;
   },
 
@@ -81,6 +84,7 @@ export const languageActions = {
     }
     this.currentUrl = url;
   },
+ 
 
   setLessonNumber(study, lesson) {
     console.log(`setLessonNumber called with study=${study}, lesson=${lesson}`);
@@ -164,6 +168,23 @@ export const languageActions = {
     this.languageSelected = languageObject;
 
   },
+  updateLanguageCodeJF(newCodeJF) {
+    if (!this.languageSelected) {
+      console.warn('updateLanguageCodeJF: No languageSelected set.');
+      return;
+    }
+    if (!newCodeJF) {
+      console.warn('updateLanguageCodeJF: Invalid newCodeJF.');
+      return;
+    }
+
+    // Shallow clone the object and update only languageCodeJF
+    this.languageSelected = {
+      ...this.languageSelected,
+      languageCodeJF: newCodeJF
+    };
+  },
+
 
   updatePreviousPage(newPage) {
     if (!validateNonEmptyString(newPage)) {

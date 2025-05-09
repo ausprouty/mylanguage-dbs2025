@@ -1,5 +1,5 @@
 export const languageGetters = {
-  languageCodeHLSelected: (state) => state.languageSelected.isNaNlanguageCodeHL,
+  languageCodeHLSelected: (state) => state.languageSelected.languageCodeHL,
   languageCodeJFSelected: (state) => state.languageSelected.languageCodeJF,
   languageIdSelected: (state) => state.languageSelected.languageId,
   languageObjectSelected: (state) => state.languageSelected,

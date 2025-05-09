@@ -55,7 +55,7 @@ const handleLanguageChange = async (selectedLanguageId) => {
 
     locale.value = languageCodeHL;
     console.log('Language options is updating language selected');
-    languageStore.updateLanguageSelected(languageObject);
+    languageStore.updateLanguageObjectSelected(languageObject);
   }
 };
 

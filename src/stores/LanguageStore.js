@@ -6,7 +6,7 @@ import { languageActions } from './languageActions';
 export const useLanguageStore = defineStore("languageStore", {
   state: () => ({
     currentStudy: "dbs",
-    currentUrl: null,
+    currentPath: null,
     commonContent: {}, // cache: language -> study
     lessonContent: {}, // cache: language -> study -> lesson
     videoUrls: {}, // cache: language -> study
@@ -34,14 +34,23 @@ export const useLanguageStore = defineStore("languageStore", {
   getters: languageGetters,
   actions: languageActions,
   persist: {
-    paths: [
-      "currentStudy",
-      "lessonNumber",
-      "languageSelected",
-      "followingHimSegment",
-      "jVideoSegments",
-      "previousPage",
-      "languages",
-    ],
-  },
+    enabled: true,
+    strategies: [
+      {
+        key: 'languageStore', // optional; defaults to store ID
+        storage: localStorage,
+        paths: [
+          "currentPath",
+          "currentStudy",
+          "lessonNumber",
+          "languageSelected",
+          "followingHimSegment",
+          "jVideoSegments",
+          "previousPage",
+          "languages"
+        ],
+      }
+    ]
+  }
+
 });
