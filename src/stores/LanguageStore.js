@@ -7,9 +7,6 @@ export const useLanguageStore = defineStore("languageStore", {
   state: () => ({
     currentStudy: "dbs",
     currentPath: null,
-    commonContent: {}, // cache: language -> study
-    lessonContent: {}, // cache: language -> study -> lesson
-    videoUrls: {}, // cache: language -> study
     lessonNumber: {
       dbs: 1,
       lead: 1,
