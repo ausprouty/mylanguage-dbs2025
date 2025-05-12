@@ -13,12 +13,11 @@
         :content="commonContent.look_up"
         :sectionKey="sectionKeyUp"
         placeholder="Write your notes for Look Up here"
-
       />
       <BibleText
         :biblePassage="lessonContent.bibleBlock.passage"
         :passageReference="passageReference"
-        :translation = "lessonContent.bibleBlock.translation"
+        :translation="lessonContent.bibleBlock.translation"
       />
 
       <DbsQuestions
@@ -27,12 +26,17 @@
         placeholder="Write your notes for Look Forward here"
       />
     </section>
+    <q-btn
+      label="Mark as Complete"
+      color="primary"
+      @click="markLessonComplete"
+    />
   </div>
 </template>
 
 <script>
 import { ref, computed, watch, onMounted } from "vue";
-import { useLanguageStore } from "stores/LanguageStore";
+import { useContentStore } from "stores/ContentStore";
 import DbsQuestions from "src/components/DbsQuestions.vue";
 import BibleText from "src/components/BibleTextDisplayed.vue";
 
@@ -46,7 +50,7 @@ export default {
     commonContent: { type: Object, required: true },
   },
   setup(props) {
-    const languageStore = useLanguageStore();
+    const ContentStore = useContentStore();
     const lessonContent = ref(null);
     const passageReference = ref("No reference found");
 
@@ -62,7 +66,7 @@ export default {
     // ✅ Load lesson content
     const loadLessonContent = async () => {
       try {
-        lessonContent.value = await languageStore.loadLessonContent(
+        lessonContent.value = await ContentStore.loadLessonContent(
           props.languageCodeHL,
           props.study,
           props.lesson
@@ -77,7 +81,7 @@ export default {
     const updatePassageReference = () => {
       const reference =
         lessonContent.value?.bibleBlock.passage.referenceLocalLanguage || "";
-        passageReference.value = reference || "No reference found";
+      passageReference.value = reference || "No reference found";
     };
 
     // ✅ Watch for lesson OR language change
@@ -93,7 +97,6 @@ export default {
 
     // ✅ Watch for lessonContent changes to update passage reference
     watch(lessonContent, updatePassageReference);
-
 
     // ✅ Load content when the component mounts
     onMounted(() => {

@@ -25,6 +25,8 @@ export function openDatabase() {
       if (!db.objectStoreNames.contains('lessonContent')) db.createObjectStore('lessonContent');
       if (!db.objectStoreNames.contains('videoUrls')) db.createObjectStore('videoUrls');
       if (!db.objectStoreNames.contains('notes')) db.createObjectStore('notes');
+      if (!db.objectStoreNames.contains('completed_lessons')) db.createObjectStore('completed_lessons');
+
     };
   });
 }
@@ -88,3 +90,13 @@ export async function saveVideoUrlsToDB(study, lang, lesson, urls) {
   const key = `${study}-${lang}-Video-${lesson}`;
   return saveItem('videoUrls', key, urls);
 }
+// ----------------- Completed Lessons -----------------
+
+export async function getCompletedLessonsFromDB(study) {
+  return getItem('completed_lessons', study);
+}
+
+export async function saveCompletedLessonsToDB(study, lessonsArray) {
+  return saveItem('completed_lessons', study, lessonsArray);
+}
+

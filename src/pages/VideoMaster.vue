@@ -29,6 +29,12 @@
         :sectionKey="computedSectionKey"
       />
     </div>
+    <div>
+      <noteSection
+        :sectionKey="computedSectionKey"
+        placeholder="Your comments here"
+      />
+    </div>
   </q-page>
 </template>
 
@@ -37,6 +43,9 @@ import { ref, computed, watch, watchEffect, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useLanguageStore } from "stores/LanguageStore";
+import { useContentStore } from "stores/ContentStore";
+import { noteSection } from "src/components/NoteSection.vue";
+import { useBibleStore } from "stores/BibleStore";
 import { useCommonContent } from "src/composables/useCommonContent";
 
 import VideoPlayer from "src/components/Video/VideoPlayer.vue";
@@ -50,8 +59,9 @@ const route = useRoute();
 // Access the i18n instance
 const { t } = useI18n();
 
-// Access the language store
+// Access the stores
 const languageStore = useLanguageStore();
+const contentStore = useContentStore();
 
 // Props
 const props = defineProps({
@@ -73,11 +83,6 @@ if (route.params.languageCodeJF) {
   languageStore.setLanguageCodeJF(route.params.languageCodeJF);
 }
 
-
-
-
-
-
 // Initialize the composable
 const { commonContent, topics, loadCommonContent } = useCommonContent(
   currentStudy,
@@ -98,7 +103,7 @@ const videoUrls = ref([]);
 // ✅ Function to load video URLs
 const loadVideoUrls = async () => {
   try {
-    videoUrls.value = await languageStore.loadVideoUrls(
+    videoUrls.value = await useContentStore.loadVideoUrls(
       computedLanguageJF.value,
       currentStudy
     );

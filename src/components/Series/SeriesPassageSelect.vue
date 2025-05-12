@@ -3,19 +3,37 @@
     <q-select
       filled
       v-model="selectedValue"
-      :options="topics"
+      :options="markedTopics"
       option-label="label"
       option-value="value"
       @update:model-value="updateLessonNumber"
       label="Topic"
       class="select"
-    />
+    >
+      <template v-slot:option="scope">
+        <q-item v-bind="scope.itemProps">
+          <q-item-section>
+            {{ scope.opt.label }}
+            <q-icon
+              name="check_circle"
+              class="q-ml-sm"
+              color="green"
+              v-if="scope.opt.completed"
+            />
+          </q-item-section>
+        </q-item>
+      </template>
+    </q-select>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
-import { useLanguageStore } from "stores/LanguageStore";
+import { useContentStore } from "stores/ContentStore";
+import {
+  getCompletedLessonsFromDB,
+  saveCompletedLessonsToDB,
+} from "src/services/IndexedDBService";
 
 const props = defineProps({
   study: String,
@@ -25,13 +43,26 @@ const props = defineProps({
 
 const emit = defineEmits(["updateLesson"]); // ✅ Correctly define emit in Composition API
 
-const languageStore = useLanguageStore();
+const ContentStore = useContentStore();
 const selectedValue = ref({ label: "SELECT", value: 0 });
+const completedLessons = ref([]);
 
-onMounted(() => {
+
+
+onMounted(async () => {
+  // Load completed lessons from DB
+  completedLessons.value = (await getCompletedLessonsFromDB(props.study)) || [];
+
+  // Then update the select bar
   if (Array.isArray(props.topics) && props.topics.length > 0) {
     updateSelectBar(props.lesson);
   }
+});
+const markedTopics = computed(() => {
+  return props.topics.map((topic) => ({
+    ...topic,
+    completed: completedLessons.value.includes(topic.value),
+  }));
 });
 
 // Watch for changes in topics
@@ -46,15 +77,21 @@ watch(
 );
 
 // Watch for changes in the lesson prop
-watch(() => props.lesson, (newLesson) => {
-  updateSelectBar(newLesson);
-});
+watch(
+  () => props.lesson,
+  (newLesson) => {
+    updateSelectBar(newLesson);
+  }
+);
 
 const updateSelectBar = (lesson) => {
   if (Array.isArray(props.topics) && lesson > 0) {
     const matchingTopic = props.topics.find((topic) => topic.value === lesson);
     if (matchingTopic) {
-      selectedValue.value = { label: matchingTopic.label, value: matchingTopic.value };
+      selectedValue.value = {
+        label: matchingTopic.label,
+        value: matchingTopic.value,
+      };
     } else {
       resetSelectBar();
     }
@@ -70,7 +107,7 @@ const resetSelectBar = () => {
 const updateLessonNumber = () => {
   const studyKey = props.study || "dbs"; // ✅ Ensure "dbs" is used if no study is provided
 
-  languageStore.setLessonNumber(studyKey, selectedValue.value.value);
+  ContentStore.setLessonNumber(studyKey, selectedValue.value.value);
   emit("updateLesson", selectedValue.value.value);
 };
 </script>

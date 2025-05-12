@@ -1,3 +1,21 @@
+<script setup>
+  import { ref, onMounted } from "vue";
+  import LanguageOptions from "src/components/LanguageOptions.vue";
+  import ShareLink from "components/ShareLink.vue";
+  import { saveCompletedLessonsToDB } from "src/services/IndexedDBService";
+
+  const rightDrawerOpen = ref(false);
+
+  function toggleRightDrawer() {
+    rightDrawerOpen.value = !rightDrawerOpen.value;
+  }
+
+  // Test: ensure IndexedDB is created and working
+  onMounted(() => {
+    saveCompletedLessonsToDB("test-study", [1, 2, 3]);
+  });
+</script>
+
 <template>
   <q-layout view="lHh lpr lFf" class="max-width">
     <q-header elevated>
@@ -32,29 +50,6 @@
   </q-layout>
 </template>
 
-<script>
-import { defineComponent, ref } from "vue";
-import LanguageOptions from "src/components/LanguageOptions.vue";
-import ShareLink from "components/ShareLink.vue";
-
-export default defineComponent({
-  name: "MainLayout",
-  components: {
-    LanguageOptions,
-    ShareLink,
-  },
-  setup() {
-    const rightDrawerOpen = ref(false);
-
-    return {
-      rightDrawerOpen,
-      toggleRightDrawer() {
-        rightDrawerOpen.value = !rightDrawerOpen.value;
-      },
-    };
-  },
-});
-</script>
 <style>
 .toolbar-title {
   color: white;

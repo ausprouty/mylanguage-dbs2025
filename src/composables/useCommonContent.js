@@ -1,16 +1,16 @@
 import { ref } from 'vue';
-import { useLanguageStore } from 'stores/LanguageStore';
+import { useContentStore } from 'stores/ContentStore';
 
 export function useCommonContent(study, initialLanguageCodeHL) {
 
-  const languageStore = useLanguageStore();
+  const ContentStore = useContentStore();
   const commonContent = ref({}); // ✅ Default to an empty object
   const topics = ref([]);
 
   const loadCommonContent = async (languageCode = initialLanguageCodeHL) => {
     try {
 
-      const content = await languageStore.loadCommonContent(languageCode, study);
+      const content = await ContentStore.loadCommonContent(languageCode, study);
       commonContent.value = content || {}; // ✅ Ensure it never becomes null
       topics.value = content?.topic
         ? Object.entries(content.topic).map(([key, value]) => ({
