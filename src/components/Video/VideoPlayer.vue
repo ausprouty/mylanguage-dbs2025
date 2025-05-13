@@ -1,6 +1,4 @@
-<template>
-  <div class="arc-cont" v-html="videoIframe"></div>
-</template>
+
 
 <script>
 import { ref, computed, watch, toRefs } from "vue";
@@ -50,6 +48,9 @@ export default {
   },
 };
 </script>
+<template>
+  <div class="arc-cont" v-html="videoIframe"></div>
+</template>
 
 <style>
 .arc-cont {

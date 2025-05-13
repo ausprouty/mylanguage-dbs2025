@@ -1,12 +1,3 @@
-<template>
-  <div>
-    <DbsQuestions
-      :content="commonContent"
-      :sectionKey="sectionKey"
-      placeholder="Write your notes for this video here"
-    />
-  </div>
-</template>
 
 <script>
 import { watch, toRefs } from "vue";
@@ -33,3 +24,13 @@ export default {
   },
 };
 </script>
+<template>
+  <div>
+    <DbsQuestions
+      :content="commonContent"
+      :sectionKey="sectionKey"
+      placeholder="Write your notes for this video here"
+    />
+  </div>
+</template>
+

@@ -1,10 +1,4 @@
-<template>
-  <div class="container">
-    <h2>Reset Application Data</h2>
-    <p>This will clear all locally stored data and reset the application state.</p>
-    <q-btn color="red" @click="confirmClearData">Clear Data</q-btn>
-  </div>
-</template>
+
 
 <script setup>
 import { useLanguageStore } from 'stores/LanguageStore';
@@ -30,6 +24,13 @@ const clearData = () => {
   location.reload(); // Reload to apply changes
 };
 </script>
+<template>
+  <div class="container">
+    <h2>Reset Application Data</h2>
+    <p>This will clear all locally stored data and reset the application state.</p>
+    <q-btn color="red" @click="confirmClearData">Clear Data</q-btn>
+  </div>
+</template>
 
 <style scoped>
 .container {

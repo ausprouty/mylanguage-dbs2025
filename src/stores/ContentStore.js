@@ -1,9 +1,9 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 import {
   getCommonContent,
   getLessonContent,
   getJesusVideoUrls,
-} from "src/services/TranslationService";
+} from "../services/ContentService.js";
 
 import {
   validateLessonNumber,
@@ -12,11 +12,11 @@ import {
   validatePositiveInteger,
 } from "./validators";
 
-export const useContentStore = defineStore('ContentStore', {
+export const useContentStore = defineStore("ContentStore", {
   state: () => ({
-    commonContent: {},     // e.g., { 'life-eng00': 'common HTML' }
-    lessonContent: {},     // e.g., { 'life-eng00-lesson-1': 'lesson HTML' }
-    videoUrls: {}          // e.g., { 'life-eng00-lesson-1': ['url1', 'url2'] }
+    commonContent: {}, // e.g., { 'life-eng00': 'common HTML' }
+    lessonContent: {}, // e.g., { 'life-eng00-lesson-1': 'lesson HTML' }
+    videoUrls: {}, // e.g., { 'life-eng00-lesson-1': ['url1', 'url2'] }
   }),
 
   getters: {
@@ -33,10 +33,25 @@ export const useContentStore = defineStore('ContentStore', {
     getVideoUrls: (state) => (study, languageCodeHL, lesson) => {
       const key = `${study}-${languageCodeHL}-Lesson-${lesson}`;
       return state.videoUrls[key] || [];
-    }
+    },
   },
 
   actions: {
+    setCommonContent(study, languageCodeHL, data) {
+      const key = `${study}-${languageCodeHL}`;
+      this.commonContent[key] = data;
+    },
+
+    setLessonContent(study, languageCodeHL, lesson, data) {
+      const key = `${study}-${languageCodeHL}-Lesson-${lesson}`;
+      this.lessonContent[key] = data;
+    },
+
+    setVideoUrls(study, languageCodeHL, lesson, urls) {
+      const key = `${study}-${languageCodeHL}-Lesson-${lesson}`;
+      this.videoUrls[key] = urls;
+    },
+
     async loadCommonContent(languageCodeHL, study) {
       if (this.commonContent[languageCodeHL]?.[study]) {
         return this.commonContent[languageCodeHL][study];
@@ -50,9 +65,9 @@ export const useContentStore = defineStore('ContentStore', {
     },
 
     async loadLessonContent(languageCodeHL, study, lesson) {
-      console.log (languageCodeHL)
-      console.log (study)
-      console.log (lesson)
+      console.log(languageCodeHL);
+      console.log(study);
+      console.log(lesson);
       if (!this.lessonContent[languageCodeHL]) {
         this.lessonContent[languageCodeHL] = {};
       }
@@ -73,7 +88,11 @@ export const useContentStore = defineStore('ContentStore', {
       }
 
       try {
-        const content = await getLessonContent(languageCodeHL, study, validatedLesson);
+        const content = await getLessonContent(
+          languageCodeHL,
+          study,
+          validatedLesson
+        );
         this.lessonContent[languageCodeHL][study][validatedLesson] = content;
         return content;
       } catch (error) {
@@ -97,8 +116,8 @@ export const useContentStore = defineStore('ContentStore', {
       this.commonContent = {};
       this.lessonContent = {};
       this.videoUrls = {};
-    }
+    },
   },
 
-  persist: false // explicitly disable persistence
+  persist: false, // explicitly disable persistence
 });

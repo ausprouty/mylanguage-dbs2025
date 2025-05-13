@@ -1,36 +1,3 @@
-<template>
-  <q-page padding>
-    <h2>{{ t(`${currentStudy}.title`) }}</h2>
-    <p>{{ t(`${currentStudy}.para.1`) }}</p>
-    <p>{{ t(`${currentStudy}.para.2`) }}</p>
-    <p>{{ t(`${currentStudy}.para.3`) }}</p>
-
-    <div>
-      <SeriesPassageSelect
-        :study="route.params.study"
-        :topics="topics"
-        :lesson="computedLessonNumber"
-        @updateLesson="updateLesson"
-      />
-    </div>
-    <div>
-      <SeriesSegmentNavigator
-        :study="route.params.study"
-        :lesson="computedLessonNumber"
-        @updateLesson="updateLesson"
-      />
-    </div>
-
-    <hr />
-
-    <SeriesLessonContent
-      :languageCodeHL="computedLanguage"
-      :study="route.params.study"
-      :lesson="computedLessonNumber"
-      :commonContent="commonContent"
-    />
-  </q-page>
-</template>
 
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
@@ -93,3 +60,37 @@ const updateLesson = (nextLessonNumber) => {
   languageStore.setLessonNumber(currentStudy, nextLessonNumber);
 };
 </script>
+<template>
+  <q-page padding>
+    <h2>{{ t(`${currentStudy}.title`) }}</h2>
+    <p>{{ t(`${currentStudy}.para.1`) }}</p>
+    <p>{{ t(`${currentStudy}.para.2`) }}</p>
+    <p>{{ t(`${currentStudy}.para.3`) }}</p>
+
+    <div>
+      <SeriesPassageSelect
+        :study="route.params.study"
+        :topics="topics"
+        :lesson="computedLessonNumber"
+        @updateLesson="updateLesson"
+      />
+    </div>
+    <div>
+      <SeriesSegmentNavigator
+        :study="route.params.study"
+        :lesson="computedLessonNumber"
+        @updateLesson="updateLesson"
+      />
+    </div>
+
+    <hr />
+
+    <SeriesLessonContent
+      :languageCodeHL="computedLanguage"
+      :study="route.params.study"
+      :lesson="computedLessonNumber"
+      :commonContent="commonContent"
+    />
+  </q-page>
+</template>
+

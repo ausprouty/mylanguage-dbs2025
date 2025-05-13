@@ -99,4 +99,33 @@ export async function getCompletedLessonsFromDB(study) {
 export async function saveCompletedLessonsToDB(study, lessonsArray) {
   return saveItem('completed_lessons', study, lessonsArray);
 }
+// ----------------- Notes -----------------
+
+// ----------------- Notes -----------------
+
+function makeNoteKey(study, lesson, position) {
+  return `notes-${study}-${lesson}-${position}`;
+}
+
+export async function getNoteFromDB(study, lesson, position) {
+  const key = makeNoteKey(study, lesson, position);
+  return getItem('notes', key);
+}
+
+export async function saveNoteToDB(study, lesson, position, content) {
+  const key = makeNoteKey(study, lesson, position);
+  return saveItem('notes', key, content);
+}
+
+export async function deleteNoteFromDB(study, lesson, position) {
+  const db = await openDatabase();
+  const key = makeNoteKey(study, lesson, position);
+  const tx = db.transaction('notes', 'readwrite');
+  tx.objectStore('notes').delete(key);
+  return new Promise((resolve, reject) => {
+    tx.oncomplete = () => resolve(true);
+    tx.onerror = (e) => reject(e);
+  });
+}
+
 

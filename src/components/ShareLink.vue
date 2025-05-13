@@ -1,40 +1,3 @@
-<template>
-  <meta property="og:title" content="Discovering Spiritual Community" />
-  <meta
-    property="og:description"
-    content="Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you."
-  />
-  <meta
-    property="og:image"
-    content="https://myfriends.network/sites/myfriends/images/standard/MyFriends-App-Facebook.jpg"
-  />
-  <meta property="og:url" content="https://dbs.mylanguage.net.au" />
-  <meta property="og:type" content="website" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@PtCAus" />
-  <meta name="twitter:title" content="Discovering Spiritual Community" />
-  <meta
-    name="twitter:description"
-    content="Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you."
-  />
-  <meta
-    name="twitter:image"
-    content="https://myfriends.network/sites/myfriends/images/standard/MyFriends-App-Twitter.jpg"
-  />
-
-  <div class="share-container">
-    <q-btn class="shareLink" flat dense round @click="shareUrl" icon="share" />
-    <q-btn
-      class="copyLink"
-      flat
-      dense
-      round
-      @click="copyToClipboard(getUrlLink.value)"
-      icon="content_copy"
-    />
-  </div>
-</template>
 
 <script>
 import { computed } from "vue";
@@ -149,6 +112,44 @@ export default {
   },
 };
 </script>
+<template>
+  <meta property="og:title" content="Discovering Spiritual Community" />
+  <meta
+    property="og:description"
+    content="Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you."
+  />
+  <meta
+    property="og:image"
+    content="https://myfriends.network/sites/myfriends/images/standard/MyFriends-App-Facebook.jpg"
+  />
+  <meta property="og:url" content="https://dbs.mylanguage.net.au" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@PtCAus" />
+  <meta name="twitter:title" content="Discovering Spiritual Community" />
+  <meta
+    name="twitter:description"
+    content="Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you."
+  />
+  <meta
+    name="twitter:image"
+    content="https://myfriends.network/sites/myfriends/images/standard/MyFriends-App-Twitter.jpg"
+  />
+
+  <div class="share-container">
+    <q-btn class="shareLink" flat dense round @click="shareUrl" icon="share" />
+    <q-btn
+      class="copyLink"
+      flat
+      dense
+      round
+      @click="copyToClipboard(getUrlLink.value)"
+      icon="content_copy"
+    />
+  </div>
+</template>
+
 
 <style scoped>
 .share-container {

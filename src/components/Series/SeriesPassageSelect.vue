@@ -1,34 +1,6 @@
-<template>
-  <div>
-    <q-select
-      filled
-      v-model="selectedValue"
-      :options="markedTopics"
-      option-label="label"
-      option-value="value"
-      @update:model-value="updateLessonNumber"
-      label="Topic"
-      class="select"
-    >
-      <template v-slot:option="scope">
-        <q-item v-bind="scope.itemProps">
-          <q-item-section>
-            {{ scope.opt.label }}
-            <q-icon
-              name="check_circle"
-              class="q-ml-sm"
-              color="green"
-              v-if="scope.opt.completed"
-            />
-          </q-item-section>
-        </q-item>
-      </template>
-    </q-select>
-  </div>
-</template>
 
 <script setup>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, computed } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import {
   getCompletedLessonsFromDB,
@@ -111,3 +83,32 @@ const updateLessonNumber = () => {
   emit("updateLesson", selectedValue.value.value);
 };
 </script>
+<template>
+  <div>
+    <q-select
+      filled
+      v-model="selectedValue"
+      :options="markedTopics"
+      option-label="label"
+      option-value="value"
+      @update:model-value="updateLessonNumber"
+      label="Topic"
+      class="select"
+    >
+      <template v-slot:option="scope">
+        <q-item v-bind="scope.itemProps">
+          <q-item-section>
+            {{ scope.opt.label }}
+            <q-icon
+              name="check_circle"
+              class="q-ml-sm"
+              color="green"
+              v-if="scope.opt.completed"
+            />
+          </q-item-section>
+        </q-item>
+      </template>
+    </q-select>
+  </div>
+</template>
+

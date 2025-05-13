@@ -1,15 +1,3 @@
-<template>
-  <section v-if="content">
-    <h2 class="ltr dbs">{{ content.title }}</h2>
-    <ol class="ltr dbs">
-      <li v-for="(item, index) in content.question" :key="'question-' + index">
-        {{ item }}
-      </li>
-    </ol>
-
-    <NoteSection :sectionKey="sectionKey" :placeholder="placeholder" />
-  </section>
-</template>
 
 <script>
 import NoteSection from "src/components/NoteSection.vue";
@@ -26,3 +14,16 @@ export default {
   }
 };
 </script>
+<template>
+  <section v-if="content">
+    <h2 class="ltr dbs">{{ content.title }}</h2>
+    <ol class="ltr dbs">
+      <li v-for="(item, index) in content.question" :key="'question-' + index">
+        {{ item }}
+      </li>
+    </ol>
+
+    <NoteSection :sectionKey="sectionKey" :placeholder="placeholder" />
+  </section>
+</template>
+

@@ -1,12 +1,4 @@
-<template>
-  <textarea
-    ref="textareaRef"
-    class="dbs-notes notes"
-    v-model="note"
-    :placeholder="placeholder"
-    @input="autoResize"
-  ></textarea>
-</template>
+
 
 <script>
 import { ref, watch, onMounted, nextTick } from "vue";
@@ -57,6 +49,15 @@ export default {
   }
 };
 </script>
+<template>
+  <textarea
+    ref="textareaRef"
+    class="dbs-notes notes"
+    v-model="note"
+    :placeholder="placeholder"
+    @input="autoResize"
+  ></textarea>
+</template>
 
 <style scoped>
 textarea {

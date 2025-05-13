@@ -1,5 +1,5 @@
 import { currentApi } from "boot/axios";
-import { useContentStore } from '/stores/ContentStore';
+import { useContentStore } from 'stores/ContentStore';
 import {
   getCommonContentFromDB,
   saveCommonContentToDB,

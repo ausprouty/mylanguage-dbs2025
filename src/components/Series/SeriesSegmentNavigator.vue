@@ -1,26 +1,3 @@
-<template>
-  <div class="lesson-navigation">
-    <!-- Previous Button -->
-    <div
-      v-if="currentLesson > minLesson"
-      class="nav-button prev"
-      @click="showPreviousLesson"
-    >
-      <q-btn flat dense round icon="arrow_back" aria-label="Previous" />
-      <span>Previous</span>
-    </div>
-
-    <!-- Next Button -->
-    <div
-      v-if="currentLesson < maxLesson"
-      class="nav-button next"
-      @click="showNextLesson"
-    >
-      <span>Next</span>
-      <q-btn flat dense round icon="arrow_forward" aria-label="Next" />
-    </div>
-  </div>
-</template>
 
 <script setup>
 import { computed, ref } from "vue";
@@ -59,6 +36,30 @@ const showPreviousLesson = () => {
   emit("updateLesson", previousLesson);
 };
 </script>
+<template>
+  <div class="lesson-navigation">
+    <!-- Previous Button -->
+    <div
+      v-if="currentLesson > minLesson"
+      class="nav-button prev"
+      @click="showPreviousLesson"
+    >
+      <q-btn flat dense round icon="arrow_back" aria-label="Previous" />
+      <span>Previous</span>
+    </div>
+
+    <!-- Next Button -->
+    <div
+      v-if="currentLesson < maxLesson"
+      class="nav-button next"
+      @click="showNextLesson"
+    >
+      <span>Next</span>
+      <q-btn flat dense round icon="arrow_forward" aria-label="Next" />
+    </div>
+  </div>
+</template>
+
 
 <style scoped>
 /* Parent container to position elements on opposite sides */

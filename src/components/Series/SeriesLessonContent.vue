@@ -1,38 +1,3 @@
-<template>
-  <div v-if="lessonContent">
-    <h1 class="title dbs">{{ lessonContent.title }}</h1>
-
-    <section v-if="commonContent">
-      <DbsQuestions
-        :content="commonContent.look_back"
-        :sectionKey="sectionKeyBack"
-        placeholder="Write your notes for Look Back here"
-      />
-
-      <DbsQuestions
-        :content="commonContent.look_up"
-        :sectionKey="sectionKeyUp"
-        placeholder="Write your notes for Look Up here"
-      />
-      <BibleText
-        :biblePassage="lessonContent.bibleBlock.passage"
-        :passageReference="passageReference"
-        :translation="lessonContent.bibleBlock.translation"
-      />
-
-      <DbsQuestions
-        :content="commonContent.look_forward"
-        :sectionKey="sectionKeyForward"
-        placeholder="Write your notes for Look Forward here"
-      />
-    </section>
-    <q-btn
-      label="Mark as Complete"
-      color="primary"
-      @click="markLessonComplete"
-    />
-  </div>
-</template>
 
 <script>
 import { ref, computed, watch, onMounted } from "vue";
@@ -113,3 +78,39 @@ export default {
   },
 };
 </script>
+<template>
+  <div v-if="lessonContent">
+    <h1 class="title dbs">{{ lessonContent.title }}</h1>
+
+    <section v-if="commonContent">
+      <DbsQuestions
+        :content="commonContent.look_back"
+        :sectionKey="sectionKeyBack"
+        placeholder="Write your notes for Look Back here"
+      />
+
+      <DbsQuestions
+        :content="commonContent.look_up"
+        :sectionKey="sectionKeyUp"
+        placeholder="Write your notes for Look Up here"
+      />
+      <BibleText
+        :biblePassage="lessonContent.bibleBlock.passage"
+        :passageReference="passageReference"
+        :translation="lessonContent.bibleBlock.translation"
+      />
+
+      <DbsQuestions
+        :content="commonContent.look_forward"
+        :sectionKey="sectionKeyForward"
+        placeholder="Write your notes for Look Forward here"
+      />
+    </section>
+    <q-btn
+      label="Mark as Complete"
+      color="primary"
+      @click="markLessonComplete"
+    />
+  </div>
+</template>
+

@@ -1,3 +1,14 @@
+
+<script>
+export default {
+  name: "BiblePassage",
+  props: {
+    passageReference: { type: String, default: "No reference found" },
+    biblePassage: { type: Object, required: true },
+    translation: { type: Object, required: true },
+  },
+};
+</script>
 <template>
   <div class="bible-container">
     <div>
@@ -12,16 +23,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "BiblePassage",
-  props: {
-    passageReference: { type: String, default: "No reference found" },
-    biblePassage: { type: Object, required: true },
-    translation: { type: Object, required: true },
-  },
-};
-</script>
 
 <style scoped>
 .bible-container {

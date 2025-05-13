@@ -1,13 +1,4 @@
-<template>
-  <h4>Select Language</h4>
-  <q-option-group
-    v-model="selectedLanguage"
-    type="radio"
-    color="primary"
-    :options="languageOptions"
-    @update:model-value="handleLanguageChange"
-  />
-</template>
+
 
 <script setup>
 import { ref, computed, watch } from 'vue';
@@ -59,4 +50,13 @@ const handleLanguageChange = async (selectedLanguageId) => {
   }
 };
 
-</script>
+</script><template>
+  <h4>Select Language</h4>
+  <q-option-group
+    v-model="selectedLanguage"
+    type="radio"
+    color="primary"
+    :options="languageOptions"
+    @update:model-value="handleLanguageChange"
+  />
+</template>

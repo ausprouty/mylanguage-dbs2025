@@ -1,42 +1,3 @@
-<template>
-  <q-page padding>
-    <h2>{{ t("jVideo.title") }}</h2>
-    <p>{{ t("jVideo.para.1") }}</p>
-    <p>{{ t("jVideo.para.2") }}</p>
-    <div>
-      <SeriesPassageSelect
-        :study="currentStudy"
-        :topics="topics"
-        :lesson="computedLessonNumber"
-        @updateLesson="updateLesson"
-      />
-    </div>
-    <div>
-      <SeriesSegmentNavigator
-        :study="currentStudy"
-        :lesson="computedLessonNumber"
-        @updateLesson="updateLesson"
-      />
-    </div>
-    <div>
-      <VideoPlayer :videoUrls="videoUrls" :lesson="computedLessonNumber" />
-    </div>
-    <div>
-      <VideoQuestions
-        :commonContent="commonContent"
-        :languageCodeHL="computedLanguageHL"
-        :lesson="computedLessonNumber"
-        :sectionKey="computedSectionKey"
-      />
-    </div>
-    <div>
-      <noteSection
-        :sectionKey="computedSectionKey"
-        placeholder="Your comments here"
-      />
-    </div>
-  </q-page>
-</template>
 
 <script setup>
 import { ref, computed, watch, watchEffect, onMounted } from "vue";
@@ -136,6 +97,46 @@ const updateLesson = (nextLessonNumber) => {
   console.log("New computedSectionKey:", computedSectionKey.value); // Check if it updates
 };
 </script>
+<template>
+  <q-page padding>
+    <h2>{{ t("jVideo.title") }}</h2>
+    <p>{{ t("jVideo.para.1") }}</p>
+    <p>{{ t("jVideo.para.2") }}</p>
+    <div>
+      <SeriesPassageSelect
+        :study="currentStudy"
+        :topics="topics"
+        :lesson="computedLessonNumber"
+        @updateLesson="updateLesson"
+      />
+    </div>
+    <div>
+      <SeriesSegmentNavigator
+        :study="currentStudy"
+        :lesson="computedLessonNumber"
+        @updateLesson="updateLesson"
+      />
+    </div>
+    <div>
+      <VideoPlayer :videoUrls="videoUrls" :lesson="computedLessonNumber" />
+    </div>
+    <div>
+      <VideoQuestions
+        :commonContent="commonContent"
+        :languageCodeHL="computedLanguageHL"
+        :lesson="computedLessonNumber"
+        :sectionKey="computedSectionKey"
+      />
+    </div>
+    <div>
+      <noteSection
+        :sectionKey="computedSectionKey"
+        placeholder="Your comments here"
+      />
+    </div>
+  </q-page>
+</template>
+
 
 <style>
 .q-page {
