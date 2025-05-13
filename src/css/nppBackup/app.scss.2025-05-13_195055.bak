@@ -1,5 +1,5 @@
-@use "@/css/quasar.variables.scss" as *;
 @use "sass:color";
+@use "@/css/quasar.variables.scss";
 
 
 body {
