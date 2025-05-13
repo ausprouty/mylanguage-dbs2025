@@ -8,7 +8,7 @@ export default {
     NoteSection
   },
   props: {
-    content: { type: Object, required: true },
+    content: { type: Object, default: () => ({})}, // safe fallback
     sectionKey: { type: String, required: true }, // e.g. "life-1-back"
     placeholder: { type: String, default: "Write your notes here" }
   }

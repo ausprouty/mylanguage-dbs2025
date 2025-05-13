@@ -4,6 +4,10 @@ import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import DbsQuestions from "src/components/DbsQuestions.vue";
 import BibleText from "src/components/BibleTextDisplayed.vue";
+import {
+  getCompletedLessonsFromDB,
+  saveCompletedLessonsToDB,
+} from "src/services/IndexedDBService";
 
 export default {
   name: "SeriesLessonContent",
@@ -41,6 +45,29 @@ export default {
         console.error("Error loading lesson content:", error);
       }
     };
+    // ✅ Mark lesson as complete
+    // This function is called when the user clicks the "Mark as Complete" button
+    // It updates the completed lessons in the IndexedDB
+    // and logs the result to the console
+
+    const markLessonComplete = async () => {
+      const { study, lesson } = props;
+
+      try {
+        const completed = (await getCompletedLessonsFromDB(study)) || [];
+
+        if (!completed.includes(lesson)) {
+          completed.push(lesson);
+          await saveCompletedLessonsToDB(study, completed);
+          console.log(`✅ Marked lesson ${lesson} as complete`);
+        } else {
+          console.log(`ℹ️ Lesson ${lesson} already marked as complete`);
+        }
+      } catch (error) {
+        console.error("❌ Failed to mark lesson complete:", error);
+      }
+    };
+
 
     // ✅ Update passage reference when lesson content changes
     const updatePassageReference = () => {
@@ -70,6 +97,7 @@ export default {
 
     return {
       lessonContent,
+      markLessonComplete,
       passageReference,
       sectionKeyBack,
       sectionKeyUp,
@@ -84,13 +112,13 @@ export default {
 
     <section v-if="commonContent">
       <DbsQuestions
-        :content="commonContent.look_back"
+        :content="commonContent?.look_back || {}"
         :sectionKey="sectionKeyBack"
         placeholder="Write your notes for Look Back here"
       />
 
       <DbsQuestions
-        :content="commonContent.look_up"
+        :content="commonContent?.look_up || {}"
         :sectionKey="sectionKeyUp"
         placeholder="Write your notes for Look Up here"
       />
@@ -101,7 +129,7 @@ export default {
       />
 
       <DbsQuestions
-        :content="commonContent.look_forward"
+        :content="commonContent?.look_up || {}"
         :sectionKey="sectionKeyForward"
         placeholder="Write your notes for Look Forward here"
       />

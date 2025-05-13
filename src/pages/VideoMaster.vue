@@ -6,7 +6,6 @@ import { useI18n } from "vue-i18n";
 import { useLanguageStore } from "stores/LanguageStore";
 import { useContentStore } from "stores/ContentStore";
 import { noteSection } from "src/components/NoteSection.vue";
-import { useBibleStore } from "stores/BibleStore";
 import { useCommonContent } from "src/composables/useCommonContent";
 
 import VideoPlayer from "src/components/Video/VideoPlayer.vue";

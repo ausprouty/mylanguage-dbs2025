@@ -19,6 +19,7 @@ console.log("languageCodeHLSelected:", languageStore.languageCodeHLSelected);
 
 // Function to handle image click and navigate to the specified route
 const handleImageClick = (to) => {
+  console.log("Image clicked, navigating to:", to);
   router.push(to);
 };
 

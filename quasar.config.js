@@ -9,7 +9,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require("quasar/wrappers");
-const path = require('node:path')
+const path = require("node:path");
 
 //https://quasar.dev/quasar-cli-webpack/handling-process-env#adding-to-process-env
 module.exports = configure(function (ctx) {
@@ -17,8 +17,8 @@ module.exports = configure(function (ctx) {
     vite: {
       test: {
         globals: true,
-        environment: 'jsdom'
-      }
+        environment: "jsdom",
+      },
     },
     eslint: {
       // fix: true,
@@ -35,7 +35,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
-    boot: ["axios", 'localStorage', 'i18n', 'language-init'],
+    boot: ["axios", "localStorage", "i18n", "language-init"],
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
 
@@ -62,26 +62,41 @@ module.exports = configure(function (ctx) {
         browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
         node: "node16",
       },
-      chainWebpack: chain => {
+      chainWebpack: (chain) => {
         chain.module
-          .rule('i18n-resource')
-            .test(/\.(json5?|ya?ml)$/)
-              .include.add(path.resolve(__dirname, './src/i18n/languages'))
-              .end()
-            .type('javascript/auto')
-            .use('i18n-resource')
-              .loader('@intlify/vue-i18n-loader')
+          .rule("i18n-resource")
+          .test(/\.(json5?|ya?ml)$/)
+          .include.add(path.resolve(__dirname, "./src/i18n/languages"))
+          .end()
+          .type("javascript/auto")
+          .use("i18n-resource")
+          .loader("@intlify/vue-i18n-loader");
         chain.module
-          .rule('i18n')
-            .resourceQuery(/blockType=i18n/)
-            .type('javascript/auto')
-            .use('i18n')
-              .loader('@intlify/vue-i18n-loader');
+          .rule("i18n")
+          .resourceQuery(/blockType=i18n/)
+          .type("javascript/auto")
+          .use("i18n")
+          .loader("@intlify/vue-i18n-loader");
       },
       extendViteConf(viteConf) {
         viteConf.define = {
           ...viteConf.define,
-          __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false, // Set to true if detailed warnings are needed in production
+          __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+        };
+
+        viteConf.resolve = {
+          alias: {
+            ...(viteConf.resolve?.alias || {}),
+            "@": path.resolve(__dirname, "./src"),// Vite-style alias
+          },
+        };
+
+        viteConf.css = {
+          preprocessorOptions: {
+            scss: {
+              additionalData: `@import "@/css/quasar.variables.scss";`,
+            },
+          },
         };
       },
       env: {
@@ -99,7 +114,7 @@ module.exports = configure(function (ctx) {
       // vueDevtools,
       // vueOptionsAPI: false,
 
-       rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
+      rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
       // publicPath: '/',
       // analyze: true,
@@ -121,9 +136,9 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
       proxy: {
-        '/api_mylanguage': {
-          target: 'http://127.0.0.1:5559',
-          changeOrigin: true
+        "/api_mylanguage": {
+          target: "http://127.0.0.1:5559",
+          changeOrigin: true,
         },
       },
       open: true, // opens browser window automatically
@@ -186,52 +201,55 @@ module.exports = configure(function (ctx) {
 
     // https://v2.quasar.dev/quasar-cli/developing-pwa/configuring-pwa
     // Disable PWA when not building for production
-    pwa:  process.env.NODE_ENV === 'production' ? {
-      workboxMode: "generateSW", // or 'injectManifest'
-      injectPwaMetaTags: true,
-      swFilename: "sw.js",
-      manifestFilename: "manifest.json",
-      useCredentialsForManifestTag: false,
-      manifest: {  // <-- Add this section
-        name: "Spiritual Community",
-        short_name: "Discover Community",  // <-- Define short_name here
-        description: "Discover Spiritual Community",
-        display: "standalone",
-        orientation: "portrait",
-        background_color: "#ffffff",
-        theme_color: "#3e81ef",
-        start_url: "/",  // <-- Ensure correct start_url
-        scope: "/",
-        icons: [
-          {
-            src: "icons/icon-128x128.png",
-            sizes: "128x128",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-256x256.png",
-            sizes: "256x256",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-384x384.png",
-            sizes: "384x384",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
+    pwa:
+      process.env.NODE_ENV === "production"
+        ? {
+            workboxMode: "generateSW", // or 'injectManifest'
+            injectPwaMetaTags: true,
+            swFilename: "sw.js",
+            manifestFilename: "manifest.json",
+            useCredentialsForManifestTag: false,
+            manifest: {
+              // <-- Add this section
+              name: "Spiritual Community",
+              short_name: "Discover Community", // <-- Define short_name here
+              description: "Discover Spiritual Community",
+              display: "standalone",
+              orientation: "portrait",
+              background_color: "#ffffff",
+              theme_color: "#3e81ef",
+              start_url: "/", // <-- Ensure correct start_url
+              scope: "/",
+              icons: [
+                {
+                  src: "icons/icon-128x128.png",
+                  sizes: "128x128",
+                  type: "image/png",
+                },
+                {
+                  src: "icons/icon-192x192.png",
+                  sizes: "192x192",
+                  type: "image/png",
+                },
+                {
+                  src: "icons/icon-256x256.png",
+                  sizes: "256x256",
+                  type: "image/png",
+                },
+                {
+                  src: "icons/icon-384x384.png",
+                  sizes: "384x384",
+                  type: "image/png",
+                },
+                {
+                  src: "icons/icon-512x512.png",
+                  sizes: "512x512",
+                  type: "image/png",
+                },
+              ],
+            },
           }
-        ]
-      }
-    } :false,
-
+        : false,
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {

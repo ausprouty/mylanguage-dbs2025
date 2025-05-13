@@ -1,7 +1,7 @@
-
 <script setup>
 import { ref, onMounted, watch, computed } from "vue";
 import { useContentStore } from "stores/ContentStore";
+import { useLanguageStore } from "stores/LanguageStore";
 import {
   getCompletedLessonsFromDB,
   saveCompletedLessonsToDB,
@@ -16,10 +16,9 @@ const props = defineProps({
 const emit = defineEmits(["updateLesson"]); // ✅ Correctly define emit in Composition API
 
 const ContentStore = useContentStore();
+const LanguageStore = useLanguageStore();
 const selectedValue = ref({ label: "SELECT", value: 0 });
 const completedLessons = ref([]);
-
-
 
 onMounted(async () => {
   // Load completed lessons from DB
@@ -79,7 +78,7 @@ const resetSelectBar = () => {
 const updateLessonNumber = () => {
   const studyKey = props.study || "dbs"; // ✅ Ensure "dbs" is used if no study is provided
 
-  ContentStore.setLessonNumber(studyKey, selectedValue.value.value);
+  LanguageStore.setLessonNumber(studyKey, selectedValue.value.value);
   emit("updateLesson", selectedValue.value.value);
 };
 </script>
@@ -96,15 +95,22 @@ const updateLessonNumber = () => {
       class="select"
     >
       <template v-slot:option="scope">
-        <q-item v-bind="scope.itemProps">
+        <q-item
+          v-bind="scope.itemProps"
+          :class="{ 'completed-option': scope.opt.completed }"
+        >
           <q-item-section>
-            {{ scope.opt.label }}
-            <q-icon
-              name="check_circle"
-              class="q-ml-sm"
-              color="green"
-              v-if="scope.opt.completed"
-            />
+            <div class="row items-center no-wrap">
+              <div class="text-body1">{{ scope.opt.label }}</div>
+              <div v-if="scope.opt.completed">
+                <q-icon
+                  name="check_circle"
+                  color="green"
+                  size="sm"
+                  class="q-ml-xs"
+                />
+              </div>
+            </div>
           </q-item-section>
         </q-item>
       </template>
@@ -112,3 +118,11 @@ const updateLessonNumber = () => {
   </div>
 </template>
 
+<style lang="scss" scoped>
+@import "@/css/quasar.variables.scss"; // adjust path if needed
+
+.completed-option {
+  background-color: $gold-highlight;
+  color: $minor2;
+}
+</style>

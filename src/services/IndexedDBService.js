@@ -99,7 +99,7 @@ export async function getCompletedLessonsFromDB(study) {
 export async function saveCompletedLessonsToDB(study, lessonsArray) {
   return saveItem('completed_lessons', study, lessonsArray);
 }
-// ----------------- Notes -----------------
+
 
 // ----------------- Notes -----------------
 

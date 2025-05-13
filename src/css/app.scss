@@ -1,9 +1,10 @@
+@use "sass:color";
+@import "@/css/quasar.variables.scss";
 
-/* General Styles */
+
 body {
-  background-color: $neutral;
-  background-color:$dark-page;
-  color: $dark; // White text for readability
+  background-color: $dark-page;
+  color: $dark;
 }
 
 /* Bible Reference and Text */
@@ -20,29 +21,29 @@ body {
   border: 1px solid $secondary;
 }
 
-/* Margins and Gutter Styles */
+/* Margins and Gutters */
 .q-gutter-md,
 .q-mr-md,
 .q-ml-md {
   margin-top: 10px;
+  margin-left: 0;
+  margin-right: 0;
   background-color: $warning;
-  margin-left: 0px;
-  margin-right: 0px;
 }
 
 .q-gutter-y-md,
 .q-gutter-md {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .q-gutter-y-md > *,
 .q-gutter-md > * {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 /* DBS Container */
 div.dbs {
-  background-color: $neutral;
+  background-color: $gold-highlight;
   max-width: 800px;
   margin: auto;
   padding: 10px;
@@ -56,16 +57,42 @@ table {
   border: 1px solid $warning;
 }
 
-td {
-  width: 50%;
+table.dbs {
+  border-collapse: collapse;
+  border: none;
+}
+
+td,
+th {
   vertical-align: top;
   padding: 10px;
+}
+
+td {
+  width: 50%;
   border-bottom: 1px solid $secondary;
+}
+
+td.dbs,
+th.dbs {
+  border: none;
+}
+
+td.rtl {
+  direction: rtl;
+}
+
+.ltr.dbs.link {
+  text-align: center;
 }
 
 /* List Items */
 li {
   padding-top: 10px;
+}
+
+li.dbs {
+  font-size: 1rem;
 }
 
 /* Titles and Headers */
@@ -92,34 +119,8 @@ h3.dbs {
 }
 
 h4.dbs {
-  margin-block-start: 0em;
-  margin-block-end: 0em;
+  margin-block: 0;
   font-size: 1em;
-}
-
-/* Special Table Styles */
-table.dbs {
-  border-collapse: collapse;
-  border: none;
-}
-
-td.dbs,
-th.dbs {
-  border: none;
-}
-
-td.rtl {
-  direction: rtl;
-}
-
-.ltr.dbs.link {
-  text-align: center;
-}
-
-/* Footer */
-p.copyright {
-  text-align: center;
-  color: $shadow;
 }
 
 /* Bible Container */
@@ -132,14 +133,6 @@ p.copyright {
   border-radius: 5px;
 }
 
-div.dbs {
-  background-color: $gold-highlight;
-}
-
-li.dbs {
-  font-size: 1rem;
-}
-
 div.bible-text {
   color: $minor2;
   font-weight: 400;
@@ -148,6 +141,12 @@ div.bible-text {
 
 .bible-text:first-child {
   margin-right: 20px;
+}
+
+/* Footer */
+p.copyright {
+  text-align: center;
+  color: $shadow;
 }
 
 /* Hover Effects */
@@ -165,7 +164,7 @@ td[clickable] {
 
 td[clickable] img.menu_picture:hover {
   transform: scale(1.05);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -199,7 +198,7 @@ td[clickable]:active::after {
   font-size: 14px;
 }
 
-// Readmore Button
+/* Read More Button */
 .readmore-button {
   display: inline-block;
   padding: 8px 15px;
@@ -213,31 +212,29 @@ td[clickable]:active::after {
 }
 
 .readmore-button:hover {
-  background-color: darken($accent, 10%);
+  background-color: color.adjust($accent, $lightness: -10%);
 }
 
-/* Styles for rounded navigation buttons */
+/* Navigation Buttons */
 .nav-button {
   display: flex;
   align-items: center;
-  background-color:  $accent; /* background */
+  background-color: $accent;
   color: white;
-  padding: 5px 15px; /* Spacing inside the button */
-  border-radius: 50px; /* Makes it rounded */
+  padding: 5px 15px;
+  border-radius: 50px;
   font-size: 1.2em;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-/* Hover effect (background changes when hovering anywhere inside the button) */
 .nav-button:hover {
-  background-color: darken($accent, 10%); /* Darken on hover */
+  background-color: color.adjust($accent, $lightness: -10%);
   transform: scale(1.05);
 }
 
-/* Active effect (when button is pressed) */
 .nav-button.active {
-  background-color:$success-highlight; /* Even darker red when clicked */
+  background-color: $success-highlight;
 }
