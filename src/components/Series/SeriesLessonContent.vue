@@ -127,7 +127,7 @@ export default {
       />
 
       <DbsQuestions
-        :content="commonContent?.look_up || {}"
+        :content="commonContent?.look_forward || {}"
         :sectionKey="sectionKeyForward"
         placeholder="Write your notes for Look Forward here"
       />
