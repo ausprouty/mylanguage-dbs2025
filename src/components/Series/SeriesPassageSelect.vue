@@ -1,96 +1,52 @@
 <script setup>
-import { ref, onMounted, watch, computed } from "vue";
-import { useContentStore } from "stores/ContentStore";
+import { computed } from "vue";
 import { useLanguageStore } from "stores/LanguageStore";
-import {
-  getCompletedLessonsFromDB,
-  saveCompletedLessonsToDB,
-} from "src/services/IndexedDBService";
 
 const props = defineProps({
   study: String,
   topics: Array,
   lesson: Number,
+  markLessonComplete: Function,
+  isLessonCompleted: Function,
+  completedLessons: Array,
 });
 
-const emit = defineEmits(["updateLesson"]); // ✅ Correctly define emit in Composition API
-
-const ContentStore = useContentStore();
+const emit = defineEmits(["updateLesson"]);
 const LanguageStore = useLanguageStore();
-const selectedValue = ref({ label: "SELECT", value: 0 });
-const completedLessons = ref([]);
 
-onMounted(async () => {
-  // Load completed lessons from DB
-  completedLessons.value = (await getCompletedLessonsFromDB(props.study)) || [];
-
-  // Then update the select bar
-  if (Array.isArray(props.topics) && props.topics.length > 0) {
-    updateSelectBar(props.lesson);
-  }
-});
+// ✅ Computed list of topics with completion status
 const markedTopics = computed(() => {
   return props.topics.map((topic) => ({
     ...topic,
-    completed: completedLessons.value.includes(topic.value),
+    completed: props.completedLessons.includes(topic.value),
   }));
 });
 
-// Watch for changes in topics
-watch(
-  () => props.topics,
-  (newTopics) => {
-    if (Array.isArray(newTopics) && newTopics.length > 0) {
-      updateSelectBar(props.lesson);
-    }
+// ✅ v-model binding to currently selected lesson
+const selectedLesson = computed({
+  get() {
+    const topic = props.topics.find((t) => t.value === props.lesson);
+    return topic
+      ? { label: topic.label, value: topic.value }
+      : { label: "SELECT", value: 0 };
   },
-  { immediate: true }
-);
-
-// Watch for changes in the lesson prop
-watch(
-  () => props.lesson,
-  (newLesson) => {
-    updateSelectBar(newLesson);
-  }
-);
-
-const updateSelectBar = (lesson) => {
-  if (Array.isArray(props.topics) && lesson > 0) {
-    const matchingTopic = props.topics.find((topic) => topic.value === lesson);
-    if (matchingTopic) {
-      selectedValue.value = {
-        label: matchingTopic.label,
-        value: matchingTopic.value,
-      };
-    } else {
-      resetSelectBar();
-    }
-  } else {
-    resetSelectBar();
-  }
-};
-
-const resetSelectBar = () => {
-  selectedValue.value = { label: "SELECT", value: 0 };
-};
-
-const updateLessonNumber = () => {
-  const studyKey = props.study || "dbs"; // ✅ Ensure "dbs" is used if no study is provided
-
-  LanguageStore.setLessonNumber(studyKey, selectedValue.value.value);
-  emit("updateLesson", selectedValue.value.value);
-};
+  set(newValue) {
+    const studyKey = props.study || "dbs";
+    LanguageStore.setLessonNumber(studyKey, newValue.value);
+    emit("updateLesson", newValue.value);
+  },
+});
 </script>
+
+
 <template>
   <div>
     <q-select
       filled
-      v-model="selectedValue"
+      v-model="selectedLesson"
       :options="markedTopics"
       option-label="label"
       option-value="value"
-      @update:model-value="updateLessonNumber"
       label="Topic"
       class="select"
     >
@@ -117,12 +73,3 @@ const updateLessonNumber = () => {
     </q-select>
   </div>
 </template>
-
-<style lang="scss" scoped>
-//
-
-.completed-option {
-  background-color: lighten($positive, 30%);
-  color: $minor2;
-}
-</style>

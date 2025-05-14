@@ -132,23 +132,8 @@ export default {
         placeholder="Write your notes for Look Forward here"
       />
     </section>
-    <q-btn
-      label="Mark as Complete"
-      class="mark-complete-btn"
-      @click="markLessonComplete"
-    />
+
   </div>
 </template>
 
-<style lang="scss" scoped>
-.mark-complete-btn {
-  background-color: darken($positive, 15%); // #6a4e42
-  color: white; // #6a4e42
-  font-weight: bold;
-  border-radius: 8px;
 
-  &:hover {
-    background-color: darken($positive, 30%);
-  }
-}
-</style>

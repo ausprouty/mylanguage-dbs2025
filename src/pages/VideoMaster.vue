@@ -1,40 +1,34 @@
-
 <script setup>
-import { ref, computed, watch, watchEffect, onMounted } from "vue";
+import {
+  ref,
+  computed,
+  watch,
+  onMounted,
+} from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useLanguageStore } from "stores/LanguageStore";
 import { useContentStore } from "stores/ContentStore";
-import { NoteSection } from "src/components/NoteSection.vue";
 import { useCommonContent } from "src/composables/useCommonContent";
+import { useProgressTracker } from "src/composables/useProgressTracker";
 
 import VideoPlayer from "src/components/Video/VideoPlayer.vue";
 import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/Series/SeriesSegmentNavigator.vue";
 import VideoQuestions from "src/components/Video/VideoQuestions.vue";
 
-// Access the current route
+// Route and i18n
 const route = useRoute();
-
-// Access the i18n instance
 const { t } = useI18n();
 
-// Access the stores
+// Stores
 const languageStore = useLanguageStore();
 const contentStore = useContentStore();
 
-// Props
-const props = defineProps({
-  video: String,
-  lesson: Number,
-  languageCodeHL: String,
-  languageCodeJF: String,
-});
-
-// Static study name
+// Study identifier
 const currentStudy = "jvideo";
 
-// Set initial values in store
+// Set store values from route
 languageStore.setCurrentStudy(currentStudy);
 if (route.params.lesson) {
   languageStore.setLessonNumber(currentStudy, route.params.lesson);
@@ -43,24 +37,38 @@ if (route.params.languageCodeJF) {
   languageStore.setLanguageCodeJF(route.params.languageCodeJF);
 }
 
-// Initialize the composable
+// Language & lesson reactivity
+const computedLanguageHL = computed(() => languageStore.languageCodeHLSelected);
+const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
+const computedLanguageJF = computed(() => languageStore.languageCodeJFSelected);
+const computedSectionKey = computed(() => `video-${computedLessonNumber.value}`);
+
+// Content
 const { commonContent, topics, loadCommonContent } = useCommonContent(
   currentStudy,
   languageStore.languageCodeHLSelected
 );
 
-// Reactive computed properties
-const computedLanguageHL = computed(() => languageStore.languageCodeHLSelected);
-const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
-const computedLanguageJF = computed(() => languageStore.languageCodeJFSelected);
-const computedSectionKey = computed(
-  () => `video-${computedLessonNumber.value}`
-);
-
-// 🔹 Reactive video URLs
+// Video URLs
 const videoUrls = ref([]);
 
-// ✅ Function to load video URLs
+// Progress tracking
+const {
+  completedLessons,
+  isLessonCompleted,
+  markLessonComplete,
+  loadProgress
+} = useProgressTracker(currentStudy);
+
+// Load content on mount
+onMounted(async () => {
+  await Promise.all([
+    loadCommonContent(),
+    loadVideoUrls(),
+    loadProgress()
+  ]);
+});
+
 const loadVideoUrls = async () => {
   try {
     videoUrls.value = await useContentStore.loadVideoUrls(
@@ -72,28 +80,13 @@ const loadVideoUrls = async () => {
   }
 };
 
-// Load common content when the component mounts
-onMounted(async () => {
-  await loadCommonContent();
-  await loadVideoUrls(); // Ensures video URLs load at startup
-});
+// Watchers
+watch(computedLanguageJF, loadVideoUrls);
+watch(computedLanguageHL, loadCommonContent);
 
-// ✅ Watch `computedLanguageJF` and update video URLs when it changes
-watch(computedLanguageJF, async (newLanguageJF) => {
-  console.log("Language changed:", newLanguageJF);
-  await loadVideoUrls();
-});
-// Watch for changes in computedLanguage and reload common content
-watch(computedLanguageHL, async (newLanguage) => {
-  await loadCommonContent(newLanguage);
-});
-
-// Function to update the lesson number
+// Lesson change handler
 const updateLesson = (nextLessonNumber) => {
   languageStore.setLessonNumber(currentStudy, nextLessonNumber);
-  console.log(computedSectionKey);
-  console.log("Lesson updated:", nextLessonNumber);
-  console.log("New computedSectionKey:", computedSectionKey.value); // Check if it updates
 };
 </script>
 <template>
@@ -101,41 +94,47 @@ const updateLesson = (nextLessonNumber) => {
     <h2>{{ t("jVideo.title") }}</h2>
     <p>{{ t("jVideo.para.1") }}</p>
     <p>{{ t("jVideo.para.2") }}</p>
-    <div>
-      <SeriesPassageSelect
-        :study="currentStudy"
-        :topics="topics"
-        :lesson="computedLessonNumber"
-        @updateLesson="updateLesson"
-      />
-    </div>
-    <div>
-      <SeriesSegmentNavigator
-        :study="currentStudy"
-        :lesson="computedLessonNumber"
-        @updateLesson="updateLesson"
-      />
-    </div>
-    <div>
-      <VideoPlayer :videoUrls="videoUrls" :lesson="computedLessonNumber" />
-    </div>
-    <div>
-      <VideoQuestions
-        :commonContent="commonContent"
-        :languageCodeHL="computedLanguageHL"
-        :lesson="computedLessonNumber"
-        :sectionKey="computedSectionKey"
-      />
-    </div>
-    <div>
-      <NoteSection
-        :sectionKey="computedSectionKey"
-        placeholder="Your comments here"
-      />
-    </div>
+
+    <SeriesPassageSelect
+      :study="currentStudy"
+      :topics="topics"
+      :lesson="computedLessonNumber"
+      :completedLessons="completedLessons"
+      :isLessonCompleted="isLessonCompleted"
+      :markLessonComplete="markLessonComplete"
+      @updateLesson="updateLesson"
+    />
+
+    <SeriesSegmentNavigator
+      :study="currentStudy"
+      :lesson="computedLessonNumber"
+      @updateLesson="updateLesson"
+    />
+
+    <VideoPlayer
+      :videoUrls="videoUrls"
+      :lesson="computedLessonNumber"
+    />
+
+    <VideoQuestions
+      :commonContent="commonContent"
+      :languageCodeHL="computedLanguageHL"
+      :lesson="computedLessonNumber"
+      :sectionKey="computedSectionKey"
+    />
+
+    <q-btn
+      :label="
+        isLessonCompleted(computedLessonNumber)
+          ? 'Completed'
+          : 'Mark as Complete'
+      "
+      :disable="isLessonCompleted(computedLessonNumber)"
+      class="mark-complete-btn"
+      @click="markLessonComplete(computedLessonNumber)"
+    />
   </q-page>
 </template>
-
 
 <style>
 .q-page {
