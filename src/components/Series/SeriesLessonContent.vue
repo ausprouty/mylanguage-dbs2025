@@ -1,4 +1,3 @@
-
 <script>
 import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
@@ -68,7 +67,6 @@ export default {
       }
     };
 
-
     // ✅ Update passage reference when lesson content changes
     const updatePassageReference = () => {
       const reference =
@@ -136,9 +134,21 @@ export default {
     </section>
     <q-btn
       label="Mark as Complete"
-      color="primary"
+      class="mark-complete-btn"
       @click="markLessonComplete"
     />
   </div>
 </template>
 
+<style lang="scss" scoped>
+.mark-complete-btn {
+  background-color: darken($positive, 15%); // #6a4e42
+  color: white; // #6a4e42
+  font-weight: bold;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: darken($positive, 30%);
+  }
+}
+</style>

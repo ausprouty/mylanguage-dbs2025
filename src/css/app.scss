@@ -1,27 +1,57 @@
-@use "@/css/quasar.variables.scss" as *;
-@use "sass:color";
+@import "@/css/quasar.variables.scss";
 
+// ----------------------
+// General Layout
+// ----------------------
 
 body {
   background-color: $dark-page;
   color: $dark;
 }
 
-/* Bible Reference and Text */
+// ----------------------
+// Bible Reference and Text
+// ----------------------
+
 .bible-reference {
   font-weight: bold;
   color: $accent;
   font-size: 1.2em;
 }
 
-/* Select Elements */
+.bible-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: $gold-highlight;
+  border-radius: 5px;
+}
+
+.bible-text:first-child {
+  margin-right: 20px;
+}
+
+div.bible-text {
+  color: $minor2;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+// ----------------------
+// Select Elements
+// ----------------------
+
 .select {
   background-color: $neutral;
   color: $accent;
   border: 1px solid $secondary;
 }
 
-/* Margins and Gutters */
+// ----------------------
+// Layout & Gutters
+// ----------------------
+
 .q-gutter-md,
 .q-mr-md,
 .q-ml-md {
@@ -41,7 +71,10 @@ body {
   margin-top: 0;
 }
 
-/* DBS Container */
+// ----------------------
+// DBS Container
+// ----------------------
+
 div.dbs {
   background-color: $gold-highlight;
   max-width: 800px;
@@ -50,7 +83,10 @@ div.dbs {
   border: 2px solid $accent;
 }
 
-/* Tables */
+// ----------------------
+// Tables
+// ----------------------
+
 table {
   width: 100%;
   max-width: 800px;
@@ -86,7 +122,10 @@ td.rtl {
   text-align: center;
 }
 
-/* List Items */
+// ----------------------
+// Lists & Notes
+// ----------------------
+
 li {
   padding-top: 10px;
 }
@@ -95,7 +134,18 @@ li.dbs {
   font-size: 1rem;
 }
 
-/* Titles and Headers */
+.notes {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 16px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+// ----------------------
+// Headers
+// ----------------------
+
 h1.dbs,
 h2.dbs,
 h3.dbs,
@@ -123,39 +173,28 @@ h4.dbs {
   font-size: 1em;
 }
 
-/* Bible Container */
-.bible-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  background-color: $gold-highlight;
-  border-radius: 5px;
-}
+// ----------------------
+// Footer
+// ----------------------
 
-div.bible-text {
-  color: $minor2;
-  font-weight: 400;
-  font-size: 1rem;
-}
-
-.bible-text:first-child {
-  margin-right: 20px;
-}
-
-/* Footer */
 p.copyright {
   text-align: center;
   color: $shadow;
 }
 
-/* Hover Effects */
+// ----------------------
+// Hover Effects
+// ----------------------
+
 .link:hover {
   color: $warning;
   text-decoration: underline;
 }
 
-/* Clickable Images */
+// ----------------------
+// Clickable Images
+// ----------------------
+
 td[clickable] {
   cursor: pointer;
   position: relative;
@@ -189,16 +228,10 @@ td[clickable]:active::after {
   transition: 0s;
 }
 
-/* Notes */
-.notes {
-  width: 100%;
-  height: 100px;
-  margin-bottom: 16px;
-  padding: 8px;
-  font-size: 14px;
-}
+// ----------------------
+// Read More Button
+// ----------------------
 
-/* Read More Button */
 .readmore-button {
   display: inline-block;
   padding: 8px 15px;
@@ -212,10 +245,13 @@ td[clickable]:active::after {
 }
 
 .readmore-button:hover {
-  background-color: color.adjust($accent, $lightness: -10%);
+  background-color: #9e562d; // darker version of $accent
 }
 
-/* Navigation Buttons */
+// ----------------------
+// Navigation Buttons
+// ----------------------
+
 .nav-button {
   display: flex;
   align-items: center;
@@ -231,7 +267,7 @@ td[clickable]:active::after {
 }
 
 .nav-button:hover {
-  background-color: color.adjust($accent, $lightness: -10%);
+  background-color: #9e562d;
   transform: scale(1.05);
 }
 

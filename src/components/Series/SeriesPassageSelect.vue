@@ -119,10 +119,10 @@ const updateLessonNumber = () => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/css/quasar.variables.scss"; // adjust path if needed
+//
 
 .completed-option {
-  background-color: $gold-highlight;
+  background-color: lighten($positive, 30%);
   color: $minor2;
 }
 </style>

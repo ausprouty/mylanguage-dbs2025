@@ -60,7 +60,7 @@ const openExternalWebsite = async () => {
         <tr class="full-width">
           <td
             class="side-by-side"
-            @click="handleImageClick('/jvideo')"
+            @click="handleImageClick('/jvideo///')"
             clickable
             v-ripple
           >

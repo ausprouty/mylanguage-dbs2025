@@ -5,7 +5,7 @@ import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useLanguageStore } from "stores/LanguageStore";
 import { useContentStore } from "stores/ContentStore";
-import { noteSection } from "src/components/NoteSection.vue";
+import { NoteSection } from "src/components/NoteSection.vue";
 import { useCommonContent } from "src/composables/useCommonContent";
 
 import VideoPlayer from "src/components/Video/VideoPlayer.vue";
@@ -128,7 +128,7 @@ const updateLesson = (nextLessonNumber) => {
       />
     </div>
     <div>
-      <noteSection
+      <NoteSection
         :sectionKey="computedSectionKey"
         placeholder="Your comments here"
       />
