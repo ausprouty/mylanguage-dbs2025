@@ -2,18 +2,13 @@
   import { ref, onMounted } from "vue";
   import LanguageOptions from "src/components/LanguageOptions.vue";
   import ShareLink from "components/ShareLink.vue";
-  import { saveCompletedLessonsToDB } from "src/services/IndexedDBService";
-
   const rightDrawerOpen = ref(false);
 
   function toggleRightDrawer() {
     rightDrawerOpen.value = !rightDrawerOpen.value;
   }
 
-  // Test: ensure IndexedDB is created and working
-  onMounted(() => {
-    saveCompletedLessonsToDB("test-study", [1, 2, 3]);
-  });
+
 </script>
 
 <template>

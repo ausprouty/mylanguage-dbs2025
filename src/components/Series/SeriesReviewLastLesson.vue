@@ -1,17 +1,18 @@
-
 <script setup>
 import { ref, onMounted, watch } from "vue";
 import { getNote } from "src/services/NoteService";
+import { getStudyProgress } from "src/services/IndexedDBService";
 import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   sectionKey: {
     type: String,
-    required: true, // e.g. "study-2-forward"
+    required: true, // e.g. "life-5-forward"
   },
 });
 
 const { t } = useI18n();
+
 const cleanedNote = ref("");
 const noteLines = ref([]);
 const hasNote = ref(false);
@@ -19,77 +20,64 @@ const reviewIntro = ref([]);
 
 // Load previous note and intro paragraphs
 const loadPreviousNote = async () => {
-  const previousKey = getPreviousSectionKey(props.sectionKey);
-  if (!previousKey) {
-    hasNote.value = false;
-    cleanedNote.value = "";
-    noteLines.value = [];
+  const [study] = props.sectionKey.split("-");
+  const progress = await getStudyProgress(study);
+  const lastLesson = progress?.lastCompletedLesson;
+
+  if (!lastLesson || typeof lastLesson !== "number") {
+    resetNote();
     return;
   }
 
-  const note = await getNoteFromKey(previousKey);
+  const reviewKey = `${study}-${lastLesson}-forward`;
+  const note = await getNoteFromKey(reviewKey);
   const trimmed = note.trim();
 
-  if (trimmed.length > 0) {
+  if (trimmed) {
     cleanedNote.value = trimmed;
-    noteLines.value = trimmed
-      .split(/\r?\n/)
-      .filter((line) => line.trim() !== "");
+    noteLines.value = trimmed.split(/\r?\n/).filter(line => line.trim() !== "");
     hasNote.value = true;
     reviewIntro.value = loadIntroParagraphs();
   } else {
-    hasNote.value = false;
-    cleanedNote.value = "";
-    noteLines.value = [];
+    resetNote();
   }
 };
 
-onMounted(loadPreviousNote);
-
-// ✅ Watch for changes in the section key
-watch(() => props.sectionKey, loadPreviousNote);
-
-
-// Compute previous lesson's "look forward" sectionKey
-function getPreviousSectionKey(currentKey) {
-  const [study, lessonStr, section] = currentKey.split("-");
-  const lesson = parseInt(lessonStr, 10);
-  if (!study || isNaN(lesson) || section !== "forward" || lesson < 2) return null;
-
-  return `${study}-${lesson - 1}-forward`;
+// Reset note state
+function resetNote() {
+  hasNote.value = false;
+  cleanedNote.value = "";
+  noteLines.value = [];
 }
 
-// Load the note from IndexedDB
+// Load note from IndexedDB
 async function getNoteFromKey(key) {
   try {
     return await getNote(...key.split("-"));
   } catch (err) {
-    console.error("Failed to load last week note:", err);
+    console.error("❌ Failed to load note:", err);
     return "";
   }
 }
 
-// Dynamically load all review.p1, review.p2, etc. from i18n
+// Load intro paragraphs from i18n (review.p1, p2, ...)
 function loadIntroParagraphs() {
   const paragraphs = [];
   let index = 1;
-
   while (true) {
     const key = `review.p${index}`;
     const text = t(key);
-
-    // Break if the translation is missing (fallback returns the key itself)
     if (!text || text === key) break;
-
     paragraphs.push(text);
     index++;
   }
-
   return paragraphs;
 }
 
-
+onMounted(loadPreviousNote);
+watch(() => props.sectionKey, loadPreviousNote);
 </script>
+
 
 <template>
   <div class="last-week-box">

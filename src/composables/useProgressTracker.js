@@ -1,12 +1,18 @@
 // src/composables/useProgressTracker.js
-import { getCompletedLessonsFromDB, saveCompletedLessonsToDB } from "src/services/IndexedDBService";
 import { ref } from "vue";
+import {
+  getStudyProgress,
+  saveStudyProgress,
+} from "src/services/IndexedDBService";
 
 export function useProgressTracker(study) {
   const completedLessons = ref([]);
+  const lastCompletedLesson = ref(null);
 
   const loadProgress = async () => {
-    completedLessons.value = (await getCompletedLessonsFromDB(study)) || [];
+    const progress = await getStudyProgress(study);
+    completedLessons.value = progress.completedLessons || [];
+    lastCompletedLesson.value = progress.lastCompletedLesson || null;
   };
 
   const isLessonCompleted = (lesson) => {
@@ -14,21 +20,25 @@ export function useProgressTracker(study) {
   };
 
   const markLessonComplete = async (lesson) => {
-    if (!completedLessons.value.includes(lesson)) {
-      completedLessons.value.push(lesson);
-      await saveCompletedLessonsToDB(study, [...completedLessons.value]);
-      console.log(`✅ Marked lesson ${lesson} as complete`);
-    } else {
-      console.log(`ℹ️ Lesson ${lesson} already marked as complete`);
+    const progress = await getStudyProgress(study);
+
+    if (!progress.completedLessons.includes(lesson)) {
+      progress.completedLessons.push(lesson);
     }
+
+    progress.lastCompletedLesson = lesson;
+
+    await saveStudyProgress(study, progress);
+
+    completedLessons.value = [...progress.completedLessons];
+    lastCompletedLesson.value = lesson;
   };
 
   return {
     completedLessons,
+    lastCompletedLesson,
     isLessonCompleted,
     markLessonComplete,
     loadProgress,
   };
 }
-
-

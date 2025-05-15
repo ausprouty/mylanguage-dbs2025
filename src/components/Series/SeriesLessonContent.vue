@@ -1,12 +1,13 @@
 <script>
+
 import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import DbsQuestions from "src/components/DbsQuestions.vue";
-import BibleText from "src/components/BibleTextDisplayed.vue";
+import BibleText from "src/components/BibleTextBar.vue";
 import SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
 import {
-  getCompletedLessonsFromDB,
-  saveCompletedLessonsToDB,
+  getStudyProgress,
+  saveStudyProgress,
 } from "src/services/IndexedDBService";
 
 export default {
@@ -54,11 +55,11 @@ export default {
       const { study, lesson } = props;
 
       try {
-        const completed = (await getCompletedLessonsFromDB(study)) || [];
+        const completed = (await getStudyProgress(study)) || [];
 
         if (!completed.includes(lesson)) {
           completed.push(lesson);
-          await saveCompletedLessonsToDB(study, completed);
+          await saveStudyProgress(study, completed);
           console.log(`✅ Marked lesson ${lesson} as complete`);
         } else {
           console.log(`ℹ️ Lesson ${lesson} already marked as complete`);
@@ -105,6 +106,7 @@ export default {
   },
 };
 </script>
+
 <template>
   <div v-if="lessonContent">
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
