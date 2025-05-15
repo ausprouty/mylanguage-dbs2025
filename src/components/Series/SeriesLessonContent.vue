@@ -3,6 +3,7 @@ import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import DbsQuestions from "src/components/DbsQuestions.vue";
 import BibleText from "src/components/BibleTextDisplayed.vue";
+import SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
 import {
   getCompletedLessonsFromDB,
   saveCompletedLessonsToDB,
@@ -10,7 +11,7 @@ import {
 
 export default {
   name: "SeriesLessonContent",
-  components: { DbsQuestions, BibleText },
+  components: { DbsQuestions, BibleText, SeriesReviewLastLesson },
   props: {
     languageCodeHL: { type: String, required: true },
     study: { type: String, required: true },
@@ -107,6 +108,8 @@ export default {
 <template>
   <div v-if="lessonContent">
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
+
+    <SeriesReviewLastLesson :sectionKey="sectionKeyForward" />
 
     <section v-if="commonContent">
       <DbsQuestions

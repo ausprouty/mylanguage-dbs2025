@@ -1,53 +1,58 @@
 {
-    "language": {
-        "EnglishName": "English",
-        "hlCode": "eng00",
-        "google": "en"
-    },
-    "menu": {
-        "next": "Next",
-        "nextVideo": "Next Video",
-        "previous": "Previous",
-        "select": "Select",
-        "videoSegment": "Video Segment",
-        "language": "Select Language"
-    },
-    "index": {
-        "para": {
-            "1": "Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you.",
-            "2": "Gather your friends and start exploring! Click on the images below to begin your journey — discovering not just wisdom, but a relationship with God and the spiritual community He invites you into."
-        }
-    },
-    "dbs": {
-        "title": "Discovering Spiritual Community",
-        "para": {
-            "1": "Discovering Spiritual Community takes you on a journey through history, exploring how people have connected with God from the very beginning—through challenges, questions, and life-changing moments. If you're curious about faith, purpose, and what it means to belong, this series is a great place to start.",
-            "2": "Gather your friends and read how God prepared people for the arrival of Jesus and the spiritual community he started.",
-            "3": "Select your favourite language by clicking on the world globe above."
-        }
-    },
-    "life": {
-        "title": "Life Issues",
-        "para": {
-            "1": "Life Issues explores the practical teachings of Jesus and his early followers — wisdom that has changed lives for centuries. Many have experienced transformation by inviting Jesus to help them live out these truths. Could this be true for you too?",
-            "2": "Gather your friends and see what you discover as you discuss the following questions.",
-            "3": "Gather your friends and see what you discover as you discuss the following questions.",
-            "4": "Select your favourite language by clicking on the world globe above."
-        }
-    },
-    "jVideo": {
-        "title": "The Life of Jesus",
-        "para": {
-            "1": "Jesus' words and actions have shaped history, offering a wisdom that stands apart. As you watch this video, ask yourself: What did Jesus teach? How does his wisdom compare to what others have said — and what could it mean for you?",
-            "2": "This video is available in many languages. To change the language click the world globe above."
-        }
-    },
-    "lead": {
-        "title": "Discovering Leadership",
-        "para": {
-            "1": "Discovering Leadership explores the principles Jesus taught his leaders — wisdom that has shaped servant-hearted leadership for generations. Many have experienced transformation by relying on Jesus to help them lead with purpose and integrity. Could this shape your leadership too?",
-            "2": "Gather your friends and see what you discover as you discuss the following questions.",
-            "3": "Select your favourite language by clicking on the world globe above."
-        }
+  "language": {
+    "EnglishName": "English",
+    "hlCode": "eng00",
+    "google": "en"
+  },
+  "menu": {
+    "next": "Next",
+    "nextVideo": "Next Video",
+    "previous": "Previous",
+    "select": "Select",
+    "videoSegment": "Video Segment",
+    "language": "Select Language"
+  },
+  "index": {
+    "para": {
+      "1": "Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you.",
+      "2": "Gather your friends and start exploring! Click on the images below to begin your journey — discovering not just wisdom, but a relationship with God and the spiritual community He invites you into."
     }
+  },
+  "dbs": {
+    "title": "Discovering Spiritual Community",
+    "para": {
+      "1": "Discovering Spiritual Community takes you on a journey through history, exploring how people have connected with God from the very beginning—through challenges, questions, and life-changing moments. If you're curious about faith, purpose, and what it means to belong, this series is a great place to start.",
+      "2": "Gather your friends and read how God prepared people for the arrival of Jesus and the spiritual community he started.",
+      "3": "Select your favourite language by clicking on the world globe above."
+    }
+  },
+  "life": {
+    "title": "Life Issues",
+    "para": {
+      "1": "Life Issues explores the practical teachings of Jesus and his early followers — wisdom that has changed lives for centuries. Many have experienced transformation by inviting Jesus to help them live out these truths. Could this be true for you too?",
+      "2": "Gather your friends and see what you discover as you discuss the following questions.",
+      "3": "Gather your friends and see what you discover as you discuss the following questions.",
+      "4": "Select your favourite language by clicking on the world globe above."
+    }
+  },
+  "jVideo": {
+    "title": "The Life of Jesus",
+    "para": {
+      "1": "Jesus' words and actions have shaped history, offering a wisdom that stands apart. As you watch this video, ask yourself: What did Jesus teach? How does his wisdom compare to what others have said — and what could it mean for you?",
+      "2": "This video is available in many languages. To change the language click the world globe above."
+    }
+  },
+  "lead": {
+    "title": "Discovering Leadership",
+    "para": {
+      "1": "Discovering Leadership explores the principles Jesus taught his leaders — wisdom that has shaped servant-hearted leadership for generations. Many have experienced transformation by relying on Jesus to help them lead with purpose and integrity. Could this shape your leadership too?",
+      "2": "Gather your friends and see what you discover as you discuss the following questions.",
+      "3": "Select your favourite language by clicking on the world globe above."
+    }
+  },
+  "review": {
+    "p1": "Before we begin, let’s take a moment to review what you committed to last time.",
+    "p2": "This helps us encourage each other and see how God is at work.",
+    "empty": "You didn’t write any notes in Look Forward the last time we met. Taking a few notes can help you grow!"
+  }
 }

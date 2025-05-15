@@ -16,7 +16,7 @@ export function useProgressTracker(study) {
   const markLessonComplete = async (lesson) => {
     if (!completedLessons.value.includes(lesson)) {
       completedLessons.value.push(lesson);
-      await saveCompletedLessonsToDB(study, completedLessons.value);
+      await saveCompletedLessonsToDB(study, [...completedLessons.value]);
       console.log(`✅ Marked lesson ${lesson} as complete`);
     } else {
       console.log(`ℹ️ Lesson ${lesson} already marked as complete`);
@@ -30,3 +30,5 @@ export function useProgressTracker(study) {
     loadProgress,
   };
 }
+
+

@@ -59,12 +59,30 @@ export default {
   ></textarea>
 </template>
 
-<style scoped>
-textarea {
+<style scoped lang="scss">
+textarea.dbs-notes {
   width: 100%;
-  min-height: 100px;
+  min-height: 120px;
   resize: none;
   overflow: hidden;
-  margin-top: 8px;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 6px;
+
+  background-color: $neutral;         // soft off-white/cream
+  border: 2px solid $gold-highlight;  // warm highlight border
+  color: $minor2;                     // dark brown text
+  font-size: 15px;
+  font-family: inherit;
+  line-height: 1.6;
+  box-shadow: 2px 2px 6px $shadow;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea.dbs-notes:focus {
+  outline: none;
+  border-color: $primary;             // warm brown on focus
+  box-shadow: 2px 2px 10px $shadow;
 }
 </style>
+

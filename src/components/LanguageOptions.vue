@@ -1,62 +1,51 @@
-
-
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useLanguageStore } from 'stores/LanguageStore';
 import languages from 'src/i18n/metadata/consolidated_languages.json';
 
-
 const { availableLocales, locale, setLocaleMessage } = useI18n();
 const languageStore = useLanguageStore();
 
-// Use state directly from Pinia store (no function call)
-const selectedLanguage = ref(languageStore.languageSelected?.id || null);
+// Build full options list with label
+const allLanguages = languages.map(lang => ({
+  ...lang,
+  label: `${lang.name} (${lang.ethnicName})${lang.region ? ' – ' + lang.region : ''}`
+}));
 
-// Compute language options list
-const languageOptions = computed(() =>
-  languages.map((item) => ({
-    label: `${item.name} (${item.ethnicName})`,
-    value: item.id, // This is the ID used in v-model
-    languageCodeJF: item.languageCodeJF,
-    languageCodeHL: item.languageCodeHL
-  }))
+// Set selectedLanguage by matching object reference
+const selectedLanguage = ref(
+  allLanguages.find(l => l.id === languageStore.languageSelected?.id) || null
 );
 
-// Watch for store updates to sync `selectedLanguage`
-watch(
-  () => languageStore.languageSelected,
-  (newVal) => {
-    selectedLanguage.value = newVal?.id || null;
-  },
-  { immediate: true }
-);
+// Update logic when user selects a language
+const handleLanguageChange = async (languageObject) => {
+  if (!languageObject) return;
 
-// Handle language change
-const handleLanguageChange = async (selectedLanguageId) => {
-  const languageObject = languages.find(lang => lang.id === selectedLanguageId);
-
-  if (languageObject) {
-    const { languageCodeHL } = languageObject;
-
-    if (!availableLocales.includes(languageCodeHL)) {
-      const messages = await import(`../i18n/languages/${languageCodeHL}.json`);
-      setLocaleMessage(languageCodeHL, messages.default);
-    }
-
-    locale.value = languageCodeHL;
-    console.log('Language options is updating language selected');
-    languageStore.updateLanguageObjectSelected(languageObject);
+  if (!availableLocales.includes(languageObject.languageCodeHL)) {
+    const messages = await import(`../i18n/languages/${languageObject.languageCodeHL}.json`);
+    setLocaleMessage(languageObject.languageCodeHL, messages.default);
   }
-};
 
-</script><template>
-  <h4>Select Language</h4>
-  <q-option-group
-    v-model="selectedLanguage"
-    type="radio"
-    color="primary"
-    :options="languageOptions"
-    @update:model-value="handleLanguageChange"
-  />
+  locale.value = languageObject.languageCodeHL;
+  languageStore.updateLanguageObjectSelected(languageObject);
+};
+</script>
+
+<template>
+  <q-select
+  v-model="selectedLanguage"
+  :options="allLanguages"
+  label="Search Language"
+  use-input
+  fill-input
+  input-debounce="200"
+  option-label="label"
+  @update:model-value="handleLanguageChange"
+/>
+<p>Selected ID: {{ selectedLanguage?.id }}</p>
+<p>Matched Label: {{ selectedLanguage?.label }}</p>
+
+
 </template>
+
