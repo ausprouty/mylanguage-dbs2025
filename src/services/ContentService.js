@@ -1,13 +1,13 @@
 import { currentApi } from "boot/axios";
-import { useContentStore } from 'stores/ContentStore';
+import { useContentStore } from "stores/ContentStore";
 import {
   getCommonContentFromDB,
   saveCommonContentToDB,
   getLessonContentFromDB,
   saveLessonContentToDB,
   getVideoUrlsFromDB,
-  saveVideoUrlsToDB
-} from './IndexedDBService';
+  saveVideoUrlsToDB,
+} from "./IndexedDBService";
 
 export async function getCommonContent(languageCodeHL, study) {
   const key = `commonContent-${study}-${languageCodeHL}`;
@@ -19,7 +19,7 @@ export async function getCommonContent(languageCodeHL, study) {
       store.setCommonContent(study, languageCodeHL, data),
     dbGetter: () => getCommonContentFromDB(study, languageCodeHL),
     dbSetter: (data) => saveCommonContentToDB(study, languageCodeHL, data),
-    apiUrl: `api/translate/commonContent/${languageCodeHL}/${study}`
+    apiUrl: `api/translate/commonContent/${languageCodeHL}/${study}`,
   });
 }
 
@@ -28,17 +28,19 @@ export async function getLessonContent(languageCodeHL, study, lesson) {
 
   return getContentWithFallback({
     key,
-    storeGetter: (store) => store.getLessonContent(study, languageCodeHL, lesson),
+    storeGetter: (store) =>
+      store.getLessonContent(study, languageCodeHL, lesson),
     storeSetter: (store, data) =>
       store.setLessonContent(study, languageCodeHL, lesson, data),
     dbGetter: () => getLessonContentFromDB(study, languageCodeHL, lesson),
-    dbSetter: (data) => saveLessonContentToDB(study, languageCodeHL, lesson, data),
-    apiUrl: `api/translate/lessonContent/${languageCodeHL}/${study}/${lesson}`
+    dbSetter: (data) =>
+      saveLessonContentToDB(study, languageCodeHL, lesson, data),
+    apiUrl: `api/translate/lessonContent/${languageCodeHL}/${study}/${lesson}`,
   });
 }
 
 export async function getJesusVideoUrls(languageCodeJF) {
-  const study = 'jvideo';
+  const study = "jvideo";
   const lesson = 0; // No specific lesson here, but keeping the pattern
   const key = `videoUrls-${study}-${languageCodeJF}-lesson-${lesson}`;
 
@@ -49,10 +51,9 @@ export async function getJesusVideoUrls(languageCodeJF) {
       store.setVideoUrls(study, languageCodeJF, lesson, data),
     dbGetter: () => getVideoUrlsFromDB(study, languageCodeJF, lesson),
     dbSetter: (data) => saveVideoUrlsToDB(study, languageCodeJF, lesson, data),
-    apiUrl: `api/translate/videoUrls/jvideo/${languageCodeJF}`
+    apiUrl: `api/translate/videoUrls/jvideo/${languageCodeJF}`,
   });
 }
-
 
 /**
  * Shared loader for any content type: common, lesson, videoUrls
@@ -71,23 +72,29 @@ export async function getContentWithFallback({
   storeSetter,
   dbGetter,
   dbSetter,
-  apiUrl
+  apiUrl,
 }) {
   const contentStore = useContentStore();
 
   // 1. Check ContentStore
   const storeValue = storeGetter(contentStore);
+  console.log(`🔍 StoreValue for ${key}:`, storeValue);
   if (storeValue) {
     console.log(`✅ Loaded ${key} from ContentStore`);
     return storeValue;
   }
 
   // 2. Check IndexedDB
-  const dbValue = await dbGetter();
-  if (dbValue) {
-    console.log(`✅ Loaded ${key} from IndexedDB`);
-    storeSetter(contentStore, dbValue);
-    return dbValue;
+  try {
+    const dbValue = await dbGetter();
+    console.log(`💾 DB data for ${key}:`, dbValue);
+    if (dbValue) {
+      console.log(`✅ Loaded ${key} from IndexedDB`);
+      storeSetter(contentStore, dbValue);
+      return dbValue;
+    }
+  } catch (err) {
+    console.warn(`⚠️ DB getter failed for ${key}:`, err);
   }
 
   // 3. Fetch from API
@@ -95,11 +102,21 @@ export async function getContentWithFallback({
     console.log(`🌐 Fetching ${key} from API: ${apiUrl}`);
     const response = await currentApi.get(apiUrl, { timeout: 10000 });
 
-    const data =
-      typeof response.data === 'string'
-        ? JSON.parse(response.data.data)
-        : response.data.data;
+    let data = response.data?.data;
 
+    if (typeof data === "string") {
+      try {
+        data = JSON.parse(data);
+      } catch (parseError) {
+        console.error(`❌ JSON.parse failed for ${key}:`, data);
+        throw parseError;
+      }
+    }
+
+    if (!data) {
+      console.error(`❌ No data returned from API for ${key}`);
+      throw new Error(`Empty API response for ${key}`);
+    }
     console.log(`✅ Fetched ${key} from API`);
 
     storeSetter(contentStore, data);
@@ -111,5 +128,3 @@ export async function getContentWithFallback({
     throw error;
   }
 }
-
-

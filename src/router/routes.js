@@ -14,6 +14,11 @@ const routes = [
         component: () => import("pages/IndexPage.vue"),
       },
       {
+        name: "LanguageTest",
+        path: "/test",
+        component: () => import("pages/LanguageTest.vue"),
+      },
+      {
         name: "JesusVideoMaster",
         path: "/jvideo/:lesson?/:languageCodeHL?/:languageCodeJF?",
         component: () => import("src/pages/VideoMaster.vue"),
