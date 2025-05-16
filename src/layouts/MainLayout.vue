@@ -1,14 +1,12 @@
 <script setup>
-  import { ref, onMounted } from "vue";
-  import LanguageOptions from "src/components/LanguageOptions.vue";
-  import ShareLink from "components/ShareLink.vue";
-  const rightDrawerOpen = ref(false);
+import { ref, onMounted } from "vue";
+import LanguageOptions from "src/components/LanguageOptionsB.vue";
+import ShareLink from "components/ShareLink.vue";
+const rightDrawerOpen = ref(false);
 
-  function toggleRightDrawer() {
-    rightDrawerOpen.value = !rightDrawerOpen.value;
-  }
-
-
+function toggleRightDrawer() {
+  rightDrawerOpen.value = !rightDrawerOpen.value;
+}
 </script>
 
 <template>
