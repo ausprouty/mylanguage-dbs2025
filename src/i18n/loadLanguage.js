@@ -7,7 +7,7 @@ const loaded = new Set()
 export async function loadLanguageAsync (lang) {
   // 1. load fallback first
   if (!loaded.has(fallback)) {
-    const { default: engMessages } = await import('src/i18n/languages/eng00.json')
+    const { default: engMessages } = await import('./languages/eng00.json')
     i18n.global.setLocaleMessage(fallback, engMessages)
     loaded.add(fallback)
   }
@@ -20,7 +20,7 @@ export async function loadLanguageAsync (lang) {
 
   // 3. load the requested locale if not already
   if (!loaded.has(lang)) {
-    const { default: localeMessages } = await import(`src/i18n/languages/${lang}.json`)
+    const { default: localeMessages } = await import(`./languages/${lang}.json`)
     i18n.global.setLocaleMessage(lang, localeMessages)
     loaded.add(lang)
   }
