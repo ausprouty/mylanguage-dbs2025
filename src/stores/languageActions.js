@@ -1,5 +1,3 @@
-
-
 import {
   validateLessonNumber,
   validateSegmentFormat,
@@ -8,8 +6,6 @@ import {
 } from "./validators";
 
 export const languageActions = {
-  
-
   setCurrentStudy(study) {
     if (!validateNonEmptyString(study)) {
       console.warn(`setCurrentStudy: Invalid study '${study}'.`);
@@ -26,7 +22,44 @@ export const languageActions = {
     this.currentPath = url;
   },
 
+  setFollowingHimSegment(newValue) {
+    if (!validateSegmentFormat(newValue)) {
+      console.warn(
+        `setFollowingHimSegment: Invalid newValue '${newValue}'. Expected format '1-0-0'. No change made.`
+      );
+      return;
+    }
+    this.followingHimSegment = newValue;
+  },
 
+  setJVideoSegments(languageCodeHL, languageCodeJF, segments, currentId = 1) {
+    if (
+      !validateNonEmptyString(languageCodeHL) ||
+      !validateNonEmptyString(languageCodeJF)
+    ) {
+      console.warn(
+        `setJVideoSegments: Invalid language codes '${languageCodeHL}', '${languageCodeJF}'.`
+      );
+      return;
+    }
+    if (!Array.isArray(segments)) {
+      console.warn(`setJVideoSegments: Segments should be an array.`);
+      return;
+    }
+    if (!validatePositiveInteger(currentId)) {
+      console.warn(
+        `setJVideoSegments: Invalid currentId '${currentId}'. Defaulting to 1.`
+      );
+      currentId = 1;
+    }
+
+    this.jVideoSegments = {
+      languageCodeHL,
+      languageCodeJF,
+      segments,
+      currentId,
+    };
+  },
   setLessonNumber(study, lesson) {
     console.log(`setLessonNumber called with study=${study}, lesson=${lesson}`);
 
@@ -49,89 +82,43 @@ export const languageActions = {
     this.lessonNumber[study] = clampedLesson;
   },
 
-  updateFollowingHimSegment(newValue) {
-    if (!validateSegmentFormat(newValue)) {
-      console.warn(
-        `updateFollowingHimSegment: Invalid newValue '${newValue}'. Expected format '1-0-0'. No change made.`
-      );
-      return;
-    }
-    this.followingHimSegment = newValue;
-  },
-
-  updateJVideoSegments(
-    languageCodeHL,
-    languageCodeJF,
-    segments,
-    currentId = 1
-  ) {
-    if (
-      !validateNonEmptyString(languageCodeHL) ||
-      !validateNonEmptyString(languageCodeJF)
-    ) {
-      console.warn(
-        `updateJVideoSegments: Invalid language codes '${languageCodeHL}', '${languageCodeJF}'.`
-      );
-      return;
-    }
-    if (!Array.isArray(segments)) {
-      console.warn(`updateJVideoSegments: Segments should be an array.`);
-      return;
-    }
-    if (!validatePositiveInteger(currentId)) {
-      console.warn(
-        `updateJVideoSegments: Invalid currentId '${currentId}'. Defaulting to 1.`
-      );
-      currentId = 1;
-    }
-
-    this.jVideoSegments = {
-      languageCodeHL,
-      languageCodeJF,
-      segments,
-      currentId,
-    };
-  },
-
-  updateLanguages(newLanguages) {
+  setLanguages(newLanguages) {
     if (!Array.isArray(newLanguages)) {
-      console.warn(`updateLanguages: Invalid languages input.`);
+      console.warn(`setLanguages: Invalid languages input.`);
       return;
     }
     this.languages = newLanguages;
   },
-  updateLanguageObjectSelected(languageObject) {
-    console.log('updateLanguageObjectSelected called with:', languageObject);
+  setLanguageObjectSelected(languageObject) {
+    console.log("setLanguageObjectSelected called with:", languageObject);
     if (!languageObject) {
-      console.warn('updateLanguageObjectSelected: Invalid languageObject input.');
+      console.warn("setLanguageObjectSelected: Invalid languageObject input.");
       return;
     }
     this.languageSelected = languageObject;
+  },
 
+  setPreviousPage(newPage) {
+    if (!validateNonEmptyString(newPage)) {
+      console.warn(`setPreviousPage: Invalid page '${newPage}'.`);
+      return;
+    }
+    this.previousPage = newPage;
   },
   updateLanguageCodeJF(newCodeJF) {
     if (!this.languageSelected) {
-      console.warn('updateLanguageCodeJF: No languageSelected set.');
+      console.warn("updateLanguageCodeJF: No languageSelected set.");
       return;
     }
     if (!newCodeJF) {
-      console.warn('updateLanguageCodeJF: Invalid newCodeJF.');
+      console.warn("updateLanguageCodeJF: Invalid newCodeJF.");
       return;
     }
 
     // Shallow clone the object and update only languageCodeJF
     this.languageSelected = {
       ...this.languageSelected,
-      languageCodeJF: newCodeJF
+      languageCodeJF: newCodeJF,
     };
-  },
-
-
-  updatePreviousPage(newPage) {
-    if (!validateNonEmptyString(newPage)) {
-      console.warn(`updatePreviousPage: Invalid page '${newPage}'.`);
-      return;
-    }
-    this.previousPage = newPage;
   },
 };

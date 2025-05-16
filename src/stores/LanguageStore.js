@@ -21,6 +21,7 @@ export const useLanguageStore = defineStore("languageStore", {
     },
     languages: [],
     languageSelected:{},
+    languagesUsed: [],
     followingHimSegment: "1-0-0",
     jVideoSegments: {
       segments: [],
@@ -41,6 +42,7 @@ export const useLanguageStore = defineStore("languageStore", {
           "currentStudy",
           "lessonNumber",
           "languageSelected",
+          "languagesUsed",
           "followingHimSegment",
           "jVideoSegments",
           "previousPage",

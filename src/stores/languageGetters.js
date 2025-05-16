@@ -3,6 +3,7 @@ export const languageGetters = {
   languageCodeJFSelected: (state) => state.languageSelected.languageCodeJF,
   languageIdSelected: (state) => state.languageSelected.languageId,
   languageObjectSelected: (state) => state.languageSelected,
+  recentLanguages: (state) => state.languagesUsed,
 
   lessonNumberForStudy: (state) => {
     const study = state.currentStudy;
