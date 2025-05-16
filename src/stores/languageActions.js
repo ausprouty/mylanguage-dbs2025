@@ -1,3 +1,5 @@
+
+import { loadLanguageAsync } from '../i18n/loadLanguage.js';
 import {
   validateLessonNumber,
   validateSegmentFormat,
@@ -89,13 +91,36 @@ export const languageActions = {
     }
     this.languages = newLanguages;
   },
-  setLanguageObjectSelected(languageObject) {
-    console.log("setLanguageObjectSelected called with:", languageObject);
+  async setLanguageObjectSelected(languageObject) {
     if (!languageObject) {
       console.warn("setLanguageObjectSelected: Invalid languageObject input.");
       return;
     }
     this.languageSelected = languageObject;
+    // 🟢 Update i18n locale
+    console.log(
+      `setLanguageObjectSelected: Setting i18n locale to ${languageObject.languageCodeHL}`
+    );
+     await loadLanguageAsync(languageObject.languageCodeHL);
+
+    this._updateRecentLanguages(languageObject);
+  },
+
+  _updateRecentLanguages(lang) {
+    const index = this.languagesUsed.findIndex(
+      (item) => item.languageCodeHL === lang.languageCodeHL
+    );
+    // Remove existing if already present
+    if (index !== -1) {
+      this.languagesUsed.splice(index, 1);
+    }
+    // Add to front
+    this.languagesUsed.unshift(lang);
+
+    // Optional: limit to 5 recent items total
+    if (this.languagesUsed.length > 5) {
+      this.languagesUsed.length = 5;
+    }
   },
 
   setPreviousPage(newPage) {

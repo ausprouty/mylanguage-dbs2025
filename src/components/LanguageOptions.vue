@@ -1,13 +1,11 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { computed, onMounted } from 'vue';
+import { useLanguageStore } from 'stores/LanguageStore';
 import languageList from '@/i18n/metadata/consolidated_languages.json';
 
-const selectedLanguage = ref(null);
-const searchInput = ref('');
-const filteredOptions = ref([]);
-const recentLanguages = ref([]); // Max of 2 frequent languages
+const languageStore = useLanguageStore();
 
-// Generate list with labels
+// Generate all language options with display labels
 const languageOptions = computed(() =>
   languageList.map(lang => ({
     label: `${lang.name} (${lang.ethnicName})`,
@@ -15,54 +13,47 @@ const languageOptions = computed(() =>
   }))
 );
 
-// Filter user input
+// Reactive label for currently selected language
+const currentLanguageLabel = computed(() => {
+  const lang = languageStore.languageObjectSelected;
+  return lang ? `${lang.name} (${lang.ethnicName})` : 'None';
+});
+
+// Filter options when typing
 function onFilter(val, update) {
   const needle = val.toLowerCase();
-
   update(() => {
     if (!needle) {
-      filteredOptions.value = languageOptions.value;
-    } else {
-      filteredOptions.value = languageOptions.value.filter(option =>
-        option.label.toLowerCase().includes(needle)
-      );
+      return languageOptions.value;
     }
+    return languageOptions.value.filter(option =>
+      option.label.toLowerCase().includes(needle)
+    );
   });
 }
 
-// Update selection and recents
+// When user selects a language
 function handleChange(value) {
-  selectedLanguage.value = value;
-  updateRecentLanguages(value);
+  languageStore.setLanguageObjectSelected(value);
 }
 
-// Maintain list of 2 most recent languages
-function updateRecentLanguages(lang) {
-  const existingIndex = recentLanguages.value.findIndex(
-    item => item.languageCodeHL === lang.languageCodeHL
-  );
-  if (existingIndex !== -1) {
-    recentLanguages.value.splice(existingIndex, 1);
-  }
-  recentLanguages.value.unshift(lang);
-  if (recentLanguages.value.length > 2) {
-    recentLanguages.value.length = 2;
-  }
-}
-
-// Initialize filtered options
-filteredOptions.value = languageOptions.value;
+// Optional: confirm store was restored correctly
+onMounted(() => {
+  console.log('Language selected on load:', languageStore.languageObjectSelected);
+  console.log('Languages used:', languageStore.languagesUsed);
+});
 </script>
+
 <template>
   <div class="q-pa-md">
     <div class="q-mb-md">
-      <p><strong>Current Language:</strong> {{ selectedLanguage?.label || 'None' }}</p>
+      <p><strong>Current Language:</strong> {{ currentLanguageLabel }}</p>
     </div>
 
     <q-select
       filled
-      v-model="selectedLanguage"
-      :options="filteredOptions"
+      v-model="languageStore.languageObjectSelected"
+      :options="languageOptions"
       label="Change Language"
       use-input
       input-debounce="200"
@@ -71,18 +62,18 @@ filteredOptions.value = languageOptions.value;
       @update:model-value="handleChange"
     />
 
-    <div v-if="recentLanguages.length" class="q-mt-md">
+    <div v-if="languageStore.languagesUsed.length" class="q-mt-md">
       <p><strong>Frequently Used:</strong></p>
       <q-chip
-        v-for="lang in recentLanguages"
+        v-for="lang in languageStore.languagesUsed.slice(0, 4)"
         :key="lang.languageCodeHL"
         clickable
         @click="handleChange(lang)"
         color="primary"
         text-color="white"
-        class="q-mr-sm"
+        class="q-mr-sm q-mb-sm"
       >
-        {{ lang.label }}
+        {{ `${lang.name} (${lang.ethnicName})` }}
       </q-chip>
     </div>
   </div>
