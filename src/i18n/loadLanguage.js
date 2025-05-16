@@ -1,18 +1,32 @@
-import { i18n } from 'boot/i18n';
+// src/i18n/loadLanguage.js
+import { i18n } from 'boot/i18n'
 
-export async function loadLanguageAsync(langCodeRaw) {
-  const langCode = langCodeRaw.toLowerCase();
-  // If already loaded, skip
-  if (i18n.global.availableLocales.includes(langCode)) {
-    i18n.global.locale.value = langCode;
-    return;
+const fallback = 'eng00'
+const loaded = new Set()
+
+export async function loadLanguageAsync (lang) {
+  // 1. load fallback first
+  if (!loaded.has(fallback)) {
+    const { default: engMessages } = await import('src/i18n/languages/eng00.json')
+    i18n.global.setLocaleMessage(fallback, engMessages)
+    loaded.add(fallback)
   }
 
-  try {
-    const messages = await import(`./languages/${langCode}.json`);
-    i18n.global.setLocaleMessage(langCode, messages.default || messages);
-    i18n.global.locale.value = langCode;
-  } catch (err) {
-    console.error(`Failed to load language file: ${langCode}`, err);
+  // 2. if you’re asking for the fallback itself, just switch to it
+  if (lang === fallback) {
+    i18n.global.locale.value = fallback
+    return
   }
+
+  // 3. load the requested locale if not already
+  if (!loaded.has(lang)) {
+    const { default: localeMessages } = await import(`src/i18n/languages/${lang}.json`)
+    i18n.global.setLocaleMessage(lang, localeMessages)
+    loaded.add(lang)
+  }
+
+  // 4. switch to it
+  i18n.global.locale.value = lang
+  // (optionally update <html lang="…"> too)
+  //document.querySelector('html').setAttribute('lang', lang)
 }
