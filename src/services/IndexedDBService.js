@@ -27,6 +27,8 @@ export function openDatabase() {
 
       if (!db.objectStoreNames.contains("lessonContent"))
         db.createObjectStore("lessonContent");
+      if (!db.objectStoreNames.contains("interface"))
+        db.createObjectStore("interface");
 
       if (!db.objectStoreNames.contains("videoUrls"))
         db.createObjectStore("videoUrls");
@@ -65,6 +67,18 @@ async function getItem(storeName, key) {
     request.onsuccess = () => resolve(request.result);
     request.onerror = (e) => reject(e);
   });
+}
+
+// ----------------- Common Content -----------------
+
+export async function getInterfaceFromDB(lang) {
+  const key = `${lang}-Interface`;
+  return getItem("Interface", key);
+}
+
+export async function saveInterfaceToDB(lang, content) {
+  const key = `${lang}-Interface`;
+  return saveItem("Interface", key, content);
 }
 
 // ----------------- Common Content -----------------
