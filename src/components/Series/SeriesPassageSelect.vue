@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import { useLanguageStore } from "stores/LanguageStore";
+import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   study: String,
@@ -10,6 +11,9 @@ const props = defineProps({
   isLessonCompleted: Function,
   completedLessons: Array,
 });
+// Access the i18n instance
+const { t } = useI18n();
+const topicLabel = t('menu.topic')
 
 const emit = defineEmits(["updateLesson"]);
 const LanguageStore = useLanguageStore();
@@ -47,7 +51,7 @@ const selectedLesson = computed({
       :options="markedTopics"
       option-label="label"
       option-value="value"
-      label="Topic"
+      :label= "topicLabel"
       class="select"
     >
       <template v-slot:option="scope">

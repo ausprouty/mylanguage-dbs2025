@@ -126,8 +126,8 @@ const updateLesson = (nextLessonNumber) => {
     <q-btn
       :label="
         isLessonCompleted(computedLessonNumber)
-          ? 'Completed'
-          : 'Mark as Complete'
+          ? t('lesson.complete')
+          : t('lesson.notComplete')
       "
       :disable="isLessonCompleted(computedLessonNumber)"
       class="mark-complete-btn"

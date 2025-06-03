@@ -2,11 +2,14 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useLanguageStore } from "stores/LanguageStore";
+import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   study: String,
   lesson: Number,
 });
+// Access the i18n instance
+const { t } = useI18n();
 
 const emit = defineEmits(["updateLesson"]);
 
@@ -45,7 +48,7 @@ const showPreviousLesson = () => {
       @click="showPreviousLesson"
     >
       <q-btn flat dense round icon="arrow_back" aria-label="Previous" />
-      <span>Previous</span>
+      <span>{{t('menu.previous')}}</span>
     </div>
 
     <!-- Next Button -->
@@ -54,8 +57,9 @@ const showPreviousLesson = () => {
       class="nav-button next"
       @click="showNextLesson"
     >
-      <span>Next</span>
+       <span>{{t('menu.next')}}</span>
       <q-btn flat dense round icon="arrow_forward" aria-label="Next" />
+
     </div>
   </div>
 </template>

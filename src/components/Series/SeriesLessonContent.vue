@@ -2,6 +2,7 @@
 
 import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
+import { useI18n } from "vue-i18n";
 import DbsQuestions from "src/components/DbsQuestions.vue";
 import BibleText from "src/components/BibleTextBar.vue";
 import SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
@@ -23,6 +24,12 @@ export default {
     const ContentStore = useContentStore();
     const lessonContent = ref(null);
     const passageReference = ref("No reference found");
+    // i18n variables
+    const { t } = useI18n();
+    const m = (k) => t(`menu.${k}`);
+    const lookBackNoteInstruction = m('lookBackNoteInstruction');
+    const lookBackUpInstruction = m('lookUpNoteInstruction');
+    const lookBackForwardInstruction = m('lookForwardNoteInstruction');
 
     // ✅ Computed section keys (Updates when study or lesson changes)
     const sectionKeyBack = computed(
@@ -117,13 +124,13 @@ export default {
       <DbsQuestions
         :content="commonContent?.look_back || {}"
         :sectionKey="sectionKeyBack"
-        placeholder="Write your notes for Look Back here"
+        :placeholder="lookBackNoteInstruction"
       />
 
       <DbsQuestions
         :content="commonContent?.look_up || {}"
         :sectionKey="sectionKeyUp"
-        placeholder="Write your notes for Look Up here"
+        :placeholder="lookUpNoteInstruction"
       />
       <BibleText
         :biblePassage="lessonContent.bibleBlock.passage"
@@ -134,7 +141,7 @@ export default {
       <DbsQuestions
         :content="commonContent?.look_forward || {}"
         :sectionKey="sectionKeyForward"
-        placeholder="Write your notes for Look Forward here"
+        :placeholder="lookForwardNoteInstruction"
       />
     </section>
 

@@ -27,6 +27,7 @@ export function openDatabase() {
 
       if (!db.objectStoreNames.contains("lessonContent"))
         db.createObjectStore("lessonContent");
+
       if (!db.objectStoreNames.contains("interface"))
         db.createObjectStore("interface");
 
@@ -73,12 +74,12 @@ async function getItem(storeName, key) {
 
 export async function getInterfaceFromDB(lang) {
   const key = `${lang}-Interface`;
-  return getItem("Interface", key);
+  return getItem("interface", key);
 }
 
 export async function saveInterfaceToDB(lang, content) {
   const key = `${lang}-Interface`;
-  return saveItem("Interface", key, content);
+  return saveItem("interface", key, content);
 }
 
 // ----------------- Common Content -----------------

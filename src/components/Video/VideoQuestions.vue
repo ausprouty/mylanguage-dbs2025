@@ -2,6 +2,7 @@
 <script>
 import { watch, toRefs } from "vue";
 import DbsQuestions from "src/components/DbsQuestions.vue";
+import { useI18n } from "vue-i18n";
 
 export default {
   name: "VideoQuestions",
@@ -14,6 +15,9 @@ export default {
   },
   setup(props) {
     const { sectionKey } = toRefs(props); // Ensure reactivity
+    // Access the i18n instance
+    const { t } = useI18n();
+    const videoNoteInstruction = t('notes.videoNoteInstruction');
 
     // Watch for changes in sectionKey and log to console
     watch(sectionKey, (newVal, oldVal) => {
@@ -29,9 +33,9 @@ export default {
     <DbsQuestions
       :content="commonContent"
       :sectionKey="sectionKey"
-      placeholder="Write your notes for this video here"
+      :placeholder="videoNoteInstruction"
     />
   </div>
-  
+
 </template>
 

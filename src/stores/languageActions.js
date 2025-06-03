@@ -1,5 +1,4 @@
-
-import { loadLanguageAsync } from '../i18n/loadLanguage.js';
+import { loadLanguageAsync } from "../i18n/loadLanguage.js";
 import {
   validateLessonNumber,
   validateSegmentFormat,
@@ -101,7 +100,8 @@ export const languageActions = {
     console.log(
       `setLanguageObjectSelected: Setting i18n locale to ${languageObject.languageCodeHL}`
     );
-     await loadLanguageAsync(languageObject.languageCodeHL);
+    console.log("setLanguageObjectSelected -104");
+    await loadLanguageAsync(languageObject.languageCodeHL);
 
     this._updateRecentLanguages(languageObject);
   },
