@@ -12,6 +12,7 @@ import { useContentStore } from "stores/ContentStore";
 import { useCommonContent } from "src/composables/useCommonContent";
 import { useProgressTracker } from "src/composables/useProgressTracker";
 
+
 import VideoPlayer from "src/components/Video/VideoPlayer.vue";
 import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/Series/SeriesSegmentNavigator.vue";
@@ -65,8 +66,11 @@ onMounted(async () => {
   await Promise.all([
     loadCommonContent(),
     loadVideoUrls(),
-    loadProgress()
+    loadProgress(),
+
   ]);
+  console.log('Locale:', locale.value);             // Should log 'fr'
+  console.log('jVideo.title:', t('jVideo.title'));  // Should log French title
 });
 
 const loadVideoUrls = async () => {
@@ -126,8 +130,8 @@ const updateLesson = (nextLessonNumber) => {
     <q-btn
       :label="
         isLessonCompleted(computedLessonNumber)
-          ? t('lesson.complete')
-          : t('lesson.notComplete')
+          ? t('lesson.completed')
+          : t('lesson.notCompleted')
       "
       :disable="isLessonCompleted(computedLessonNumber)"
       class="mark-complete-btn"

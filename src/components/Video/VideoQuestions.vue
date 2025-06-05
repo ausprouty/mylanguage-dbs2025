@@ -1,6 +1,6 @@
 
 <script>
-import { watch, toRefs } from "vue";
+import {computed,  watch, toRefs } from "vue";
 import DbsQuestions from "src/components/DbsQuestions.vue";
 import { useI18n } from "vue-i18n";
 
@@ -17,14 +17,14 @@ export default {
     const { sectionKey } = toRefs(props); // Ensure reactivity
     // Access the i18n instance
     const { t } = useI18n();
-    const videoNoteInstruction = t('notes.videoNoteInstruction');
+   const videoNoteInstruction = computed(() => t('notes.videoNoteInstruction'));
 
     // Watch for changes in sectionKey and log to console
     watch(sectionKey, (newVal, oldVal) => {
       console.log(`SectionKey changed from '${oldVal}' to '${newVal}'`);
     });
 
-    return {};
+    return {videoNoteInstruction};
   },
 };
 </script>

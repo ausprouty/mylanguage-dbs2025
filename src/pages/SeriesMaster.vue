@@ -14,7 +14,8 @@ import SeriesLessonContent from "src/components/Series/SeriesLessonContent.vue";
 const route = useRoute();
 
 // Access the i18n instance
-const { t } = useI18n();
+const i18n = useI18n();
+const { t } =  i18n;
 
 // Access the language store
 const languageStore = useLanguageStore();
@@ -59,6 +60,8 @@ const {
 onMounted(() => {
   loadProgress();
   loadCommonContent();
+  console.log('Locales:', i18n.availableLocales);
+  console.log('frn00 Messages:', i18n.getLocaleMessage('frn00'));
 });
 
 // Watch for changes in computedLanguage and reload common content

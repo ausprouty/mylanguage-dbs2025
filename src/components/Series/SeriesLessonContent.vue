@@ -26,10 +26,10 @@ export default {
     const passageReference = ref("No reference found");
     // i18n variables
     const { t } = useI18n();
-    const m = (k) => t(`menu.${k}`);
+    const m = (k) => t(`notes.${k}`);
     const lookBackNoteInstruction = m('lookBackNoteInstruction');
-    const lookBackUpInstruction = m('lookUpNoteInstruction');
-    const lookBackForwardInstruction = m('lookForwardNoteInstruction');
+    const lookUpNoteInstruction = m('lookUpNoteInstruction');
+    const lookForwardNoteInstruction = m('lookForwardNoteInstruction');
 
     // ✅ Computed section keys (Updates when study or lesson changes)
     const sectionKeyBack = computed(
@@ -109,6 +109,9 @@ export default {
       sectionKeyBack,
       sectionKeyUp,
       sectionKeyForward,
+      lookBackNoteInstruction,
+      lookUpNoteInstruction,
+      lookForwardNoteInstruction
     };
   },
 };
