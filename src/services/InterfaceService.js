@@ -25,24 +25,32 @@ export async function getTranslatedInterface(
 
   try {
     // 1. Try to load from IndexedDB
+     console.log('trying to get from Database for ' + languageCodeHL);
     let messages = await getInterfaceFromDB(languageCodeHL);
+    console.log('returning from getInterfaceFromDB');
     console.log(messages);
 
     // 2. If not available, fetch from API and store
     if (!messages) {
-      console.log("no messages");
+      console.log("no messages for " + languageCodeHL);
+      console.log (`/api/translate/interface/${languageCodeHL}/${app}`)
       const res = await currentApi.get(
         `/api/translate/interface/${languageCodeHL}/${app}`
       );
       console.log(res);
       messages = res.data.data;
       console.log(
-        "Interface Service -36 look at db with languageCodeHL" + languageCodeHL
+        "Interface Service -42 saving interface languageCodeHL" + languageCodeHL
       );
+      console.log("messages");
       await saveInterfaceToDB(languageCodeHL, messages);
     }
 
     // 3. Set in i18n
+    console.log(
+        "Interface Service -setting interface languageCodeHL" + languageCodeHL
+      );
+    console.log("messages");
     i18n.global.setLocaleMessage(languageCodeHL, messages);
     i18n.global.locale.value = languageCodeHL;
 
@@ -55,7 +63,7 @@ export async function getTranslatedInterface(
 
     // 5. Update HTML lang attribute
     document.querySelector("html")?.setAttribute("lang", languageCodeHL);
-    console.log("Interface Service -53 check db");
+
   } catch (error) {
     console.error(`Failed to load interface for ${languageCodeHL}:`, error);
 

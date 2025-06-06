@@ -1,5 +1,5 @@
 const dbName = "MyBibleApp";
-const dbVersion = 2;
+const dbVersion = 3;
 let dbInstance = null;
 
 export function openDatabase() {
@@ -74,11 +74,14 @@ async function getItem(storeName, key) {
 
 export async function getInterfaceFromDB(lang) {
   const key = `${lang}-Interface`;
+  console.log (key)
   return getItem("interface", key);
 }
 
 export async function saveInterfaceToDB(lang, content) {
   const key = `${lang}-Interface`;
+  console.log (key)
+  console.log (content)
   return saveItem("interface", key, content);
 }
 

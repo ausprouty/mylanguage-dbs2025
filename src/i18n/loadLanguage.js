@@ -9,5 +9,6 @@ import { getTranslatedInterface } from "src/services/InterfaceService";
  * @param {string} languageCodeHL- The language code to load (e.g., 'eng00', 'spa00').
  */
 export async function loadLanguageAsync(languageCodeHL) {
+  console.log ('loadLanguageAsync is calling getTranslatedInterface with '+ languageCodeHL)
   await getTranslatedInterface(languageCodeHL);
 }
