@@ -13,6 +13,7 @@ import { useCommonContent } from "src/composables/useCommonContent";
 import { useProgressTracker } from "src/composables/useProgressTracker";
 
 
+
 import VideoPlayer from "src/components/Video/VideoPlayer.vue";
 import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/Series/SeriesSegmentNavigator.vue";
@@ -20,11 +21,12 @@ import VideoQuestions from "src/components/Video/VideoQuestions.vue";
 
 // Route and i18n
 const route = useRoute();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 // Stores
 const languageStore = useLanguageStore();
 const contentStore = useContentStore();
+const localeKey = computed(() => locale.value);
 
 // Study identifier
 const currentStudy = "jvideo";
@@ -69,7 +71,9 @@ onMounted(async () => {
     loadProgress(),
 
   ]);
-  console.log('Locale:', locale.value);             // Should log 'fr'
+
+            // Should log 'fr'
+  //i18n.global.setLocaleMessage(currentLocale, {});
   console.log('jVideo.title:', t('jVideo.title'));  // Should log French title
 });
 
@@ -137,6 +141,7 @@ const updateLesson = (nextLessonNumber) => {
       class="mark-complete-btn"
       @click="markLessonComplete(computedLessonNumber)"
     />
+
   </q-page>
 </template>
 

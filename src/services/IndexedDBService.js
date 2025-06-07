@@ -80,7 +80,7 @@ export async function getInterfaceFromDB(lang) {
 
 export async function saveInterfaceToDB(lang, content) {
   const key = `${lang}-Interface`;
-  console.log (key)
+  console.log (saveInterfaceToDB + ' ' + key)
   console.log (content)
   return saveItem("interface", key, content);
 }
