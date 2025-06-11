@@ -3,7 +3,7 @@ import {
   getCommonContent,
   getLessonContent,
   getJesusVideoUrls,
-} from "../services/ContentService.js";
+} from "../services/CommonContentService.js";
 
 import {
   validateLessonNumber,
