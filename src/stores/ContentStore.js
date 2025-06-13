@@ -1,9 +1,8 @@
 import { defineStore } from "pinia";
-import {
-  getCommonContent,
-  getLessonContent,
-  getJesusVideoUrls,
-} from "../services/CommonContentService.js";
+
+import {getCommonContent} from "../services/CommonContentService.js";
+import {getLessonContent} from "../services/LessonContentService.js";
+import {getJesusVideoUrls} from "../services/VideoContentService.js";
 
 import {
   validateLessonNumber,

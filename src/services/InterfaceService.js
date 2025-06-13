@@ -1,7 +1,7 @@
 import { i18n } from "boot/i18n";
 import { useLanguageStore } from "stores/LanguageStore";
 import { currentApi } from "boot/axios";
-import { pollTranslationUntilComplete } from "services/translationPollingService";
+import { pollTranslationUntilComplete } from "src/services/TranslationPollingService";
 import { getLanguageObjectFromHL } from "src/i18n/detectLanguage";
 import {
   getInterfaceFromDB,
