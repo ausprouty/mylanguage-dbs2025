@@ -1,30 +1,32 @@
 import { currentApi } from "boot/axios";
 import { useContentStore } from "stores/ContentStore";
-import { pollTranslationUntilComplete } from "services/TranslationPollingService";
+import { pollTranslationUntilComplete } from "src/services/TranslationPollingService";
 
 /**
  * Loads content from store, IndexedDB, or API. Triggers polling if translation is incomplete.
  */
 export async function getContentWithFallback({
   key,
+  store,
   storeGetter,
   storeSetter,
   dbGetter,
   dbSetter,
   apiUrl,
   languageCodeHL,
+  translationType,
 }) {
-  const contentStore = useContentStore();
+
 
   // 1. Check Vuex Store
-  const storeValue = storeGetter(contentStore);
+  const storeValue = storeGetter(store);
   if (storeValue) {
     console.log(`✅ Loaded ${key} from ContentStore`);
 
-    if (storeValue.language?.translationCompleted === true) {
+    if (storeValue.language?.translationComplete === true) {
+      setTranslationComplete(translationType, true);
       return storeValue; // ✅ Fully translated, done
     }
-
   }
 
   // 2. Check IndexedDB
@@ -32,11 +34,12 @@ export async function getContentWithFallback({
     const dbValue = await dbGetter();
     if (dbValue) {
       console.log(`✅ Loaded ${key} from IndexedDB`);
-      storeSetter(contentStore, dbValue);
+      storeSetter(store, dbValue);
       if (dbValue.language?.translationCompleted === true) {
-        // but don't I also need to store in ContentStore?
+        setTranslationComplete(translationType, true);
         return dbValue; // ✅ Fully translated
       }
+      console.log("translation in store not complete");
     }
   } catch (err) {
     console.warn(`⚠️ DB getter failed for ${key}:`, err);
@@ -59,20 +62,23 @@ export async function getContentWithFallback({
       console.error(`❌ No valid data returned from API for ${key}`);
       throw new Error(`Empty or invalid API response for ${key}`);
     }
-    // what does this line do?
-    storeSetter(contentStore, data);
+    // update store with whatever we get
+    storeSetter(store, data);
     if (data.language?.translationCompleted === true) {
       console.log(`✅ ${key} from API is complete — caching to DB`);
+      setTranslationComplete(translationType, true);
       await dbSetter(data);
       //todo
-      return data
+      return data;
     } else {
       console.warn(`⚠️ ${key} from API is incomplete — polling`);
       pollTranslationUntilComplete({
         languageCodeHL,
-        translationType: key,
-        endpoint: apiUrl,
-        saveToDB: dbSetter,
+        translationType: translationType,
+        apiUrl: apiUrl,
+        dbSetter: dbSetter,
+        store:store,
+        storeSetter: storeSetter,
       });
     }
   } catch (error) {

@@ -1,4 +1,5 @@
 
+import { useContentStore } from 'stores/ContentStore';
 import { getContentWithFallback } from "src/services/ContentLoaderService";
 import {
   getCommonContentFromDB,
@@ -7,14 +8,17 @@ import {
 
 export async function getCommonContent(languageCodeHL, study) {
   const key = `commonContent-${study}-${languageCodeHL}`;
+  const ContentStore = useContentStore();
 
   return getContentWithFallback({
     key,
+    store: ContentStore, // ✅ inject it here
     storeGetter: (store) => store.getCommonContent(study, languageCodeHL),
     storeSetter: (store, data) =>
       store.setCommonContent(study, languageCodeHL, data),
     dbGetter: () => getCommonContentFromDB(study, languageCodeHL),
     dbSetter: (data) => saveCommonContentToDB(study, languageCodeHL, data),
     apiUrl: `api/translate/commonContent/${languageCodeHL}/${study}`,
+    translationType: 'commonContent'
   });
 }

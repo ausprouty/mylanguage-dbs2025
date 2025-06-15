@@ -136,9 +136,9 @@ export default {
         :placeholder="lookUpNoteInstruction"
       />
       <BibleText
-        :biblePassage="lessonContent.bibleBlock.passage"
+        :biblePassage="lessonContent.passage"
         :passageReference="passageReference"
-        :translation="lessonContent.bibleBlock.translation"
+        :translation="lessonContent.menu"
       />
 
       <DbsQuestions

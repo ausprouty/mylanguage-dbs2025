@@ -1,4 +1,5 @@
 
+import { useContentStore } from 'stores/ContentStore';
 import { getContentWithFallback } from "src/services/ContentLoaderService";
 import {
   getLessonContentFromDB,
@@ -9,9 +10,10 @@ import {
 
 export async function getLessonContent(languageCodeHL, study, lesson) {
   const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`;
-
+  const ContentStore = useContentStore();
   return getContentWithFallback({
     key,
+    store: ContentStore, // ✅ inject it here
     storeGetter: (store) =>
       store.getLessonContent(study, languageCodeHL, lesson),
     storeSetter: (store, data) =>
@@ -20,6 +22,7 @@ export async function getLessonContent(languageCodeHL, study, lesson) {
     dbSetter: (data) =>
       saveLessonContentToDB(study, languageCodeHL, lesson, data),
     apiUrl: `api/translate/lessonContent/${languageCodeHL}/${study}/${lesson}`,
+    translationType: 'lessonContent'
   });
 }
 

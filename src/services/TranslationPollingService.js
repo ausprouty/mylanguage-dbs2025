@@ -5,11 +5,13 @@ const activePolls = new Set();
 
 export async function pollTranslationUntilComplete({
   languageCodeHL,
-  translationType,
-  endpoint,
-  saveToDB,
-  maxAttempts = 10,
-  interval = 1000,
+  translationType, // 'interface', 'commonContent', 'lessonContent'
+  apiUrl,
+  dbSetter,
+  store,
+  storeSetter,
+  maxAttempts = 5,
+  interval = 300,
 }) {
   const pollKey = `${translationType}:${languageCodeHL}`;
   if (activePolls.has(pollKey)) {
@@ -23,21 +25,37 @@ export async function pollTranslationUntilComplete({
   const poll = async () => {
     attempts++;
     try {
-      const response = await currentApi.get(endpoint);
+      const response = await currentApi.get(apiUrl);
       const translation = response.data.data;
 
       if (translation?.language?.translationComplete) {
         console.log(`${translationType} translation complete.`);
-        await saveToDB(languageCodeHL, translation);
 
+        // ✅ Step 1: Update store content reactively
+        await storeSetter(store, translation);
+
+        // ✅ Step 2: Update translationComplete flag
+        setTranslationComplete(translationType, true);
+
+        // ✅ Step 3: Save to IndexedDB
+        await dbSetter(translation);
+
+        // ✅ Step 4: (only for interface)
         if (translationType === "interface") {
           i18n.global.setLocaleMessage(languageCodeHL, translation);
           i18n.global.locale.value = languageCodeHL;
         }
 
         activePolls.delete(pollKey);
+
       } else if (attempts < maxAttempts) {
-        console.log(`${translationType} not ready (attempt ${attempts})`);
+        // ✅ Step 2: Update translationComplete flag
+        setTranslationComplete(translationType, false);
+        const cronKey = translation?.language?.cronKey;
+        console.log(`${translationType} not complete (attempt ${attempts})`);
+        currentApi.get(`/api/translate/cron/${cronKey}`).catch(err =>
+        console.warn("Translation queue cron failed:", err)
+        );
         setTimeout(poll, interval);
       } else {
         console.warn(`${translationType} polling exceeded max attempts.`);

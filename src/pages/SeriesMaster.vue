@@ -58,10 +58,10 @@ const {
 
 // Load common content when the component mounts
 onMounted(() => {
-  loadProgress();
-  loadCommonContent();
-  console.log('Locales:', i18n.availableLocales);
-  console.log('Locales Messages:', i18n.getLocaleMessage('hnd00'));
+  loadProgress();  // find out which lessons you have completed
+  loadCommonContent(); // use composable to load Common Content
+  //console.log('Locales:', i18n.availableLocales);
+  //console.log('Locales Messages:', i18n.getLocaleMessage('eng00'));
 });
 
 // Watch for changes in computedLanguage and reload common content

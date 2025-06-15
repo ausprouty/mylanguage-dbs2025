@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
 
-import {getCommonContent} from "../services/CommonContentService.js";
-import {getLessonContent} from "../services/LessonContentService.js";
-import {getJesusVideoUrls} from "../services/VideoContentService.js";
+import { getCommonContent } from "../services/CommonContentService.js";
+import { getLessonContent } from "../services/LessonContentService.js";
+import { getJesusVideoUrls } from "../services/VideoContentService.js";
 
 import {
   validateLessonNumber,
@@ -16,6 +16,11 @@ export const useContentStore = defineStore("ContentStore", {
     commonContent: {}, // e.g., { 'life-eng00': 'common HTML' }
     lessonContent: {}, // e.g., { 'life-eng00-lesson-1': 'lesson HTML' }
     videoUrls: {}, // e.g., { 'life-eng00-lesson-1': ['url1', 'url2'] }
+    translationComplete: {
+      interface: false,
+      commonContent: false,
+      lessonContent: false,
+    },
   }),
 
   getters: {
@@ -32,6 +37,9 @@ export const useContentStore = defineStore("ContentStore", {
     getVideoUrls: (state) => (study, languageCodeHL, lesson) => {
       const key = `${study}-${languageCodeHL}-Lesson-${lesson}`;
       return state.videoUrls[key] || [];
+    },
+    isFullyTranslated: (state) => {
+      return Object.values(state.translationComplete).every(Boolean);
     },
   },
 
@@ -115,6 +123,21 @@ export const useContentStore = defineStore("ContentStore", {
       this.commonContent = {};
       this.lessonContent = {};
       this.videoUrls = {};
+    },
+    // ✅ Mark a specific section complete
+    setTranslationComplete(section, value) {
+      if (this.translationComplete.hasOwnProperty(section)) {
+        this.translationComplete[section] = value;
+      } else {
+        console.warn(`Unknown translation section: ${section}`);
+      }
+    },
+
+    // ✅ Reset all flags (e.g., on study/language change)
+    clearTranslationComplete() {
+      for (const key in this.translationComplete) {
+        this.translationComplete[key] = false;
+      }
     },
   },
 
