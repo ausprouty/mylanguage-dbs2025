@@ -43,11 +43,13 @@ export default {
     // ✅ Load lesson content
     const loadLessonContent = async () => {
       try {
+        console.log("Fetching lessonContent with:", props.languageCodeHL, props.study, props.lesson);
         lessonContent.value = await ContentStore.loadLessonContent(
           props.languageCodeHL,
           props.study,
           props.lesson
         );
+        console.log (lessonContent.value)
         updatePassageReference();
       } catch (error) {
         console.error("Error loading lesson content:", error);
@@ -79,7 +81,7 @@ export default {
     // ✅ Update passage reference when lesson content changes
     const updatePassageReference = () => {
       const reference =
-        lessonContent.value?.bibleBlock.passage.referenceLocalLanguage || "";
+        lessonContent.value?.passage.referenceLocalLanguage || "";
       passageReference.value = reference || "No reference found";
     };
 
@@ -118,6 +120,9 @@ export default {
 </script>
 
 <template>
+  <div v-if="!lessonContent">
+  <p>There is NO lessonContent</p>
+  </div>
   <div v-if="lessonContent">
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
 

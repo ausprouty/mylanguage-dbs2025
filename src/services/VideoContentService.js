@@ -11,7 +11,7 @@ export async function getJesusVideoUrls(languageCodeJF) {
   const lesson = 0; // No specific lesson here, but keeping the pattern
   const key = `videoUrls-${study}-${languageCodeJF}-lesson-${lesson}`;
   const ContentStore = useContentStore();
-  return getContentWithFallback({
+  const result =  getContentWithFallback({
     key,
     store: ContentStore, // ✅ inject it here
     storeGetter: (store) => store.getVideoUrls(study, languageCodeJF, lesson),
@@ -22,4 +22,6 @@ export async function getJesusVideoUrls(languageCodeJF) {
     apiUrl: `api/translate/videoUrls/jvideo/${languageCodeJF}`,
     translationType: 'videoContent'
   });
+  console.log (result);
+  return result;
 }

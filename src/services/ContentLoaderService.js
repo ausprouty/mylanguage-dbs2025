@@ -17,29 +17,31 @@ export async function getContentWithFallback({
   translationType,
 }) {
 
-
-  // 1. Check Vuex Store
+  console.log (key)
+  // 1. Check Pinia Store
   const storeValue = storeGetter(store);
   if (storeValue) {
     console.log(`✅ Loaded ${key} from ContentStore`);
-
+    console.log (storeValue)
     if (storeValue.language?.translationComplete === true) {
-      setTranslationComplete(translationType, true);
+      store.setTranslationComplete(translationType, true);
       return storeValue; // ✅ Fully translated, done
     }
   }
 
   // 2. Check IndexedDB
   try {
+    console.log ('trying indexedDB');
     const dbValue = await dbGetter();
     if (dbValue) {
       console.log(`✅ Loaded ${key} from IndexedDB`);
       storeSetter(store, dbValue);
-      if (dbValue.language?.translationCompleted === true) {
-        setTranslationComplete(translationType, true);
+       console.log (dbValue)
+      if (dbValue.language?.translationComplete === "true" ) {
+        store.setTranslationComplete(translationType, true);
         return dbValue; // ✅ Fully translated
       }
-      console.log("translation in store not complete");
+      console.log("translation in store not complete - line 44");
     }
   } catch (err) {
     console.warn(`⚠️ DB getter failed for ${key}:`, err);
@@ -64,14 +66,16 @@ export async function getContentWithFallback({
     }
     // update store with whatever we get
     storeSetter(store, data);
-    if (data.language?.translationCompleted === true) {
-      console.log(`✅ ${key} from API is complete — caching to DB`);
-      setTranslationComplete(translationType, true);
+
+    if (data.language?.translationComplete === "true") {
+      console.log(`✅ ${key} from API is complete — caching to DB `);
+      store.setTranslationComplete(translationType, true);
       await dbSetter(data);
       //todo
       return data;
     } else {
-      console.warn(`⚠️ ${key} from API is incomplete — polling`);
+  
+      console.warn(`⚠️ ${key} from API is incomplete — polling (line 78)`);
       pollTranslationUntilComplete({
         languageCodeHL,
         translationType: translationType,

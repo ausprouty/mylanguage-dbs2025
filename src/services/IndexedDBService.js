@@ -73,13 +73,13 @@ async function getItem(storeName, key) {
 // ----------------- Common Content -----------------
 
 export async function getInterfaceFromDB(lang) {
-  const key = `${lang}-Interface`;
+  const key = `interface-${lang}`;
   console.log (key)
   return getItem("interface", key);
 }
 
 export async function saveInterfaceToDB(lang, content) {
-  const key = `${lang}-Interface`;
+  const key = `interface-${lang}`;
   console.log (saveInterfaceToDB + ' ' + key)
   console.log (content)
   return saveItem("interface", key, content);
@@ -88,36 +88,36 @@ export async function saveInterfaceToDB(lang, content) {
 // ----------------- Common Content -----------------
 
 export async function getCommonContentFromDB(study, lang) {
-  const key = `${study}-${lang}-CommonContent`;
+  const key = `commonContent-${study}-${lang}`;
   return getItem("commonContent", key);
 }
 
-export async function saveCommonContentToDB(study, lang, content) {
-  const key = `${study}-${lang}-CommonContent`;
+export async function saveCommonContentToDB(study, languageCodeHL, content) {
+  const key = `commonContent-${study}-${languageCodeHL}`;
   return saveItem("commonContent", key, content);
 }
 
 // ----------------- Lesson Content -----------------
 
-export async function getLessonContentFromDB(study, lang, lesson) {
-  const key = `${study}-${lang}-${lesson}-LessonContent`;
+export async function getLessonContentFromDB(study, languageCodeHL, lesson) {
+  const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`
   return getItem("lessonContent", key);
 }
 
-export async function saveLessonContentToDB(study, lang, lesson, content) {
-  const key = `${study}-${lang}-${lesson}-LessonContent`;
+export async function saveLessonContentToDB(study, languageCodeHL, lesson, content) {
+  const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`
   return saveItem("lessonContent", key, content);
 }
 
 // ----------------- Video URLs -----------------
 
-export async function getVideoUrlsFromDB(study, lang, lesson) {
-  const key = `${study}-${lang}-Video-${lesson}`;
+export async function getVideoUrlsFromDB(study, languageCodeJF) {
+  const key = `videoUrls-${study}-${languageCodeJF}`;
   return getItem("videoUrls", key);
 }
 
-export async function saveVideoUrlsToDB(study, lang, lesson, urls) {
-  const key = `${study}-${lang}-Video-${lesson}`;
+export async function saveVideoUrlsToDB(study, languageCodeJF,urls) {
+  const key = `videoUrls-${study}-${languageCodeJF}`;
   return saveItem("videoUrls", key, urls);
 }
 

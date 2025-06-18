@@ -25,9 +25,10 @@ export async function pollTranslationUntilComplete({
   const poll = async () => {
     attempts++;
     try {
+      console.log ('attempting poll')
       const response = await currentApi.get(apiUrl);
       const translation = response.data.data;
-
+      console.log (translation);
       if (translation?.language?.translationComplete) {
         console.log(`${translationType} translation complete.`);
 
@@ -35,7 +36,7 @@ export async function pollTranslationUntilComplete({
         await storeSetter(store, translation);
 
         // ✅ Step 2: Update translationComplete flag
-        setTranslationComplete(translationType, true);
+        store.setTranslationComplete(translationType, true);
 
         // ✅ Step 3: Save to IndexedDB
         await dbSetter(translation);
@@ -50,7 +51,7 @@ export async function pollTranslationUntilComplete({
 
       } else if (attempts < maxAttempts) {
         // ✅ Step 2: Update translationComplete flag
-        setTranslationComplete(translationType, false);
+        store.setTranslationComplete(translationType, false);
         const cronKey = translation?.language?.cronKey;
         console.log(`${translationType} not complete (attempt ${attempts})`);
         currentApi.get(`/api/translate/cron/${cronKey}`).catch(err =>

@@ -13,9 +13,9 @@ import {
 
 export const useContentStore = defineStore("ContentStore", {
   state: () => ({
-    commonContent: {}, // e.g., { 'life-eng00': 'common HTML' }
-    lessonContent: {}, // e.g., { 'life-eng00-lesson-1': 'lesson HTML' }
-    videoUrls: {}, // e.g., { 'life-eng00-lesson-1': ['url1', 'url2'] }
+    commonContent: {}, // e.g., { 'commonContent-${study}-${languageCodeHL}': 'common HTML' }
+    lessonContent: {}, // e.g., { lessonContent-${study}-${languageCodeHL}-lesson-${lesson}': 'lesson HTML' }
+    videoUrls: {}, // e.g., { 'videoUrls-${study}-${languageCodeJF}-lesson-${lesson}': ['url1', 'url2'] }
     translationComplete: {
       interface: false,
       commonContent: false,
@@ -25,17 +25,17 @@ export const useContentStore = defineStore("ContentStore", {
 
   getters: {
     getCommonContent: (state) => (study, languageCodeHL) => {
-      const key = `${study}-${languageCodeHL}`;
+      const key = `commonContent-${study}-${languageCodeHL}`;
       return state.commonContent[key] || null;
     },
 
     getLessonContent: (state) => (study, languageCodeHL, lesson) => {
-      const key = `${study}-${languageCodeHL}-Lesson-${lesson}`;
+      const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`;
       return state.lessonContent[key] || null;
     },
 
-    getVideoUrls: (state) => (study, languageCodeHL, lesson) => {
-      const key = `${study}-${languageCodeHL}-Lesson-${lesson}`;
+    getVideoUrls: (state) => (study, languageCodeJF, lesson) => {
+      const key = `videoUrls-${study}-${languageCodeJF}`;
       return state.videoUrls[key] || [];
     },
     isFullyTranslated: (state) => {
@@ -45,43 +45,32 @@ export const useContentStore = defineStore("ContentStore", {
 
   actions: {
     setCommonContent(study, languageCodeHL, data) {
-      const key = `${study}-${languageCodeHL}`;
+      const key = `commonContent-${study}-${languageCodeHL}`;
       this.commonContent[key] = data;
     },
 
     setLessonContent(study, languageCodeHL, lesson, data) {
-      const key = `${study}-${languageCodeHL}-Lesson-${lesson}`;
+      const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`;
       this.lessonContent[key] = data;
     },
 
-    setVideoUrls(study, languageCodeHL, lesson, urls) {
-      const key = `${study}-${languageCodeHL}-Lesson-${lesson}`;
+    setVideoUrls(study, languageCodeJF, lesson, urls) {
+       const key = `videoUrls-${study}-${languageCodeJF}`;
       this.videoUrls[key] = urls;
     },
 
     async loadCommonContent(languageCodeHL, study) {
-      if (this.commonContent[languageCodeHL]?.[study]) {
-        return this.commonContent[languageCodeHL][study];
+      const key = `commonContent-${study}-${languageCodeHL}`;
+      if (this.commonContent[key]) {
+        return this.commonContent[key];
       }
       const content = await getCommonContent(languageCodeHL, study);
-      if (!this.commonContent[languageCodeHL]) {
-        this.commonContent[languageCodeHL] = {};
-      }
-      this.commonContent[languageCodeHL][study] = content;
+      this.commonContent[key] = content;
       return content;
     },
 
     async loadLessonContent(languageCodeHL, study, lesson) {
-      console.log(languageCodeHL);
-      console.log(study);
-      console.log(lesson);
-      if (!this.lessonContent[languageCodeHL]) {
-        this.lessonContent[languageCodeHL] = {};
-      }
-      if (!this.lessonContent[languageCodeHL][study]) {
-        this.lessonContent[languageCodeHL][study] = {};
-      }
-
+      console.log({ languageCodeHL, study, lesson });
       const validatedLesson = validateLessonNumber(lesson);
       if (validatedLesson === null) {
         console.warn(
@@ -89,18 +78,20 @@ export const useContentStore = defineStore("ContentStore", {
         );
         return null;
       }
-
-      if (this.lessonContent[languageCodeHL][study][validatedLesson]) {
-        return this.lessonContent[languageCodeHL][study][validatedLesson];
+      const key = `lessonContent-${study}-${languageCodeHL}-lesson-${validatedLesson}`;
+      if (this.lessonContent[key]) {
+        const content =  this.lessonContent[key];
+        console.log (content);
+        return content;
       }
-
       try {
         const content = await getLessonContent(
           languageCodeHL,
           study,
           validatedLesson
         );
-        this.lessonContent[languageCodeHL][study][validatedLesson] = content;
+        this.lessonContent[key] = content;
+        console.log (content);
         return content;
       } catch (error) {
         console.error("Failed to fetch lesson content:", error);
@@ -108,15 +99,13 @@ export const useContentStore = defineStore("ContentStore", {
       }
     },
 
-    async loadVideoUrls(languageCodeHL, study) {
-      if (this.videoUrls[languageCodeHL]?.[study]) {
-        return this.videoUrls[languageCodeHL][study];
+    async loadVideoUrls(languageCodeJF, study) {
+      const key = `videoUrls-${study}-${languageCodeJF}`;
+      if (this.videoUrls[key]) {
+        return this.videoUrls[key];
       }
-      const content = await getJesusVideoUrls(languageCodeHL, study);
-      if (!this.videoUrls[languageCodeHL]) {
-        this.videoUrls[languageCodeHL] = {};
-      }
-      this.videoUrls[languageCodeHL][study] = content;
+      const content = await getJesusVideoUrls(languageCodeJF, study);
+      this.videoUrls[key] = content;
       return content;
     },
     clearAllContent() {

@@ -9,8 +9,8 @@ import {
 export async function getCommonContent(languageCodeHL, study) {
   const key = `commonContent-${study}-${languageCodeHL}`;
   const ContentStore = useContentStore();
-
-  return getContentWithFallback({
+  console.log ('getCommonContent called for ' + key);
+  const result = getContentWithFallback({
     key,
     store: ContentStore, // ✅ inject it here
     storeGetter: (store) => store.getCommonContent(study, languageCodeHL),
@@ -21,4 +21,6 @@ export async function getCommonContent(languageCodeHL, study) {
     apiUrl: `api/translate/commonContent/${languageCodeHL}/${study}`,
     translationType: 'commonContent'
   });
+  console.log (result);
+  return result;
 }

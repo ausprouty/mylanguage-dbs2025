@@ -9,11 +9,14 @@ import {
 
 
 export async function getLessonContent(languageCodeHL, study, lesson) {
+  console.log('getLessonContent called with:', languageCodeHL, study, lesson);
+
   const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`;
   const ContentStore = useContentStore();
-  return getContentWithFallback({
+
+  const result = await getContentWithFallback({
     key,
-    store: ContentStore, // ✅ inject it here
+    store: ContentStore,
     storeGetter: (store) =>
       store.getLessonContent(study, languageCodeHL, lesson),
     storeSetter: (store, data) =>
@@ -24,5 +27,7 @@ export async function getLessonContent(languageCodeHL, study, lesson) {
     apiUrl: `api/translate/lessonContent/${languageCodeHL}/${study}/${lesson}`,
     translationType: 'lessonContent'
   });
-}
 
+  console.log("✅ getLessonContent result:", result);
+  return result;
+}
