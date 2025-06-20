@@ -1,18 +1,11 @@
 <script setup>
-import {
-  ref,
-  computed,
-  watch,
-  onMounted,
-} from "vue";
+import { ref, computed, watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useLanguageStore } from "stores/LanguageStore";
 import { useContentStore } from "stores/ContentStore";
 import { useCommonContent } from "src/composables/useCommonContent";
 import { useProgressTracker } from "src/composables/useProgressTracker";
-
-
 
 import VideoPlayer from "src/components/Video/VideoPlayer.vue";
 import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
@@ -44,7 +37,9 @@ if (route.params.languageCodeJF) {
 const computedLanguageHL = computed(() => languageStore.languageCodeHLSelected);
 const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
 const computedLanguageJF = computed(() => languageStore.languageCodeJFSelected);
-const computedSectionKey = computed(() => `video-${computedLessonNumber.value}`);
+const computedSectionKey = computed(
+  () => `video-${computedLessonNumber.value}`
+);
 
 // Content
 const { commonContent, topics, loadCommonContent } = useCommonContent(
@@ -60,26 +55,21 @@ const {
   completedLessons,
   isLessonCompleted,
   markLessonComplete,
-  loadProgress
+  loadProgress,
 } = useProgressTracker(currentStudy);
 
 // Load content on mount
 onMounted(async () => {
-  await Promise.all([
-    loadCommonContent(),
-    loadVideoUrls(),
-    loadProgress(),
+  await Promise.all([loadCommonContent(), loadVideoUrls(), loadProgress()]);
 
-  ]);
-
-            // Should log 'fr'
+  // Should log 'fr'
   //i18n.global.setLocaleMessage(currentLocale, {});
-  console.log('jVideo.title:', t('jVideo.title'));  // Should log French title
+  console.log("jVideo.title:", t("jVideo.title")); // Should log French title
 });
 
 const loadVideoUrls = async () => {
   try {
-    videoUrls.value = await useContentStore.loadVideoUrls(
+    videoUrls.value = await usecontentStore.loadVideoUrls(
       computedLanguageJF.value,
       currentStudy
     );
@@ -119,10 +109,7 @@ const updateLesson = (nextLessonNumber) => {
       @updateLesson="updateLesson"
     />
 
-    <VideoPlayer
-      :videoUrls="videoUrls"
-      :lesson="computedLessonNumber"
-    />
+    <VideoPlayer :videoUrls="videoUrls" :lesson="computedLessonNumber" />
 
     <VideoQuestions
       :commonContent="commonContent"
@@ -141,7 +128,6 @@ const updateLesson = (nextLessonNumber) => {
       class="mark-complete-btn"
       @click="markLessonComplete(computedLessonNumber)"
     />
-
   </q-page>
 </template>
 

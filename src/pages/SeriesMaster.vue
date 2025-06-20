@@ -35,18 +35,22 @@ const currentLesson = route.params.lesson || DEFAULTS.lesson;
 languageStore.setCurrentStudy(currentStudy);
 languageStore.setLessonNumber(currentStudy, currentLesson);
 
-// Initialize the composable
-const { commonContent, topics, loadCommonContent } = useCommonContent(
-  currentStudy,
-  languageStore.languageSelected.languageCodeHL
-);
+
 
 // Reactive computed properties
-const computedLanguage = computed(
+const computedLanguageHL = computed(
   () => languageStore.languageSelected.languageCodeHL
+);
+const computedLanguageJF = computed(
+  () => languageStore.languageSelected.languageCodeJF
 );
 const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
 
+// Initialize the composable
+const { commonContent, topics, loadCommonContent } = useCommonContent(
+  currentStudy,
+  computedLanguageHL
+);
 // Progress tracker
 
 const {
@@ -64,8 +68,11 @@ onMounted(() => {
   //console.log('Locales Messages:', i18n.getLocaleMessage('eng00'));
 });
 
-// Watch for changes in computedLanguage and reload common content
-watch(computedLanguage, (newLanguage) => {
+// Watch for changes in computedLanguageHL and reload common content
+watch(computedLanguageHL, (newLanguage) => {
+  loadCommonContent(newLanguage);
+});
+watch(computedLanguageJF, (newLanguage) => {
   loadCommonContent(newLanguage);
 });
 
@@ -103,7 +110,8 @@ const updateLesson = (nextLessonNumber) => {
     <hr />
 
     <SeriesLessonContent
-      :languageCodeHL="computedLanguage"
+      :languageCodeHL="computedLanguageHL"
+      :languageCodeJF="computedLanguageJF"
       :study="route.params.study"
       :lesson="computedLessonNumber"
       :commonContent="commonContent"

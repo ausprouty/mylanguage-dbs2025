@@ -1,5 +1,4 @@
 <script>
-
 import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import { useI18n } from "vue-i18n";
@@ -16,20 +15,21 @@ export default {
   components: { DbsQuestions, BibleText, SeriesReviewLastLesson },
   props: {
     languageCodeHL: { type: String, required: true },
+    languageCodeJF: { type: Number, required: true },
     study: { type: String, required: true },
     lesson: { type: Number, required: true },
     commonContent: { type: Object, required: true },
   },
   setup(props) {
-    const ContentStore = useContentStore();
+    const contentStore = useContentStore();
     const lessonContent = ref(null);
     const passageReference = ref("No reference found");
     // i18n variables
     const { t } = useI18n();
     const m = (k) => t(`notes.${k}`);
-    const lookBackNoteInstruction = m('lookBackNoteInstruction');
-    const lookUpNoteInstruction = m('lookUpNoteInstruction');
-    const lookForwardNoteInstruction = m('lookForwardNoteInstruction');
+    const lookBackNoteInstruction = m("lookBackNoteInstruction");
+    const lookUpNoteInstruction = m("lookUpNoteInstruction");
+    const lookForwardNoteInstruction = m("lookForwardNoteInstruction");
 
     // ✅ Computed section keys (Updates when study or lesson changes)
     const sectionKeyBack = computed(
@@ -43,13 +43,19 @@ export default {
     // ✅ Load lesson content
     const loadLessonContent = async () => {
       try {
-        console.log("Fetching lessonContent with:", props.languageCodeHL, props.study, props.lesson);
-        lessonContent.value = await ContentStore.loadLessonContent(
+        console.log(
+          "Fetching lessonContent with:",
           props.languageCodeHL,
           props.study,
           props.lesson
         );
-        console.log (lessonContent.value)
+        lessonContent.value = await contentStore.loadLessonContent(
+          props.languageCodeHL,
+          props.languageCodeJF,
+          props.study,
+          props.lesson
+        );
+        console.log(lessonContent.value);
         updatePassageReference();
       } catch (error) {
         console.error("Error loading lesson content:", error);
@@ -113,7 +119,7 @@ export default {
       sectionKeyForward,
       lookBackNoteInstruction,
       lookUpNoteInstruction,
-      lookForwardNoteInstruction
+      lookForwardNoteInstruction,
     };
   },
 };
@@ -121,7 +127,7 @@ export default {
 
 <template>
   <div v-if="!lessonContent">
-  <p>There is NO lessonContent</p>
+    <p>There is NO lessonContent</p>
   </div>
   <div v-if="lessonContent">
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
@@ -152,8 +158,5 @@ export default {
         :placeholder="lookForwardNoteInstruction"
       />
     </section>
-
   </div>
 </template>
-
-

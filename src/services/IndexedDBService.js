@@ -99,13 +99,13 @@ export async function saveCommonContentToDB(study, languageCodeHL, content) {
 
 // ----------------- Lesson Content -----------------
 
-export async function getLessonContentFromDB(study, languageCodeHL, lesson) {
-  const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`
+export async function getLessonContentFromDB(study, languageCodeHL, languageCodeJF, lesson) {
+  const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}`
   return getItem("lessonContent", key);
 }
 
-export async function saveLessonContentToDB(study, languageCodeHL, lesson, content) {
-  const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`
+export async function saveLessonContentToDB(study, languageCodeHL,languageCodeJF, lesson, content) {
+  const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}`
   return saveItem("lessonContent", key, content);
 }
 

@@ -1,31 +1,53 @@
-
-import { useContentStore } from 'stores/ContentStore';
+import { useContentStore } from "stores/ContentStore";
 import { getContentWithFallback } from "src/services/ContentLoaderService";
 import {
   getLessonContentFromDB,
   saveLessonContentToDB,
-
 } from "./IndexedDBService";
 
+export async function getLessonContent(
+  study,
+  languageCodeHL,
+  languageCodeJF,
+  lesson
+) {
+  console.log(
+    "getLessonContent called with:" + study,
+    languageCodeHL,
+    languageCodeJF,
+    lesson
+  );
 
-export async function getLessonContent(languageCodeHL, study, lesson) {
-  console.log('getLessonContent called with:', languageCodeHL, study, lesson);
-
-  const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`;
-  const ContentStore = useContentStore();
+  const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}`;
+  const url = `api/translate/lessonContent/${languageCodeHL}/${languageCodeJF}/${study}/${lesson}`;
+  console.log(url);
+  const contentStore = useContentStore();
 
   const result = await getContentWithFallback({
     key,
     store: ContentStore,
     storeGetter: (store) =>
-      store.getLessonContent(study, languageCodeHL, lesson),
+      store.getLessonContent(study, languageCodeHL, languageCodeJF, lesson),
     storeSetter: (store, data) =>
-      store.setLessonContent(study, languageCodeHL, lesson, data),
-    dbGetter: () => getLessonContentFromDB(study, languageCodeHL, lesson),
+      store.setLessonContent(
+        study,
+        languageCodeHL,
+        languageCodeJF,
+        lesson,
+        data
+      ),
+    dbGetter: () =>
+      getLessonContentFromDB(study, languageCodeHL, languageCodeJF, lesson),
     dbSetter: (data) =>
-      saveLessonContentToDB(study, languageCodeHL, lesson, data),
-    apiUrl: `api/translate/lessonContent/${languageCodeHL}/${study}/${lesson}`,
-    translationType: 'lessonContent'
+      saveLessonContentToDB(
+        study,
+        languageCodeHL,
+        languageCodeJF,
+        lesson,
+        data
+      ),
+    apiUrl: url,
+    translationType: "lessonContent",
   });
 
   console.log("✅ getLessonContent result:", result);

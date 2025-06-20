@@ -11,7 +11,7 @@ import {
   validatePositiveInteger,
 } from "./validators";
 
-export const useContentStore = defineStore("ContentStore", {
+export const useContentStore = defineStore("contentStore", {
   state: () => ({
     commonContent: {}, // e.g., { 'commonContent-${study}-${languageCodeHL}': 'common HTML' }
     lessonContent: {}, // e.g., { lessonContent-${study}-${languageCodeHL}-lesson-${lesson}': 'lesson HTML' }
@@ -29,12 +29,12 @@ export const useContentStore = defineStore("ContentStore", {
       return state.commonContent[key] || null;
     },
 
-    getLessonContent: (state) => (study, languageCodeHL, lesson) => {
-      const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`;
+    getLessonContent: (state) => (study, languageCodeHL,languageCodeJF, lesson) => {
+      const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}`;
       return state.lessonContent[key] || null;
     },
 
-    getVideoUrls: (state) => (study, languageCodeJF, lesson) => {
+    getVideoUrls: (state) => (study, languageCodeJF) => {
       const key = `videoUrls-${study}-${languageCodeJF}`;
       return state.videoUrls[key] || [];
     },
@@ -69,7 +69,7 @@ export const useContentStore = defineStore("ContentStore", {
       return content;
     },
 
-    async loadLessonContent(languageCodeHL, study, lesson) {
+    async loadLessonContent(languageCodeHL, languageCodeJF, study, lesson) {
       console.log({ languageCodeHL, study, lesson });
       const validatedLesson = validateLessonNumber(lesson);
       if (validatedLesson === null) {
@@ -78,7 +78,7 @@ export const useContentStore = defineStore("ContentStore", {
         );
         return null;
       }
-      const key = `lessonContent-${study}-${languageCodeHL}-lesson-${validatedLesson}`;
+      const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${validatedLesson}`;
       if (this.lessonContent[key]) {
         const content =  this.lessonContent[key];
         console.log (content);
@@ -86,9 +86,10 @@ export const useContentStore = defineStore("ContentStore", {
       }
       try {
         const content = await getLessonContent(
-          languageCodeHL,
           study,
-          validatedLesson
+          languageCodeHL,
+          languageCodeJF,
+          lesson
         );
         this.lessonContent[key] = content;
         console.log (content);
