@@ -1,6 +1,7 @@
 const dbName = "MyBibleApp";
 const dbVersion = 3;
 let dbInstance = null;
+import * as ContentKeys from 'src/utils/ContentKeyBuilder';
 
 export function openDatabase() {
   return new Promise((resolve, reject) => {
@@ -73,51 +74,48 @@ async function getItem(storeName, key) {
 // ----------------- Common Content -----------------
 
 export async function getInterfaceFromDB(lang) {
-  const key = `interface-${lang}`;
-  console.log (key)
+  const key = ContentKeys.buildInterfaceKey(lang);
   return getItem("interface", key);
 }
 
 export async function saveInterfaceToDB(lang, content) {
-  const key = `interface-${lang}`;
-  console.log (saveInterfaceToDB + ' ' + key)
-  console.log (content)
+   const key = ContentKeys.buildInterfaceKey(lang);
   return saveItem("interface", key, content);
 }
 
 // ----------------- Common Content -----------------
 
 export async function getCommonContentFromDB(study, lang) {
-  const key = `commonContent-${study}-${lang}`;
+  const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
   return getItem("commonContent", key);
 }
 
 export async function saveCommonContentToDB(study, languageCodeHL, content) {
-  const key = `commonContent-${study}-${languageCodeHL}`;
+  const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
   return saveItem("commonContent", key, content);
 }
 
 // ----------------- Lesson Content -----------------
 
 export async function getLessonContentFromDB(study, languageCodeHL, languageCodeJF, lesson) {
-  const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}`
+  const key = ContentKeys.buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson);
   return getItem("lessonContent", key);
 }
 
 export async function saveLessonContentToDB(study, languageCodeHL,languageCodeJF, lesson, content) {
-  const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}`
+  const key = ContentKeys.buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson);
   return saveItem("lessonContent", key, content);
 }
 
 // ----------------- Video URLs -----------------
 
 export async function getVideoUrlsFromDB(study, languageCodeJF) {
-  const key = `videoUrls-${study}-${languageCodeJF}`;
+  const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
   return getItem("videoUrls", key);
 }
 
 export async function saveVideoUrlsToDB(study, languageCodeJF,urls) {
-  const key = `videoUrls-${study}-${languageCodeJF}`;
+  const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
   return saveItem("videoUrls", key, urls);
 }
 
@@ -139,23 +137,20 @@ export async function saveStudyProgress(study, progress) {
 
 // ----------------- Notes -----------------
 
-function makeNoteKey(study, lesson, position) {
-  return `notes-${study}-${lesson}-${position}`;
-}
 
 export async function getNoteFromDB(study, lesson, position) {
-  const key = makeNoteKey(study, lesson, position);
+  const key = ContentKeys.buildNotesKey(study, lesson, position);
   return getItem("notes", key);
 }
 
 export async function saveNoteToDB(study, lesson, position, content) {
-  const key = makeNoteKey(study, lesson, position);
+  const key = ContentKeys.buildNotesKey(study, lesson, position);
   return saveItem("notes", key, content);
 }
 
 export async function deleteNoteFromDB(study, lesson, position) {
   const db = await openDatabase();
-  const key = makeNoteKey(study, lesson, position);
+  const key = ContentKeys.buildNotesKey(study, lesson, position);
   const tx = db.transaction("notes", "readwrite");
   tx.objectStore("notes").delete(key);
   return new Promise((resolve, reject) => {

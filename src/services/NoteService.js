@@ -1,4 +1,5 @@
 import { useContentStore } from "../stores/ContentStore";
+import { buildNotesKey } from 'src/utils/ContentKeyBuilder';
 import {
   getNoteFromDB,
   saveNoteToDB,
@@ -7,7 +8,7 @@ import {
 
 export async function getNote(study, lesson, position) {
   const store = useContentStore();
-  const key = `notes-${study}-${lesson}-${position}`;
+  const key = buildNotesKey(study, lesson, position);
 
   if (store.lessonContent[key] !== undefined) {
     return store.lessonContent[key];
@@ -24,14 +25,14 @@ export async function getNote(study, lesson, position) {
 
 export async function saveNote(study, lesson, position, content) {
   const store = useContentStore();
-  const key = `notes-${study}-${lesson}-${position}`;
+  const key = buildNotesKey(study, lesson, position);
   store.lessonContent[key] = content;
   await saveNoteToDB(study, lesson, position, content);
 }
 
 export async function deleteNote(study, lesson, position) {
   const store = useContentStore();
-  const key = `notes-${study}-${lesson}-${position}`;
+  const key = buildNotesKey(study, lesson, position);
   delete store.lessonContent[key];
   await deleteNoteFromDB(study, lesson, position);
 }

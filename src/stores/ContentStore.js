@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-
+import * as ContentKeys from 'src/utils/ContentKeyBuilder';
 import { getCommonContent } from "../services/CommonContentService.js";
 import { getLessonContent } from "../services/LessonContentService.js";
 import { getJesusVideoUrls } from "../services/VideoContentService.js";
@@ -25,90 +25,62 @@ export const useContentStore = defineStore("contentStore", {
 
   getters: {
     getCommonContent: (state) => (study, languageCodeHL) => {
-      const key = `commonContent-${study}-${languageCodeHL}`;
+      const key = ContentKeys.buildLessonContentKey(study, languageCodeHL) ;
       return state.commonContent[key] || null;
     },
 
     getLessonContent: (state) => (study, languageCodeHL,languageCodeJF, lesson) => {
-      const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}`;
+      const key = ContentKeys.buildLessonContentKey(
+        study, languageCodeHL, languageCodeJF, lesson)
       return state.lessonContent[key] || null;
     },
 
     getVideoUrls: (state) => (study, languageCodeJF) => {
-      const key = `videoUrls-${study}-${languageCodeJF}`;
+      const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
       return state.videoUrls[key] || [];
     },
     isFullyTranslated: (state) => {
       return Object.values(state.translationComplete).every(Boolean);
     },
   },
-
   actions: {
     setCommonContent(study, languageCodeHL, data) {
-      const key = `commonContent-${study}-${languageCodeHL}`;
+      const key = ContentKeys.buildLessonContentKey(study, languageCodeHL) ;
       this.commonContent[key] = data;
     },
-
     setLessonContent(study, languageCodeHL,languageCodeJF, lesson, data) {
-      const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}`;
+       const key = ContentKeys.buildLessonContentKey(
+        study, languageCodeHL, languageCodeJF, lesson)
       this.lessonContent[key] = data;
     },
 
-    setVideoUrls(study, languageCodeJF, lesson, urls) {
-       const key = `videoUrls-${study}-${languageCodeJF}`;
+    setVideoUrls(study, languageCodeJF, data) {
+       const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
       this.videoUrls[key] = urls;
     },
 
     async loadCommonContent(languageCodeHL, study) {
-      const key = `commonContent-${study}-${languageCodeHL}`;
-      if (this.commonContent[key]) {
-        return this.commonContent[key];
-      }
-      const content = await getCommonContent(languageCodeHL, study);
-      this.commonContent[key] = content;
-      return content;
+      return await getCommonContent(languageCodeHL, study);
     },
 
     async loadLessonContent(languageCodeHL, languageCodeJF, study, lesson) {
-      console.log({ languageCodeHL, study, lesson });
       const validatedLesson = validateLessonNumber(lesson);
       if (validatedLesson === null) {
-        console.warn(
-          `loadLessonContent: Invalid lesson '${lesson}'. No load performed.`
-        );
+        console.warn(`Invalid lesson '${lesson}'`);
         return null;
       }
-      const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${validatedLesson}`;
-      if (this.lessonContent[key]) {
-        const content =  this.lessonContent[key];
-        console.log (content);
-        return content;
-      }
-      try {
-        const content = await getLessonContent(
-          study,
-          languageCodeHL,
-          languageCodeJF,
-          lesson
-        );
-        this.lessonContent[key] = content;
-        console.log (content);
-        return content;
-      } catch (error) {
-        console.error("Failed to fetch lesson content:", error);
-        throw error;
-      }
+      return await getLessonContent(
+        study,
+        languageCodeHL,
+        languageCodeJF,
+        validatedLesson
+      );
     },
 
     async loadVideoUrls(languageCodeJF, study) {
-      const key = `videoUrls-${study}-${languageCodeJF}`;
-      if (this.videoUrls[key]) {
-        return this.videoUrls[key];
-      }
-      const content = await getJesusVideoUrls(languageCodeJF, study);
-      this.videoUrls[key] = content;
-      return content;
+      return await getJesusVideoUrls(languageCodeJF, study);
     },
+
     clearAllContent() {
       this.commonContent = {};
       this.lessonContent = {};

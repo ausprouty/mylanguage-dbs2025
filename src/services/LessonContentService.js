@@ -1,5 +1,6 @@
 import { useContentStore } from "stores/ContentStore";
 import { getContentWithFallback } from "src/services/ContentLoaderService";
+import { buildLessonContentKey } from 'src/utils/ContentKeyBuilder';
 import {
   getLessonContentFromDB,
   saveLessonContentToDB,
@@ -18,7 +19,7 @@ export async function getLessonContent(
     lesson
   );
 
-  const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}`;
+  const key = buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson);
   const url = `api/translate/lessonContent/${languageCodeHL}/${languageCodeJF}/${study}/${lesson}`;
   console.log(url);
   const contentStore = useContentStore();

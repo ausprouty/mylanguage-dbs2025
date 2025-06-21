@@ -1,5 +1,4 @@
 import { currentApi } from "boot/axios";
-import { useContentStore } from "stores/ContentStore";
 import { pollTranslationUntilComplete } from "src/services/TranslationPollingService";
 
 /**

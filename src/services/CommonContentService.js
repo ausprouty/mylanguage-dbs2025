@@ -1,12 +1,13 @@
 import { useContentStore } from "stores/ContentStore";
 import { getContentWithFallback } from "src/services/ContentLoaderService";
+import { buildCommonContentKey } from 'src/utils/ContentKeyBuilder';
 import {
   getCommonContentFromDB,
   saveCommonContentToDB,
 } from "./IndexedDBService";
 
 export async function getCommonContent(languageCodeHL, study) {
-  const key = `commonContent-${study}-${languageCodeHL}`;
+  const key = buildCommonContentKey(study, languageCodeHL);
   const contentStore = useContentStore();
   console.log("getCommonContent called for " + key);
   const result = getContentWithFallback({

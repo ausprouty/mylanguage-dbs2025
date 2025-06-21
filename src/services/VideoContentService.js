@@ -1,15 +1,16 @@
 import { useContentStore } from "stores/ContentStore";
 import { getContentWithFallback } from "src/services/ContentLoaderService";
+import { buildVideoUrlsKey } from 'src/utils/ContentKeyBuilder';
 import { getVideoUrlsFromDB, saveVideoUrlsToDB } from "./IndexedDBService";
 
 export async function getJesusVideoUrls(languageCodeJF) {
   const study = "jvideo";
   const lesson = 0; // No specific lesson here, but keeping the pattern
-  const key = `videoUrls-${study}-${languageCodeJF}-lesson-${lesson}`;
+  const key = buildVideoUrlsKey(study, languageCodeJF);
   const contentStore = useContentStore();
   const result = getContentWithFallback({
     key,
-    store: ContentStore, // ✅ inject it here
+    store: contentStore, // ✅ inject it here
     storeGetter: (store) => store.getVideoUrls(study, languageCodeJF, lesson),
     storeSetter: (store, data) =>
       store.setVideoUrls(study, languageCodeJF, lesson, data),
