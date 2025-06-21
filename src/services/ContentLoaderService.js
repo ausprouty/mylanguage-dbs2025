@@ -16,13 +16,12 @@ export async function getContentWithFallback({
   languageCodeHL,
   translationType,
 }) {
-
-  console.log (key)
+  console.log(key);
   // 1. Check Pinia Store
   const storeValue = storeGetter(store);
   if (storeValue) {
     console.log(`✅ Loaded ${key} from ContentStore`);
-    console.log (storeValue)
+    console.log(storeValue);
     if (storeValue.language?.translationComplete === true) {
       store.setTranslationComplete(translationType, true);
       return storeValue; // ✅ Fully translated, done
@@ -31,13 +30,13 @@ export async function getContentWithFallback({
 
   // 2. Check IndexedDB
   try {
-    console.log ('trying indexedDB');
+    console.log("trying indexedDB");
     const dbValue = await dbGetter();
     if (dbValue) {
       console.log(`✅ Loaded ${key} from IndexedDB`);
       storeSetter(store, dbValue);
-       console.log (dbValue)
-      if (dbValue.language?.translationComplete === "true" ) {
+      console.log(dbValue);
+      if (dbValue.language?.translationComplete === "true") {
         store.setTranslationComplete(translationType, true);
         return dbValue; // ✅ Fully translated
       }
@@ -74,14 +73,13 @@ export async function getContentWithFallback({
       //todo
       return data;
     } else {
-  
       console.warn(`⚠️ ${key} from API is incomplete — polling (line 78)`);
       pollTranslationUntilComplete({
         languageCodeHL,
         translationType: translationType,
         apiUrl: apiUrl,
         dbSetter: dbSetter,
-        store:store,
+        store: store,
         storeSetter: storeSetter,
       });
     }

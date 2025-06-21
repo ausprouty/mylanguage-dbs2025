@@ -11,7 +11,7 @@ export async function getCommonContent(languageCodeHL, study) {
   console.log("getCommonContent called for " + key);
   const result = getContentWithFallback({
     key,
-    store: ContentStore, // ✅ inject it here
+    store: contentStore, // ✅ inject it here
     storeGetter: (store) => store.getCommonContent(study, languageCodeHL),
     storeSetter: (store, data) =>
       store.setCommonContent(study, languageCodeHL, data),

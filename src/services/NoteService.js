@@ -1,9 +1,9 @@
-import { useContentStore } from '../stores/ContentStore';
+import { useContentStore } from "../stores/ContentStore";
 import {
   getNoteFromDB,
   saveNoteToDB,
   deleteNoteFromDB,
-} from './IndexedDBService';
+} from "./IndexedDBService";
 
 export async function getNote(study, lesson, position) {
   const store = useContentStore();
@@ -19,7 +19,7 @@ export async function getNote(study, lesson, position) {
     return note;
   }
 
-  return '';
+  return "";
 }
 
 export async function saveNote(study, lesson, position, content) {

@@ -25,7 +25,7 @@ export async function getLessonContent(
 
   const result = await getContentWithFallback({
     key,
-    store: ContentStore,
+    store: contentStore,
     storeGetter: (store) =>
       store.getLessonContent(study, languageCodeHL, languageCodeJF, lesson),
     storeSetter: (store, data) =>

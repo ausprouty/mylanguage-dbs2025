@@ -49,8 +49,8 @@ export const useContentStore = defineStore("contentStore", {
       this.commonContent[key] = data;
     },
 
-    setLessonContent(study, languageCodeHL, lesson, data) {
-      const key = `lessonContent-${study}-${languageCodeHL}-lesson-${lesson}`;
+    setLessonContent(study, languageCodeHL,languageCodeJF, lesson, data) {
+      const key = `lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}`;
       this.lessonContent[key] = data;
     },
 
