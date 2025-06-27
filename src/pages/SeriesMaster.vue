@@ -5,7 +5,7 @@ import { useI18n } from "vue-i18n";
 import { useLanguageStore } from "stores/LanguageStore";
 import { useCommonContent } from "src/composables/useCommonContent";
 import { useProgressTracker } from "src/composables/useProgressTracker.js";
-
+import { useInitializeLanguageStore } from "src/composables/useInitializeLanguageStore.js";
 import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/Series/SeriesSegmentNavigator.vue";
 import SeriesLessonContent from "src/components/Series/SeriesLessonContent.vue";
@@ -15,41 +15,14 @@ const route = useRoute();
 const i18n = useI18n();
 const { t } = i18n;
 const languageStore = useLanguageStore();
+console.log ('i opened language store')
 
-const DEFAULTS = {
-  study: "dbs",
-  lesson: "1",
-  languageCodeHL: "eng00",
-  languageCodeJF: "529",
-};
+useInitializeLanguageStore(route, languageStore);
 
-// ✅ Reactively determine currentStudy and currentLesson
-const computedStudy = computed(() =>
-  route.params.study ||
-  languageStore.currentStudy ||
-  DEFAULTS.study
-);
-const computedLessonNumber = computed(() =>
-  route.params.lesson ||
-  languageStore.lessonNumberForStudy ||
-  DEFAULTS.lesson
-);
-// Computed values for language codes
-const computedLanguageHL = computed( () =>
-  route.params.languageCodeHL ||
-  languageStore.languageSelected.languageCodeHL ||
-  DEFAULTS.languageCodeHL
-);
-const computedLanguageJF = computed(() =>
-  languageStore.languageSelected.languageCodeJF ||
-  DEFAULTS.languageCodeJF
-);
-// Update store initially
-languageStore.setCurrentStudy(computedStudy.value);
-languageStore.setLessonNumber(computedStudy.value, computedLessonNumber.value);
-languageStore.setLanguageCodeHL(computedLanguageHL.value);
-languageStore.setLanguageCodeJF(computedLanguageJF.value);
-
+const computedStudy = computed(() => languageStore.currentStudy);
+const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
+const computedLanguageHL = computed(() => languageStore.languageSelected.languageCodeHL);
+const computedLanguageJF = computed(() => languageStore.languageSelected.languageCodeJF);
 
 
 // ✅ Load content
@@ -87,14 +60,16 @@ const updateLesson = (nextLessonNumber) => {
 
 </script>
 <template>
-  <template v-if="commonContent">
+  <h2>My text</h2>
+
+  <!--<template v-if="commonContent">
     <q-page padding>
       <h2>{{ t(`${computedStudy}.title`) }}</h2>
       <p>{{ t(`${computedStudy}.para.1`) }}</p>
       <p>{{ t(`${computedStudy}.para.2`) }}</p>
       <p>{{ t(`${computedStudy}.para.3`) }}</p>
 
-    <div>
+
         <SeriesPassageSelect
           :study="computedStudy"
           :topics="topics"
@@ -104,15 +79,13 @@ const updateLesson = (nextLessonNumber) => {
           :completedLessons="completedLessons"
           @updateLesson="updateLesson"
         />
-      </div>
 
-      <div>
         <SeriesSegmentNavigator
           :study="computedStudy"
           :lesson="computedLessonNumber"
           @updateLesson="updateLesson"
         />
-      </div>
+
       <hr />
       <SeriesLessonContent
         :languageCodeHL="computedLanguageHL"
@@ -135,8 +108,13 @@ const updateLesson = (nextLessonNumber) => {
     </q-page>
   </template>
 
-  <template v-if="!commonContent">Loading failed. Please try again later.
-  </template>
+  <template v-else>
+    <q-page padding>
+    <div class="text-negative text-h6">
+      Loading failed. Please try again later.
+    </div>
+  </q-page>
+  </template> -->
 </template>
 
 <style lang="scss">

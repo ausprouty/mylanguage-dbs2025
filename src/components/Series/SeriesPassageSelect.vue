@@ -29,6 +29,10 @@ const markedTopics = computed(() => {
 // ✅ v-model binding to currently selected lesson
 const selectedLesson = computed({
   get() {
+    if (!Array.isArray(props.topics)) {
+      return { label: "SELECT", value: 0 };
+    }
+
     const topic = props.topics.find((t) => t.value === props.lesson);
     return topic
       ? { label: topic.label, value: topic.value }

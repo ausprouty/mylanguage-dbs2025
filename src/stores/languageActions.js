@@ -130,6 +130,22 @@ export const languageActions = {
     }
     this.previousPage = newPage;
   },
+  updateLanguageCodeHL(newCodeHL) {
+    if (!this.languageSelected) {
+      console.warn("updateLanguageCodeHL: No languageSelected set.");
+      return;
+    }
+    if (!newCodeHL) {
+      console.warn("updateLanguageCodeHL: Invalid newCodeHL.");
+      return;
+    }
+
+    // Shallow clone the object and update only languageCodeHL
+    this.languageSelected = {
+      ...this.languageSelected,
+      languageCodeHL: newCodeHL,
+    };
+  },
   updateLanguageCodeJF(newCodeJF) {
     if (!this.languageSelected) {
       console.warn("updateLanguageCodeJF: No languageSelected set.");

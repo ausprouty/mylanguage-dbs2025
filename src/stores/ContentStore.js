@@ -29,7 +29,7 @@ export const useContentStore = defineStore("contentStore", {
       return state.commonContent[key] || null;
     },
 
-    getLessonContent: (state) => (study, languageCodeHL,languageCodeJF, lesson) => {
+    getLessonContent: (state) => (study, languageCodeHL, languageCodeJF, lesson) => {
       const key = ContentKeys.buildLessonContentKey(
         study, languageCodeHL, languageCodeJF, lesson)
       return state.lessonContent[key] || null;
@@ -90,7 +90,7 @@ export const useContentStore = defineStore("contentStore", {
     setTranslationComplete(section, value) {
       if (this.translationComplete.hasOwnProperty(section)) {
         this.translationComplete[section] = value;
-      } 
+      }
     },
 
     // ✅ Reset all flags (e.g., on study/language change)
