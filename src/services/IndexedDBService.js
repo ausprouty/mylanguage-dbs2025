@@ -4,6 +4,12 @@ let dbInstance = null;
 import * as ContentKeys from 'src/utils/ContentKeyBuilder';
 
 export function openDatabase() {
+
+  if (typeof indexedDB === 'undefined') {
+    console.warn(`IndexedDB not available — skipping cache read for ${key}`);
+    return Promise.resolve(null);
+  }
+
   return new Promise((resolve, reject) => {
     if (dbInstance) {
       return resolve(dbInstance);
