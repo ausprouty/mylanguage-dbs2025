@@ -21,7 +21,7 @@ export async function getContentWithFallback({
   if (storeValue) {
     console.log(`✅ Loaded ${key} from ContentStore`);
     console.log(storeValue);
-    if (storeValue.language?.translationComplete === true) {
+    if (storeValue.language?.translationComplete == true) {
       store.setTranslationComplete(translationType, true);
       return storeValue; // ✅ Fully translated, done
     }
@@ -35,7 +35,7 @@ export async function getContentWithFallback({
       console.log(`✅ Loaded ${key} from IndexedDB`);
       storeSetter(store, dbValue);
       console.log(dbValue);
-      if (dbValue.language?.translationComplete === "true") {
+      if (dbValue.language?.translationComplete == true) {
         store.setTranslationComplete(translationType, true);
         return dbValue; // ✅ Fully translated
       }
@@ -65,7 +65,7 @@ export async function getContentWithFallback({
     // update store with whatever we get
     storeSetter(store, data);
 
-    if (data.language?.translationComplete === "true") {
+    if (data.language?.translationComplete == true) {
       console.log(`✅ ${key} from API is complete — caching to DB `);
       store.setTranslationComplete(translationType, true);
       await dbSetter(data);

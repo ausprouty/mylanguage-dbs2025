@@ -15,7 +15,7 @@ const route = useRoute();
 
 // Access the i18n instance
 const i18n = useI18n();
-const { t } =  i18n;
+const { t } = i18n;
 
 // Access the language store
 const languageStore = useLanguageStore();
@@ -25,6 +25,7 @@ const DEFAULTS = {
   study: "dbs",
   lesson: "1",
   languageCodeHL: "eng00",
+  languageCodeJF: "529",
 };
 
 // Set defaults if parameters are not provided
@@ -34,8 +35,6 @@ const currentLesson = route.params.lesson || DEFAULTS.lesson;
 // Update store on initial load
 languageStore.setCurrentStudy(currentStudy);
 languageStore.setLessonNumber(currentStudy, currentLesson);
-
-
 
 // Reactive computed properties
 const computedLanguageHL = computed(
@@ -62,10 +61,12 @@ const {
 
 // Load common content when the component mounts
 onMounted(() => {
-  loadProgress();  // find out which lessons you have completed
-  loadCommonContent(); // use composable to load Common Content
-  //console.log('Locales:', i18n.availableLocales);
-  //console.log('Locales Messages:', i18n.getLocaleMessage('eng00'));
+  try {
+    loadProgress(); // find out which lessons you have completed
+    loadCommonContent(); // use composable to load Common Content}
+  } catch (err) {
+    console.error("❌ Could not load common content", err);
+  }
 });
 
 // Watch for changes in computedLanguageHL and reload common content
@@ -82,6 +83,7 @@ const updateLesson = (nextLessonNumber) => {
 };
 </script>
 <template>
+  <div v-if="!commonContent">Loading failed. Please try again later.</div>
   <q-page padding>
     <h2>{{ t(`${currentStudy}.title`) }}</h2>
     <p>{{ t(`${currentStudy}.para.1`) }}</p>

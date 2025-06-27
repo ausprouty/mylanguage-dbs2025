@@ -3,6 +3,7 @@ import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import { useI18n } from "vue-i18n";
 import DbsQuestions from "src/components/DbsQuestions.vue";
+import VideoBar from "src/components/VideoBar.vue";
 import BibleText from "src/components/BibleTextBar.vue";
 import SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
 import {
@@ -12,10 +13,10 @@ import {
 
 export default {
   name: "SeriesLessonContent",
-  components: { DbsQuestions, BibleText, SeriesReviewLastLesson },
+  components: { DbsQuestions, BibleText, SeriesReviewLastLesson, VideoBar },
   props: {
     languageCodeHL: { type: String, required: true },
-    languageCodeJF: { type: Number, required: true },
+    languageCodeJF: { type: String, required: true },
     study: { type: String, required: true },
     lesson: { type: Number, required: true },
     commonContent: { type: Object, required: true },
@@ -151,6 +152,7 @@ export default {
         :passageReference="passageReference"
         :translation="lessonContent.menu"
       />
+      <VideoBar/>
 
       <DbsQuestions
         :content="commonContent?.look_forward || {}"

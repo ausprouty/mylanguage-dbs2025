@@ -73,19 +73,19 @@ async function getItem(storeName, key) {
 
 // ----------------- Common Content -----------------
 
-export async function getInterfaceFromDB(lang) {
-  const key = ContentKeys.buildInterfaceKey(lang);
+export async function getInterfaceFromDB(languageCodeHL) {
+  const key = ContentKeys.buildInterfaceKey(languageCodeHL);
   return getItem("interface", key);
 }
 
-export async function saveInterfaceToDB(lang, content) {
-   const key = ContentKeys.buildInterfaceKey(lang);
+export async function saveInterfaceToDB(languageCodeHL, content) {
+   const key = ContentKeys.buildInterfaceKey(languageCodeHL);
   return saveItem("interface", key, content);
 }
 
 // ----------------- Common Content -----------------
 
-export async function getCommonContentFromDB(study, lang) {
+export async function getCommonContentFromDB(study, languageCodeHL) {
   const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
   return getItem("commonContent", key);
 }

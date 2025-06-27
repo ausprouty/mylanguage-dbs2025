@@ -21,19 +21,19 @@ const routes = [
       {
         name: "JesusVideoMaster",
         path: "/jvideo/:lesson?/:languageCodeHL?/:languageCodeJF?",
-        component: () => import("src/pages/VideoMaster.vue"),
+        component: () => import("pages/VideoMaster.vue"),
       },
 
       {
         name: "SeriesMaster",
         path: "/series/:study?/:lesson?/:languageCodeHL?",
-        component: () => import("src/pages/SeriesMaster.vue"),
+        component: () => import("pages/SeriesMaster.vue"),
       },
 
       {
         name: "AskHisFollowers",
         path: "/questions",
-        component: () => import("src/pages/RestorePage.vue"),
+        component: () => import("pages/RestorePage.vue"),
       },
       {
         name: "reset",

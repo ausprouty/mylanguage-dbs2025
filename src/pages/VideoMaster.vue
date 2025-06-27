@@ -69,7 +69,7 @@ onMounted(async () => {
 
 const loadVideoUrls = async () => {
   try {
-    videoUrls.value = await usecontentStore.loadVideoUrls(
+    videoUrls.value = await contentStore.loadVideoUrls(
       computedLanguageJF.value,
       currentStudy
     );
