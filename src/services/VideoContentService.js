@@ -18,7 +18,8 @@ export async function getJesusVideoUrls(languageCodeJF) {
     dbSetter: (data) => saveVideoUrlsToDB(study, languageCodeJF, lesson, data),
     apiUrl: `api/translate/videoUrls/jvideo/${languageCodeJF}`,
     translationType: "videoContent",
+    skipTranslationCheck: true,
   });
-  console.log(result);
-  return result;
+  console.log(result.data);
+  return Array.isArray(result?.data) ? result.data : result;
 }

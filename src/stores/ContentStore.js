@@ -56,7 +56,7 @@ export const useContentStore = defineStore("contentStore", {
 
     setVideoUrls(study, languageCodeJF, data) {
        const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
-      this.videoUrls[key] = urls;
+      this.videoUrls[key] = data;
     },
 
     async loadCommonContent(languageCodeHL, study) {
@@ -90,9 +90,7 @@ export const useContentStore = defineStore("contentStore", {
     setTranslationComplete(section, value) {
       if (this.translationComplete.hasOwnProperty(section)) {
         this.translationComplete[section] = value;
-      } else {
-        console.warn(`Unknown translation section: ${section}`);
-      }
+      } 
     },
 
     // ✅ Reset all flags (e.g., on study/language change)

@@ -14,6 +14,7 @@ export async function getContentWithFallback({
   apiUrl,
   languageCodeHL,
   translationType,
+  skipTranslationCheck = false,
 }) {
   console.log(key);
   // 1. Check Pinia Store
@@ -65,7 +66,7 @@ export async function getContentWithFallback({
     // update store with whatever we get
     storeSetter(store, data);
 
-    if (data.language?.translationComplete == true) {
+    if (skipTranslationCheck || data.language?.translationComplete == true) {
       console.log(`✅ ${key} from API is complete — caching to DB `);
       store.setTranslationComplete(translationType, true);
       await dbSetter(data);

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useLanguageStore } from "stores/LanguageStore";
@@ -10,17 +10,12 @@ import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/Series/SeriesSegmentNavigator.vue";
 import SeriesLessonContent from "src/components/Series/SeriesLessonContent.vue";
 
-// Access the current route
+// Access stores and route
 const route = useRoute();
-
-// Access the i18n instance
 const i18n = useI18n();
 const { t } = i18n;
-
-// Access the language store
 const languageStore = useLanguageStore();
 
-// Default values
 const DEFAULTS = {
   study: "dbs",
   lesson: "1",
@@ -28,108 +23,120 @@ const DEFAULTS = {
   languageCodeJF: "529",
 };
 
-// Set defaults if parameters are not provided
-const currentStudy = route.params.study || DEFAULTS.study;
-const currentLesson = route.params.lesson || DEFAULTS.lesson;
-
-// Update store on initial load
-languageStore.setCurrentStudy(currentStudy);
-languageStore.setLessonNumber(currentStudy, currentLesson);
-
-// Reactive computed properties
-const computedLanguageHL = computed(
-  () => languageStore.languageSelected.languageCodeHL
+// ✅ Reactively determine currentStudy and currentLesson
+const computedStudy = computed(() =>
+  route.params.study ||
+  languageStore.currentStudy ||
+  DEFAULTS.study
 );
-const computedLanguageJF = computed(
-  () => languageStore.languageSelected.languageCodeJF
+const computedLessonNumber = computed(() =>
+  route.params.lesson ||
+  languageStore.lessonNumberForStudy ||
+  DEFAULTS.lesson
 );
-const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
+// Computed values for language codes
+const computedLanguageHL = computed( () =>
+  route.params.languageCodeHL ||
+  languageStore.languageSelected.languageCodeHL ||
+  DEFAULTS.languageCodeHL
+);
+const computedLanguageJF = computed(() =>
+  languageStore.languageSelected.languageCodeJF ||
+  DEFAULTS.languageCodeJF
+);
+// Update store initially
+languageStore.setCurrentStudy(computedStudy.value);
+languageStore.setLessonNumber(computedStudy.value, computedLessonNumber.value);
+languageStore.setLanguageCodeHL(computedLanguageHL.value);
+languageStore.setLanguageCodeJF(computedLanguageJF.value);
 
-// Initialize the composable
+
+
+// ✅ Load content
 const { commonContent, topics, loadCommonContent } = useCommonContent(
-  currentStudy,
+  computedStudy,
   computedLanguageHL
 );
-// Progress tracker
 
 const {
   completedLessons,
   isLessonCompleted,
   markLessonComplete,
   loadProgress,
-} = useProgressTracker(currentStudy);
+} = useProgressTracker(computedStudy);
 
-// Load common content when the component mounts
+// Load on mount
 onMounted(() => {
   try {
-    loadProgress(); // find out which lessons you have completed
-    loadCommonContent(); // use composable to load Common Content}
+    loadProgress();
+    loadCommonContent();
   } catch (err) {
     console.error("❌ Could not load common content", err);
   }
 });
 
-// Watch for changes in computedLanguageHL and reload common content
-watch(computedLanguageHL, (newLanguage) => {
-  loadCommonContent(newLanguage);
-});
-watch(computedLanguageJF, (newLanguage) => {
-  loadCommonContent(newLanguage);
+// Watch language or study changes
+watch([computedLanguageHL, computedLanguageJF, computedStudy], () => {
+  loadCommonContent();
 });
 
-// Function to update the lesson number
+// Lesson update function
 const updateLesson = (nextLessonNumber) => {
-  languageStore.setLessonNumber(currentStudy, nextLessonNumber);
+  languageStore.setLessonNumber(computedStudy.value, nextLessonNumber);
 };
+
 </script>
 <template>
-  <div v-if="!commonContent">Loading failed. Please try again later.</div>
-  <q-page padding>
-    <h2>{{ t(`${currentStudy}.title`) }}</h2>
-    <p>{{ t(`${currentStudy}.para.1`) }}</p>
-    <p>{{ t(`${currentStudy}.para.2`) }}</p>
-    <p>{{ t(`${currentStudy}.para.3`) }}</p>
+  <template v-if="commonContent">
+    <q-page padding>
+      <h2>{{ t(`${computedStudy}.title`) }}</h2>
+      <p>{{ t(`${computedStudy}.para.1`) }}</p>
+      <p>{{ t(`${computedStudy}.para.2`) }}</p>
+      <p>{{ t(`${computedStudy}.para.3`) }}</p>
 
     <div>
-      <SeriesPassageSelect
-        :study="route.params.study"
-        :topics="topics"
+        <SeriesPassageSelect
+          :study="computedStudy"
+          :topics="topics"
+          :lesson="computedLessonNumber"
+          :markLessonComplete="markLessonComplete"
+          :isLessonCompleted="isLessonCompleted"
+          :completedLessons="completedLessons"
+          @updateLesson="updateLesson"
+        />
+      </div>
+
+      <div>
+        <SeriesSegmentNavigator
+          :study="computedStudy"
+          :lesson="computedLessonNumber"
+          @updateLesson="updateLesson"
+        />
+      </div>
+      <hr />
+      <SeriesLessonContent
+        :languageCodeHL="computedLanguageHL"
+        :languageCodeJF="computedLanguageJF"
+        :study="computedStudy"
         :lesson="computedLessonNumber"
-        :markLessonComplete="markLessonComplete"
-        :isLessonCompleted="isLessonCompleted"
-        :completedLessons="completedLessons"
-        @updateLesson="updateLesson"
+        :commonContent="commonContent"
       />
-    </div>
-    <div>
-      <SeriesSegmentNavigator
-        :study="route.params.study"
-        :lesson="computedLessonNumber"
-        @updateLesson="updateLesson"
+
+      <q-btn
+        :label="
+          isLessonCompleted(computedLessonNumber)
+            ? t('lesson.completed')
+            : t('lesson.notCompleted')
+        "
+        :disable="isLessonCompleted(computedLessonNumber)"
+        class="mark-complete-btn"
+        @click="markLessonComplete(computedLessonNumber)"
       />
-    </div>
+    </q-page>
+  </template>
 
-    <hr />
-
-    <SeriesLessonContent
-      :languageCodeHL="computedLanguageHL"
-      :languageCodeJF="computedLanguageJF"
-      :study="route.params.study"
-      :lesson="computedLessonNumber"
-      :commonContent="commonContent"
-    />
-
-    <q-btn
-      :label="
-        isLessonCompleted(computedLessonNumber)
-          ? t('lesson.completed')
-          : t('lesson.notCompleted')
-      "
-      :disable="isLessonCompleted(computedLessonNumber)"
-      class="mark-complete-btn"
-      @click="markLessonComplete(computedLessonNumber)"
-    />
-  </q-page>
+  <template v-if="!commonContent">Loading failed. Please try again later.
+  </template>
 </template>
 
 <style lang="scss">
