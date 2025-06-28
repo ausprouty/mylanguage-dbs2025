@@ -7,6 +7,7 @@ import {
 } from "./IndexedDBService";
 
 export async function getCommonContent(languageCodeHL, study) {
+  console.log (study)
   const key = buildCommonContentKey(study, languageCodeHL);
   const contentStore = useContentStore();
   console.log("getCommonContent called for " + key);

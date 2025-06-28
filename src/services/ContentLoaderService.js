@@ -17,6 +17,7 @@ export async function getContentWithFallback({
   skipTranslationCheck = false,
 }) {
   console.log(key);
+  return key;
   // 1. Check Pinia Store
   const storeValue = storeGetter(store);
   if (storeValue) {

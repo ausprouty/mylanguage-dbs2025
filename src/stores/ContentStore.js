@@ -25,6 +25,7 @@ export const useContentStore = defineStore("contentStore", {
 
   getters: {
     getCommonContent: (state) => (study, languageCodeHL) => {
+      console.log (study)
       const key = ContentKeys.buildLessonContentKey(study, languageCodeHL) ;
       return state.commonContent[key] || null;
     },

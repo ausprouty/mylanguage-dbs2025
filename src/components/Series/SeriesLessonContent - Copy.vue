@@ -2,18 +2,18 @@
 import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import { useI18n } from "vue-i18n";
-//import DbsQuestions from "src/components/DbsQuestions.vue";
-//import VideoBar from "src/components/VideoBar.vue";
-//import BibleText from "src/components/BibleTextBar.vue";
-// SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
-//import {
- //// getStudyProgress,
-  //saveStudyProgress,
-//} from "src/services/IndexedDBService";
+import DbsQuestions from "src/components/DbsQuestions.vue";
+import VideoBar from "src/components/VideoBar.vue";
+import BibleText from "src/components/BibleTextBar.vue";
+import SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
+import {
+  getStudyProgress,
+  saveStudyProgress,
+} from "src/services/IndexedDBService";
 
 export default {
   name: "SeriesLessonContent",
-  //components: { DbsQuestions, BibleText, SeriesReviewLastLesson, VideoBar },
+  components: { DbsQuestions, BibleText, SeriesReviewLastLesson, VideoBar },
   props: {
     languageCodeHL: { type: String, required: true },
     languageCodeJF: { type: String, required: true },
@@ -130,10 +130,10 @@ export default {
   <div v-if="!lessonContent">
     <p>There is NO lessonContent</p>
   </div>
-  <div v-else>
+  <div v-if="lessonContent">
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
 
-   <!-- <SeriesReviewLastLesson :sectionKey="sectionKeyForward" />
+    <SeriesReviewLastLesson :sectionKey="sectionKeyForward" />
 
     <section v-if="commonContent">
       <DbsQuestions
@@ -160,6 +160,5 @@ export default {
         :placeholder="lookForwardNoteInstruction"
       />
     </section>
-    --->
   </div>
 </template>

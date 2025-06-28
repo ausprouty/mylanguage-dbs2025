@@ -24,9 +24,6 @@ const computedLanguageHL = computed(
   () => languageStore.languageSelected.languageCodeHL
 );
 
-//
-
-
 // 📖 Common content
 const { commonContent, loadCommonContent } = useCommonContent(
   computedStudy,
@@ -42,6 +39,7 @@ onMounted(() => {
 watch([computedStudy, computedLanguageHL], () => {
   loadCommonContent();
 });
+console.log (commonContent);
 </script>
 
 <template>
@@ -52,15 +50,15 @@ watch([computedStudy, computedLanguageHL], () => {
       <p>{{ t(`${computedStudy}.para.2`) }}</p>
       <p>{{ t(`${computedStudy}.para.3`) }}</p>
 
-      <SeriesPassageSelect
+   <!---  <SeriesPassageSelect
         :study="computedStudy"
-        :topics="commonContent.topic"
+        :topics="commonContent.topics"
         :lesson="computedLessonNumber"
         :markLessonComplete="markLessonComplete"
         :isLessonCompleted="isLessonCompleted"
         :completedLessons="completedLessons"
         @updateLesson="updateLesson"
-      />
+      />-->
     </q-page>
   </template>
 

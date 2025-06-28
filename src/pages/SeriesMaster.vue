@@ -8,7 +8,7 @@ import { useProgressTracker } from "src/composables/useProgressTracker.js";
 import { useInitializeLanguageStore } from "src/composables/useInitializeLanguageStore.js";
 import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/Series/SeriesSegmentNavigator.vue";
-import SeriesLessonContent from "src/components/Series/SeriesLessonContent.vue";
+//import SeriesLessonContent from "src/components/Series/SeriesLessonContent.vue";
 
 // Access stores and route
 const route = useRoute();
@@ -24,7 +24,7 @@ const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
 const computedLanguageHL = computed(() => languageStore.languageSelected.languageCodeHL);
 const computedLanguageJF = computed(() => languageStore.languageSelected.languageCodeJF);
 
-
+console.log (computedStudy, computedLanguageHL)
 // ✅ Load content
 const { commonContent, topics, loadCommonContent } = useCommonContent(
   computedStudy,
@@ -62,7 +62,7 @@ const updateLesson = (nextLessonNumber) => {
 <template>
   <h2>My text</h2>
 
-  <!--<template v-if="commonContent">
+  <template v-if="commonContent">
     <q-page padding>
       <h2>{{ t(`${computedStudy}.title`) }}</h2>
       <p>{{ t(`${computedStudy}.para.1`) }}</p>
@@ -85,7 +85,7 @@ const updateLesson = (nextLessonNumber) => {
           :lesson="computedLessonNumber"
           @updateLesson="updateLesson"
         />
-
+<!--
       <hr />
       <SeriesLessonContent
         :languageCodeHL="computedLanguageHL"
@@ -94,7 +94,7 @@ const updateLesson = (nextLessonNumber) => {
         :lesson="computedLessonNumber"
         :commonContent="commonContent"
       />
-
+    -->
       <q-btn
         :label="
           isLessonCompleted(computedLessonNumber)
@@ -114,7 +114,7 @@ const updateLesson = (nextLessonNumber) => {
       Loading failed. Please try again later.
     </div>
   </q-page>
-  </template> -->
+  </template>
 </template>
 
 <style lang="scss">
