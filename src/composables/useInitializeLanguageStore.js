@@ -1,12 +1,9 @@
+
+import { DEFAULTS } from "src/constants/Defaults";
 export function useInitializeLanguageStore(route, languageStore) {
 
   // Update store initially
-  const DEFAULTS = {
-    study: "dbs",
-    lesson: "1",
-    languageCodeHL: "eng00",
-    languageCodeJF: "529",
-  };
+ 
 
   const initialStudy = (
     route.params.study ||

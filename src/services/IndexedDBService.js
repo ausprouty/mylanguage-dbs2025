@@ -2,6 +2,7 @@ const dbName = "MyBibleApp";
 const dbVersion = 3;
 let dbInstance = null;
 import * as ContentKeys from 'src/utils/ContentKeyBuilder';
+import {unref} from 'vue';
 
 export function openDatabase() {
 
@@ -66,6 +67,11 @@ async function saveItem(storeName, key, value) {
 }
 
 async function getItem(storeName, key) {
+  if (typeof key !== 'string' && typeof key !== 'number') {
+    console.error(`❌ Invalid key for store "${storeName}":`, unref(key));
+    throw new Error(`Invalid key passed to IndexedDB getItem: ${JSON.stringify(actualKey)}`);
+  }
+
   const db = await openDatabase();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(storeName, "readonly");
@@ -76,6 +82,7 @@ async function getItem(storeName, key) {
     request.onerror = (e) => reject(e);
   });
 }
+
 
 // ----------------- Common Content -----------------
 
@@ -93,11 +100,13 @@ export async function saveInterfaceToDB(languageCodeHL, content) {
 
 export async function getCommonContentFromDB(study, languageCodeHL) {
   const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
+  console.log (key)
   return getItem("commonContent", key);
 }
 
 export async function saveCommonContentToDB(study, languageCodeHL, content) {
   const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
+  console.log (key)
   return saveItem("commonContent", key, content);
 }
 
@@ -127,7 +136,8 @@ export async function saveVideoUrlsToDB(study, languageCodeJF,urls) {
 
 // ----------------- Study Progress and Last Completed Lesson per Study ---------
 export async function getStudyProgress(study) {
-  return getItem("study_progress", study).then(
+  const key = ContentKeys.buildStudyProgressKey(study);
+  return getItem("study_progress", key).then(
     (data) => data || { completedLessons: [], lastCompletedLesson: null }
   );
 }
@@ -138,7 +148,8 @@ export async function saveStudyProgress(study, progress) {
     completedLessons: [...progress.completedLessons],
     lastCompletedLesson: progress.lastCompletedLesson,
   };
-  return saveItem("study_progress", study, safeProgress);
+  const key = ContentKeys.buildStudyProgressKey(study);
+  return saveItem("study_progress", key, safeProgress);
 }
 
 // ----------------- Notes -----------------

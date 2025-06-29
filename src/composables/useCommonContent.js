@@ -1,5 +1,5 @@
 import { useContentStore } from "stores/ContentStore";
-import { computed, unref } from "vue";
+import { computed, watch, unref } from "vue";
 
 export function useCommonContent(study, languageCodeHLRef) {
   const contentStore = useContentStore();
@@ -10,12 +10,20 @@ export function useCommonContent(study, languageCodeHLRef) {
   });
 
   const topics = computed(() => {
-    if (!commonContent.value?.topic) return [];
-    return Object.entries(commonContent.value.topic).map(([key, value]) => ({
-      label: `${parseInt(key)}. ${value}`,
-      value: parseInt(key),
-    }));
+    const topicEntries = commonContent.value?.topic;
+    if (!topicEntries || typeof topicEntries !== 'object') return [];
+
+    return Object.entries(topicEntries)
+      .map(([key, value]) => {
+        const index = parseInt(key, 10);
+        return {
+          label: `${index}. ${value}`,
+          value: index,
+        };
+      })
+      .filter(({ value }) => !isNaN(value));
   });
+
 
   const loadCommonContent = async (lang = unref(languageCodeHLRef)) => {
     try {
@@ -24,6 +32,13 @@ export function useCommonContent(study, languageCodeHLRef) {
       console.error("Failed to load common content:", error);
     }
   };
+  watch(commonContent, (val) => {
+    console.log("commonContent changed:", val);
+  });
+
+  watch(topics, (val) => {
+    console.log("topics changed:", val);
+  });
 
   return {
     commonContent,

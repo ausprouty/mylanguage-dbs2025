@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, watch } from "vue";
+import { computed, onMounted, watch, unref } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useLanguageStore } from "stores/LanguageStore";
@@ -24,7 +24,7 @@ const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
 const computedLanguageHL = computed(() => languageStore.languageSelected.languageCodeHL);
 const computedLanguageJF = computed(() => languageStore.languageSelected.languageCodeJF);
 
-console.log (computedStudy, computedLanguageHL)
+console.log (unref(computedStudy), unref(computedLanguageHL))
 // ✅ Load content
 const { commonContent, topics, loadCommonContent } = useCommonContent(
   computedStudy,

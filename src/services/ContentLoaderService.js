@@ -14,7 +14,7 @@ export async function getContentWithFallback({
   apiUrl,
   languageCodeHL,
   translationType,
-  skipTranslationCheck = false,
+  skipTranslationCheck = false
 }) {
   console.log(key);
   return key;

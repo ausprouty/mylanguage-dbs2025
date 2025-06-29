@@ -12,7 +12,7 @@ const props = defineProps({
   completedLessons: Array,
 });
 console.log ('topics')
-console.log (topics)
+console.log (props.topics)
 // Access the i18n instance
 const { t } = useI18n();
 const topicLabel = t('menu.topic')
