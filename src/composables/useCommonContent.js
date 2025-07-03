@@ -27,7 +27,9 @@ export function useCommonContent(study, languageCodeHLRef) {
 
   const loadCommonContent = async (lang = unref(languageCodeHLRef)) => {
     try {
+      console.log('I am going to content store to load common content')
       await contentStore.loadCommonContent(lang, study);
+       console.log('I returned from  content store to load common content')
     } catch (error) {
       console.error("Failed to load common content:", error);
     }

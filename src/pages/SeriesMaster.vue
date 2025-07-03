@@ -8,7 +8,7 @@ import { useProgressTracker } from "src/composables/useProgressTracker.js";
 import { useInitializeLanguageStore } from "src/composables/useInitializeLanguageStore.js";
 import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/Series/SeriesSegmentNavigator.vue";
-//import SeriesLessonContent from "src/components/Series/SeriesLessonContent.vue";
+import SeriesLessonContent from "src/components/Series/SeriesLessonContent.vue";
 
 // Access stores and route
 const route = useRoute();
@@ -60,8 +60,6 @@ const updateLesson = (nextLessonNumber) => {
 
 </script>
 <template>
-  <h2>My text</h2>
-
   <template v-if="commonContent">
     <q-page padding>
       <h2>{{ t(`${computedStudy}.title`) }}</h2>
@@ -69,23 +67,22 @@ const updateLesson = (nextLessonNumber) => {
       <p>{{ t(`${computedStudy}.para.2`) }}</p>
       <p>{{ t(`${computedStudy}.para.3`) }}</p>
 
+      <SeriesPassageSelect
+        :study="computedStudy"
+        :topics="topics"
+        :lesson="computedLessonNumber"
+        :markLessonComplete="markLessonComplete"
+        :isLessonCompleted="isLessonCompleted"
+        :completedLessons="completedLessons"
+        @updateLesson="updateLesson"
+      />
 
-        <SeriesPassageSelect
-          :study="computedStudy"
-          :topics="topics"
-          :lesson="computedLessonNumber"
-          :markLessonComplete="markLessonComplete"
-          :isLessonCompleted="isLessonCompleted"
-          :completedLessons="completedLessons"
-          @updateLesson="updateLesson"
-        />
+      <SeriesSegmentNavigator
+        :study="computedStudy"
+        :lesson="computedLessonNumber"
+        @updateLesson="updateLesson"
+      />
 
-        <SeriesSegmentNavigator
-          :study="computedStudy"
-          :lesson="computedLessonNumber"
-          @updateLesson="updateLesson"
-        />
-<!--
       <hr />
       <SeriesLessonContent
         :languageCodeHL="computedLanguageHL"
@@ -94,7 +91,7 @@ const updateLesson = (nextLessonNumber) => {
         :lesson="computedLessonNumber"
         :commonContent="commonContent"
       />
-    -->
+
       <q-btn
         :label="
           isLessonCompleted(computedLessonNumber)

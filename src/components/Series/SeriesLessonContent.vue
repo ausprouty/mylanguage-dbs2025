@@ -47,6 +47,7 @@ export default {
         console.log(
           "Fetching lessonContent with:",
           props.languageCodeHL,
+          props.languageCodeJF,
           props.study,
           props.lesson
         );

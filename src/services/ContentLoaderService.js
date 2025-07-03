@@ -16,14 +16,18 @@ export async function getContentWithFallback({
   translationType,
   skipTranslationCheck = false
 }) {
-  console.log(key);
-  return key;
+
+
+  // helper function (local to this module)
+  function isTruthy(value) {
+    return value === true || value === "true";
+  }
+
   // 1. Check Pinia Store
   const storeValue = storeGetter(store);
   if (storeValue) {
     console.log(`✅ Loaded ${key} from ContentStore`);
-    console.log(storeValue);
-    if (storeValue.language?.translationComplete == true) {
+    if (isTruthy(storeValue.language?.translationComplete)) {
       store.setTranslationComplete(translationType, true);
       return storeValue; // ✅ Fully translated, done
     }
@@ -37,7 +41,7 @@ export async function getContentWithFallback({
       console.log(`✅ Loaded ${key} from IndexedDB`);
       storeSetter(store, dbValue);
       console.log(dbValue);
-      if (dbValue.language?.translationComplete == true) {
+      if (isTruthy(dbValue.language?.translationComplete)) {
         store.setTranslationComplete(translationType, true);
         return dbValue; // ✅ Fully translated
       }
@@ -67,7 +71,8 @@ export async function getContentWithFallback({
     // update store with whatever we get
     storeSetter(store, data);
 
-    if (skipTranslationCheck || data.language?.translationComplete == true) {
+
+    if (skipTranslationCheck || isTruthy(data.language?.translationComplete)) {
       console.log(`✅ ${key} from API is complete — caching to DB `);
       store.setTranslationComplete(translationType, true);
       await dbSetter(data);
@@ -75,6 +80,7 @@ export async function getContentWithFallback({
       return data;
     } else {
       console.warn(`⚠️ ${key} from API is incomplete — polling (line 78)`);
+
       pollTranslationUntilComplete({
         languageCodeHL,
         translationType: translationType,

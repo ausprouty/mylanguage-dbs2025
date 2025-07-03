@@ -64,7 +64,9 @@ export const useContentStore = defineStore("contentStore", {
     },
 
     async loadCommonContent(languageCodeHL, study) {
+      console.log ('I am in Content Store about to get CommonContent')
       return await getCommonContent(languageCodeHL, study);
+      
     },
 
     async loadLessonContent(languageCodeHL, languageCodeJF, study, lesson) {

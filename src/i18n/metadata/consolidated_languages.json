@@ -5,7 +5,7 @@
     "ethnicName": "Afrikaans",
     "languageCodeIso": "afr",
     "languageCodeHL": "afk00",
-    "languageCodeJF": 1444,
+    "languageCodeJF": "1444",
     "textDirection": "ltr"
   },
   {
@@ -14,7 +14,7 @@
     "ethnicName": "Shqipe",
     "languageCodeIso": "sqi",
     "languageCodeHL": "aln00",
-    "languageCodeJF": 20526,
+    "languageCodeJF": "20526",
     "textDirection": "ltr"
   },
   {
@@ -23,7 +23,7 @@
     "ethnicName": "العربية",
     "languageCodeIso": "arb",
     "languageCodeHL": "arq00",
-    "languageCodeJF": 13562,
+    "languageCodeJF": "13562",
     "textDirection": "rtl"
   },
   {
@@ -32,7 +32,7 @@
     "ethnicName": "Հայերեն",
     "languageCodeIso": "hye",
     "languageCodeHL": "arm00",
-    "languageCodeJF": 20550,
+    "languageCodeJF": "20550",
     "textDirection": "ltr"
   },
   {
@@ -41,7 +41,7 @@
     "ethnicName": "azərbaycan",
     "languageCodeIso": "azj",
     "languageCodeHL": "aze00",
-    "languageCodeJF": 689,
+    "languageCodeJF": "689",
     "textDirection": "ltr"
   },
   {
@@ -50,7 +50,7 @@
     "ethnicName": "বাংলা",
     "languageCodeIso": "ben",
     "languageCodeHL": "bng00",
-    "languageCodeJF": 139081,
+    "languageCodeJF": "139081",
     "textDirection": "ltr"
   },
   {
@@ -59,7 +59,7 @@
     "ethnicName": "Български",
     "languageCodeIso": "bul",
     "languageCodeHL": "blg00",
-    "languageCodeJF": 1964,
+    "languageCodeJF": "1964",
     "textDirection": "ltr"
   },
   {
@@ -86,7 +86,7 @@
     "ethnicName": " Bisaya",
     "languageCodeIso": "ceb",
     "languageCodeHL": "ceb00",
-    "languageCodeJF": 12784,
+    "languageCodeJF": "12784",
     "textDirection": "ltr"
   },
   {
@@ -95,7 +95,7 @@
     "ethnicName": "Chichewa",
     "languageCodeIso": "nya",
     "languageCodeHL": "nyj00",
-    "languageCodeJF": 20857,
+    "languageCodeJF": "20857",
     "textDirection": "ltr"
   },
   {
@@ -104,7 +104,7 @@
     "ethnicName": "Hrvatski",
     "languageCodeIso": "hrv",
     "languageCodeHL": "hrv00",
-    "languageCodeJF": 1109,
+    "languageCodeJF": "1109",
     "textDirection": "ltr"
   },
   {
@@ -113,7 +113,7 @@
     "ethnicName": "Čeština",
     "languageCodeIso": "ces",
     "languageCodeHL": "czc00",
-    "languageCodeJF": 4432,
+    "languageCodeJF": "4432",
     "textDirection": "ltr"
   },
   {
@@ -122,7 +122,7 @@
     "ethnicName": "Dansk",
     "languageCodeIso": "dan",
     "languageCodeHL": "dan99",
-    "languageCodeJF": 4454,
+    "languageCodeJF": "4454",
     "textDirection": "ltr"
   },
   {
@@ -131,7 +131,7 @@
     "ethnicName": "Nederlands",
     "languageCodeIso": "nld",
     "languageCodeHL": "dut99",
-    "languageCodeJF": 1269,
+    "languageCodeJF": "1269",
     "textDirection": "ltr"
   },
   {
@@ -140,7 +140,7 @@
     "ethnicName": "English",
     "languageCodeIso": "eng",
     "languageCodeHL": "eng00",
-    "languageCodeJF": 529,
+    "languageCodeJF": "529",
     "textDirection": "ltr"
   },
   {
@@ -149,7 +149,7 @@
     "ethnicName": "فارسی",
     "languageCodeIso": "fas",
     "languageCodeHL": "pes00",
-    "languageCodeJF": 6788,
+    "languageCodeJF": "6788",
     "textDirection": "rtl"
   },
   {
@@ -158,7 +158,7 @@
     "ethnicName": "Suomi",
     "languageCodeIso": "fin",
     "languageCodeHL": "fin00",
-    "languageCodeJF": 4820,
+    "languageCodeJF": "4820",
     "textDirection": "ltr"
   },
   {
@@ -167,7 +167,7 @@
     "ethnicName": "français",
     "languageCodeIso": "fra",
     "languageCodeHL": "frn00",
-    "languageCodeJF": 496,
+    "languageCodeJF": "496",
     "textDirection": "ltr"
   },
   {
@@ -176,7 +176,7 @@
     "ethnicName": "Ingilo",
     "languageCodeIso": "kat",
     "languageCodeHL": "geo00",
-    "languageCodeJF": 5112,
+    "languageCodeJF": "5112",
     "textDirection": "ltr"
   },
   {
@@ -185,7 +185,7 @@
     "ethnicName": "Deutsch",
     "languageCodeIso": "deu",
     "languageCodeHL": "ger00",
-    "languageCodeJF": 1106,
+    "languageCodeJF": "1106",
     "textDirection": "ltr"
   },
   {
@@ -194,7 +194,7 @@
     "ethnicName": "Ελληνικά",
     "languageCodeIso": "ell",
     "languageCodeHL": "grk00",
-    "languageCodeJF": 483,
+    "languageCodeJF": "483",
     "textDirection": "ltr"
   },
   {
@@ -203,7 +203,7 @@
     "ethnicName": "ગુજરાતી",
     "languageCodeIso": "guj",
     "languageCodeHL": "gjr00",
-    "languageCodeJF": 6600,
+    "languageCodeJF": "6600",
     "textDirection": "ltr"
   },
   {
@@ -212,7 +212,7 @@
     "ethnicName": "Kreyol Ayisyen (Haitian)",
     "languageCodeIso": "hat",
     "languageCodeHL": "hat00",
-    "languageCodeJF": 4473,
+    "languageCodeJF": "4473",
     "textDirection": "ltr"
   },
   {
@@ -221,7 +221,7 @@
     "ethnicName": "Hausa",
     "languageCodeIso": "hau",
     "languageCodeHL": "hua00",
-    "languageCodeJF": 1341,
+    "languageCodeJF": "1341",
     "textDirection": "ltr"
   },
   {
@@ -230,7 +230,7 @@
     "ethnicName": "",
     "languageCodeIso": "haw",
     "languageCodeHL": "haw98",
-    "languageCodeJF": 184517,
+    "languageCodeJF": "184517",
     "textDirection": "ltr"
   },
   {
@@ -239,7 +239,7 @@
     "ethnicName": "עברית",
     "languageCodeIso": "heb",
     "languageCodeHL": "hbr00",
-    "languageCodeJF": 6930,
+    "languageCodeJF": "6930",
     "textDirection": "rtl"
   },
   {
@@ -248,7 +248,7 @@
     "ethnicName": "हिन्दी",
     "languageCodeIso": "hin",
     "languageCodeHL": "hnd00",
-    "languageCodeJF": 53300,
+    "languageCodeJF": "53300",
     "textDirection": "ltr"
   },
   {
@@ -257,7 +257,7 @@
     "ethnicName": "Magyar",
     "languageCodeIso": "hun",
     "languageCodeHL": "hng00",
-    "languageCodeJF": 1107,
+    "languageCodeJF": "1107",
     "textDirection": "ltr"
   },
   {
@@ -266,7 +266,7 @@
     "ethnicName": "Íslenska",
     "languageCodeIso": "isl",
     "languageCodeHL": "ice99",
-    "languageCodeJF": 5563,
+    "languageCodeJF": "5563",
     "textDirection": "ltr"
   },
   {
@@ -275,7 +275,7 @@
     "ethnicName": "Bahasa Indonesia",
     "languageCodeIso": "ind",
     "languageCodeHL": "inz00",
-    "languageCodeJF": 16639,
+    "languageCodeJF": "16639",
     "textDirection": "ltr"
   },
   {
@@ -284,7 +284,7 @@
     "ethnicName": "Italiano",
     "languageCodeIso": "ita",
     "languageCodeHL": "itn00",
-    "languageCodeJF": 4415,
+    "languageCodeJF": "4415",
     "textDirection": "ltr"
   },
   {
@@ -293,7 +293,7 @@
     "ethnicName": "日本語",
     "languageCodeIso": "jpn",
     "languageCodeHL": "jpn00",
-    "languageCodeJF": 7083,
+    "languageCodeJF": "7083",
     "textDirection": "ltr"
   },
   {
@@ -302,7 +302,7 @@
     "ethnicName": "ಕನ್ನಡ",
     "languageCodeIso": "kan",
     "languageCodeHL": "kjv00",
-    "languageCodeJF": 6318,
+    "languageCodeJF": "6318",
     "textDirection": "ltr"
   },
   {
@@ -311,7 +311,7 @@
     "ethnicName": "Қазақ",
     "languageCodeIso": "kaz",
     "languageCodeHL": "kaz99",
-    "languageCodeJF": 371,
+    "languageCodeJF": "371",
     "textDirection": "ltr"
   },
   {
@@ -320,7 +320,7 @@
     "ethnicName": "Kinyarwanda",
     "languageCodeIso": "kin",
     "languageCodeHL": "rua00",
-    "languageCodeJF": 20900,
+    "languageCodeJF": "20900",
     "textDirection": "ltr"
   },
   {
@@ -329,7 +329,7 @@
     "ethnicName": "한국어",
     "languageCodeIso": "kor",
     "languageCodeHL": "kkn00",
-    "languageCodeJF": 24000,
+    "languageCodeJF": "24000",
     "textDirection": "ltr"
   },
   {
@@ -338,7 +338,7 @@
     "ethnicName": "Latviešu",
     "languageCodeIso": "lvs",
     "languageCodeHL": "lat00",
-    "languageCodeJF": 7519,
+    "languageCodeJF": "7519",
     "textDirection": "ltr"
   },
   {
@@ -347,7 +347,7 @@
     "ethnicName": "Lietuvių",
     "languageCodeIso": "lit",
     "languageCodeHL": "lit00",
-    "languageCodeJF": 7698,
+    "languageCodeJF": "7698",
     "textDirection": "ltr"
   },
   {
@@ -356,7 +356,7 @@
     "ethnicName": "Malagasy",
     "languageCodeIso": "mlg",
     "languageCodeHL": "plt00",
-    "languageCodeJF": 7761,
+    "languageCodeJF": "7761",
     "textDirection": "ltr"
   },
   {
@@ -365,7 +365,7 @@
     "ethnicName": "മലയാളം",
     "languageCodeIso": "mal",
     "languageCodeHL": "mjs00",
-    "languageCodeJF": 19985,
+    "languageCodeJF": "19985",
     "textDirection": "ltr"
   },
   {
@@ -374,7 +374,7 @@
     "ethnicName": "Maori",
     "languageCodeIso": "mri",
     "languageCodeHL": "mbf00",
-    "languageCodeJF": 9198,
+    "languageCodeJF": "9198",
     "textDirection": "ltr"
   },
   {
@@ -383,7 +383,7 @@
     "ethnicName": "मराठी",
     "languageCodeIso": "mar",
     "languageCodeHL": "mrt00",
-    "languageCodeJF": 6174,
+    "languageCodeJF": "6174",
     "textDirection": "ltr"
   },
   {
@@ -392,7 +392,7 @@
     "ethnicName": "",
     "languageCodeIso": "mon",
     "languageCodeHL": "khk00",
-    "languageCodeJF": 18259,
+    "languageCodeJF": "18259",
     "textDirection": "ltr"
   },
   {
@@ -401,7 +401,7 @@
     "ethnicName": "नेपाली भाषा ",
     "languageCodeIso": "npi",
     "languageCodeHL": "nep00",
-    "languageCodeJF": 1370,
+    "languageCodeJF": "1370",
     "textDirection": "ltr"
   },
   {
@@ -410,7 +410,7 @@
     "ethnicName": "Bokmål",
     "languageCodeIso": "nor",
     "languageCodeHL": "nor99",
-    "languageCodeJF": 10393,
+    "languageCodeJF": "10393",
     "textDirection": "ltr"
   },
   {
@@ -419,7 +419,7 @@
     "ethnicName": "پښتو",
     "languageCodeIso": "pus",
     "languageCodeHL": "pbu00",
-    "languageCodeJF": 374,
+    "languageCodeJF": "374",
     "textDirection": "ltr"
   },
   {
@@ -428,7 +428,7 @@
     "ethnicName": "Polski",
     "languageCodeIso": "pol",
     "languageCodeHL": "pql00",
-    "languageCodeJF": 4451,
+    "languageCodeJF": "4451",
     "textDirection": "ltr"
   },
   {
@@ -437,7 +437,7 @@
     "ethnicName": "Português",
     "languageCodeIso": "por",
     "languageCodeHL": "por05",
-    "languageCodeJF": 1872,
+    "languageCodeJF": "1872",
     "textDirection": "ltr"
   },
   {
@@ -446,7 +446,7 @@
     "ethnicName": "Română",
     "languageCodeIso": "ron",
     "languageCodeHL": "rum00",
-    "languageCodeJF": 5546,
+    "languageCodeJF": "5546",
     "textDirection": "ltr"
   },
   {
@@ -455,7 +455,7 @@
     "ethnicName": "Русский",
     "languageCodeIso": "rus",
     "languageCodeHL": "rus00",
-    "languageCodeJF": 1944,
+    "languageCodeJF": "1944",
     "textDirection": "ltr"
   },
   {
@@ -464,7 +464,7 @@
     "ethnicName": "Samoan",
     "languageCodeIso": "smo",
     "languageCodeHL": "smy00",
-    "languageCodeJF": 530,
+    "languageCodeJF": "530",
     "textDirection": "ltr"
   },
   {
@@ -473,7 +473,7 @@
     "ethnicName": "සිංහල",
     "languageCodeIso": "sin",
     "languageCodeHL": "sin99",
-    "languageCodeJF": 13172,
+    "languageCodeJF": "13172",
     "textDirection": "ltr"
   },
   {
@@ -482,7 +482,7 @@
     "ethnicName": "Slovenčina",
     "languageCodeIso": "slk",
     "languageCodeHL": "slo00",
-    "languageCodeJF": 5545,
+    "languageCodeJF": "5545",
     "textDirection": "ltr"
   },
   {
@@ -491,7 +491,7 @@
     "ethnicName": "Slovenščina",
     "languageCodeIso": "slv",
     "languageCodeHL": "slv00",
-    "languageCodeJF": 1112,
+    "languageCodeJF": "1112",
     "textDirection": "ltr"
   },
   {
@@ -500,7 +500,7 @@
     "ethnicName": "Somali",
     "languageCodeIso": "som",
     "languageCodeHL": "som00",
-    "languageCodeJF": 4466,
+    "languageCodeJF": "4466",
     "textDirection": "ltr"
   },
   {
@@ -509,7 +509,7 @@
     "ethnicName": "Español",
     "languageCodeIso": "spa",
     "languageCodeHL": "spn00",
-    "languageCodeJF": 21028,
+    "languageCodeJF": "21028",
     "textDirection": "ltr"
   },
   {
@@ -518,7 +518,7 @@
     "ethnicName": "Svenska",
     "languageCodeIso": "swe",
     "languageCodeHL": "swe99",
-    "languageCodeJF": 4823,
+    "languageCodeJF": "4823",
     "textDirection": "ltr"
   },
   {
@@ -527,7 +527,7 @@
     "ethnicName": "தமிழ்",
     "languageCodeIso": "tam",
     "languageCodeHL": "tcv00",
-    "languageCodeJF": 5871,
+    "languageCodeJF": "5871",
     "textDirection": "ltr"
   },
   {
@@ -536,7 +536,7 @@
     "ethnicName": "తెలుగు",
     "languageCodeIso": "tel",
     "languageCodeHL": "tcw00",
-    "languageCodeJF": 5848,
+    "languageCodeJF": "5848",
     "textDirection": "ltr"
   },
   {
@@ -545,7 +545,7 @@
     "ethnicName": "ภาษาไทย",
     "languageCodeIso": "tha",
     "languageCodeHL": "thj00",
-    "languageCodeJF": 13169,
+    "languageCodeJF": "13169",
     "textDirection": "ltr"
   },
   {
@@ -554,7 +554,7 @@
     "ethnicName": "Türkçe",
     "languageCodeIso": "tur",
     "languageCodeHL": "trk00",
-    "languageCodeJF": 1942,
+    "languageCodeJF": "1942",
     "textDirection": "ltr"
   },
   {
@@ -563,7 +563,7 @@
     "ethnicName": "Turkmen",
     "languageCodeIso": "tuk",
     "languageCodeHL": "tck00",
-    "languageCodeJF": 420,
+    "languageCodeJF": "420",
     "textDirection": "ltr"
   },
   {
@@ -572,7 +572,7 @@
     "ethnicName": "Українська",
     "languageCodeIso": "ukr",
     "languageCodeHL": "ukr00",
-    "languageCodeJF": 12876,
+    "languageCodeJF": "12876",
     "textDirection": "ltr"
   },
   {
@@ -581,7 +581,7 @@
     "ethnicName": "اردو",
     "languageCodeIso": "urd",
     "languageCodeHL": "urd00",
-    "languageCodeJF": 407,
+    "languageCodeJF": "407",
     "textDirection": "rtl"
   },
   {
@@ -590,7 +590,7 @@
     "ethnicName": "o&#039;zbek",
     "languageCodeIso": "uzn",
     "languageCodeHL": "uzb00",
-    "languageCodeJF": 3888,
+    "languageCodeJF": "3888",
     "textDirection": "ltr"
   },
   {
@@ -599,7 +599,7 @@
     "ethnicName": "Tiếng Việt",
     "languageCodeIso": "vie",
     "languageCodeHL": "vie00",
-    "languageCodeJF": 22500,
+    "languageCodeJF": "22500",
     "textDirection": "ltr"
   },
   {
@@ -608,7 +608,7 @@
     "ethnicName": "Cymraeg",
     "languageCodeIso": "cym",
     "languageCodeHL": "wls00",
-    "languageCodeJF": 14815,
+    "languageCodeJF": "14815",
     "textDirection": "ltr"
   },
   {
@@ -617,7 +617,7 @@
     "ethnicName": "isiXhosa",
     "languageCodeIso": "xho",
     "languageCodeHL": "xos00",
-    "languageCodeJF": 13408,
+    "languageCodeJF": "13408",
     "textDirection": "ltr"
   },
   {
@@ -626,7 +626,7 @@
     "ethnicName": "Yorùbá",
     "languageCodeIso": "yor",
     "languageCodeHL": "yor00",
-    "languageCodeJF": 1308,
+    "languageCodeJF": "1308",
     "textDirection": "ltr"
   },
   {
@@ -635,7 +635,7 @@
     "ethnicName": "isiZulu",
     "languageCodeIso": "zul",
     "languageCodeHL": "zuu00",
-    "languageCodeJF": 7547,
+    "languageCodeJF": "7547",
     "textDirection": "ltr"
   }
 ]

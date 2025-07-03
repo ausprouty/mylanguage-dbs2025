@@ -28,14 +28,13 @@ export async function pollTranslationUntilComplete({
       console.log ('attempting poll')
       const response = await currentApi.get(apiUrl);
       const translation = response.data.data;
+      // ✅ Step 1: // ✅ Always keep store updated with latest translation, even if incomplete
+      await storeSetter(store, translation);
       console.log (translation);
       if (translation?.language?.translationComplete) {
         console.log(`${translationType} translation complete.`);
 
-        // ✅ Step 1: Update store content reactively
-        await storeSetter(store, translation);
-
-        // ✅ Step 2: Update translationComplete flag
+        // ✅ Step 2: Update translationComplete flag if complete
         store.setTranslationComplete(translationType, true);
 
         // ✅ Step 3: Save to IndexedDB

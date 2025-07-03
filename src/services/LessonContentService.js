@@ -51,6 +51,5 @@ export async function getLessonContent(
     translationType: "lessonContent",
   });
 
-  console.log("✅ getLessonContent-line 54 result:", result);
   return result;
 }
