@@ -13,12 +13,7 @@ export const useLanguageStore = defineStore("languageStore", {
       life: 1,
       jvideo: 1,
     },
-    maxLessonNumber: {
-      dbs: 23,
-      lead: 25,
-      life: 23,
-      jvideo: 61,
-    },
+    
     languages: [],
     languageSelected:{},
     languagesUsed: [],

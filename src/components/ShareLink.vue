@@ -38,7 +38,7 @@ export default {
 
     const seriesUrlLink = (rootUrl) => {
       const languageCodeHL2 = languageStore.languageCodeHLSelected;
-      const series = languageStore.currentStudy;
+      const series = languageStore.currentStudySelected;
       const lesson2 = languageStore.lessonNumber;
       return `${rootUrl}/series/${series || ""}/${lesson2 || ""}/${
         languageCodeHL2 || ""

@@ -1,39 +1,49 @@
 
 
+// NoteSection.vue
 <script>
-import { ref, watch, onMounted, nextTick } from "vue";
+import { ref, watch, onMounted, computed, nextTick } from "vue";
 import { getNote, saveNote } from "src/services/NoteService";
+import { useLanguageStore } from 'stores/LanguageStore';
+import debounce from 'lodash.debounce';
 
 export default {
   name: "NoteSection",
   props: {
-    sectionKey: { type: String, required: true }, // format: study-lesson-position
+    section: { type: String, required: true }, // "back", "up", "forward"
     placeholder: { type: String, default: "Write your notes here" }
   },
   setup(props) {
     const note = ref("");
     const textareaRef = ref(null);
 
-    const [study, lesson, position] = props.sectionKey.split("-");
+    const languageStore = useLanguageStore();
+
+    const study = computed(() => languageStore.currentStudySelected);
+    const lesson = computed(() => languageStore.lessonNumberForStudy);
 
     const loadNote = async () => {
-      note.value = await getNote(study, lesson, position);
-      await nextTick(); // wait for DOM update
+      note.value = await getNote(study.value, lesson.value, props.section);
+      await nextTick();
       autoResize();
     };
 
-    const saveNoteContent = async (newVal) => {
-      await saveNote(study, lesson, position, newVal);
-    };
+    const saveNoteContent = debounce(async (newVal) => {
+      await saveNote(study.value, lesson.value, props.position, newVal);
+    }, 800);
+
 
     const autoResize = () => {
       const el = textareaRef.value;
       if (!el) return;
-      el.style.height = 'auto'; // reset
-      el.style.height = el.scrollHeight + 'px'; // set to content height
+      el.style.height = 'auto';
+      el.style.height = el.scrollHeight + 'px';
     };
 
-    watch(() => props.sectionKey, loadNote);
+    // Watch the lesson or study changing — reload the note
+    watch([study, lesson], loadNote);
+
+    // Watch note value changing — save and resize
     watch(note, (newVal) => {
       saveNoteContent(newVal);
       autoResize();
@@ -44,11 +54,12 @@ export default {
     return {
       note,
       textareaRef,
-      autoResize
+      autoResize,
     };
   }
 };
 </script>
+
 <template>
   <textarea
     ref="textareaRef"
@@ -56,6 +67,7 @@ export default {
     v-model="note"
     :placeholder="placeholder"
     @input="autoResize"
+    @blur="saveNoteContent.flush && saveNoteContent.flush()"
   ></textarea>
 </template>
 

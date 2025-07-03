@@ -19,7 +19,7 @@ console.log ('i opened language store')
 
 useInitializeLanguageStore(route, languageStore);
 
-const computedStudy = computed(() => languageStore.currentStudy);
+const computedStudy = computed(() => languageStore.currentStudySelected);
 const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
 const computedLanguageHL = computed(() => languageStore.languageSelected.languageCodeHL);
 const computedLanguageJF = computed(() => languageStore.languageSelected.languageCodeJF);

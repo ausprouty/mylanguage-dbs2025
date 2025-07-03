@@ -4915,6 +4915,7 @@ __metadata:
     idb: "npm:^8.0.3"
     joi: "npm:^17.11.0"
     jsdom: "npm:^26.1.0"
+    lodash.debounce: "npm:^4.0.8"
     pinia: "npm:^2.3.0"
     pinia-plugin-persistedstate: "npm:^4.2.0"
     postcss: "npm:^8.4.14"

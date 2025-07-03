@@ -5,16 +5,16 @@ import { useI18n } from "vue-i18n";
 import DbsQuestions from "src/components/DbsQuestions.vue";
 import VideoBar from "src/components/Video/VideoBar.vue";
 import BibleText from "src/components/BibleTextBar.vue";
-// SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
-//import {
- //// getStudyProgress,
-  //saveStudyProgress,
-//} from "src/services/IndexedDBService";
+import SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
+import {
+  getStudyProgress,
+  saveStudyProgress,
+} from "src/services/IndexedDBService";
 
 export default {
   name: "SeriesLessonContent",
-  //components: { DbsQuestions, BibleText, SeriesReviewLastLesson, VideoBar },
-  components: { DbsQuestions, BibleText, VideoBar },
+
+  components: { DbsQuestions, BibleText, SeriesReviewLastLesson,  VideoBar },
   props: {
     languageCodeHL: { type: String, required: true },
     languageCodeJF: { type: String, required: true },
@@ -33,14 +33,6 @@ export default {
     const lookUpNoteInstruction = m("lookUpNoteInstruction");
     const lookForwardNoteInstruction = m("lookForwardNoteInstruction");
 
-    // ✅ Computed section keys (Updates when study or lesson changes)
-    const sectionKeyBack = computed(
-      () => `${props.study}-${props.lesson}-back`
-    );
-    const sectionKeyUp = computed(() => `${props.study}-${props.lesson}-up`);
-    const sectionKeyForward = computed(
-      () => `${props.study}-${props.lesson}-forward`
-    );
 
     // ✅ Load lesson content
     const loadLessonContent = async () => {
@@ -117,9 +109,6 @@ export default {
       lessonContent,
       markLessonComplete,
       passageReference,
-      sectionKeyBack,
-      sectionKeyUp,
-      sectionKeyForward,
       lookBackNoteInstruction,
       lookUpNoteInstruction,
       lookForwardNoteInstruction,
@@ -130,23 +119,23 @@ export default {
 
 <template>
   <div v-if="!lessonContent">
-    <p>There is NO lessonContent</p>
+    <p>Your lesson content is loading</p>
   </div>
   <div v-else>
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
 
-   <!-- <SeriesReviewLastLesson :sectionKey="sectionKeyForward" /> --->
+   <SeriesReviewLastLesson :sectionKey="sectionKeyForward" />
 
     <section v-if="commonContent">
       <DbsQuestions
+        :section="look_back"
         :content="commonContent?.look_back || {}"
-        :sectionKey="sectionKeyBack"
         :placeholder="lookBackNoteInstruction"
       />
 
       <DbsQuestions
+        :section="look_up"
         :content="commonContent?.look_up || {}"
-        :sectionKey="sectionKeyUp"
         :placeholder="lookUpNoteInstruction"
       />
      <BibleText
@@ -156,13 +145,14 @@ export default {
       />
 
       <VideoBar
+        v-if="lessonContent.videoUrl"
         :videoUrl = "lessonContent.videoUrl"
         :title = "lessonContent.menu.read_or_watch"
       />
 
       <DbsQuestions
+        :section="look_forward"
         :content="commonContent?.look_forward || {}"
-        :sectionKey="sectionKeyForward"
         :placeholder="lookForwardNoteInstruction"
       />
     </section>
