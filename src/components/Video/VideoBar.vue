@@ -1,34 +1,76 @@
+<script setup>
+import { ref } from 'vue';
+
+const props = defineProps({
+  videoUrl: { type: String, required: true },
+  title: { type: String, default: 'Watch this video' },
+});
+
+const isVisible = ref(false);
+</script>
+
 <template>
-  <div class="arc-cont">
-    <iframe
-      src="https://api.arclight.org/videoPlayerUrl?refId=2_529-GOJ-0-0&playerStyle=default"
-      allowfullscreen
-      webkitallowfullscreen
-      mozallowfullscreen
-    ></iframe
-    >
+  <div class="video-container">
+    <!-- Toggle Button -->
+    <button @click="isVisible = !isVisible" class="toggle-button">
+      {{ isVisible ? '▼' : '►' }} {{ title }}
+    </button>
+
+    <!-- Video Content -->
+    <div v-show="isVisible" class="video-section">
+      <iframe
+        :src="videoUrl"
+        allowfullscreen
+        webkitallowfullscreen
+        mozallowfullscreen
+      ></iframe>
+    </div>
   </div>
 </template>
-<style>
-  .arc-cont {
-    position: relative;
-    display: block;
-    margin: 10px auto;
+
+<style scoped lang="scss">
+.video-container {
+  margin-top: 20px;
+  padding: 16px;
+  border: 2px solid $accent;
+  border-radius: 8px;
+  background-color: $neutral;
+  color: $minor2;
+  box-shadow: 0 2px 6px $shadow;
+}
+
+// Toggle Button
+.toggle-button {
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px;
+  border: none;
+  background-color: $accent;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $warning;
+    color: $minor2;
+  }
+}
+
+// Video Section
+.video-section {
+  margin-top: 12px;
+  background-color: lighten($minor1, 15%);
+  padding: 14px;
+  border-left: 4px solid $accent;
+  border-radius: 4px;
+
+  iframe {
     width: 100%;
-  }
-  .arc-cont:after {
-    padding-top: 59%;
-    display: block;
-    content: "";
-  }
-  .arc-cont > iframe {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 98%;
-    height: 98%;
+    aspect-ratio: 16 / 9;
     border: 0;
   }
+}
 </style>

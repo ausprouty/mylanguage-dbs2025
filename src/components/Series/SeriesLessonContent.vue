@@ -2,9 +2,9 @@
 import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import { useI18n } from "vue-i18n";
-//import DbsQuestions from "src/components/DbsQuestions.vue";
-//import VideoBar from "src/components/VideoBar.vue";
-//import BibleText from "src/components/BibleTextBar.vue";
+import DbsQuestions from "src/components/DbsQuestions.vue";
+import VideoBar from "src/components/Video/VideoBar.vue";
+import BibleText from "src/components/BibleTextBar.vue";
 // SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
 //import {
  //// getStudyProgress,
@@ -14,6 +14,7 @@ import { useI18n } from "vue-i18n";
 export default {
   name: "SeriesLessonContent",
   //components: { DbsQuestions, BibleText, SeriesReviewLastLesson, VideoBar },
+  components: { DbsQuestions, BibleText, VideoBar },
   props: {
     languageCodeHL: { type: String, required: true },
     languageCodeJF: { type: String, required: true },
@@ -134,7 +135,7 @@ export default {
   <div v-else>
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
 
-   <!-- <SeriesReviewLastLesson :sectionKey="sectionKeyForward" />
+   <!-- <SeriesReviewLastLesson :sectionKey="sectionKeyForward" /> --->
 
     <section v-if="commonContent">
       <DbsQuestions
@@ -148,12 +149,16 @@ export default {
         :sectionKey="sectionKeyUp"
         :placeholder="lookUpNoteInstruction"
       />
-      <BibleText
+     <BibleText
         :biblePassage="lessonContent.passage"
         :passageReference="passageReference"
         :translation="lessonContent.menu"
       />
-      <VideoBar/>
+
+      <VideoBar
+        :videoUrl = "lessonContent.videoUrl"
+        :title = "lessonContent.menu.read_or_watch"
+      />
 
       <DbsQuestions
         :content="commonContent?.look_forward || {}"
@@ -161,6 +166,6 @@ export default {
         :placeholder="lookForwardNoteInstruction"
       />
     </section>
-    --->
+
   </div>
 </template>
