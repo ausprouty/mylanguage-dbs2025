@@ -4,13 +4,9 @@ import BibleTextDisplayed from "src/components/bible/BibleTextBar.vue";
 import NoteSection from "src/components/notes/NoteSection.vue";
 
 const props = defineProps({
+  section: { type: String, required: true },
   content: { type: Object, required: true },
-  sectionKey: { type: String, required: true },
   placeholder: { type: String, default: "Write your notes here" },
-  timing: { type: String, default: "" },
-  biblePassage: { type: Object, required: true },
-  passageReference: { type: Object, required: true },
-  translation: { type: String, required: true },
 });
 
 const note = ref("");

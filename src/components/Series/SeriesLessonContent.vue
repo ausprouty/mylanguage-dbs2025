@@ -3,9 +3,7 @@ import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import { useI18n } from "vue-i18n";
 import DbsQuestions from "src/components/series/DbsQuestions.vue";
-import VideoBar from "src/components/video/VideoBar.vue";
-import BibleText from "src/components/bible/BibleTextBar.vue";
-import { DbsLookup } from "src/components/series/DbsLookup.vue";
+import DbsLookup from "src/components/series/DbsLookup.vue";
 import SeriesReviewLastLesson from "src/components/series/SeriesReviewLastLesson.vue";
 import {
   getStudyProgress,
@@ -15,7 +13,7 @@ import {
 export default {
   name: "SeriesLessonContent",
 
-  components: { DbsQuestions, BibleText, SeriesReviewLastLesson, VideoBar },
+  components: { DbsQuestions, DbsLookup, SeriesReviewLastLesson },
   props: {
     languageCodeHL: { type: String, required: true },
     languageCodeJF: { type: String, required: true },
@@ -26,7 +24,6 @@ export default {
   setup(props) {
     const contentStore = useContentStore();
     const lessonContent = ref(null);
-    const passageReference = ref("No reference found");
     // i18n variables
     const { t } = useI18n();
     const m = (k) => t(`notes.${k}`);
@@ -37,13 +34,6 @@ export default {
     // ✅ Load lesson content
     const loadLessonContent = async () => {
       try {
-        console.log(
-          "Fetching lessonContent with:",
-          props.languageCodeHL,
-          props.languageCodeJF,
-          props.study,
-          props.lesson
-        );
         lessonContent.value = await contentStore.loadLessonContent(
           props.languageCodeHL,
           props.languageCodeJF,
@@ -51,7 +41,6 @@ export default {
           props.lesson
         );
         console.log(lessonContent.value);
-        updatePassageReference();
       } catch (error) {
         console.error("Error loading lesson content:", error);
       }
@@ -79,13 +68,6 @@ export default {
       }
     };
 
-    // ✅ Update passage reference when lesson content changes
-    const updatePassageReference = () => {
-      const reference =
-        lessonContent.value?.passage.referenceLocalLanguage || "";
-      passageReference.value = reference || "No reference found";
-    };
-
     // ✅ Watch for lesson OR language change
     watch(
       () => [props.lesson, props.languageCodeHL],
@@ -97,8 +79,8 @@ export default {
       }
     );
 
-    // ✅ Watch for lessonContent changes to update passage reference
-    watch(lessonContent, updatePassageReference);
+    // ✅ Watch for lessonContent changes
+    watch(lessonContent);
 
     // ✅ Load content when the component mounts
     onMounted(() => {
@@ -108,7 +90,6 @@ export default {
     return {
       lessonContent,
       markLessonComplete,
-      passageReference,
       lookBackNoteInstruction,
       lookUpNoteInstruction,
       lookForwardNoteInstruction,
@@ -132,23 +113,11 @@ export default {
         :content="commonContent?.look_back || {}"
         :placeholder="lookBackNoteInstruction"
       />
-      <DbsLookup></DbsLookup>
 
-      <DbsQuestions
-        :section="look_up"
+      <DbsLookup
+        :section="look_back"
         :content="commonContent?.look_up || {}"
         :placeholder="lookUpNoteInstruction"
-      />
-      <BibleText
-        :biblePassage="lessonContent.passage"
-        :passageReference="passageReference"
-        :translation="lessonContent.menu"
-      />
-
-      <VideoBar
-        v-if="lessonContent.videoUrl"
-        :videoUrl="lessonContent.videoUrl"
-        :title="lessonContent.menu.read_or_watch"
       />
 
       <DbsQuestions

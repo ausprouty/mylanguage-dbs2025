@@ -2,7 +2,7 @@
 import NoteSection from "src/components/notes/NoteSection.vue";
 
 export default {
-  name: "SectionWithNote",
+  name: "DbsQuestions",
   components: {
     NoteSection,
   },
