@@ -35,7 +35,8 @@ const props = defineProps({
       <VideoBar
         v-if="lessonContent.videoUrl"
         :videoUrl="lessonContent.videoUrl"
-        :title="lessonContent.menu.read_or_watch"
+        :videoTitle = "lessonContent.passage.referenceLocalLanguage"
+        :menu="lessonContent.menu"
       />
 
     <ol class="ltr dbs">

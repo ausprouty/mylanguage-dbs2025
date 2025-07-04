@@ -1,19 +1,24 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
   videoUrl: { type: String, required: true },
-  title: { type: String, default: 'Watch this video' },
+  videoTitle: { type: String, required: true },
+  menu: { type: String, default: 'Watch this video' },
 });
+const videoLabel = computed(() =>
+  props.menu.watch_online?.replace(/\{\{XXX\}\}/g, props.videoTitle || "")
+);
 
 const isVisible = ref(false);
 </script>
 
 <template>
   <div class="video-container">
+  
     <!-- Toggle Button -->
     <button @click="isVisible = !isVisible" class="toggle-button">
-      {{ isVisible ? '▼' : '►' }} {{ title }}
+      {{ isVisible ? '▼' : '►' }} {{ videoLabel }}
     </button>
 
     <!-- Video Content -->
