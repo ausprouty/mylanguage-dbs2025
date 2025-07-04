@@ -1,5 +1,5 @@
 <script>
-import NoteSection from "src/components/Notes/NoteSection.vue";
+import NoteSection from "src/components/notes/NoteSection.vue";
 
 export default {
   name: "SectionWithNote",
