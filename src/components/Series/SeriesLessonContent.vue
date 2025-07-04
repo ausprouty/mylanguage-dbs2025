@@ -88,6 +88,7 @@ export default {
     });
 
     return {
+
       lessonContent,
       markLessonComplete,
       lookBackNoteInstruction,
@@ -105,7 +106,7 @@ export default {
   <div v-else>
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
 
-    <SeriesReviewLastLesson :sectionKey="sectionKeyForward" />
+    <SeriesReviewLastLesson />
 
     <section v-if="commonContent">
       <DbsQuestions
@@ -116,7 +117,8 @@ export default {
 
       <DbsLookup
         :section="look_back"
-        :content="commonContent?.look_up || {}"
+        :commonContent="commonContent?.look_up || {}"
+        :lessonContent="lessonContent"
         :placeholder="lookUpNoteInstruction"
       />
 

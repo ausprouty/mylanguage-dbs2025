@@ -1,17 +1,13 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
+import { useI18n } from "vue-i18n";
+import { useLanguageStore } from "stores/LanguageStore";
 import { getNote } from "src/services/NoteService";
 import { getStudyProgress } from "src/services/IndexedDBService";
-import { useI18n } from "vue-i18n";
-
-const props = defineProps({
-  sectionKey: {
-    type: String,
-    required: true, // e.g. "life-5-forward"
-  },
-});
+import { buildNotesKey } from "src/utils/ContentKeyBuilder";
 
 const { t } = useI18n();
+const languageStore = useLanguageStore();
 
 const cleanedNote = ref("");
 const noteLines = ref([]);
@@ -20,47 +16,46 @@ const reviewIntro = ref([]);
 
 // Load previous note and intro paragraphs
 const loadPreviousNote = async () => {
-  const [study] = props.sectionKey.split("-");
-  const progress = await getStudyProgress(study);
-  const lastLesson = progress?.lastCompletedLesson;
-
-  if (!lastLesson || typeof lastLesson !== "number") {
+  const study = languageStore.currentStudySelected;
+  if (!study) {
     resetNote();
     return;
   }
 
-  const reviewKey = `${study}-${lastLesson}-forward`;
-  const note = await getNoteFromKey(reviewKey);
-  const trimmed = note.trim();
+  try {
+    const progress = await getStudyProgress(study);
+    const lastLesson = progress?.lastCompletedLesson;
 
-  if (trimmed) {
-    cleanedNote.value = trimmed;
-    noteLines.value = trimmed.split(/\r?\n/).filter(line => line.trim() !== "");
-    hasNote.value = true;
-    reviewIntro.value = loadIntroParagraphs();
-  } else {
+    if (!lastLesson || typeof lastLesson !== "number") {
+      resetNote();
+      return;
+    }
+
+    const noteKey = buildNotesKey(study, lastLesson, "forward");
+    const note = await getNote(noteKey);
+
+    const trimmed = note?.trim();
+    if (trimmed) {
+      cleanedNote.value = trimmed;
+      noteLines.value = trimmed.split(/\r?\n/).filter(line => line.trim() !== "");
+      hasNote.value = true;
+      reviewIntro.value = loadIntroParagraphs();
+    } else {
+      resetNote();
+    }
+  } catch (err) {
+    console.error("❌ Failed to load previous note:", err);
     resetNote();
   }
 };
 
-// Reset note state
 function resetNote() {
   hasNote.value = false;
   cleanedNote.value = "";
   noteLines.value = [];
+  reviewIntro.value = [];
 }
 
-// Load note from IndexedDB
-async function getNoteFromKey(key) {
-  try {
-    return await getNote(...key.split("-"));
-  } catch (err) {
-    console.error("❌ Failed to load note:", err);
-    return "";
-  }
-}
-
-// Load intro paragraphs from i18n (review.p1, p2, ...)
 function loadIntroParagraphs() {
   const paragraphs = [];
   let index = 1;
@@ -75,8 +70,11 @@ function loadIntroParagraphs() {
 }
 
 onMounted(loadPreviousNote);
-watch(() => props.sectionKey, loadPreviousNote);
+
+// Optional: Watch if currentStudySelected changes in real time
+watch(() => languageStore.currentStudySelected, loadPreviousNote);
 </script>
+
 
 
 <template>

@@ -1,66 +1,48 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
-import BibleTextDisplayed from "src/components/bible/BibleTextBar.vue";
+import BibleText from "src/components/bible/BibleTextBar.vue";
+import VideoBar from "src/components/video/VideoBar.vue";
 import NoteSection from "src/components/notes/NoteSection.vue";
 
 const props = defineProps({
   section: { type: String, required: true },
-  content: { type: Object, required: true },
+  commonContent: { type: Object, required: true },
+  lessonContent: { type: Object, required: true },
   placeholder: { type: String, default: "Write your notes here" },
 });
 
-const note = ref("");
-
-const loadNotes = () => {
-  console.log("🔄 Loading notes for sectionKey:", props.sectionKey);
-  const storedNotes = localStorage.getItem(`notes-${props.sectionKey}`);
-  note.value = storedNotes || "";
-};
-
-watch(
-  () => props.sectionKey,
-  (newKey, oldKey) => {
-    console.log(`🔄 SectionKey changed from '${oldKey}' to '${newKey}'`);
-    loadNotes();
-  }
-);
-
-watch(note, (newNote) => {
-  console.log("💾 Saving notes for", props.sectionKey, ":", newNote);
-  localStorage.setItem(`notes-${props.sectionKey}`, newNote);
-});
-
-onMounted(loadNotes);
 </script>
 <template>
-  <section v-if="content">
-    <h2 class="ltr dbs">{{ content.title }}</h2>
+  <section v-if="commonContent">
+    <h2 class="ltr dbs">{{ commonContent.title }}</h2>
     <p class="timing">{{ timing }}</p>
     <ol class="ltr dbs">
       <li
-        v-for="(item, index) in content.instruction"
+        v-for="(item, index) in commonContent.instruction"
         :key="'instruction-' + index"
       >
         {{ item }}
       </li>
     </ol>
 
-    <BibleTextDisplayed
-      :biblePassage="biblePassage"
-      :passageReference="passageReference"
-      :translation="translation"
-    />
+    <BibleText
+        :biblePassage="lessonContent.passage"
+        :passageReference="passageReference"
+        :translation="lessonContent.menu"
+      />
+
+      <VideoBar
+        v-if="lessonContent.videoUrl"
+        :videoUrl="lessonContent.videoUrl"
+        :title="lessonContent.menu.read_or_watch"
+      />
 
     <ol class="ltr dbs">
-      <li v-for="(item, index) in content.question" :key="'question-' + index">
+      <li v-for="(item, index) in commonContent.question" :key="'question-' + index">
         {{ item }}
       </li>
     </ol>
-    <textarea
-      class="dbs-notes notes"
-      v-model="note"
-      :placeholder="placeholder"
-    ></textarea>
+    <NoteSection :sectionKey="section" :placeholder="placeholder" />
   </section>
 </template>
 

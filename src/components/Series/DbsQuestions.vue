@@ -7,8 +7,8 @@ export default {
     NoteSection,
   },
   props: {
+    section: { type: String, required: true }, // e.g. "back, up, forwrd"
     content: { type: Object, default: () => ({}) }, // safe fallback
-    sectionKey: { type: String, required: true }, // e.g. "life-1-back"
     placeholder: { type: String, default: "Write your notes here" },
   },
 };
@@ -22,6 +22,6 @@ export default {
       </li>
     </ol>
 
-    <NoteSection :sectionKey="sectionKey" :placeholder="placeholder" />
+    <NoteSection :sectionKey="section" :placeholder="placeholder" />
   </section>
 </template>
