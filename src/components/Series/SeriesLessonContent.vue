@@ -1,132 +1,55 @@
-<script>
-import { ref, computed, watch, onMounted } from "vue";
-import { useContentStore } from "stores/ContentStore";
-import { useI18n } from "vue-i18n";
-import DbsQuestions from "src/components/series/DbsQuestions.vue";
-import DbsLookup from "src/components/series/DbsLookup.vue";
-import SeriesReviewLastLesson from "src/components/series/SeriesReviewLastLesson.vue";
-import {
-  getStudyProgress,
-  saveStudyProgress,
-} from "src/services/IndexedDBService";
+<script setup>
+import { ref, watch, onMounted } from "vue";
+import BibleText from "src/components/bible/BibleTextBar.vue";
+import VideoBar from "src/components/video/VideoBar.vue";
+import NoteSection from "src/components/notes/NoteSection.vue";
 
-export default {
-  name: "SeriesLessonContent",
+const props = defineProps({
+  section: { type: String, required: true },
+  commonContent: { type: Object, required: true },
+  lessonContent: { type: Object, required: true },
+  placeholder: { type: String, default: "Write your notes here" },
+});
 
-  components: { DbsQuestions, DbsLookup, SeriesReviewLastLesson },
-  props: {
-    languageCodeHL: { type: String, required: true },
-    languageCodeJF: { type: String, required: true },
-    study: { type: String, required: true },
-    lesson: { type: Number, required: true },
-    commonContent: { type: Object, required: true },
-  },
-  setup(props) {
-    const contentStore = useContentStore();
-    const lessonContent = ref(null);
-    // i18n variables
-    const { t } = useI18n();
-    const m = (k) => t(`notes.${k}`);
-    const lookBackNoteInstruction = m("lookBackNoteInstruction");
-    const lookUpNoteInstruction = m("lookUpNoteInstruction");
-    const lookForwardNoteInstruction = m("lookForwardNoteInstruction");
-
-    // ✅ Load lesson content
-    const loadLessonContent = async () => {
-      try {
-        lessonContent.value = await contentStore.loadLessonContent(
-          props.languageCodeHL,
-          props.languageCodeJF,
-          props.study,
-          props.lesson
-        );
-        console.log(lessonContent.value);
-      } catch (error) {
-        console.error("Error loading lesson content:", error);
-      }
-    };
-    // ✅ Mark lesson as complete
-    // This function is called when the user clicks the "Mark as Complete" button
-    // It updates the completed lessons in the IndexedDB
-    // and logs the result to the console
-
-    const markLessonComplete = async () => {
-      const { study, lesson } = props;
-
-      try {
-        const completed = (await getStudyProgress(study)) || [];
-
-        if (!completed.includes(lesson)) {
-          completed.push(lesson);
-          await saveStudyProgress(study, completed);
-          console.log(`✅ Marked lesson ${lesson} as complete`);
-        } else {
-          console.log(`ℹ️ Lesson ${lesson} already marked as complete`);
-        }
-      } catch (error) {
-        console.error("❌ Failed to mark lesson complete:", error);
-      }
-    };
-
-    // ✅ Watch for lesson OR language change
-    watch(
-      () => [props.lesson, props.languageCodeHL],
-      async ([newLesson, newLanguage], [oldLesson, oldLanguage]) => {
-        console.log(
-          `🔄 Lesson changed from ${oldLesson} to ${newLesson}, or language changed from ${oldLanguage} to ${newLanguage}. Reloading content...`
-        );
-        await loadLessonContent();
-      }
-    );
-
-    // ✅ Watch for lessonContent changes
-    watch(lessonContent);
-
-    // ✅ Load content when the component mounts
-    onMounted(() => {
-      loadLessonContent();
-    });
-
-    return {
-
-      lessonContent,
-      markLessonComplete,
-      lookBackNoteInstruction,
-      lookUpNoteInstruction,
-      lookForwardNoteInstruction,
-    };
-  },
-};
 </script>
-
 <template>
-  <div v-if="!lessonContent">
-    <p>Your lesson content is loading</p>
-  </div>
-  <div v-else>
-    <h1 class="title dbs">{{ lessonContent.title }}</h1>
+  <section v-if="commonContent">
+    <h2 class="ltr dbs">{{ commonContent.title }}</h2>
+    <p class="timing">{{ timing }}</p>
+    <ol class="ltr dbs">
+      <li
+        v-for="(item, index) in commonContent.instruction"
+        :key="'instruction-' + index"
+      >
+        {{ item }}
+      </li>
+    </ol>
 
-    <SeriesReviewLastLesson />
-
-    <section v-if="commonContent">
-      <DbsQuestions
-        :section="look_back"
-        :content="commonContent?.look_back || {}"
-        :placeholder="lookBackNoteInstruction"
+    <BibleText
+        :biblePassage="lessonContent.passage"
+        :passageReference="passageReference"
+        :translation="lessonContent.menu"
       />
 
-      <DbsLookup
-        :section="look_back"
-        :commonContent="commonContent?.look_up || {}"
-        :lessonContent="lessonContent"
-        :placeholder="lookUpNoteInstruction"
+      <VideoBar
+        v-if="lessonContent.videoUrl"
+        :videoUrl="lessonContent.videoUrl"
+        :title="lessonContent.menu.read_or_watch"
       />
 
-      <DbsQuestions
-        :section="look_forward"
-        :content="commonContent?.look_forward || {}"
-        :placeholder="lookForwardNoteInstruction"
-      />
-    </section>
-  </div>
+    <ol class="ltr dbs">
+      <li v-for="(item, index) in commonContent.question" :key="'question-' + index">
+        {{ item }}
+      </li>
+    </ol>
+    <NoteSection :sectionKey="section" :placeholder="placeholder" />
+  </section>
 </template>
+
+<style scoped>
+textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 8px;
+}
+</style>

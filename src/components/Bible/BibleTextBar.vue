@@ -2,11 +2,13 @@
 import { ref } from 'vue'
 
 const props = defineProps({
-  passageReference: { type: String, default: 'No reference found' },
   biblePassage: { type: Object, required: true },
+  passageReference: { type: String, default: 'No reference found' },
   translation: { type: Object, required: true }
 })
-
+console.log (biblePassage)
+console.log (passageReference)
+console.log (translation)
 const isVisible = ref(false)
 </script>
 

@@ -8,7 +8,7 @@ import { useProgressTracker } from "src/composables/useProgressTracker.js";
 import { useInitializeLanguageStore } from "src/composables/useInitializeLanguageStore.js";
 import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/series/SeriesSegmentNavigator.vue";
-import SeriesLessonContent from "src/components/series/SeriesLessonContent.vue";
+import SeriesLessonFramework from "src/components/series/SeriesLessonFramework.vue";
 
 // Access stores and route
 const route = useRoute();
@@ -87,7 +87,7 @@ const updateLesson = (nextLessonNumber) => {
       />
 
       <hr />
-      <SeriesLessonContent
+      <SeriesLessonFramework
         :languageCodeHL="computedLanguageHL"
         :languageCodeJF="computedLanguageJF"
         :study="computedStudy"
