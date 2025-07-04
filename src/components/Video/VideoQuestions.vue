@@ -1,6 +1,6 @@
 <script>
 import { computed, watch, toRefs } from "vue";
-import DbsQuestions from "src/components/series/DbsQuestions.vue";
+import DbsQuestions from "src/components/series/DbsSection.vue";
 import { useI18n } from "vue-i18n";
 
 export default {

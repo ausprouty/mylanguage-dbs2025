@@ -9,10 +9,12 @@ const props = defineProps({
   commonContent: { type: Object, required: true },
   lessonContent: { type: Object, required: true },
   placeholder: { type: String, default: "Write your notes here" },
+  timing: { type: String, default: "Spend 20 to 30 minutes on this section" },
 });
 
 </script>
 <template>
+
   <section v-if="commonContent">
     <h2 class="ltr dbs">{{ commonContent.title }}</h2>
     <p class="timing">{{ timing }}</p>
@@ -26,9 +28,8 @@ const props = defineProps({
     </ol>
 
     <BibleText
-        :biblePassage="lessonContent.passage"
-        :passageReference="passageReference"
-        :translation="lessonContent.menu"
+        :passage="lessonContent.passage"
+        :menu="lessonContent.menu"
       />
 
       <VideoBar

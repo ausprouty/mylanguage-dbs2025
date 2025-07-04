@@ -1,35 +1,35 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from "vue";
 
 const props = defineProps({
-  biblePassage: { type: Object, required: true },
-  passageReference: { type: String, default: 'No reference found' },
-  translation: { type: Object, required: true }
-})
-console.log (biblePassage)
-console.log (passageReference)
-console.log (translation)
-const isVisible = ref(false)
+  passage: { type: Object, required: true },
+  menu: { type: Object, required: true }
+});
+
+
+const readLabel = computed(() =>
+  props.menu.read?.replace(/\{\{XXX\}\}/g, props.passage.referenceLocalLanguage || "")
+);
+
+const isVisible = ref(false);
 </script>
 
 <template>
   <div class="bible-container">
     <!-- Toggle Button -->
     <button @click="isVisible = !isVisible" class="toggle-button">
-      {{ isVisible ? '▼' : '►' }} {{ passageReference }}
+      {{ isVisible ? "▼" : "►" }} {{ readLabel }}
     </button>
 
     <!-- Bible Content -->
     <div v-show="isVisible" class="bible-section">
-      <div v-html="biblePassage.passageText" class="bible-text"></div>
-      <a :href="biblePassage.passageUrl" class="readmore-button" target="_blank">
-        {{ translation.read_more }}
+      <div v-html="passage.passageText" class="bible-text"></div>
+      <a :href="passage.passageUrl" class="readmore-button" target="_blank">
+        {{ menu.read_more }}
       </a>
     </div>
   </div>
 </template>
-
-
 
 <style scoped lang="scss">
 // Import theme variables if needed

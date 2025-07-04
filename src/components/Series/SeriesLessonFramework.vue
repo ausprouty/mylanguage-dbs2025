@@ -2,8 +2,8 @@
 import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import { useI18n } from "vue-i18n";
-import DbsQuestions from "src/components/series/DbsQuestions.vue";
-import SeriesLessonContent from "src/components/series/SeriesLessonContent.vue";
+import DbsSection from "src/components/series/DbsSection.vue";
+import LookupSection from "src/components/series/LookupSection.vue";
 import SeriesReviewLastLesson from "src/components/series/SeriesReviewLastLesson.vue";
 import {
   getStudyProgress,
@@ -11,9 +11,9 @@ import {
 } from "src/services/IndexedDBService";
 
 export default {
-  name: "SeriesLessonContent",
+  name: "SeriesLessonFramework",
 
-  components: { DbsQuestions, SeriesLessonContent, SeriesReviewLastLesson },
+  components: { DbsSection, LookupSection, SeriesReviewLastLesson },
   props: {
     languageCodeHL: { type: String, required: true },
     languageCodeJF: { type: String, required: true },
@@ -79,9 +79,6 @@ export default {
       }
     );
 
-    // ✅ Watch for lessonContent changes
-    watch(lessonContent);
-
     // ✅ Load content when the component mounts
     onMounted(() => {
       loadLessonContent();
@@ -100,32 +97,35 @@ export default {
 
 <template>
   <div v-if="!lessonContent">
-    <p>Your lesson content is loading</p>
+    <p>Your lesson content is Loading</p>
   </div>
   <div v-else>
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
 
     <SeriesReviewLastLesson />
 
-    <section v-if="commonContent">
-      <DbsQuestions
-        :section="look_back"
+
+      <DbsSection
+        section="look_back"
         :content="commonContent?.look_back || {}"
         :placeholder="lookBackNoteInstruction"
+        :timing="commonContent?.timing || ''"
       />
 
-      <SeriesLessonContent
-        :section="look_up"
+      <LookupSection
+        section="look_up"
         :commonContent="commonContent?.look_up || {}"
         :lessonContent = "lessonContent"
         :placeholder="lookUpNoteInstruction"
+        :timing="commonContent?.timing || ''"
       />
 
-      <DbsQuestions
-        :section="look_forward"
+      <DbsSection
+        section="look_forward"
         :content="commonContent?.look_forward || {}"
         :placeholder="lookForwardNoteInstruction"
+        :timing="commonContent?.timing || ''"
       />
-    </section>
+
   </div>
 </template>
