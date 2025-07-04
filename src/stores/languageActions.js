@@ -1,4 +1,5 @@
 import { loadLanguageAsync } from "../i18n/loadLanguage.js";
+import { MAX_LESSON_NUMBERS } from 'src/constants/Defaults';
 import {
   validateLessonNumber,
   validateSegmentFormat,
@@ -79,7 +80,8 @@ export const languageActions = {
       return;
     }
 
-    const clampedLesson = Math.min(parsedLesson, this.maxLessonNumber[study]);
+    const clampedLesson = Math.min(parsedLesson, MAX_LESSON_NUMBERS[study]);
+
     this.lessonNumber[study] = clampedLesson;
   },
 

@@ -2,9 +2,10 @@
 import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import { useI18n } from "vue-i18n";
-import DbsQuestions from "src/components/DbsQuestions.vue";
+import DbsQuestions from "src/components/Series/DbsQuestions.vue";
 import VideoBar from "src/components/Video/VideoBar.vue";
-import BibleText from "src/components/BibleTextBar.vue";
+import BibleText from "src/components/Bible/BibleTextBar.vue";
+import { DbsLookup } from "src/components/Series/DbsLookup.vue";
 import SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
 import {
   getStudyProgress,
@@ -14,7 +15,7 @@ import {
 export default {
   name: "SeriesLessonContent",
 
-  components: { DbsQuestions, BibleText, SeriesReviewLastLesson,  VideoBar },
+  components: { DbsQuestions, BibleText, SeriesReviewLastLesson, VideoBar },
   props: {
     languageCodeHL: { type: String, required: true },
     languageCodeJF: { type: String, required: true },
@@ -32,7 +33,6 @@ export default {
     const lookBackNoteInstruction = m("lookBackNoteInstruction");
     const lookUpNoteInstruction = m("lookUpNoteInstruction");
     const lookForwardNoteInstruction = m("lookForwardNoteInstruction");
-
 
     // ✅ Load lesson content
     const loadLessonContent = async () => {
@@ -124,7 +124,7 @@ export default {
   <div v-else>
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
 
-   <SeriesReviewLastLesson :sectionKey="sectionKeyForward" />
+    <SeriesReviewLastLesson :sectionKey="sectionKeyForward" />
 
     <section v-if="commonContent">
       <DbsQuestions
@@ -132,13 +132,14 @@ export default {
         :content="commonContent?.look_back || {}"
         :placeholder="lookBackNoteInstruction"
       />
+      <DbsLookup></DbsLookup>
 
       <DbsQuestions
         :section="look_up"
         :content="commonContent?.look_up || {}"
         :placeholder="lookUpNoteInstruction"
       />
-     <BibleText
+      <BibleText
         :biblePassage="lessonContent.passage"
         :passageReference="passageReference"
         :translation="lessonContent.menu"
@@ -146,8 +147,8 @@ export default {
 
       <VideoBar
         v-if="lessonContent.videoUrl"
-        :videoUrl = "lessonContent.videoUrl"
-        :title = "lessonContent.menu.read_or_watch"
+        :videoUrl="lessonContent.videoUrl"
+        :title="lessonContent.menu.read_or_watch"
       />
 
       <DbsQuestions
@@ -156,6 +157,5 @@ export default {
         :placeholder="lookForwardNoteInstruction"
       />
     </section>
-
   </div>
 </template>

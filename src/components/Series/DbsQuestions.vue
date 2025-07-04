@@ -1,17 +1,16 @@
-
 <script>
-import NoteSection from "src/components/NoteSection.vue";
+import NoteSection from "src/components/Notes/NoteSection.vue";
 
 export default {
   name: "SectionWithNote",
   components: {
-    NoteSection
+    NoteSection,
   },
   props: {
-    content: { type: Object, default: () => ({})}, // safe fallback
+    content: { type: Object, default: () => ({}) }, // safe fallback
     sectionKey: { type: String, required: true }, // e.g. "life-1-back"
-    placeholder: { type: String, default: "Write your notes here" }
-  }
+    placeholder: { type: String, default: "Write your notes here" },
+  },
 };
 </script>
 <template>
@@ -26,4 +25,3 @@ export default {
     <NoteSection :sectionKey="sectionKey" :placeholder="placeholder" />
   </section>
 </template>
-

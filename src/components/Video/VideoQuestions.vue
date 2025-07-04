@@ -1,7 +1,6 @@
-
 <script>
-import {computed,  watch, toRefs } from "vue";
-import DbsQuestions from "src/components/DbsQuestions.vue";
+import { computed, watch, toRefs } from "vue";
+import DbsQuestions from "src/components/Series/DbsQuestions.vue";
 import { useI18n } from "vue-i18n";
 
 export default {
@@ -17,14 +16,16 @@ export default {
     const { sectionKey } = toRefs(props); // Ensure reactivity
     // Access the i18n instance
     const { t } = useI18n();
-   const videoNoteInstruction = computed(() => t('notes.videoNoteInstruction'));
+    const videoNoteInstruction = computed(() =>
+      t("notes.videoNoteInstruction")
+    );
 
     // Watch for changes in sectionKey and log to console
     watch(sectionKey, (newVal, oldVal) => {
       console.log(`SectionKey changed from '${oldVal}' to '${newVal}'`);
     });
 
-    return {videoNoteInstruction};
+    return { videoNoteInstruction };
   },
 };
 </script>
@@ -36,6 +37,4 @@ export default {
       :placeholder="videoNoteInstruction"
     />
   </div>
-
 </template>
-

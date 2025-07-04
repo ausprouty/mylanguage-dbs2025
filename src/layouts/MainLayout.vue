@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import LanguageOptions from "src/components/LanguageOptionsB.vue";
+import LanguageOptions from "src/components/Language/LanguageOptionsB.vue";
 import ShareLink from "components/ShareLink.vue";
 const rightDrawerOpen = ref(false);
 
