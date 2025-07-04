@@ -7,10 +7,10 @@ import { useContentStore } from "stores/ContentStore";
 import { useCommonContent } from "src/composables/useCommonContent";
 import { useProgressTracker } from "src/composables/useProgressTracker";
 
-import VideoPlayer from "src/components/Video/VideoPlayer.vue";
-import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
-import SeriesSegmentNavigator from "src/components/Series/SeriesSegmentNavigator.vue";
-import VideoQuestions from "src/components/Video/VideoQuestions.vue";
+import VideoPlayer from "src/components/video/VideoPlayer.vue";
+import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
+import SeriesSegmentNavigator from "src/components/series/SeriesSegmentNavigator.vue";
+import VideoQuestions from "src/components/video/VideoQuestions.vue";
 
 // Route and i18n
 const route = useRoute();

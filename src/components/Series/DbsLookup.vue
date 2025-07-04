@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
-import BibleTextDisplayed from "src/components/Bible/BibleTextBar.vue";
+import BibleTextDisplayed from "src/components/bible/BibleTextBar.vue";
 import NoteSection from "src/components/Notes/NoteSection.vue";
 
 const props = defineProps({

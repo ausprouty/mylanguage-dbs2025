@@ -2,11 +2,11 @@
 import { ref, computed, watch, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
 import { useI18n } from "vue-i18n";
-import DbsQuestions from "src/components/Series/DbsQuestions.vue";
-import VideoBar from "src/components/Video/VideoBar.vue";
-import BibleText from "src/components/Bible/BibleTextBar.vue";
-import { DbsLookup } from "src/components/Series/DbsLookup.vue";
-import SeriesReviewLastLesson from "src/components/Series/SeriesReviewLastLesson.vue";
+import DbsQuestions from "src/components/series/DbsQuestions.vue";
+import VideoBar from "src/components/video/VideoBar.vue";
+import BibleText from "src/components/bible/BibleTextBar.vue";
+import { DbsLookup } from "src/components/series/DbsLookup.vue";
+import SeriesReviewLastLesson from "src/components/series/SeriesReviewLastLesson.vue";
 import {
   getStudyProgress,
   saveStudyProgress,

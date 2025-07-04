@@ -6,25 +6,29 @@ import { useLanguageStore } from "stores/LanguageStore";
 import { useCommonContent } from "src/composables/useCommonContent";
 import { useProgressTracker } from "src/composables/useProgressTracker.js";
 import { useInitializeLanguageStore } from "src/composables/useInitializeLanguageStore.js";
-import SeriesPassageSelect from "src/components/Series/SeriesPassageSelect.vue";
-import SeriesSegmentNavigator from "src/components/Series/SeriesSegmentNavigator.vue";
-import SeriesLessonContent from "src/components/Series/SeriesLessonContent.vue";
+import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
+import SeriesSegmentNavigator from "src/components/series/SeriesSegmentNavigator.vue";
+import SeriesLessonContent from "src/components/series/SeriesLessonContent.vue";
 
 // Access stores and route
 const route = useRoute();
 const i18n = useI18n();
 const { t } = i18n;
 const languageStore = useLanguageStore();
-console.log ('i opened language store')
+console.log("i opened language store");
 
 useInitializeLanguageStore(route, languageStore);
 
 const computedStudy = computed(() => languageStore.currentStudySelected);
 const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
-const computedLanguageHL = computed(() => languageStore.languageSelected.languageCodeHL);
-const computedLanguageJF = computed(() => languageStore.languageSelected.languageCodeJF);
+const computedLanguageHL = computed(
+  () => languageStore.languageSelected.languageCodeHL
+);
+const computedLanguageJF = computed(
+  () => languageStore.languageSelected.languageCodeJF
+);
 
-console.log (unref(computedStudy), unref(computedLanguageHL))
+console.log(unref(computedStudy), unref(computedLanguageHL));
 // ✅ Load content
 const { commonContent, topics, loadCommonContent } = useCommonContent(
   computedStudy,
@@ -57,7 +61,6 @@ watch([computedLanguageHL, computedLanguageJF, computedStudy], () => {
 const updateLesson = (nextLessonNumber) => {
   languageStore.setLessonNumber(computedStudy.value, nextLessonNumber);
 };
-
 </script>
 <template>
   <template v-if="commonContent">
@@ -107,10 +110,10 @@ const updateLesson = (nextLessonNumber) => {
 
   <template v-else>
     <q-page padding>
-    <div class="text-negative text-h6">
-      Loading failed. Please try again later.
-    </div>
-  </q-page>
+      <div class="text-negative text-h6">
+        Loading failed. Please try again later.
+      </div>
+    </q-page>
   </template>
 </template>
 
