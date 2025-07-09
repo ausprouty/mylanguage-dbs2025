@@ -44,7 +44,7 @@ const props = defineProps({
         {{ item }}
       </li>
     </ol>
-    <NoteSection :sectionKey="section" :placeholder="placeholder" />
+    <NoteSection :section="section" :placeholder="placeholder" />
   </section>
 </template>
 

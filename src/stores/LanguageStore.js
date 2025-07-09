@@ -5,15 +5,15 @@ import { languageActions } from './languageActions';
 
 export const useLanguageStore = defineStore("languageStore", {
   state: () => ({
-    currentStudy: "dbs",
+    currentStudy: "ctc",
     currentPath: null,
     lessonNumber: {
-      dbs: 1,
+      ctc: 1,
       lead: 1,
       life: 1,
       jvideo: 1,
     },
-    
+
     languages: [],
     languageSelected:{},
     languagesUsed: [],

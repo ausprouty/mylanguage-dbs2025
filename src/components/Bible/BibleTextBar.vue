@@ -7,9 +7,16 @@ const props = defineProps({
 });
 
 
-const readLabel = computed(() =>
-  props.menu.read?.replace(/\{\{XXX\}\}/g, props.passage.referenceLocalLanguage || "")
-);
+const readLabel = computed(() => {
+  const fullReference = String(props.passage.referenceLocalLanguage || '');
+
+  // Get first non-empty trimmed line
+  const lines = fullReference.split(/\r?\n|\r/).map(line => line.trim());
+  const referenceOnly = lines.find(line => line.length > 0) || '';
+
+  return props.menu.read?.replace(/\{\{XXX\}\}/g, referenceOnly);
+});
+
 
 const isVisible = ref(false);
 </script>

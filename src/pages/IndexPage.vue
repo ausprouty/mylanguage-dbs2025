@@ -78,7 +78,7 @@ const openExternalWebsite = async () => {
         <tr class="full-width">
           <td
             class="side-by-side"
-            @click="handleImageClick('/series/dbs')"
+            @click="handleImageClick('/series/ctc')"
             clickable
             v-ripple
           >

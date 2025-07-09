@@ -24,9 +24,10 @@ const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
 const computedLanguageHL = computed(
   () => languageStore.languageSelected.languageCodeHL
 );
-const computedLanguageJF = computed(
-  () => languageStore.languageSelected.languageCodeJF
-);
+const computedLanguageJF = computed(() => {
+  const code = languageStore.languageSelected.languageCodeJF;
+  return code != null ? String(code) : '';
+});
 
 console.log(unref(computedStudy), unref(computedLanguageHL));
 // ✅ Load content
