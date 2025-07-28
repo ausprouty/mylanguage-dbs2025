@@ -11,7 +11,7 @@ export async function getJesusVideoUrls(languageCodeJF) {
   const result = await getContentWithFallback({
     key,
     store: contentStore, // ✅ inject it here
-    storeGetter: (store) => store.getVideoUrls(study, languageCodeJF, lesson),
+    storeGetter: (store) => store.videoUrlsFor(study, languageCodeJF, lesson),
     storeSetter: (store, data) =>
       store.setVideoUrls(study, languageCodeJF, lesson, data),
     dbGetter: () => getVideoUrlsFromDB(study, languageCodeJF, lesson),

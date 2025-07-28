@@ -28,7 +28,7 @@ export async function getLessonContent(
     key,
     store: contentStore,
     storeGetter: (store) =>
-      store.getLessonContent(study, languageCodeHL, languageCodeJF, lesson),
+      store.lessonContentFor(study, languageCodeHL, languageCodeJF, lesson),
     storeSetter: (store, data) =>
       store.setLessonContent(
         study,

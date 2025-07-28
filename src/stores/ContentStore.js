@@ -25,18 +25,17 @@ export const useContentStore = defineStore("contentStore", {
   }),
 
   getters: {
-    getCommonContent: (state) => (study, languageCodeHL) => {
-      console.log("getting commonContent for", unref(study));
-      const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
-      return state.commonContent[key] || null;
-    },
-
-    getLessonContent: (state) => (study, languageCodeHL, languageCodeJF, lesson) => {
+    lessonContentFor: (state) => (study, languageCodeHL, languageCodeJF, lesson) => {
       const key = ContentKeys.buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson);
       return state.lessonContent[key] || null;
     },
 
-    getVideoUrls: (state) => (study, languageCodeJF) => {
+    commonContentFor: (state) => (study, languageCodeHL) => {
+      const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
+      return state.commonContent[key] || null;
+    },
+
+    videoUrlsFor: (state) => (study, languageCodeJF) => {
       const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
       return state.videoUrls[key] || [];
     },
@@ -50,11 +49,14 @@ export const useContentStore = defineStore("contentStore", {
     setCommonContent(study, languageCodeHL, data) {
       const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
       console.log("I am setting commonContent for " + key);
+      console.log(data);
       this.commonContent[key] = data;
     },
 
     setLessonContent(study, languageCodeHL, languageCodeJF, lesson, data) {
       const key = ContentKeys.buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson);
+      console.log("I am setting lessonContent for " + key);
+      console.log(data);
       this.lessonContent[key] = data;
     },
 
@@ -66,7 +68,7 @@ export const useContentStore = defineStore("contentStore", {
     async loadCommonContent(languageCodeHL, study) {
       console.log ('I am in Content Store about to get CommonContent')
       return await getCommonContent(languageCodeHL, study);
-      
+
     },
 
     async loadLessonContent(languageCodeHL, languageCodeJF, study, lesson) {

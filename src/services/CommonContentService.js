@@ -15,12 +15,12 @@ export async function getCommonContent(languageCodeHL, study) {
   const result = await getContentWithFallback({
     key,
     store: contentStore, // ✅ inject it here
-    storeGetter: (store) => store.getCommonContent(study, languageCodeHL),
+    storeGetter: (store) => store.commonContentFor(study, languageCodeHL),
     storeSetter: (store, data) =>
       store.setCommonContent(study, languageCodeHL, data),
     dbGetter: () => getCommonContentFromDB(study, languageCodeHL),
     dbSetter: (data) => saveCommonContentToDB(study, languageCodeHL, data),
-    apiUrl: `api/translate/commonContent/${languageCodeHL}/${study}`,
+    apiUrl: `api/translate/commonContent/${languageCodeHL}/${study.value}`,
     translationType: "commonContent",
   });
   console.log(result);
