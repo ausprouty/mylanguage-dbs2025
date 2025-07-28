@@ -6,7 +6,7 @@ export function useCommonContent(study, languageCodeHLRef) {
 
   const commonContent = computed(() => {
     const lang = unref(languageCodeHLRef);
-    return contentStore.getCommonContent(study, lang) || {};
+    return contentStore.commonContentFor(study, lang) || {};
   });
 
   const topics = computed(() => {

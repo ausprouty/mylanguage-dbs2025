@@ -12,45 +12,34 @@ import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/series/SeriesSegmentNavigator.vue";
 import VideoQuestions from "src/components/video/VideoQuestions.vue";
 
-// Route and i18n
+// 🧭 Route and i18n setup
 const route = useRoute();
 const { t, locale } = useI18n();
-
-// Stores
-const languageStore = useLanguageStore();
-const contentStore = useContentStore();
 const localeKey = computed(() => locale.value);
 
-// Study identifier
+// 📦 Stores
+const languageStore = useLanguageStore();
+const contentStore = useContentStore();
+
+// 📚 Study ID (hardcoded for jVideo)
 const currentStudy = "jvideo";
 
-// Set store values from route
-languageStore.setCurrentStudy(currentStudy);
-if (route.params.lesson) {
-  languageStore.setLessonNumber(currentStudy, route.params.lesson);
-}
-if (route.params.languageCodeJF) {
-  languageStore.setLanguageCodeJF(route.params.languageCodeJF);
-}
+// 🧠 Reactive language/lesson values from store
+const languageCodeHL = computed(() => languageStore.languageCodeHLSelected);
+const languageCodeJF = computed(() => languageStore.languageCodeJFSelected);
+const lessonNumber = computed(() => languageStore.lessonNumberForStudy);
+const sectionKey = computed(() => `video-${lessonNumber.value}`);
 
-// Language & lesson reactivity
-const computedLanguageHL = computed(() => languageStore.languageCodeHLSelected);
-const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
-const computedLanguageJF = computed(() => languageStore.languageCodeJFSelected);
-const computedSectionKey = computed(
-  () => `video-${computedLessonNumber.value}`
-);
-
-// Content
+// 📋 Content from composables
 const { commonContent, topics, loadCommonContent } = useCommonContent(
   currentStudy,
-  languageStore.languageCodeHLSelected
+  languageCodeHL
 );
 
-// Video URLs
+// 🎥 Video URLs (from store via action)
 const videoUrls = ref([]);
 
-// Progress tracking
+// ✅ Track user lesson progress
 const {
   completedLessons,
   isLessonCompleted,
@@ -58,19 +47,11 @@ const {
   loadProgress,
 } = useProgressTracker(currentStudy);
 
-// Load content on mount
-onMounted(async () => {
-  await Promise.all([loadCommonContent(), loadVideoUrls(), loadProgress()]);
-
-  // Should log 'fr'
-  //i18n.global.setLocaleMessage(currentLocale, {});
-  console.log("jVideo.title:", t("jVideo.title")); // Should log French title
-});
-
+// 🔄 Load video URLs for current study/language
 const loadVideoUrls = async () => {
   try {
     videoUrls.value = await contentStore.loadVideoUrls(
-      computedLanguageJF.value,
+      languageCodeJF.value,
       currentStudy
     );
   } catch (error) {
@@ -78,15 +59,34 @@ const loadVideoUrls = async () => {
   }
 };
 
-// Watchers
-watch(computedLanguageJF, loadVideoUrls);
-watch(computedLanguageHL, loadCommonContent);
+// 📦 Apply route params to store on initial mount
+const applyRouteParams = () => {
+  languageStore.setCurrentStudy(currentStudy);
+  if (route.params.lesson) {
+    languageStore.setLessonNumber(currentStudy, route.params.lesson);
+  }
+  if (route.params.languageCodeJF) {
+    languageStore.setLanguageCodeJF(route.params.languageCodeJF);
+  }
+};
 
-// Lesson change handler
+// 🚀 Initial setup on mount
+onMounted(async () => {
+  applyRouteParams();
+  await Promise.all([loadCommonContent(), loadVideoUrls(), loadProgress()]);
+  console.log("jVideo.title:", t("jVideo.title")); // Confirm translation loaded
+});
+
+// 🔁 Reactively reload data when language changes
+watch(languageCodeJF, loadVideoUrls);
+watch(languageCodeHL, loadCommonContent);
+
+// 📌 When user picks a new lesson
 const updateLesson = (nextLessonNumber) => {
   languageStore.setLessonNumber(currentStudy, nextLessonNumber);
 };
 </script>
+
 <template>
   <q-page padding>
     <h2>{{ t("jVideo.title") }}</h2>

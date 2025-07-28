@@ -202,54 +202,40 @@ module.exports = configure(function (ctx) {
     // https://v2.quasar.dev/quasar-cli/developing-pwa/configuring-pwa
     // Disable PWA when not building for production
     pwa:
-      process.env.NODE_ENV === "production"
-        ? {
-            workboxMode: "generateSW", // or 'injectManifest'
-            injectPwaMetaTags: true,
-            swFilename: "sw.js",
-            manifestFilename: "manifest.json",
-            useCredentialsForManifestTag: false,
-            manifest: {
-              // <-- Add this section
-              name: "Spiritual Community",
-              short_name: "Discover Community", // <-- Define short_name here
-              description: "Discover Spiritual Community",
-              display: "standalone",
-              orientation: "portrait",
-              background_color: "#ffffff",
-              theme_color: "#3e81ef",
-              start_url: "/", // <-- Ensure correct start_url
-              scope: "/",
-              icons: [
-                {
-                  src: "icons/icon-128x128.png",
-                  sizes: "128x128",
-                  type: "image/png",
-                },
-                {
-                  src: "icons/icon-192x192.png",
-                  sizes: "192x192",
-                  type: "image/png",
-                },
-                {
-                  src: "icons/icon-256x256.png",
-                  sizes: "256x256",
-                  type: "image/png",
-                },
-                {
-                  src: "icons/icon-384x384.png",
-                  sizes: "384x384",
-                  type: "image/png",
-                },
-                {
-                  src: "icons/icon-512x512.png",
-                  sizes: "512x512",
-                  type: "image/png",
-                },
-              ],
-            },
-          }
-        : false,
+  process.env.NODE_ENV === "production"
+    ? {
+        workboxMode: "generateSW",
+        injectPwaMetaTags: true,
+        swFilename: "sw.js",
+        manifestFilename: "manifest.json",
+        useCredentialsForManifestTag: false,
+        workboxOptions: {
+          skipWaiting: true,
+          clientsClaim: true,
+          // ADD THIS LINE to suppress logs
+          mode: "production"
+        },
+        manifest: {
+          name: "Spiritual Community",
+          short_name: "Discover Community",
+          description: "Discover Spiritual Community",
+          display: "standalone",
+          orientation: "portrait",
+          background_color: "#ffffff",
+          theme_color: "#3e81ef",
+          start_url: "/",
+          scope: "/",
+          icons: [
+            { src: "icons/icon-128x128.png", sizes: "128x128", type: "image/png" },
+            { src: "icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+            { src: "icons/icon-256x256.png", sizes: "256x256", type: "image/png" },
+            { src: "icons/icon-384x384.png", sizes: "384x384", type: "image/png" },
+            { src: "icons/icon-512x512.png", sizes: "512x512", type: "image/png" }
+          ]
+        }
+      }
+    : false,
+
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {
