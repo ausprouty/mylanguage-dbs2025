@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import LanguageOptions from "src/components/Language/LanguageOptionsB.vue";
+import LanguageOptions from "components/language/LanguageOptionsB.vue";
 import ShareLink from "components/ShareLink.vue";
 const rightDrawerOpen = ref(false);
 
@@ -10,9 +10,9 @@ function toggleRightDrawer() {
 </script>
 
 <template>
-  <q-layout view="lHh lpr lFf" class="max-width">
+  <q-layout view="lHh lpr lFf">
     <q-header elevated>
-      <q-toolbar class="toolbar-width">
+      <q-toolbar class="bg-primary text-white">
         <q-btn flat dense round icon="menu" aria-label="Menu" to="/index" />
 
         <q-toolbar-title>
@@ -21,24 +21,30 @@ function toggleRightDrawer() {
           </router-link>
         </q-toolbar-title>
 
+        <q-space />
+
         <ShareLink />
+
         <q-btn
           flat
           dense
           round
           icon="language"
-          aria-label="Button on top right"
+          aria-label="Language selector"
           @click="toggleRightDrawer"
         />
       </q-toolbar>
     </q-header>
+
     <q-drawer v-model="rightDrawerOpen" side="right" show-if-above bordered>
       <LanguageOptions />
     </q-drawer>
 
-    <q-page-container class="set_size">
-      <router-view />
-      <footer class="footer">Copyright 2025 Power to Change</footer>
+    <q-page-container>
+      <div class="page-width">
+        <router-view />
+        <footer class="footer">Copyright 2025 Power to Change</footer>
+      </div>
     </q-page-container>
   </q-layout>
 </template>
@@ -55,7 +61,7 @@ function toggleRightDrawer() {
   padding: 10px;
   text-align: center;
   width: 100%;
-  max-width: 600px;
+ 
   margin: 0 auto;
 }
 h2 {
@@ -65,15 +71,16 @@ h2 {
   font-size: 16px;
 }
 
-.q-header {
+.toolbar-width {
   width: 100%;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
+  /* REMOVE display: flex */
 }
-.toolbar-width,
-.max-width {
+
+.page-width {
   width: 100%;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 </style>

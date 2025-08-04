@@ -35,6 +35,7 @@ export default {
       :content="commonContent"
       :sectionKey="sectionKey"
       :placeholder="videoNoteInstruction"
+      timing = ""
     />
   </div>
 </template>

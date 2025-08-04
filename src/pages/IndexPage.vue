@@ -139,13 +139,15 @@ p.icon {
   max-width: 100%;
   border-radius: 8px;
   overflow: hidden;
-  background-color: #f9f9f9;
+  background-color: #dddddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-top: 36px;
 }
 
 .menu-picture {
   display: block;
-  width: 100%;
+  width: 85%;
+  margin: 0 auto;
   height: auto;
   object-fit: cover;
   margin-bottom: 2px;

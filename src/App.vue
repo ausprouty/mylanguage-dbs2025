@@ -11,9 +11,7 @@ export default defineComponent({
   <router-view />
 </template>
 <style>
-.q-header {
-  max-width: 600px;
-}
+
 .q-page {
   margin: 10px;
   background-color: white;

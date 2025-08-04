@@ -55,6 +55,12 @@ export function openDatabase() {
 }
 
 async function saveItem(storeName, key, value) {
+  // ❌ Block any object with an "error" field
+  if (value && typeof value === 'object' && 'error' in value) {
+    console.warn(`⛔ Skipping save for key "${key}" due to error: ${value.error}`);
+    return false;
+  }
+
   const db = await openDatabase();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(storeName, "readwrite");
@@ -65,6 +71,7 @@ async function saveItem(storeName, key, value) {
     request.onerror = (e) => reject(e);
   });
 }
+
 
 async function getItem(storeName, key) {
   if (typeof key !== 'string' && typeof key !== 'number') {
