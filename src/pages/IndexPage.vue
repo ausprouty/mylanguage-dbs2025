@@ -50,63 +50,67 @@ const openExternalWebsite = async () => {
     console.error("Error fetching external URL:", error);
   }
 };
+const menuItems = [
+  {
+    key: "jVideo",
+    image: "jesus.png",
+    route: "/jvideo",
+  },
+  {
+    key: "life",
+    image: "life.png",
+    route: "/series/life",
+  },
+  {
+    key: "ctc",
+    image: "community.png",
+    route: "/series/ctc",
+  },
+  {
+    key: "lead",
+    image: "leadership.png",
+    route: "/series/lead",
+  },
+
+];
+
 </script>
 <template>
-  <q-page class="bg-white" padding>
+  <q-page class="bg-white q-pa-md">
     <p>{{ t("index.para.1") }}</p>
     <p>{{ t("index.para.2") }}</p>
-    <table>
-      <tbody>
-        <tr class="full-width">
-          <td
-            class="side-by-side"
-            @click="handleImageClick('/jvideo')"
-            clickable
-            v-ripple
-          >
-            <img class="menu_picture" src="menu/JesusLife.webp" />
-          </td>
-          <td
-            class="side-by-side"
-            @click="handleImageClick('/series/life')"
-            clickable
-            v-ripple
-          >
-            <img class="menu_picture" src="menu/LifePrinciples.webp" />
-          </td>
-        </tr>
-        <tr class="full-width">
-          <td
-            class="side-by-side"
-            @click="handleImageClick('/series/ctc')"
-            clickable
-            v-ripple
-          >
-            <img class="menu_picture" src="menu/Community.webp" />
-          </td>
-          <td
-            class="side-by-side"
-            @click="handleImageClick('/series/lead')"
-            clickable
-            v-ripple
-          >
-            <img class="menu_picture" src="menu/Leadership.webp" />
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <br />
-    <br />
-    <p class="icon">
+
+
+      <q-row class="q-col-gutter-md q-row-gutter-md">
+        <q-col
+          v-for="item in menuItems"
+          :key="item.key"
+          cols="12"
+          sm="6"
+          md="4"
+          @click="handleImageClick(item.route)"
+        >
+          <div class="menu-card q-hoverable cursor-pointer">
+            <img :src="`menu/${item.image}`" class="menu-picture" />
+            <div class="menu-label">
+              <h6 class="q-mt-none q-mb-xs">{{ t(`${item.key}.title`) }}</h6>
+              <p class="q-mb-none">{{ t(`${item.key}.summary`) }}</p>
+            </div>
+          </div>
+        </q-col>
+      </q-row>
+
+
+    <div class="text-center q-mt-xl">
       <img
         class="icon"
         src="images/settings.png"
         @click="handleImageClick('/reset')"
-        clickable
       />
-    </p>
+    </div>
   </q-page>
 </template>
+
 
 
 <style scoped>
@@ -117,14 +121,9 @@ const openExternalWebsite = async () => {
   width: calc(100% - 20px);
   margin: 0 auto;
   background-color: #f0f0f0; /* Just for visibility */
-  padding: 10px; /* Optional: Add padding for content within the element */
+  padding: 2px; /* Optional: Add padding for content within the element */
 }
-.menu_picture {
-  width: calc(100% - 10px);
-  margin: 0 auto;
-  background-color: #eee; /* Just for visibility */
-  padding: 10px; /* Optional: Add padding for content within the element */
-}
+
 td.side-by-side {
   width: 45%;
   padding: 0px;
@@ -135,7 +134,32 @@ tr.full-width {
 p.icon {
   text-align: center;
 }
+
+.menu-card {
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 2px;
+}
+
+.menu-label {
+  padding: 0 6px 26px 6px; /* 👈 no top padding, reduce side/bottom */
+  text-align: center;
+}
+
+
 img.icon {
   height: 30px;
+  cursor: pointer;
 }
+
 </style>

@@ -47,22 +47,33 @@ export async function pollTranslationUntilComplete({
       const response = await currentApi.get(apiUrl);
       const translation = response.data.data;
 
-      // ✅ Always update store immediately with current translation, even if incomplete
-      await storeSetter(store, translation);
 
-      const isComplete = translation?.language?.translationComplete === true;
-
-      // ✅ Update translationComplete flag in store
-      store.setTranslationComplete(translationType, isComplete);
-
-      // ✅ Save to IndexedDB regardless of completion
-      await dbSetter(translation);
-
+      // ✅ Update store if provided
+      if (typeof storeSetter === "function" && store) {
+        storeSetter(store, translation);
+      }
       // ✅ Set i18n messages if this is interface translation
       if (translationType === "interface") {
         i18n.global.setLocaleMessage(languageCodeHL, translation);
         i18n.global.locale.value = languageCodeHL;
+        const googleLangCode = translation?.language?.google;
+        if (googleLangCode) {
+          document.querySelector("html")?.setAttribute("lang", googleLangCode);
+        }
       }
+
+      const isComplete = translation?.language?.translationComplete === true;
+
+      // ✅ Update translationComplete flag in store
+      if (store?.setTranslationComplete) {
+        store.setTranslationComplete(translationType, isComplete);
+      }
+
+      // ✅ Save to IndexedDB if applicable
+      if (typeof dbSetter === "function") {
+        await dbSetter(translation);
+      }
+
 
       if (isComplete) {
         console.log(`✅ ${translationType} translation complete.`);
