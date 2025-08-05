@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import LanguageOptions from "components/language/LanguageOptionsB.vue";
 import ShareLink from "components/ShareLink.vue";
 const rightDrawerOpen = ref(false);
@@ -36,7 +36,7 @@ function toggleRightDrawer() {
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="rightDrawerOpen" side="right" show-if-above bordered>
+    <q-drawer v-model="rightDrawerOpen" side="right" bordered>
       <LanguageOptions />
     </q-drawer>
 
@@ -61,7 +61,7 @@ function toggleRightDrawer() {
   padding: 10px;
   text-align: center;
   width: 100%;
- 
+
   margin: 0 auto;
 }
 h2 {

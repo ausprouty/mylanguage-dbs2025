@@ -74,43 +74,66 @@ const menuItems = [
 </script>
 <template>
   <q-page class="bg-white q-pa-md">
-  <p>{{ t("index.para.1") }}</p>
-  <p>{{ t("index.para.2") }}</p>
+    <p>{{ t("index.para.1") }}</p>
+    <p>{{ t("index.para.2") }}</p>
 
-  <q-row class="q-col-gutter-md q-row-gutter-md justify-start">
-    <q-col
-      v-for="item in menuItems"
-      :key="item.key"
-      cols="12"
-      sm="6"
-      md="4"
-      lg="3"
-    >
+    <div class="menu-grid">
       <div
-        class="menu-card q-hoverable cursor-pointer"
+        v-for="item in menuItems"
+        :key="item.key"
+        class="menu-col"
         @click="handleImageClick(item.route)"
       >
-        <img :src="`menu/${item.image}`" class="menu-picture" />
-        <div class="menu-label">
-          <h6 class="q-mt-none q-mb-xs">{{ t(`${item.key}.title`) }}</h6>
-          <p class="q-mb-none">{{ t(`${item.key}.summary`) }}</p>
+        <div class="menu-card hoverable">
+          <img :src="`menu/${item.image}`" class="menu-picture" />
+          <div class="menu-label">
+            <h6>{{ t(`${item.key}.title`) }}</h6>
+            <p>{{ t(`${item.key}.summary`) }}</p>
+          </div>
         </div>
       </div>
-    </q-col>
-  </q-row>
+    </div>
 
-  <div class="text-center q-mt-xl">
-    <img
-      class="icon"
-      src="images/settings.png"
-      @click="handleImageClick('/reset')"
-    />
-  </div>
-</q-page>
-
+    <div class="text-center" style="margin-top: 3rem">
+      <img
+        class="icon"
+        src="images/settings.png"
+        @click="handleImageClick('/reset')"
+      />
+    </div>
+  </q-page>
 </template>
 
 <style scoped>
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.menu-col {
+  flex: 1 1 calc(100% - 16px); /* fallback full width */
+  min-width: 260px;
+  max-width: calc(25% - 16px); /* lg=3 */
+}
+
+@media (max-width: 1280px) {
+  .menu-col {
+    max-width: calc(33.33% - 16px); /* md=4 */
+  }
+}
+@media (max-width: 960px) {
+  .menu-col {
+    max-width: calc(50% - 16px); /* sm=6 */
+  }
+}
+@media (max-width: 600px) {
+  .menu-col {
+    max-width: 100%; /* cols=12 */
+  }
+}
+
 .menu-card {
   background-color: #dddddd;
   border-radius: 8px;
@@ -119,6 +142,7 @@ const menuItems = [
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   height: 100%;
+  cursor: pointer;
 }
 
 .menu-card:hover {
@@ -134,9 +158,15 @@ const menuItems = [
   object-fit: cover;
 }
 
-.menu-label {
-  padding: 0 6px 16px 6px;
+
+.menu-label h6 {
+  margin: 0 0 4px 0; /* top, right, bottom, left */
+  font-size: 1.5rem; /* Optional: adjust text size */
   text-align: center;
+}
+
+.menu-label p {
+  margin: 0;
 }
 
 img.icon {
