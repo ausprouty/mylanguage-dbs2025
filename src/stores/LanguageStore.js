@@ -6,6 +6,7 @@ import { languageActions } from './languageActions';
 export const useLanguageStore = defineStore("languageStore", {
   state: () => ({
     currentStudy: "ctc",
+    appVersion: null,
     currentPath: null,
     lessonNumber: {
       ctc: 1,
@@ -33,6 +34,7 @@ export const useLanguageStore = defineStore("languageStore", {
         key: 'languageStore', // optional; defaults to store ID
         storage: localStorage,
         paths: [
+          "appVersion",
           "currentPath",
           "currentStudy",
           "lessonNumber",

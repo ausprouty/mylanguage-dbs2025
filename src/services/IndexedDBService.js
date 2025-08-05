@@ -1,12 +1,11 @@
 const dbName = "MyBibleApp";
 const dbVersion = 3;
 let dbInstance = null;
-import * as ContentKeys from 'src/utils/ContentKeyBuilder';
-import {unref} from 'vue';
+import * as ContentKeys from "src/utils/ContentKeyBuilder";
+import { unref } from "vue";
 
 export function openDatabase() {
-
-  if (typeof indexedDB === 'undefined') {
+  if (typeof indexedDB === "undefined") {
     console.warn(`IndexedDB not available — skipping cache read for ${key}`);
     return Promise.resolve(null);
   }
@@ -55,13 +54,20 @@ export function openDatabase() {
 }
 
 async function saveItem(storeName, key, value) {
-  // ❌ Block any object with an "error" field
-  if (value && typeof value === 'object' && 'error' in value) {
-    console.warn(`⛔ Skipping save for key "${key}" due to error: ${value.error}`);
+  if (key === null) {
+    console.warn(`❌ Refusing to save to "${storeName}" because key is null.`);
+    return false;
+  }
+
+  if (value && typeof value === "object" && "error" in value) {
+    console.warn(
+      `⛔ Skipping save for key "${key}" due to error: ${value.error}`
+    );
     return false;
   }
 
   const db = await openDatabase();
+
   return new Promise((resolve, reject) => {
     const tx = db.transaction(storeName, "readwrite");
     const store = tx.objectStore(storeName);
@@ -72,14 +78,14 @@ async function saveItem(storeName, key, value) {
   });
 }
 
-
 async function getItem(storeName, key) {
-  if (typeof key !== 'string' && typeof key !== 'number') {
-    console.error(`❌ Invalid key for store "${storeName}":`, unref(key));
-    throw new Error(`Invalid key passed to IndexedDB getItem: ${JSON.stringify(actualKey)}`);
+  if (key === null) {
+    console.warn(`❌ Refusing to get from "${storeName}" because key is null.`);
+    return null;
   }
 
   const db = await openDatabase();
+
   return new Promise((resolve, reject) => {
     const tx = db.transaction(storeName, "readonly");
     const store = tx.objectStore(storeName);
@@ -90,7 +96,6 @@ async function getItem(storeName, key) {
   });
 }
 
-
 // ----------------- Common Content -----------------
 
 export async function getInterfaceFromDB(languageCodeHL) {
@@ -99,7 +104,7 @@ export async function getInterfaceFromDB(languageCodeHL) {
 }
 
 export async function saveInterfaceToDB(languageCodeHL, content) {
-   const key = ContentKeys.buildInterfaceKey(languageCodeHL);
+  const key = ContentKeys.buildInterfaceKey(languageCodeHL);
   return saveItem("interface", key, content);
 }
 
@@ -107,25 +112,46 @@ export async function saveInterfaceToDB(languageCodeHL, content) {
 
 export async function getCommonContentFromDB(study, languageCodeHL) {
   const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
-  console.log (key)
+  console.log(key);
   return getItem("commonContent", key);
 }
 
 export async function saveCommonContentToDB(study, languageCodeHL, content) {
   const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
-  console.log (key)
+  console.log(key);
   return saveItem("commonContent", key, content);
 }
 
 // ----------------- Lesson Content -----------------
 
-export async function getLessonContentFromDB(study, languageCodeHL, languageCodeJF, lesson) {
-  const key = ContentKeys.buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson);
+export async function getLessonContentFromDB(
+  study,
+  languageCodeHL,
+  languageCodeJF,
+  lesson
+) {
+  const key = ContentKeys.buildLessonContentKey(
+    study,
+    languageCodeHL,
+    languageCodeJF,
+    lesson
+  );
   return getItem("lessonContent", key);
 }
 
-export async function saveLessonContentToDB(study, languageCodeHL,languageCodeJF, lesson, content) {
-  const key = ContentKeys.buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson);
+export async function saveLessonContentToDB(
+  study,
+  languageCodeHL,
+  languageCodeJF,
+  lesson,
+  content
+) {
+  const key = ContentKeys.buildLessonContentKey(
+    study,
+    languageCodeHL,
+    languageCodeJF,
+    lesson
+  );
   return saveItem("lessonContent", key, content);
 }
 
@@ -136,7 +162,7 @@ export async function getVideoUrlsFromDB(study, languageCodeJF) {
   return getItem("videoUrls", key);
 }
 
-export async function saveVideoUrlsToDB(study, languageCodeJF,urls) {
+export async function saveVideoUrlsToDB(study, languageCodeJF, urls) {
   const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
   return saveItem("videoUrls", key, urls);
 }
@@ -161,7 +187,6 @@ export async function saveStudyProgress(study, progress) {
 
 // ----------------- Notes -----------------
 
-
 export async function getNoteFromDB(study, lesson, position) {
   const key = ContentKeys.buildNotesKey(study, lesson, position);
   return getItem("notes", key);
@@ -180,5 +205,24 @@ export async function deleteNoteFromDB(study, lesson, position) {
   return new Promise((resolve, reject) => {
     tx.oncomplete = () => resolve(true);
     tx.onerror = (e) => reject(e);
+  });
+}
+
+// ----------------- Clear Table -----------------
+
+export async function clearTable(tableName) {
+  const db = await openDatabase();
+
+  return new Promise((resolve, reject) => {
+    if (!db.objectStoreNames.contains(tableName)) {
+      return reject(`Table "${tableName}" not found in database.`);
+    }
+
+    const tx = db.transaction([tableName], "readwrite");
+    const store = tx.objectStore(tableName);
+    const request = store.clear();
+
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
   });
 }

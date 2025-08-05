@@ -25,10 +25,16 @@ export const useContentStore = defineStore("contentStore", {
   }),
 
   getters: {
-    lessonContentFor: (state) => (study, languageCodeHL, languageCodeJF, lesson) => {
-      const key = ContentKeys.buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson);
-      return state.lessonContent[key] || null;
-    },
+    lessonContentFor:
+      (state) => (study, languageCodeHL, languageCodeJF, lesson) => {
+        const key = ContentKeys.buildLessonContentKey(
+          study,
+          languageCodeHL,
+          languageCodeJF,
+          lesson
+        );
+        return state.lessonContent[key] || null;
+      },
 
     commonContentFor: (state) => (study, languageCodeHL) => {
       const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
@@ -48,27 +54,43 @@ export const useContentStore = defineStore("contentStore", {
   actions: {
     setCommonContent(study, languageCodeHL, data) {
       const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
-      console.log("I am setting commonContent for " + key);
-      console.log(data);
-      this.commonContent[key] = data;
+      if (key) {
+        console.log("I am setting commonContent for " + key);
+        console.log(data);
+        this.commonContent[key] = data;
+      } else {
+        console.warn("commonContent key is null — skipping set.");
+      }
     },
 
     setLessonContent(study, languageCodeHL, languageCodeJF, lesson, data) {
-      const key = ContentKeys.buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson);
-      console.log("I am setting lessonContent for " + key);
-      console.log(data);
-      this.lessonContent[key] = data;
+      const key = ContentKeys.buildLessonContentKey(
+        study,
+        languageCodeHL,
+        languageCodeJF,
+        lesson
+      );
+      if (key) {
+        console.log("I am setting lessonContent for " + key);
+        console.log(data);
+        this.lessonContent[key] = data;
+      } else {
+        console.warn("lessonContent key is null — skipping set.");
+      }
     },
 
     setVideoUrls(study, languageCodeJF, data) {
       const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
-      this.videoUrls[key] = data;
+      if (key) {
+        this.videoUrls[key] = data;
+      } else {
+        console.warn("videoUrls key is null — skipping set.");
+      }
     },
 
     async loadCommonContent(languageCodeHL, study) {
-      console.log ('I am in Content Store about to get CommonContent')
+      console.log("I am in Content Store about to get CommonContent");
       return await getCommonContent(languageCodeHL, study);
-
     },
 
     async loadLessonContent(languageCodeHL, languageCodeJF, study, lesson) {
@@ -77,7 +99,12 @@ export const useContentStore = defineStore("contentStore", {
         console.warn(`Invalid lesson '${unref(lesson)}'`);
         return null;
       }
-      return await getLessonContent(study, languageCodeHL, languageCodeJF, validatedLesson);
+      return await getLessonContent(
+        study,
+        languageCodeHL,
+        languageCodeJF,
+        validatedLesson
+      );
     },
 
     async loadVideoUrls(languageCodeJF, study) {

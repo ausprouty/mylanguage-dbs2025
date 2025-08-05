@@ -1,44 +1,83 @@
 import { unref } from 'vue';
-import { DEFAULTS } from "src/constants/Defaults";
 
+/**
+ * Validates a key part to ensure it's usable (not object/undefined/null).
+ * Returns unwrapped value if valid, otherwise throws an error.
+ */
+function safePart(value, label) {
+  const v = unref(value);
+  const type = typeof v;
+
+  if (v === undefined || v === null) {
+    console.error(`Key part "${label}" is missing or null.`);
+    throw new Error(`Invalid key part: "${label}" is ${v}`);
+  }
+
+  if (type === 'object') {
+    console.error(`Key part "${label}" is an object:`, v);
+    throw new Error(`Invalid key part: "${label}" is an object`);
+  }
+
+  return v;
+}
 
 export function buildCommonContentKey(study, languageCodeHL) {
-  const s = unref(study) || DEFAULTS.study;
-  const hl = unref(languageCodeHL) || DEFAULTS.languageCodeHL;
-  const key = `commonContent-${s}-${hl}`;
-  console.log(key);
-  return key;
+  try {
+    const s = safePart(study, 'study');
+    const hl = safePart(languageCodeHL, 'languageCodeHL');
+    return `commonContent-${s}-${hl}`;
+  } catch {
+    return null;
+  }
 }
 
 export function buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson) {
-  const s = unref(study) || DEFAULTS.study;
-  const hl = unref(languageCodeHL) || DEFAULTS.languageCodeHL;
-  const jf = unref(languageCodeJF) || DEFAULTS.languageCodeJF;
-  const l = unref(lesson) || DEFAULTS.lesson;
-  const key = `lessonContent-${s}-${hl}-${jf}-lesson-${l}`;
-  console.log(key);
-  return key;
+  try {
+    const s = safePart(study, 'study');
+    const hl = safePart(languageCodeHL, 'languageCodeHL');
+    const jf = safePart(languageCodeJF, 'languageCodeJF');
+    const l = safePart(lesson, 'lesson');
+    return `lessonContent-${s}-${hl}-${jf}-lesson-${l}`;
+  } catch {
+    return null;
+  }
 }
 
 export function buildInterfaceKey(languageCodeHL) {
-  const hl = unref(languageCodeHL) || DEFAULTS.languageCodeHL;
-  return `interface-${hl}`;
+  try {
+    const hl = safePart(languageCodeHL, 'languageCodeHL');
+    return `interface-${hl}`;
+  } catch {
+    return null;
+  }
 }
 
 export function buildNotesKey(study, lesson, position) {
-  const s = unref(study) || DEFAULTS.study;
-  const l = unref(lesson) || DEFAULTS.lesson;
-  const p = unref(position) ?? "0"; // use 0 if null/undefined
-  return `notes-${s}-${l}-${p}`;
+  try {
+    const s = safePart(study, 'study');
+    const l = safePart(lesson, 'lesson');
+    const p = safePart(position ?? '0', 'position'); // default fallback to '0'
+    return `notes-${s}-${l}-${p}`;
+  } catch {
+    return null;
+  }
 }
 
 export function buildVideoUrlsKey(study, languageCodeJF) {
-  const s = unref(study) || DEFAULTS.study;
-  const jf = unref(languageCodeJF) || DEFAULTS.languageCodeJF;
-  return `videoUrls-${s}-${jf}`;
+  try {
+    const s = safePart(study, 'study');
+    const jf = safePart(languageCodeJF, 'languageCodeJF');
+    return `videoUrls-${s}-${jf}`;
+  } catch {
+    return null;
+  }
 }
 
-export function buildStudyProgressKey(study){
-  const s = unref(study) || DEFAULTS.study;
-  return `progress-${s}`;
+export function buildStudyProgressKey(study) {
+  try {
+    const s = safePart(study, 'study');
+    return `progress-${s}`;
+  } catch {
+    return null;
+  }
 }

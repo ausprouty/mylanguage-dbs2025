@@ -105,6 +105,7 @@ const menuItems = [
 </template>
 
 <style scoped>
+
 .menu-grid {
   display: flex;
   flex-wrap: wrap;
@@ -113,24 +114,13 @@ const menuItems = [
 }
 
 .menu-col {
-  flex: 1 1 calc(100% - 16px); /* fallback full width */
-  min-width: 260px;
-  max-width: calc(25% - 16px); /* lg=3 */
+  flex: 1 1 calc(50% - 8px); /* 2 items per row with 16px gap */
+  box-sizing: border-box;
 }
 
-@media (max-width: 1280px) {
-  .menu-col {
-    max-width: calc(33.33% - 16px); /* md=4 */
-  }
-}
-@media (max-width: 960px) {
-  .menu-col {
-    max-width: calc(50% - 16px); /* sm=6 */
-  }
-}
 @media (max-width: 600px) {
   .menu-col {
-    max-width: 100%; /* cols=12 */
+    flex: 1 1 100%; /* stack to 1 item per row on small screens */
   }
 }
 

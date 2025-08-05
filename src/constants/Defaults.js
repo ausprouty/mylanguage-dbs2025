@@ -1,6 +1,7 @@
 // src/constants/Defaults.js
 
 export const DEFAULTS = {
+  appVersion: "1.3.1", // 👈
   study: "ctc",
   lesson: "1",
   languageCodeHL: "eng00",
