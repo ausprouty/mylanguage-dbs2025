@@ -1,4 +1,3 @@
-
 <script setup>
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
@@ -71,93 +70,74 @@ const menuItems = [
     image: "leadership.png",
     route: "/series/lead",
   },
-
 ];
-
 </script>
 <template>
   <q-page class="bg-white q-pa-md">
-    <p>{{ t("index.para.1") }}</p>
-    <p>{{ t("index.para.2") }}</p>
+  <p>{{ t("index.para.1") }}</p>
+  <p>{{ t("index.para.2") }}</p>
 
+  <q-row class="q-col-gutter-md q-row-gutter-md justify-start">
+    <q-col
+      v-for="item in menuItems"
+      :key="item.key"
+      cols="12"
+      sm="6"
+      md="4"
+      lg="3"
+    >
+      <div
+        class="menu-card q-hoverable cursor-pointer"
+        @click="handleImageClick(item.route)"
+      >
+        <img :src="`menu/${item.image}`" class="menu-picture" />
+        <div class="menu-label">
+          <h6 class="q-mt-none q-mb-xs">{{ t(`${item.key}.title`) }}</h6>
+          <p class="q-mb-none">{{ t(`${item.key}.summary`) }}</p>
+        </div>
+      </div>
+    </q-col>
+  </q-row>
 
-      <q-row class="q-col-gutter-md q-row-gutter-md">
-        <q-col
-          v-for="item in menuItems"
-          :key="item.key"
-          cols="12"
-          sm="6"
-          md="4"
-          @click="handleImageClick(item.route)"
-        >
-          <div class="menu-card q-hoverable cursor-pointer">
-            <img :src="`menu/${item.image}`" class="menu-picture" />
-            <div class="menu-label">
-              <h6 class="q-mt-none q-mb-xs">{{ t(`${item.key}.title`) }}</h6>
-              <p class="q-mb-none">{{ t(`${item.key}.summary`) }}</p>
-            </div>
-          </div>
-        </q-col>
-      </q-row>
+  <div class="text-center q-mt-xl">
+    <img
+      class="icon"
+      src="images/settings.png"
+      @click="handleImageClick('/reset')"
+    />
+  </div>
+</q-page>
 
-
-    <div class="text-center q-mt-xl">
-      <img
-        class="icon"
-        src="images/settings.png"
-        @click="handleImageClick('/reset')"
-      />
-    </div>
-  </q-page>
 </template>
 
-
-
 <style scoped>
-.menu_item {
-  margin-left: 10px;
-  margin-right: 10px;
-  max-width: 200px;
-  width: calc(100% - 20px);
-  margin: 0 auto;
-  background-color: #f0f0f0; /* Just for visibility */
-  padding: 2px; /* Optional: Add padding for content within the element */
-}
-
-td.side-by-side {
-  width: 45%;
-  padding: 0px;
-}
-tr.full-width {
-  width: 100%;
-}
-p.icon {
-  text-align: center;
-}
-
 .menu-card {
-  max-width: 100%;
-  border-radius: 8px;
-  overflow: hidden;
   background-color: #dddddd;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding-top: 36px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+}
+
+.menu-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .menu-picture {
   display: block;
   width: 85%;
-  margin: 0 auto;
+  margin: 12px auto 2px auto;
   height: auto;
   object-fit: cover;
-  margin-bottom: 2px;
 }
 
 .menu-label {
-  padding: 0 6px 26px 6px; /* 👈 no top padding, reduce side/bottom */
+  padding: 0 6px 16px 6px;
   text-align: center;
 }
-
 
 img.icon {
   height: 30px;

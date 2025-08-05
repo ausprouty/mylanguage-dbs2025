@@ -8,11 +8,10 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-const { configure } = require("quasar/wrappers");
-const path = require("node:path");
+import { configure } from 'quasar/wrappers';
+import path from 'node:path';
 
-//https://quasar.dev/quasar-cli-webpack/handling-process-env#adding-to-process-env
-module.exports = configure(function (ctx) {
+export default configure((ctx) => {
   return {
     vite: {
       test: {
@@ -87,7 +86,7 @@ module.exports = configure(function (ctx) {
         viteConf.resolve = {
           alias: {
             ...(viteConf.resolve?.alias || {}),
-            "@": path.resolve(__dirname, "./src"),// Vite-style alias
+            "@": path.resolve(__dirname, "./src"), // Vite-style alias
           },
         };
 
@@ -135,6 +134,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
+      port: ctx.mode.pwa ? 9200 : ctx.mode.ssr ? 9300 : 9100,
       proxy: {
         "/api_mylanguage": {
           target: "http://127.0.0.1:5559",
@@ -154,8 +154,20 @@ module.exports = configure(function (ctx) {
       // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),
       // you can manually specify Quasar components/directives to be available everywhere:
-      //
-      // components: [],
+      //       components: [
+      components: [
+        "QLayout",
+        "QHeader",
+        "QDrawer",
+        "QToolbar",
+        "QToolbarTitle",
+        "QPageContainer",
+        "QPage",
+        "QBtn",
+        "QRow",
+        "QCol",
+        "QSpace",
+      ],
       // directives: [],
 
       // Quasar plugins
@@ -202,40 +214,59 @@ module.exports = configure(function (ctx) {
     // https://v2.quasar.dev/quasar-cli/developing-pwa/configuring-pwa
     // Disable PWA when not building for production
     pwa:
-  process.env.NODE_ENV === "production"
-    ? {
-        workboxMode: "generateSW",
-        injectPwaMetaTags: true,
-        swFilename: "sw.js",
-        manifestFilename: "manifest.json",
-        useCredentialsForManifestTag: false,
-        workboxOptions: {
-          skipWaiting: true,
-          clientsClaim: true,
-          // ADD THIS LINE to suppress logs
-          mode: "production"
-        },
-        manifest: {
-          name: "Spiritual Community",
-          short_name: "Discover Community",
-          description: "Discover Spiritual Community",
-          display: "standalone",
-          orientation: "portrait",
-          background_color: "#ffffff",
-          theme_color: "#3e81ef",
-          start_url: "/",
-          scope: "/",
-          icons: [
-            { src: "icons/icon-128x128.png", sizes: "128x128", type: "image/png" },
-            { src: "icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
-            { src: "icons/icon-256x256.png", sizes: "256x256", type: "image/png" },
-            { src: "icons/icon-384x384.png", sizes: "384x384", type: "image/png" },
-            { src: "icons/icon-512x512.png", sizes: "512x512", type: "image/png" }
-          ]
-        }
-      }
-    : false,
-
+      process.env.NODE_ENV === "production"
+        ? {
+            workboxMode: "generateSW",
+            injectPwaMetaTags: true,
+            swFilename: "sw.js",
+            manifestFilename: "manifest.json",
+            useCredentialsForManifestTag: false,
+            workboxOptions: {
+              skipWaiting: true,
+              clientsClaim: true,
+              // ADD THIS LINE to suppress logs
+              mode: "production",
+            },
+            manifest: {
+              name: "Spiritual Community",
+              short_name: "Discover Community",
+              description: "Discover Spiritual Community",
+              display: "standalone",
+              orientation: "portrait",
+              background_color: "#ffffff",
+              theme_color: "#3e81ef",
+              start_url: "/",
+              scope: "/",
+              icons: [
+                {
+                  src: "icons/icon-128x128.png",
+                  sizes: "128x128",
+                  type: "image/png",
+                },
+                {
+                  src: "icons/icon-192x192.png",
+                  sizes: "192x192",
+                  type: "image/png",
+                },
+                {
+                  src: "icons/icon-256x256.png",
+                  sizes: "256x256",
+                  type: "image/png",
+                },
+                {
+                  src: "icons/icon-384x384.png",
+                  sizes: "384x384",
+                  type: "image/png",
+                },
+                {
+                  src: "icons/icon-512x512.png",
+                  sizes: "512x512",
+                  type: "image/png",
+                },
+              ],
+            },
+          }
+        : false,
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {

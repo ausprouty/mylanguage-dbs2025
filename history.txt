@@ -38,5 +38,5 @@ translation through my account bobprouty12@gmail.com
 yarn vitest run tests/unit/LessonContentService.test.js --reporter verbose
 yarn vitest run tests/integration/getLessonContent.test.js --reporter verbose
 yarn test
-yarn quasar dev -m pwa  -- turn on xampp to right
+yarn quasar dev -m pwa -- turn on xampp to right
 yarn quasar build -m pwa
