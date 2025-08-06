@@ -88,6 +88,11 @@ const menuItems = [
     route: "/series/serve",
   },
   {
+    key: "hope",
+    image: "hope.png",
+    route: "/series/hope",
+  },
+  {
     key: "share",
     image: "share.png",
     route: "/series/share",
@@ -99,7 +104,7 @@ const menuItems = [
   },
   {
     key: "lead",
-    image: "leadership.png",
+    image: "lead.png",
     route: "/series/lead",
   },
 ];

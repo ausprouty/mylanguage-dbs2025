@@ -1,6 +1,6 @@
 import { boot } from "quasar/wrappers";
 import { getBrowserLanguageObject } from "src/i18n/detectLanguage";
-import { loadLanguageAsync } from "src/i18n/loadLanguage";
+import { loadInterfaceFile } from "src/i18n/loadInterfaceLanguage";
 import { useLanguageStore } from "src/stores/LanguageStore";
 
 export default boot(async () => {

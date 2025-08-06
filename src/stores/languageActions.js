@@ -1,5 +1,5 @@
-import { loadLanguageAsync } from "../i18n/loadLanguage.js";
-import { MAX_LESSON_NUMBERS } from 'src/constants/Defaults';
+import { loadInterfaceFile } from "../i18n/loadInterfaceTranslations.js";
+import { MAX_LESSON_NUMBERS } from "src/constants/Defaults";
 import {
   validateLessonNumber,
   validateSegmentFormat,

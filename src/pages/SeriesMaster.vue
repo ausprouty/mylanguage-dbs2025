@@ -26,7 +26,7 @@ const computedLanguageHL = computed(
 );
 const computedLanguageJF = computed(() => {
   const code = languageStore.languageSelected.languageCodeJF;
-  return code != null ? String(code) : '';
+  return code != null ? String(code) : "";
 });
 
 console.log(unref(computedStudy), unref(computedLanguageHL));
@@ -67,9 +67,11 @@ const updateLesson = (nextLessonNumber) => {
   <template v-if="commonContent">
     <q-page padding>
       <h2>{{ t(`${computedStudy}.title`) }}</h2>
-      <p>{{ t(`${computedStudy}.para.1`) }}</p>
-      <p>{{ t(`${computedStudy}.para.2`) }}</p>
-      <p>{{ t(`${computedStudy}.para.3`) }}</p>
+      <p v-for="(para, index) in $tm(`${computedStudy}.para`)" :key="index">
+        {{ para }}
+      </p>
+
+     <p>{{ $t('changeLanguage') }}</p>
 
       <SeriesPassageSelect
         :study="computedStudy"
