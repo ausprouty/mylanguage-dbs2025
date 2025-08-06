@@ -66,6 +66,38 @@ const menuItems = [
     route: "/series/ctc",
   },
   {
+    key: "obey",
+    image: "obey.png",
+    route: "/series/obey",
+  },
+
+  {
+    key: "give",
+    image: "give.png",
+    route: "/series/give",
+  },
+
+  {
+    key: "relate",
+    image: "relate.png",
+    route: "/series/relate",
+  },
+  {
+    key: "serve",
+    image: "serve.png",
+    route: "/series/serve",
+  },
+  {
+    key: "share",
+    image: "share.png",
+    route: "/series/share",
+  },
+  {
+    key: "trust",
+    image: "trust.png",
+    route: "/series/trust",
+  },
+  {
     key: "lead",
     image: "leadership.png",
     route: "/series/lead",
@@ -105,7 +137,6 @@ const menuItems = [
 </template>
 
 <style scoped>
-
 .menu-grid {
   display: flex;
   flex-wrap: wrap;
@@ -148,7 +179,6 @@ const menuItems = [
   object-fit: cover;
 }
 
-
 .menu-label h6 {
   margin: 0 0 4px 0; /* top, right, bottom, left */
   font-size: 1.5rem; /* Optional: adjust text size */
@@ -163,5 +193,4 @@ img.icon {
   height: 30px;
   cursor: pointer;
 }
-
 </style>
