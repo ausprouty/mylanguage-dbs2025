@@ -1,0 +1,22 @@
+// ==== Primary Palette ====
+$accent: #bf6b30;       // Burnt orange (side figure)
+$minor1: #d3b18c;       // Soft beige (background tone)
+$minor2: #6a4e42;       // Dark brown (for text or shadows)
+$primary: #a05a2c;      // Warm brown (figures' outline)
+$secondary: #d59744;    // Earthy gold (center figure)
+
+// ==== Background Colors ====
+$dark: #2e2e2e;         // Dark background for contrast
+$dark-page: #1c1c1c;    // Slightly darker for page backgrounds
+$neutral: #f8f3ee;      // Off-white/cream for neutral backgrounds
+
+// ==== Functional Colors ====
+$info: #a05a2c;         // Use primary brown for info highlights
+$negative: #b03a2e;     // Earthy red for errors (less harsh than bright red)
+$positive: #65c058;     // Gentle green for growth
+$warning: #d59744;      // Earthy gold for warnings
+
+// ==== Highlights ====
+$gold-highlight: #d59744;    // For special accents
+$shadow: #7f6e63;            // Subtle warm gray for shadows
+$success-highlight: #a05a2c; // Use primary for success (instead of red)

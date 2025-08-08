@@ -1,0 +1,25 @@
+//Color Palette (Based on Brand Colors)
+
+$primary: #FF0033; // Dominant red
+$secondary: #009DA5; // Dominant teal
+$accent: #F38B3C; // Dominant orange
+$minor1: #FFC700; // Minor yellow
+$minor2: #3F5864; // Minor dark blue
+
+//Background Colors
+$dark: #2e2e2e; // Dark background for contrast
+$dark-page: #1c1c1c; // Slightly darker for page backgrounds
+
+//Functional Colors
+$positive: #65C058; // Green, symbolizing growth and harmony
+$negative: $primary; // Bright red for warnings or errors
+$info: $secondary; // Teal for informational highlights
+$warning: $accent; // Orange for caution
+
+//Additional Highlights
+$success-highlight: $primary; // Red for success messages
+$gold-highlight: $minor1; // Yellow accents for special elements
+
+//Optional Complementary Colors
+$neutral: #f0f0f0; // Soft white-gray for neutral backgrounds
+$shadow: #7f8c8d; // Subtle gray for shadows

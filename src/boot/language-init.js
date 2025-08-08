@@ -1,6 +1,6 @@
 import { boot } from "quasar/wrappers";
 import { getBrowserLanguageObject } from "src/i18n/detectLanguage";
-import { loadInterfaceFile } from "src/i18n/loadInterfaceLanguage";
+import { loadInterfaceTranslation } from "src/i18n/loadInterfaceTranslation";
 import { useLanguageStore } from "src/stores/LanguageStore";
 
 export default boot(async () => {
@@ -16,10 +16,10 @@ export default boot(async () => {
     languageStore.setLanguageObjectSelected(languageObject);
     // Use the browser language for the interface
     console.log("calling LoadLanguageAsync from language-init line 18");
-    await loadLanguageAsync(languageObject.languageCodeHL);
+    await loadInterfaceTranslation(languageObject.languageCodeHL);
   } else {
     console.log("calling LoadLanguageAsync from language-init Line21");
     // Use the saved language for the interface
-    await loadLanguageAsync(languageStore.languageSelected.languageCodeHL);
+    await loadInterfaceTranslation(languageStore.languageSelected.languageCodeHL);
   }
 });

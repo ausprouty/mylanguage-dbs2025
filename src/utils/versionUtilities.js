@@ -1,6 +1,6 @@
-import { clearTable } from 'src/services/IndexedDBService';
-import { useContentStore } from 'src/stores/ContentStore';
-import {loadInterfaceTranslations} from 'src/i18n/loadInterfaceTranslations';
+import { clearTable } from "src/services/IndexedDBService";
+import { useContentStore } from "src/stores/ContentStore";
+import { loadInterfaceTranslation } from "src/i18n/loadInterfaceTranslation";
 
 export async function clearOrUpdateData() {
   const contentStore = useContentStore();
@@ -8,7 +8,7 @@ export async function clearOrUpdateData() {
   deleteLocalStorageContentKeys();
   await clearContentTables();
   // Load new i18n interface files (assuming locale is stored in store or localStorage)
-  const languageCodeHL = localStorage.getItem('locale') || 'en';
+  const languageCodeHL = localStorage.getItem("locale") || "en";
   await loadLanguageAsync(languageCodeHL);
 }
 
@@ -17,7 +17,7 @@ function deleteLocalStorageContentKeys() {
 
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key.endsWith('commonContent') || key.endsWith('lessonContent')) {
+    if (key.endsWith("commonContent") || key.endsWith("lessonContent")) {
       keysToDelete.push(key);
     }
   }
@@ -29,7 +29,7 @@ function deleteLocalStorageContentKeys() {
 }
 
 async function clearContentTables() {
-  const tables = ['commonContent', 'lessonContent', 'interface', 'videoUrls'];
+  const tables = ["commonContent", "lessonContent", "interface", "videoUrls"];
 
   for (const table of tables) {
     try {

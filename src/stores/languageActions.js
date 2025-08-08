@@ -1,4 +1,4 @@
-import { loadInterfaceFile } from "../i18n/loadInterfaceTranslations.js";
+import { loadInterfaceTranslation } from "../i18n/loadInterfaceTranslation.js";
 import { MAX_LESSON_NUMBERS } from "src/constants/Defaults";
 import {
   validateLessonNumber,

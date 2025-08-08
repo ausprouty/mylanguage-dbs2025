@@ -1,0 +1,30 @@
+// University of Melbourne (UoM) theme — Quasar SCSS variables
+// Place at: src/sites/uom/quasar.variables.scss
+// Your quasar.config.mjs already imports @site/quasar.variables.scss
+
+// ==== Brand Core ====
+$primary:   #000F46; // Traditional Heritage (Blue)
+$secondary: #ABC1A7; // Mt William Greenstone (Light Sage)
+$accent:    #46C8F0; // Bright blue accent (tertiary)
+
+// ==== Background / Greys ====
+$dark:      #2D2D2D; // Dark grey (text secondary)
+$dark-page: #000B34; // Deep background
+$neutral:   #C8C8C8; // Magpie (Light Grey)
+
+// ==== Functional States ====
+$positive:  #2C421D; // River Red Gum (Dark Green)
+$negative:  #FF2D3C; // Black Sheoak (Light Red)
+$info:      #46C8F0; // Accent/tertiary blue
+$warning:   #FFD629; // Yam Daisy (Yellow)
+
+// ==== Optional references (handy tokens) ====
+$brand-heritage-blue:  #000F46;
+$brand-sage-light:     #ABC1A7;
+$brand-sage-dark:      #444A40;
+$brand-green-light:    #9FB825;
+$brand-green-dark:     #2C421D;
+$brand-grey-light:     #C8C8C8;
+$brand-cyan:           #46C8F0;
+$brand-yellow:         #FFD629;
+$brand-red:            #FF2D3C;
