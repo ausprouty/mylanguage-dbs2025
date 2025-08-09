@@ -3,7 +3,7 @@ const routes = [
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [
-      
+
       {
         name: "Root",
         path: "",
@@ -15,9 +15,9 @@ const routes = [
         component: () => import("pages/IndexPage.vue"),
       },
       {
-        name: "LanguageTest",
-        path: "/test",
-        component: () => import("pages/LanguageTest.vue"),
+        name: "StaticPageMaster",
+        path: '/page/:page([a-z0-9-]+)',
+        component: () => import("pages/StaticPageMaster.vue"),
       },
       {
         name: "JesusVideoMaster",

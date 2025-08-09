@@ -1,0 +1,8 @@
+[
+  {"key":"jvideo","title":"Jesus Video","image":"/sites/guru/menu/jesus.png","route":"/jvideo","maxLessons":61},
+  {"key":"life","title":"Life Issues","image":"/sites/guru/menu/life.png","route":"/series/life","maxLessons":23},
+  {"key":"ctc","title":"Connect to Community","image":"/sites/guru/menu/community.png","route":"/series/ctc","maxLessons":23},
+  {"key":"obey","title":"Obey","image":"/sites/guru/menu/obey.png","route":"/series/obey","maxLessons":8},
+  {"key":"serve","title":"Serve","image":"/sites/guru/menu/serve.png","route":"/series/serve","maxLessons":9}, {"key":"hope","title":"Seven Stories of Hope","image":"hope.png","route":"/series/hope","maxLessons":7},
+  {"key":"share","title":"Share","image":"/sites/guru/menu/share.png","route":"/series/share","maxLessons":9},
+  ]
