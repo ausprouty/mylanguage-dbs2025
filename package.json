@@ -6,8 +6,8 @@
   "author": "ausprouty <bob.prouty@powertochange.org.au>",
   "private": true,
   "scripts": {
-    "dev:dbs": "cross-env SITE=dbs quasar dev -m pwa",
-    "dev:uom": "cross-env SITE=uom quasar dev -m pwa",
+    "dev:dbs": "cross-env SITE=dbs VITE_APP=dbs quasar dev -m pwa",
+    "dev:uom": "cross-env SITE=uom VITE_APP=uom quasar dev -m pwa",
     "dev:guru": "cross-env SITE=guru quasar dev -m pwa",
     "dev:wisdom": "cross-env SITE=wisdom quasar dev -m pwa",
     "dev:uws": "cross-env SITE=uws quasar dev -m pwa",

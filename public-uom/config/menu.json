@@ -1,6 +1,6 @@
 [
-  {"key":"jvideo","title":"Jesus Video","image":"jesus.png","route":"/jvideo","maxLessons":61},
-  {"key":"life","title":"Life Issues","image":"life.png","route":"/series/life","maxLessons":23},
-  {"key":"hope","title":"Seven Stories of Hope","image":"hope.png","route":"/series/hope","maxLessons":7},
-  {"key":"ctc","title":"Connect to Community","image":"community.png","route":"/series/ctc","maxLessons":23},
+  {"key":"jvideo","title":"Jesus Video","image":"/menu/jesus.png","route":"/jvideo","maxLessons":61},
+  {"key":"life","title":"Life Issues","image":"/menu/life.png","route":"/series/life","maxLessons":23},
+  {"key":"hope","title":"Seven Stories of Hope","image":"/menu/hope.png","route":"/series/hope","maxLessons":7},
+  {"key":"ctc","title":"Connect to Community","image":"/menu/community.png","route":"/series/ctc","maxLessons":23}
 ]

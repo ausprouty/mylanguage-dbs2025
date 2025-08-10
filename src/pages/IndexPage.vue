@@ -10,14 +10,19 @@ const { t } = useI18n();
 const languageStore = useLanguageStore();
 
 const SITE_KEY = import.meta.env.VITE_APP || "default";
-const APP_VERSION = import.meta.env.VITE_APP_VERSION || Date.now();
-const MENU_IMG_BASE = `/sites/${SITE_KEY}/menu/`;
+
 
 async function getStudyMenu() {
-  const url = `/sites/${SITE_KEY}/menu.json?v=${APP_VERSION}`;
-  const fetchOpts = import.meta.env.DEV ? { cache: "no-store" } : undefined;
+  const base = import.meta.env.BASE_URL; // respects publicPath/base per site
+  const ver = import.meta.env.VITE_APP_VERSION || 'dev';
+  const url = `${base}config/menu.json?v=${ver}`;
+
+  const fetchOpts = import.meta.env.DEV ? { cache: 'no-store' } : undefined;
   const res = await fetch(url, fetchOpts);
-  if (!res.ok) return [];
+  if (!res.ok) {
+    console.error('Menu fetch failed:', res.status, url);
+    return [];
+  }
   return res.json();
 }
 
@@ -78,7 +83,7 @@ const openExternalWebsite = async () => {
         @click="handleImageClick(item.route)"
       >
         <div class="menu-card hoverable">
-          <img :src="MENU_IMG_BASE + item.image" class="menu-picture" />
+          <img :src="item.image" class="menu-picture" />
           <div class="menu-label">
             <h6>{{ t(item.key + ".title", item.title || item.key) }}</h6>
             <p>{{ t(item.key + ".summary", item.summary || "") }}</p>

@@ -7,17 +7,11 @@ import {
 } from 'vue-router';
 import routes from './routes';
 import { syncLanguageFromRoute } from 'src/i18n/syncLanguageFromRoute';
-
-// pulls: src/sites/<site>/meta.js via the @site alias
-// e.g. export default { title: '...', description: '...' }
 import siteMeta from '@site/meta';
 
 function setMetaTag(kind, key, content) {
   if (typeof window === 'undefined') return;
-  const sel =
-    kind === 'property'
-      ? `meta[property="${key}"]`
-      : `meta[name="${key}"]`;
+  const sel = kind === 'property' ? `meta[property="${key}"]` : `meta[name="${key}"]`;
   let el = document.head.querySelector(sel);
   if (!el) {
     el = document.createElement('meta');
@@ -28,27 +22,26 @@ function setMetaTag(kind, key, content) {
 }
 
 export default route(function () {
-  const createHistory = process.env.SERVER
+  const isServer = typeof window === 'undefined';
+  const mode = import.meta.env.VUE_ROUTER_MODE;   // set by quasar.config build.vueRouterMode
+  const base = import.meta.env.BASE_URL || '/';   // set by quasar.config publicPath/base
+
+  const createHistory = isServer
     ? createMemoryHistory
-    : (process.env.VUE_ROUTER_MODE === 'history'
-        ? createWebHistory
-        : createWebHashHistory);
+    : (mode === 'history' ? createWebHistory : createWebHashHistory);
 
   const Router = createRouter({
-    scrollBehavior: () => ({ left: 0, top: 0 }),
     routes,
-    // quasar.conf.js / quasar.config.mjs controls mode & base
-    history: createHistory(process.env.VUE_ROUTER_BASE)
+    scrollBehavior: () => ({ left: 0, top: 0 }),
+    history: createHistory(base)
   });
 
-  // --- existing guard: keep this
   Router.beforeEach((to, from, next) => {
     syncLanguageFromRoute(to);
     next();
   });
 
-  // --- set default site title/description once (client only)
-  if (process.env.CLIENT) {
+  if (!isServer) {
     const baseTitle = siteMeta?.title || 'App';
     const baseDesc = siteMeta?.description || '';
 
@@ -58,12 +51,9 @@ export default route(function () {
     setMetaTag('property', 'og:description', baseDesc);
     setMetaTag('property', 'og:type', 'website');
 
-    // per-page title: use route.meta.title when present
     Router.afterEach((to) => {
       const pageTitle = to?.meta?.title;
-      document.title = pageTitle
-        ? `${pageTitle} • ${baseTitle}`
-        : baseTitle;
+      document.title = pageTitle ? `${pageTitle} • ${baseTitle}` : baseTitle;
     });
   }
 

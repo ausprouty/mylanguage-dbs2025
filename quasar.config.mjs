@@ -1,10 +1,15 @@
+
 /* eslint-env node */
 import { configure } from 'quasar/wrappers';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+// ESM-safe __dirname for this config file
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default configure((ctx) => {
-  const site = process.env.SITE || 'default';
 
+  const site = process.env.SITE || process.env.VITE_APP || 'default';
   // If you deploy sites under subpaths, set them here (otherwise leave '/')
   const baseBySite = {
     default: '/',
@@ -76,90 +81,55 @@ export default configure((ctx) => {
     // Build
     // ---------------------------
     build: {
-      vueLoaderOptions: { runtimeCompiler: true },
+      env: {
+        VITE_APP: site,
+        VITE_SITE_KEY: site
+      },
       target: {
         browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
-        node: 'node16',
+        node: 'node18'
       },
+      vueRouterMode: 'history',
 
-      // unique output folder per site
+      // ✅ these live INSIDE build
       distDir: `dist/site-${site}`,
-
-      // set base/publicPath per site (affects asset URLs)
       publicPath: base,
 
-      chainWebpack: (chain) => {
-        chain.module
-          .rule('i18n-resource')
-          .test(/\.(json5?|ya?ml)$/)
-          .include.add(path.resolve(__dirname, './src/i18n/languages'))
-          .end()
-          .type('javascript/auto')
-          .use('i18n-resource')
-          .loader('@intlify/vue-i18n-loader');
-
-        chain.module
-          .rule('i18n')
-          .resourceQuery(/blockType=i18n/)
-          .type('javascript/auto')
-          .use('i18n')
-          .loader('@intlify/vue-i18n-loader');
-      },
-
+      // Vite hook (webpack's chainWebpack does NOT exist here)
       extendViteConf(viteConf) {
-        // per-site public folder (prevents copying all sites’ assets)
+        // per-site public folder
         viteConf.publicDir = path.resolve(__dirname, `public-${site}`);
 
-        // define flags
+        // flags, aliases, css, etc.
         viteConf.define = {
           ...viteConf.define,
-          __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+          __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
         };
 
-        // aliases
         const alias = (viteConf.resolve && viteConf.resolve.alias) || {};
         viteConf.resolve = {
           ...viteConf.resolve,
           alias: {
             ...alias,
             '@': path.resolve(__dirname, './src'),
-            '@site': path.resolve(__dirname, `src/sites/${site}`),
-          },
+            '@site': path.resolve(__dirname, `src/sites/${site}`)
+          }
         };
 
-        // global SCSS variables
         viteConf.css = {
           preprocessorOptions: {
-            scss: {
-              additionalData: `@import "@/css/quasar.variables.scss";`,
-            },
-          },
+            scss: { additionalData: `@import "@/css/quasar.variables.scss";` }
+          }
         };
-      },
 
-      // expose env to app code (both Quasar-style and Vite-style)
-      env: {
-        SITE_KEY: site,
-        VITE_SITE_KEY: site,
-
-        LEGACY_API: ctx.dev
-          ? 'http://localhost/mylanguage-namespaced/'
-          : 'https://api.mylanguage.net.au/',
-        VITE_LEGACY_API: ctx.dev
-          ? 'http://localhost/mylanguage-namespaced/'
-          : 'https://api.mylanguage.net.au/',
-
-        CURRENT_API: ctx.dev
-          ? 'http://localhost/api_mylanguage/'
-          : 'https://api2.mylanguage.net.au/',
-        VITE_CURRENT_API: ctx.dev
-          ? 'http://localhost/api_mylanguage/'
-          : 'https://api2.mylanguage.net.au/',
-      },
-
-      vueRouterMode: 'history',
-      rebuildCache: true,
-    },
+        // If you previously used chainWebpack for i18n loaders,
+        // use the Vite plugin instead:
+        // import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+        // viteConf.plugins = [...(viteConf.plugins || []),
+        //   VueI18nPlugin({ include: path.resolve(__dirname, './src/i18n/languages/**') })
+        // ];
+      }
+    }, // ← build ENDS here 👈
 
     // ---------------------------
     // Dev server
@@ -195,53 +165,40 @@ export default configure((ctx) => {
     },
 
     // ---------------------------
-    // PWA (prod only)
+    // PWA
     // ---------------------------
-    pwa:
-      process.env.NODE_ENV === 'production'
-        ? {
-            workboxMode: 'generateSW',
-            injectPwaMetaTags: true,
 
-            // Unique filenames per site (avoid SW/manifest collisions)
-            swFilename: `sw-${site}.js`,
-            manifestFilename: `manifest-${site}.json`,
+  pwa: {
 
-            useCredentialsForManifestTag: false,
-            workboxOptions: {
-              skipWaiting: true,
-              clientsClaim: true,
-              mode: 'production',
-            },
-            manifest: {
-              name: siteManifest.name || 'App',
-              short_name: siteManifest.short_name || 'App',
-              description: siteManifest.description || '',
-              display: 'standalone',
-              orientation: 'portrait',
-              background_color: '#ffffff',
-              theme_color: siteManifest.theme_color || '#3e81ef',
+    workboxMode: 'InjectManifest',
+    swSrc: 'src-pwa/custom-service-worker.js',
 
-              // align with base/publicPath
-              start_url: base,
-              scope: base,
 
-              // icons should live under public-<site>/icons
-              icons: [
-                { src: 'icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
-                { src: 'icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
-                { src: 'icons/icon-192x192-maskable.png', sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
-                { src: 'icons/icon-512x512-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
-              ]
-            },
-          }
-        : false,
+    manifest: {
+      name: siteManifest.name || 'App',
+      short_name: siteManifest.short_name || 'App',
+      description: siteManifest.description || '',
+      display: 'standalone',
+      orientation: 'portrait',
+      background_color: '#ffffff',
+      theme_color: siteManifest.theme_color || '#3e81ef',
 
-    // ---------------------------
-    // Capacitor / Electron / BEX
-    // ---------------------------
-    capacitor: { hideSplashscreen: true },
-    electron: { inspectPort: 5858, bundler: 'packager', builder: { appId: 'mylanguage-admin' } },
-    bex: { contentScripts: ['my-content-script'] },
+      start_url: base,
+      scope: base,
+
+      icons: [
+        { src: 'icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+        { src: 'icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+        { src: 'icons/icon-192x192-maskable.png', sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
+        { src: 'icons/icon-512x512-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
+      ]
+
+    },
+  },
+
+  // ---------------------------
+  capacitor: { hideSplashscreen: true },
+  electron: { inspectPort: 5858, bundler: 'packager', builder: { appId: 'mylanguage-admin' } },
+  bex: { contentScripts: ['my-content-script'] },
   };
 });
