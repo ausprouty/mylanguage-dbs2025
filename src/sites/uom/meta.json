@@ -1,0 +1,16 @@
+
+{
+  "base": "/",
+  "publicDir": "public-uom",
+  "varsPath": "src/sites/uom/quasar.variables.scss",
+  "pwa": {
+    "name": "Houses of Peace - UoM",
+    "short_name": "UOM",
+    "description": "Resources for Houses of Peace at UoM",
+    "theme_color": "#000F46",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
+}
+

@@ -1,0 +1,14 @@
+{
+  "base": "/",
+  "publicDir": "public-guru",
+  "varsPath": "src/sites/guru/quasar.variables.scss",
+  "pwa": {
+    "name": "Finding a Guru",
+    "short_name": "Guru",
+    "description": "Finding a guru worth following",
+    "theme_color": "darkgreen",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
+}

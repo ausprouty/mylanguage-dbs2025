@@ -1,0 +1,16 @@
+
+{
+  "base": "/",
+  "publicDir": "public-wsu",
+  "varsPath": "src/sites/wsu/quasar.variables.scss",
+  "pwa": {
+    "name": "Beta Resources",
+    "short_name": "Beta",
+    "description": "Resources for Beta Groups",
+    "theme_color": "#FF0033",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
+}
+

@@ -1,0 +1,14 @@
+{
+  "base": "/",
+  "publicDir": "public-dbs",
+  "varsPath": "src/sites/dbs/quasar.variables.scss",
+  "pwa": {
+    "name": "Discover Bible Studies",
+    "short_name": "DBS",
+    "description": "Studies for Discovery Bible Study groups.",
+    "theme_color": "#bf6b30",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
+}

@@ -1,0 +1,16 @@
+
+{
+  "base": "/",
+  "publicDir": "public-wisdom",
+  "varsPath": "src/sites/wisdom/quasar.variables.scss",
+  "pwa": {
+    "name": "Finding Wisdom",
+    "short_name": "wisdom",
+    "description": "Grow in wisdom and your ability to relate to God",
+    "theme_color": "#d32f2f",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
+}
+
