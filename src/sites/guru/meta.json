@@ -2,6 +2,13 @@
   "base": "/",
   "publicDir": "public-guru",
   "varsPath": "src/sites/guru/quasar.variables.scss",
+  "title": "Finding a Guru",
+  "description": "Finding a guru worth following",
+  "dev": {
+    "host": "localhost",
+    "port": 9221,
+    "https": false
+  },
   "pwa": {
     "name": "Finding a Guru",
     "short_name": "Guru",

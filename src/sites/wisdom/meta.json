@@ -3,6 +3,13 @@
   "base": "/",
   "publicDir": "public-wisdom",
   "varsPath": "src/sites/wisdom/quasar.variables.scss",
+  "title": "Finding Wisdom",
+  "description": "Grow in wisdom and your ability to relate to God",
+  "dev": {
+    "host": "localhost",
+    "port": 9223,
+    "https": false
+  },
   "pwa": {
     "name": "Finding Wisdom",
     "short_name": "wisdom",

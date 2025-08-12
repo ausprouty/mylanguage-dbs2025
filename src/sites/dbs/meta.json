@@ -2,6 +2,13 @@
   "base": "/",
   "publicDir": "public-dbs",
   "varsPath": "src/sites/dbs/quasar.variables.scss",
+  "title": "Discover Bible Studies",
+  "description": "Studies for Discovery Bible Study groups.",
+  "dev": {
+    "host": "localhost",
+    "port": 9220,
+    "https": false
+  },
   "pwa": {
     "name": "Discover Bible Studies",
     "short_name": "DBS",

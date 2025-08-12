@@ -3,6 +3,13 @@
   "base": "/",
   "publicDir": "public-uom",
   "varsPath": "src/sites/uom/quasar.variables.scss",
+  "title": "Houses of Peace – UoM",
+  "description": "Resources for Houses of Peace at UoM.",
+  "dev": {
+    "host": "localhost",
+    "port": 9222,
+    "https": false
+  },
   "pwa": {
     "name": "Houses of Peace - UoM",
     "short_name": "UOM",

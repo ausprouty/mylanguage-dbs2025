@@ -7,7 +7,7 @@ import {
 } from 'vue-router';
 import routes from './routes';
 import { syncLanguageFromRoute } from 'src/i18n/syncLanguageFromRoute';
-import siteMeta from '@site/meta';
+import siteMeta from '@site/meta.json';
 
 function setMetaTag(kind, key, content) {
   if (typeof window === 'undefined') return;
@@ -23,17 +23,18 @@ function setMetaTag(kind, key, content) {
 
 export default route(function () {
   const isServer = typeof window === 'undefined';
-  const mode = import.meta.env.VUE_ROUTER_MODE;   // set by quasar.config build.vueRouterMode
-  const base = import.meta.env.BASE_URL || '/';   // set by quasar.config publicPath/base
 
-  const createHistory = isServer
+
+  const createHistory = process.env.SERVER
     ? createMemoryHistory
-    : (mode === 'history' ? createWebHistory : createWebHashHistory);
+    : (process.env.VUE_ROUTER_MODE === 'history'
+        ? createWebHistory
+        : createWebHashHistory);
 
   const Router = createRouter({
     routes,
     scrollBehavior: () => ({ left: 0, top: 0 }),
-    history: createHistory(base)
+    history: createHistory(process.env.VUE_ROUTER_BASE)
   });
 
   Router.beforeEach((to, from, next) => {
@@ -42,8 +43,8 @@ export default route(function () {
   });
 
   if (!isServer) {
-    const baseTitle = siteMeta?.title || 'App';
-    const baseDesc = siteMeta?.description || '';
+    const baseTitle = siteMeta?.title || siteMeta?.pwa?.name || 'App';
+    const baseDesc  = siteMeta?.description || siteMeta?.pwa?.description || '';
 
     document.title = baseTitle;
     setMetaTag('name', 'description', baseDesc);

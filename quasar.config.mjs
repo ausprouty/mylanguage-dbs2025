@@ -8,72 +8,54 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default configure((ctx) => {
   const site = process.env.SITE || process.env.VITE_APP || 'default';
+ 
 
-  // ---- Load per-site meta (single source of truth)
+  // Load per-site meta
   const metaPath = path.resolve(__dirname, `src/sites/${site}/meta.json`);
+  console.log (metaPath);
   const meta = fs.existsSync(metaPath)
     ? JSON.parse(fs.readFileSync(metaPath, 'utf-8'))
     : {};
 
-  // Base path (fallback '/')
   const base = meta.base ?? '/';
 
-  // Variables file (fallback to global)
+  // Variables file
   const varsPath = meta.varsPath ?? `src/sites/${site}/quasar.variables.scss`;
   const varsFile = fs.existsSync(path.resolve(__dirname, varsPath))
     ? path.resolve(__dirname, varsPath)
     : path.resolve(__dirname, 'src/css/quasar.variables.scss');
 
-  // Public dir (fallback per-site folder or default ./public)
+  // Public dir
   const publicDir = path.resolve(__dirname, meta.publicDir ?? `public-${site}`);
-  const publicDirExists = fs.existsSync(publicDir);
-  const finalPublicDir = publicDirExists ? publicDir : path.resolve(__dirname, 'public');
+  const finalPublicDir = fs.existsSync(publicDir) ? publicDir : path.resolve(__dirname, 'public');
 
+  // --- NEW: dev server from meta
+  const devHost  = meta.dev?.host  ?? 'localhost';
+  const devPort  = meta.dev?.port  ?? (ctx.mode.pwa ? 9200 : ctx.mode.ssr ? 9300 : 9100);
+  const devHttps = meta.dev?.https ?? false;
   console.log('▶ site:', site);
   console.log('▶ meta:', publicDirExists ? metaPath : '(no meta/public dir fallback)');
   console.log('▶ vars:', varsFile);
   console.log('▶ base:', base);
   console.log('▶ publicDir:', finalPublicDir);
 
+
   return {
-    // ---------------------------
-    // Test / Lint
-    // ---------------------------
-    vite: { test: { globals: true, environment: 'jsdom' } },
-    eslint: { warnings: true, errors: true },
-
-    // ---------------------------
-    // Boot / CSS / Extras
-    // ---------------------------
-    boot: ['axios', 'localStorage', 'i18n', 'language-init', 'version-check'],
     css: ['app.scss'],
-    extras: ['roboto-font', 'material-icons'],
-
-    // ---------------------------
-    // Build
-    // ---------------------------
     build: {
       env: { VITE_APP: site, VITE_SITE_KEY: site },
-      target: {
-        browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
-        node: 'node18'
-      },
       vueRouterMode: 'history',
-
       distDir: `dist/site-${site}`,
       publicPath: base,
-
-      // Key: compile Quasar with the site-specific variables
       sassVariables: varsFile,
 
       extendViteConf(viteConf) {
-        // per-site public folder
         viteConf.publicDir = finalPublicDir;
 
-        // flags & aliases
         viteConf.define = {
           ...viteConf.define,
-          __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
+          __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+          __SITE__: JSON.stringify(site) // optional: use inside SW or app code
         };
 
         const existingAlias = (viteConf.resolve && viteConf.resolve.alias) || {};
@@ -85,40 +67,23 @@ export default configure((ctx) => {
             '@site': path.resolve(__dirname, `src/sites/${site}`)
           }
         };
-
-        // Do NOT inject variables via additionalData anymore
       }
     },
 
-    // ---------------------------
-    // Dev server
-    // ---------------------------
+    // --- NEW: each site gets its own origin in dev
     devServer: {
-      port: ctx.mode.pwa ? 9200 : ctx.mode.ssr ? 9300 : 9100,
+      host: devHost,
+      port: devPort,
+      https: devHttps,
+      strictPort: true,               // 👈 fail instead of changing ports
       proxy: {
         '/api_mylanguage': { target: 'http://127.0.0.1:5559', changeOrigin: true }
       },
       open: true
     },
 
-    // ---------------------------
-    // Framework
-    // ---------------------------
-    framework: {
-      config: {},
-      plugins: ['Notify', 'Dialog'],
-    },
+    framework: { config: {}, plugins: ['Notify', 'Dialog'] },
 
-    animations: [],
-
-    // ---------------------------
-    // SSR
-    // ---------------------------
-    ssr: { pwa: false, prodPort: 3000, middlewares: ['render'] },
-
-    // ---------------------------
-    // PWA
-    // ---------------------------
     pwa: {
       workboxMode: 'InjectManifest',
       swSrc: 'src-pwa/custom-service-worker.js',
@@ -139,10 +104,6 @@ export default configure((ctx) => {
           { src: 'icons/icon-512x512-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
         ]
       }
-    },
-
-    capacitor: { hideSplashscreen: true },
-    electron: { inspectPort: 5858, bundler: 'packager', builder: { appId: 'mylanguage-admin' } },
-    bex: { contentScripts: ['my-content-script'] }
+    }
   };
 });

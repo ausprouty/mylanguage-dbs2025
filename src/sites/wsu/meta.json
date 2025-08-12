@@ -3,6 +3,13 @@
   "base": "/",
   "publicDir": "public-wsu",
   "varsPath": "src/sites/wsu/quasar.variables.scss",
+  "title": "Beta Resources",
+  "description": "Resources for Beta Groups",
+  "dev": {
+    "host": "localhost",
+    "port": 9224,
+    "https": false
+  },
   "pwa": {
     "name": "Beta Resources",
     "short_name": "Beta",
