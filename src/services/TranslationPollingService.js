@@ -26,6 +26,15 @@ export async function pollTranslationUntilComplete({
   maxAttempts = 5,
   interval = 300,
 }) {
+
+  // ❗ Hard stop if apiUrl is missing/empty
+  if (typeof apiUrl !== 'string' || apiUrl.trim() === '') {
+     console.log(`❌ pollTranslationUntilComplete: 'apiUrl' must be a non-empty string.`);
+    throw new TypeError(
+      "pollTranslationUntilComplete: 'apiUrl' must be a non-empty string."
+    );
+  }
+
   const pollKey = `${translationType}:${languageCodeHL}`;
 
   // Prevent duplicate polling for the same language/type

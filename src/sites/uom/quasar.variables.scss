@@ -7,6 +7,10 @@ $primary:   #000F46; // Traditional Heritage (Blue)
 $secondary: #ABC1A7; // Mt William Greenstone (Light Sage)
 $accent:    #46C8F0; // Bright blue accent (tertiary)
 
+// Added to match master list (defaults)
+$minor1:    #d3b18c; // Soft beige (background tone)
+$minor2:    #6a4e42; // Dark brown (for text or shadows)
+
 // ==== Background / Greys ====
 $dark:      #2D2D2D; // Dark grey (text secondary)
 $dark-page: #000B34; // Deep background
@@ -17,6 +21,12 @@ $positive:  #2C421D; // River Red Gum (Dark Green)
 $negative:  #FF2D3C; // Black Sheoak (Light Red)
 $info:      #46C8F0; // Accent/tertiary blue
 $warning:   #FFD629; // Yam Daisy (Yellow)
+
+// ==== Highlights ====
+// Added to match master list (defaults)
+$gold-highlight:    #d59744; // Special accents
+$shadow:            #7f6e63; // Subtle warm gray for shadows
+$success-highlight: #a05a2c; // Use primary for success
 
 // ==== Optional references (handy tokens) ====
 $brand-heritage-blue:  #000F46;

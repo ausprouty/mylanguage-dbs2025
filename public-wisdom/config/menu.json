@@ -1,0 +1,14 @@
+[
+  {"key":"jvideo","title":"Jesus Video","image":"/menu/jesus.png","route":"/jvideo","maxLessons":61},
+  {"key":"life","title":"Life Issues","image":"/menu/life.png","route":"/series/life","maxLessons":23},
+  {"key":"ctc","title":"Connect to Community","image":"/menu/community.png","route":"/series/ctc","maxLessons":23},
+  {"key":"obey","title":"Obey","image":"/menu/obey.png","route":"/series/obey","maxLessons":8},
+  {"key":"give","title":"Give","image":"/menu/give.png","route":"/series/give","maxLessons":9},
+  {"key":"relate","title":"Relate","image":"/menu/relate.png","route":"/series/relate","maxLessons":9},
+  {"key":"serve","title":"Serve","image":"/menu/serve.png","route":"/series/serve","maxLessons":9},
+  {"key":"hope","title":"Seven Stories of Hope","image":"/menu/hope.png","route":"/series/hope","maxLessons":7},
+  {"key":"share","title":"Share","image":"/menu/share.png","route":"/series/share","maxLessons":9},
+  {"key":"trust","title":"Trust","image":"/menu/trust.png","route":"/series/trust","maxLessons":17},
+  {"key":"lead","title":"Lead","image":"/menu/lead.png","route":"/series/lead","maxLessons":25},
+  {"key":"disciple","title":"Disciple","image":"/menu/disciple.png","route":"/series/disciple","maxLessons":8}
+]
