@@ -55,7 +55,7 @@ export default configure((ctx) => {
   console.groupEnd();
 
   return {
-    boot: ['i18n', 'localStorage', 'axios', 'language-init', 'version-check'],
+    boot: ['i18n', 'localStorage', 'axios', 'language-init', 'version-check', 'route-resume'],
     css: ['app.scss'],
     extras: [
         'material-icons',      // for icon="menu"

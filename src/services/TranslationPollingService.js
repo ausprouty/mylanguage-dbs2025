@@ -29,6 +29,7 @@ export async function pollTranslationUntilComplete({
 
   // ❗ Hard stop if apiUrl is missing/empty
   if (typeof apiUrl !== 'string' || apiUrl.trim() === '') {
+    console.log(apiUrl);
      console.log(`❌ pollTranslationUntilComplete: 'apiUrl' must be a non-empty string.`);
     throw new TypeError(
       "pollTranslationUntilComplete: 'apiUrl' must be a non-empty string."

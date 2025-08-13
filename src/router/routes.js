@@ -5,9 +5,10 @@ const routes = [
     children: [
 
       {
-        name: "Root",
-        path: "",
-        component: () => import("pages/IndexPage.vue"),
+        name: 'restore',
+        path: '',                // default child of "/"
+        component: () => import('pages/RestorePage.vue'),
+        meta: { resume: false }  // don’t store this page as lastGoodPath
       },
       {
         name: "Index",
