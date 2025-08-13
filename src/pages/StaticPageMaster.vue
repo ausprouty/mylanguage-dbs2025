@@ -1,47 +1,47 @@
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref, computed, watch, onMounted } from "vue";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
 
-const site = (import.meta.env && import.meta.env.VITE_APP) || 'default';
-const base = (import.meta.env && import.meta.env.BASE_URL) || '/';
+const site = (import.meta.env && process.env.VITE_APP) || "default";
+const base = (import.meta.env && import.meta.env.BASE_URL) || "/";
 
 const loading = ref(true);
 const notFound = ref(false);
-const errorMsg = ref('');
-const html = ref('');
+const errorMsg = ref("");
+const html = ref("");
 
-const pageSlug = computed(() => String(route.params.page || '').trim());
+const pageSlug = computed(() => String(route.params.page || "").trim());
 
 function join() {
   const parts = Array.from(arguments).filter(Boolean).map(String);
   let out = parts
     .map((p, i) =>
-      i === 0 ? p.replace(/\/+$/,'') : p.replace(/^\/+|\/+$/g,'')
+      i === 0 ? p.replace(/\/+$/, "") : p.replace(/^\/+|\/+$/g, "")
     )
-    .join('/');
-  if (!out.startsWith('/')) out = '/' + out;
+    .join("/");
+  if (!out.startsWith("/")) out = "/" + out;
   return out;
 }
 
-const menuUrl = computed(() => join(base, site, 'config', 'menu.json'));
+const menuUrl = computed(() => join(base, site, "config", "menu.json"));
 const contentUrl = computed(() =>
-  join(base, site, 'content', `${pageSlug.value}.html`)
+  join(base, site, "content", `${pageSlug.value}.html`)
 );
 
 function normRoute(r) {
-  if (!r) return '';
+  if (!r) return "";
   let s = String(r);
-  if (!s.startsWith('/')) s = '/' + s;
-  return s.replace(/\/+$/,''); // strip trailing slash
+  if (!s.startsWith("/")) s = "/" + s;
+  return s.replace(/\/+$/, ""); // strip trailing slash
 }
 
 async function loadPage() {
   loading.value = true;
   notFound.value = false;
-  errorMsg.value = '';
-  html.value = '';
+  errorMsg.value = "";
+  html.value = "";
 
   const slug = pageSlug.value;
   if (!slug) {
@@ -51,13 +51,14 @@ async function loadPage() {
   }
 
   try {
-    const m = await fetch(menuUrl.value, { cache: 'no-store' });
+    const m = await fetch(menuUrl.value, { cache: "no-store" });
     if (!m.ok) throw new Error(`menu.json (${m.status})`);
     const items = await m.json(); // [{ key, title, image, route, maxLessons }, ...]
-    console.log (items);
+    console.log(items);
     const wanted = normRoute(`/page/${slug}`);
-    const exists = Array.isArray(items) &&
-      items.some(it => normRoute(it && it.route) === wanted);
+    const exists =
+      Array.isArray(items) &&
+      items.some((it) => normRoute(it && it.route) === wanted);
 
     if (!exists) {
       notFound.value = true;
@@ -65,7 +66,7 @@ async function loadPage() {
       return;
     }
 
-    const c = await fetch(contentUrl.value, { cache: 'no-store' });
+    const c = await fetch(contentUrl.value, { cache: "no-store" });
     if (!c.ok) throw new Error(`${slug}.html (${c.status})`);
     html.value = await c.text();
   } catch (e) {
@@ -85,11 +86,19 @@ watch(() => route.params.page, loadPage);
       <q-spinner-dots size="32px" />
     </div>
 
-    <q-banner v-else-if="notFound" class="bg-warning text-black q-mb-md" rounded>
+    <q-banner
+      v-else-if="notFound"
+      class="bg-warning text-black q-mb-md"
+      rounded
+    >
       Sorry, that page isn’t in the menu for this site.
     </q-banner>
 
-    <q-banner v-else-if="errorMsg" class="bg-negative text-white q-mb-md" rounded>
+    <q-banner
+      v-else-if="errorMsg"
+      class="bg-negative text-white q-mb-md"
+      rounded
+    >
       {{ errorMsg }}
     </q-banner>
 
@@ -98,5 +107,8 @@ watch(() => route.params.page, loadPage);
 </template>
 
 <style scoped>
-:deep(img) { max-width: 100%; height: auto; }
+:deep(img) {
+  max-width: 100%;
+  height: auto;
+}
 </style>

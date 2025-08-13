@@ -23,6 +23,12 @@ export default configure((ctx) => {
     ? varsCandidate
     : 'src/css/quasar.variables.scss';
   console.log('scssVariables:', varsRel);
+  // after you compute varsRel
+  const varsAbs = path.resolve(__dirname, varsRel);
+  // Sass on Windows is happier with forward slashes:
+  const varsAbsPosix = varsAbs.split(path.sep).join('/');
+
+  console.log('scssVariables (abs):', varsAbsPosix);
 
 
   // Public dir: candidate + resolved fallback
@@ -67,13 +73,17 @@ export default configure((ctx) => {
       iconSet: 'material-icons', // optional; controls Quasar’s internal icons
       plugins: ['Notify', 'Dialog']
     },
+    vite: {
+      cacheDir: path.resolve(__dirname, `node_modules/.vite-${site}`),   // site-specific cache
+    },
+
 
     build: {
       env: { VITE_APP: site, VITE_SITE_KEY: site },
       vueRouterMode: 'history',
       distDir: `dist/site-${site}`,
       publicPath: base,
-      scssVariables: varsRel,
+      scssVariables:  varsAbsPosix,
 
       extendViteConf(viteConf) {
         viteConf.publicDir = publicDir;
@@ -83,6 +93,13 @@ export default configure((ctx) => {
           __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
           __SITE__: JSON.stringify(site)
         };
+        // EXTRA SAFETY: also force-add to every SCSS file via additionalData
+        viteConf.css ??= {};
+        viteConf.css.preprocessorOptions ??= {};
+        viteConf.css.preprocessorOptions.scss ??= {};
+        const add = `@use "${varsAbsPosix}" as *;`;
+        const existing = viteConf.css.preprocessorOptions.scss.additionalData || '';
+        viteConf.css.preprocessorOptions.scss.additionalData = add + existing;
 
         const existingAlias =
           (viteConf.resolve && viteConf.resolve.alias) || {};

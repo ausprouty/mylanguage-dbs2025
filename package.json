@@ -5,16 +5,19 @@
   "productName": "Discovering Spiritual Community",
   "author": "ausprouty <bob.prouty@powertochange.org.au>",
   "private": true,
-
   "scripts": {
-    "dev:dbs": "cross-env SITE=dbs quasar dev -m pwa -- --mode dbs",
-    "dev:uom": "cross-env SITE=uom quasar dev -m pwa -- --mode uom",
+
+    "clean": "rimraf --glob \"node_modules/.vite-*\" dist .quasar",
+    "clean:site": "rimraf dist/site-%SITE% node_modules/.vite-%SITE%",
+    "dev:dbs": "yarn clean:site && cross-env SITE=dbs quasar dev -m pwa",
+    "build:dbs": "yarn clean:site && cross-env SITE=dbs quasar build -m pwa",
+    "dev:uom": "yarn clean:site && cross-env SITE=uom quasar dev -m pwa",
+    "build:uom": "yarn clean:site && cross-env SITE=uom quasar build -m pwa",
+
     "dev:guru": "cross-env SITE=guru quasar dev -m pwa -- --mode guru",
     "dev:wisdom": "cross-env SITE=wisdom quasar dev -m pwa -- --mode wisdom",
     "dev:wsu": "cross-env SITE=wsu quasar dev -m pwa -- --mode wsu",
 
-    "build:dbs": "quasar build -m pwa -- --mode dbs",
-    "build:uom": "quasar build -m pwa -- --mode uom",
     "build:guru": "quasar build -m pwa -- --mode guru",
     "build:wisdom": "quasar build -m pwa -- --mode wisdom",
     "build:wsu": "quasar build -m pwa -- --mode wsu",
@@ -59,6 +62,7 @@
     "jsdom": "^26.1.0",
     "postcss": "^8.4.14",
     "prettier": "^2.5.1",
+    "rimraf": "^6.0.1",
     "sass": "^1.88.0",
     "typescript": "^5.7.3",
     "vitest": "^3.2.4",

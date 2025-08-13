@@ -21,11 +21,13 @@ const fallback = "eng00";
  */
 export async function getTranslatedInterface(languageCodeHL, hasRetried = false) {
   const languageStore = useLanguageStore();
-  const app = import.meta.env.VITE_APP;
-  const cronKey = import.meta.env.VITE_CRON_KEY;
+  const app = process.env.VITE_APP;
+  console.log('in services/InterfaceService for App ' + app);
+  const cronKey = process.env.VITE_CRON_KEY;
 
   try {
     let messages = await getInterfaceFromDB(languageCodeHL);
+
 
     if (!messages) {
       const res = await currentApi.get(`/api/translate/interface/${languageCodeHL}/${app}`);
@@ -50,6 +52,7 @@ export async function getTranslatedInterface(languageCodeHL, hasRetried = false)
     }
 
     if (messages) {
+      console.log (messages)
       i18n.global.setLocaleMessage(languageCodeHL, messages);
       i18n.global.locale.value = languageCodeHL;
 

@@ -10,7 +10,7 @@ import { getTranslatedInterface } from "src/services/InterfaceService";
  */
 export async function loadInterfaceTranslation(languageCodeHL) {
   console.log(
-    "loadInterfaceTranslationis calling getTranslatedInterface with " +
+    "src/i18n/loadInterfaceTranslation is calling services/InterfaceService/getTranslatedInterface with " +
       languageCodeHL
   );
   await getTranslatedInterface(languageCodeHL);
