@@ -43,10 +43,10 @@ export async function getTranslatedInterface(languageCodeHL, hasRetried = false)
         pollTranslationUntilComplete({
           languageCodeHL,
           translationType: 'interface',
-          endpoint: `/api/translate/interface/${languageCodeHL}/${app}`,
-          saveToDB: saveInterfaceToDB,
+          apiUrl: `/api/translate/interface/${languageCodeHL}/${app}`,
+          dbSetter: saveInterfaceToDB,
           maxAttempts: 5,
-          interval: 1000,
+          interval: 300,
         });
       }
     }

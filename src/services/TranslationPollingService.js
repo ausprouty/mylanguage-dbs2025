@@ -55,7 +55,9 @@ export async function pollTranslationUntilComplete({
       // Fetch translation from the API
       console.log(apiUrl)
       const response = await currentApi.get(apiUrl);
+      console.log (response);
       const translation = response.data.data;
+      console.log (translation);
 
 
       // ✅ Update store if provided
@@ -73,6 +75,8 @@ export async function pollTranslationUntilComplete({
       }
 
       const isComplete = translation?.language?.translationComplete === true;
+      console.log (translation?.language?.translationComplete);
+      consolelog (isComplete)
 
       // ✅ Update translationComplete flag in store
       if (store?.setTranslationComplete) {
