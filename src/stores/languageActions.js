@@ -8,6 +8,23 @@ import {
 } from "./validators";
 
 export const languageActions = {
+  normalizeShapes() {
+    if (
+      !this.lessonNumber ||
+      typeof this.lessonNumber !== "object" ||
+      Array.isArray(this.lessonNumber)
+    ) {
+      this.lessonNumber = { ctc: 1, lead: 1, life: 1, jvideo: 1 };
+    }
+    if (
+      !this.maxLessons ||
+      typeof this.maxLessons !== "object" ||
+      Array.isArray(this.maxLessons)
+    ) {
+      this.maxLessons = {};
+    }
+    if (!Array.isArray(this.menu)) this.menu = [];
+  },
   setCurrentStudy(study) {
     if (!validateNonEmptyString(study)) {
       console.warn(`setCurrentStudy: Invalid study '${study}'.`);

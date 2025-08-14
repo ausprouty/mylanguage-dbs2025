@@ -61,7 +61,7 @@ export default configure((ctx) => {
   console.groupEnd();
 
   return {
-    boot: ['i18n', 'axios', 'language-init','menu-hydrate', 'route-resume','version-check' ],
+    boot: ['pinia', 'i18n', 'axios', 'language-init','menu-hydrate', 'route-resume','version-check' ],
     css: ['app.scss'],
     extras: [
         'material-icons',      // for icon="menu"

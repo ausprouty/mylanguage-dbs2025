@@ -4,7 +4,6 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 
-const site = (import.meta.env && process.env.VITE_APP) || "default";
 const base = (import.meta.env && import.meta.env.BASE_URL) || "/";
 
 const loading = ref(true);

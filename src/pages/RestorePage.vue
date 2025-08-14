@@ -2,7 +2,7 @@
 export default {
   name: "RestorePage",
   async created() {
-    const siteKey = process.env.VITE_APP || "default";
+    const siteKey = import.meta.env.VITE_APP || "default";
     const key = `lastGoodPath:${siteKey}`;
     const fallback = "/index";
 

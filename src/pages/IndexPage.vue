@@ -9,16 +9,16 @@ const router = useRouter();
 const { t } = useI18n();
 const languageStore = useLanguageStore();
 
-const loading = computed(() =>
-  languageStore.menuStatus === 'loading' &&
-  (!languageStore.menu || languageStore.menu.length === 0)
+const loading = computed(
+  () =>
+    languageStore.menuStatus === "loading" &&
+    (!languageStore.menu || languageStore.menu.length === 0)
 );
 const error = computed(() => languageStore.menuError);
 const menuItems = computed(() => languageStore.menu || []);
 
 const handleImageClick = (to) => {
-  if (!to) return;
-  router.push(to);
+  if (to) router.push(to);
 };
 
 const openExternalWebsite = async () => {
@@ -31,8 +31,8 @@ const openExternalWebsite = async () => {
     if (!win || win.closed || typeof win.closed === "undefined") {
       window.location.href = externalURL;
     }
-  } catch (error) {
-    console.error("Error fetching external URL:", error);
+  } catch (err) {
+    console.error("Error fetching external URL:", err);
   }
 };
 </script>
@@ -71,3 +71,65 @@ const openExternalWebsite = async () => {
     </div>
   </q-page>
 </template>
+
+<style scoped>
+
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.menu-col {
+  flex: 1 1 calc(50% - 8px); /* 2 items per row with 16px gap */
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .menu-col {
+    flex: 1 1 100%; /* stack to 1 item per row on small screens */
+  }
+}
+
+.menu-card {
+  background-color: #dddddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+  cursor: pointer;
+}
+
+.menu-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.menu-picture {
+  display: block;
+  width: 85%;
+  margin: 12px auto 2px auto;
+  height: auto;
+  object-fit: cover;
+}
+
+
+.menu-label h6 {
+  margin: 0 0 4px 0; /* top, right, bottom, left */
+  font-size: 1.5rem; /* Optional: adjust text size */
+  text-align: center;
+}
+
+.menu-label p {
+  margin: 0;
+}
+
+img.icon {
+  height: 30px;
+  cursor: pointer;
+}
+
+</style>
