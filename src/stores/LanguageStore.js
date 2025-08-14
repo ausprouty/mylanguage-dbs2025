@@ -8,12 +8,10 @@ export const useLanguageStore = defineStore("languageStore", {
     currentStudy: "ctc",
     appVersion: null,
     currentPath: null,
-    lessonNumber: {
-      ctc: 1,
-      lead: 1,
-      life: 1,
-      jvideo: 1,
-    },
+    // from public-<site>/menu.json
+    lessonNumber: {},
+    maxLessons: {},
+    menu:[],
 
     languages: [],
     languageSelected:{},
@@ -38,6 +36,8 @@ export const useLanguageStore = defineStore("languageStore", {
           "currentPath",
           "currentStudy",
           "lessonNumber",
+          "maxLessons",
+          "menu",
           "languageSelected",
           "languagesUsed",
           "followingHimSegment",
