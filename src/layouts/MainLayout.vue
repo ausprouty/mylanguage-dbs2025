@@ -1,12 +1,26 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed, watch } from "vue";
+import { useRoute } from "vue-router";
+import { useLanguageStore } from "stores/LanguageStore";
 import LanguageOptions from "components/language/LanguageOptionsB.vue";
 import ShareLink from "components/ShareLink.vue";
+
+const route = useRoute();
+const store = useLanguageStore();
+
 const rightDrawerOpen = ref(false);
+const brandTitle = computed(() => store.brandTitle || "Not Set");
 
 function toggleRightDrawer() {
   rightDrawerOpen.value = !rightDrawerOpen.value;
 }
+
+watch(
+  () => route.fullPath,
+  () => {
+    rightDrawerOpen.value = false;
+  }
+);
 </script>
 
 <template>
@@ -16,8 +30,8 @@ function toggleRightDrawer() {
         <q-btn flat dense round icon="menu" aria-label="Menu" to="/index" />
 
         <q-toolbar-title>
-          <router-link to="/index" exact class="toolbar-title">
-            Discovering Community
+          <router-link to="/index" class="toolbar-title">
+            {{ brandTitle }}
           </router-link>
         </q-toolbar-title>
 
@@ -36,15 +50,18 @@ function toggleRightDrawer() {
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="rightDrawerOpen" side="right" bordered>
+    <q-drawer
+      side="right"
+      v-model="rightDrawerOpen"
+      overlay
+      elevated
+      :width="320"
+    >
       <LanguageOptions />
     </q-drawer>
 
     <q-page-container>
-      <div class="page-width">
-        <router-view />
-        <footer class="footer">Copyright 2025 Power to Change</footer>
-      </div>
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>

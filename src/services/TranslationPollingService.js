@@ -1,20 +1,22 @@
-import { currentApi } from "boot/axios";
-import { i18n } from "boot/i18n";
+import { currentApi } from 'boot/axios'
+import { i18n } from 'boot/i18n'
+import { normId } from 'src/utils/normalize' // if you don't have this, inline a simple normalizer
 
-const activePolls = new Set();
+const activePolls = new Set()
+const ALLOWED_TYPES = new Set(['interface', 'commonContent', 'lessonContent'])
 
 /**
  * Polls for translation completion and updates store, IndexedDB, and i18n state.
  *
- * @param {Object} options - Options for polling translation status.
- * @param {string} options.languageCodeHL - HL language code.
- * @param {string} options.translationType - 'interface' | 'commonContent' | 'lessonContent'.
- * @param {string} options.apiUrl - URL to fetch translation data.
- * @param {Function} options.dbSetter - Function to save translation to IndexedDB.
- * @param {Object} options.store - Pinia content store.
- * @param {Function} options.storeSetter - Function to save translation into the store.
- * @param {number} [options.maxAttempts=5] - Maximum polling attempts.
- * @param {number} [options.interval=300] - Delay between polling attempts (ms).
+ * @param {Object} options
+ * @param {string} options.languageCodeHL
+ * @param {'interface'|'commonContent'|'lessonContent'} options.translationType
+ * @param {string} options.apiUrl
+ * @param {Function} options.dbSetter             // save to IDB. Accepts (hl, data) or (data)
+ * @param {Object=} options.store                 // Pinia store instance (optional)
+ * @param {Function=} options.storeSetter         // (store, data) -> void (optional)
+ * @param {number=} options.maxAttempts           // default 5
+ * @param {number=} options.interval              // ms, default 300
  */
 export async function pollTranslationUntilComplete({
   languageCodeHL,
@@ -24,91 +26,116 @@ export async function pollTranslationUntilComplete({
   store,
   storeSetter,
   maxAttempts = 5,
-  interval = 300,
+  interval = 300
 }) {
+  // ---- input validation ----
+  const hl = normId ? normId(languageCodeHL) : String(languageCodeHL ?? '').trim()
+  if (!hl) throw new Error("[poll] 'languageCodeHL' is required")
 
-  // ❗ Hard stop if apiUrl is missing/empty
+  if (!ALLOWED_TYPES.has(translationType)) {
+    throw new TypeError(`[poll] Invalid translationType: ${translationType}`)
+  }
+
   if (typeof apiUrl !== 'string' || apiUrl.trim() === '') {
-    console.log(apiUrl);
-     console.log(`❌ pollTranslationUntilComplete: 'apiUrl' must be a non-empty string.`);
-    throw new TypeError(
-      "pollTranslationUntilComplete: 'apiUrl' must be a non-empty string."
-    );
+    throw new TypeError("[poll] 'apiUrl' must be a non-empty string")
   }
 
-  const pollKey = `${translationType}:${languageCodeHL}`;
+  maxAttempts = Math.max(1, parseInt(maxAttempts, 10) || 5)
+  interval = Math.max(100, parseInt(interval, 10) || 300) // don't hammer the server
 
-  // Prevent duplicate polling for the same language/type
+  const pollKey = `${translationType}:${hl}`
+
+  // prevent duplicate polls
   if (activePolls.has(pollKey)) {
-    console.log(`⏳ Polling already active for ${pollKey}`);
-    return;
+    console.log(`⏳ Poll already active for ${pollKey}`)
+    return
   }
-  activePolls.add(pollKey);
+  activePolls.add(pollKey)
 
-  let attempts = 0;
+  let attempts = 0
+
+  const finish = () => activePolls.delete(pollKey)
 
   const poll = async () => {
-    attempts++;
+    attempts++
     try {
-      console.log(`🔄 Polling ${translationType} (attempt ${attempts})`);
+      console.log(`🔄 Polling ${translationType} for ${hl} (attempt ${attempts})`)
+      const res = await currentApi.get(apiUrl)
+      const translation = res?.data?.data ?? res?.data ?? null
 
-      // Fetch translation from the API
-      console.log(apiUrl)
-      const response = await currentApi.get(apiUrl);
-      console.log (response);
-      const translation = response.data.data;
-      console.log (translation);
-
-
-      // ✅ Update store if provided
-      if (typeof storeSetter === "function" && store) {
-        storeSetter(store, translation);
+      if (!translation || typeof translation !== 'object') {
+        console.warn('[poll] Empty or invalid translation payload')
       }
-      // ✅ Set i18n messages if this is interface translation
-      if (translationType === "interface") {
-        i18n.global.setLocaleMessage(languageCodeHL, translation);
-        i18n.global.locale.value = languageCodeHL;
-        const googleLangCode = translation?.language?.google;
-        if (googleLangCode) {
-          document.querySelector("html")?.setAttribute("lang", googleLangCode);
+
+      // update store (optional)
+      if (typeof storeSetter === 'function' && store) {
+        try {
+          storeSetter(store, translation)
+        } catch (e) {
+          console.warn('[poll] storeSetter threw:', e)
         }
       }
 
-      const isComplete = translation?.language?.translationComplete === true;
-      console.log (translation?.language?.translationComplete);
-      consolelog (isComplete)
+      // i18n updates for interface
+      if (translationType === 'interface' && translation) {
+        i18n.global.setLocaleMessage(hl, translation)
+        i18n.global.locale.value = hl
 
-      // ✅ Update translationComplete flag in store
+        // prefer explicit html lang if present, else HL
+        const htmlLang = translation?.language?.html || translation?.language?.google || hl
+        document.querySelector('html')?.setAttribute('lang', htmlLang)
+      }
+
+      const isComplete = translation?.language?.translationComplete === true
+      console.log('translationComplete:', isComplete)
+
       if (store?.setTranslationComplete) {
-        store.setTranslationComplete(translationType, isComplete);
+        try {
+          store.setTranslationComplete(translationType, !!isComplete)
+        } catch (e) {
+          console.warn('[poll] setTranslationComplete threw:', e)
+        }
       }
 
-      // ✅ Save to IndexedDB if applicable
-      if (typeof dbSetter === "function") {
-        await dbSetter(translation);
+      // save to IDB (support both arities)
+      if (typeof dbSetter === 'function') {
+        try {
+          if (dbSetter.length >= 2) {
+            await dbSetter(hl, translation)
+          } else {
+            await dbSetter(translation)
+          }
+        } catch (e) {
+          console.warn('[poll] dbSetter threw:', e)
+        }
       }
-
 
       if (isComplete) {
-        console.log(`✅ ${translationType} translation complete.`);
-        activePolls.delete(pollKey);
-      } else if (attempts < maxAttempts) {
-        // 🔁 Not complete yet — requeue cron job and poll again later
-        const cronKey = translation?.language?.cronKey;
-        console.log(`⏳ ${translationType} incomplete. Queueing cron job...`);
-        currentApi.get(`/api/translate/cron/${cronKey}`).catch(err => {
-          console.warn("⚠️ Translation queue cron failed:", err);
-        });
-        setTimeout(poll, interval);
+        console.log(`✅ ${translationType} for ${hl} is complete`)
+        finish()
+        return
+      }
+
+      if (attempts < maxAttempts) {
+        // nudge the backend queue if we have a token on the payload
+        const cronKey = translation?.language?.cronKey
+        if (cronKey) {
+          currentApi
+            .get(`/api/translate/cron?token=${encodeURIComponent(cronKey)}`)
+            .catch(err => console.warn('⚠️ Cron trigger failed:', err))
+        }
+
+        setTimeout(poll, interval)
       } else {
-        console.warn(`❌ ${translationType} polling exceeded max attempts.`);
-        activePolls.delete(pollKey);
+        console.warn(`❌ ${translationType} polling exceeded max attempts for ${hl}`)
+        finish()
       }
     } catch (error) {
-      console.error(`💥 Polling error for ${translationType}:`, error);
-      activePolls.delete(pollKey);
+      console.error(`💥 Polling error for ${translationType} ${hl}:`, error)
+      finish()
     }
-  };
+  }
 
-  poll();
+  // fire-and-forget
+  poll()
 }

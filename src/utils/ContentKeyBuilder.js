@@ -1,83 +1,46 @@
-import { unref } from 'vue';
+import { normId, normIntish } from 'src/utils/normalize'
 
-/**
- * Validates a key part to ensure it's usable (not object/undefined/null).
- * Returns unwrapped value if valid, otherwise throws an error.
- */
-function safePart(value, label) {
-  const v = unref(value);
-  const type = typeof v;
-
-  if (v === undefined || v === null) {
-    console.error(`Key part "${label}" is missing or null.`);
-    throw new Error(`Invalid key part: "${label}" is ${v}`);
-  }
-
-  if (type === 'object') {
-    console.error(`Key part "${label}" is an object:`, v);
-    throw new Error(`Invalid key part: "${label}" is an object`);
-  }
-
-  return v;
+// Ensure a normalized part is present
+function ensure(part, label) {
+  if (!part) throw new Error(`Invalid key part: ${label}`)
+  return part
 }
 
 export function buildCommonContentKey(study, languageCodeHL) {
-  try {
-    const s = safePart(study, 'study');
-    const hl = safePart(languageCodeHL, 'languageCodeHL');
-    return `commonContent-${s}-${hl}`;
-  } catch {
-    return null;
-  }
+  const s  = ensure(normId(study), 'study')
+  const hl = ensure(normId(languageCodeHL), 'languageCodeHL')
+  return `commonContent-${s}-${hl}`
 }
 
 export function buildLessonContentKey(study, languageCodeHL, languageCodeJF, lesson) {
-  try {
-    const s = safePart(study, 'study');
-    const hl = safePart(languageCodeHL, 'languageCodeHL');
-    const jf = safePart(languageCodeJF, 'languageCodeJF');
-    const l = safePart(lesson, 'lesson');
-    return `lessonContent-${s}-${hl}-${jf}-lesson-${l}`;
-  } catch {
-    return null;
-  }
+  const s  = ensure(normId(study), 'study')
+  const hl = ensure(normId(languageCodeHL), 'languageCodeHL')
+  const jf = ensure(normIntish(languageCodeJF), 'languageCodeJF')
+  const l  = ensure(normIntish(lesson), 'lesson')
+  return `lessonContent-${s}-${hl}-${jf}-lesson-${l}`
 }
 
 export function buildInterfaceKey(languageCodeHL) {
-  try {
-    const hl = safePart(languageCodeHL, 'languageCodeHL');
-    return `interface-${hl}`;
-  } catch {
-    return null;
-  }
+  const hl = ensure(normId(languageCodeHL), 'languageCodeHL')
+  return `interface-${hl}`
 }
 
 export function buildNotesKey(study, lesson, position) {
-  try {
-    const s = safePart(study, 'study');
-    const l = safePart(lesson, 'lesson');
-    const p = safePart(position ?? '0', 'position'); // default fallback to '0'
-    return `notes-${s}-${l}-${p}`;
-  } catch {
-    return null;
-  }
+  const s  = ensure(normId(study), 'study')
+  const l  = ensure(normIntish(lesson), 'lesson')
+  // default position to '0' after normalization
+  const p  = normIntish(position)
+  const pos = p || '0'
+  return `notes-${s}-${l}-${pos}`
 }
 
 export function buildVideoUrlsKey(study, languageCodeJF) {
-  try {
-    const s = safePart(study, 'study');
-    const jf = safePart(languageCodeJF, 'languageCodeJF');
-    return `videoUrls-${s}-${jf}`;
-  } catch {
-    return null;
-  }
+  const s  = ensure(normId(study), 'study')
+  const jf = ensure(normIntish(languageCodeJF), 'languageCodeJF')
+  return `videoUrls-${s}-${jf}`
 }
 
 export function buildStudyProgressKey(study) {
-  try {
-    const s = safePart(study, 'study');
-    return `progress-${s}`;
-  } catch {
-    return null;
-  }
+  const s = ensure(normId(study), 'study')
+  return `progress-${s}`
 }

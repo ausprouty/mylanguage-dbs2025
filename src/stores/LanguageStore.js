@@ -1,22 +1,21 @@
 // stores/LanguageStore.js
 import { defineStore } from "pinia";
-import { languageGetters } from './languageGetters';
-import { languageActions } from './languageActions';
+import { languageGetters } from "./languageGetters";
+import { languageActions } from "./languageActions";
 
 export const useLanguageStore = defineStore("languageStore", {
   state: () => ({
     currentStudy: "ctc",
     appVersion: null,
+    brandTitle: "",
     currentPath: null,
 
     // keep defaults; we will merge/fill later
     lessonNumber: { ctc: 1, lead: 1, life: 1, jvideo: 1 },
     maxLessons: {},
-
     menu: [],
-    menuStatus: 'idle',
+    menuStatus: "idle",
     menuError: null,
-
     languages: [],
     languageSelected: {},
     languagesUsed: [],
@@ -28,21 +27,35 @@ export const useLanguageStore = defineStore("languageStore", {
   actions: languageActions,
   persist: {
     enabled: true,
-    strategies: [{
-      key: 'languageStore',
-      storage: localStorage,
-      paths: [
-        "appVersion","currentPath","currentStudy",
-        "lessonNumber","maxLessons","menu",
-        "languageSelected","languagesUsed",
-        "followingHimSegment","jVideoSegments",
-        "previousPage","languages"
-      ],
-      // 👇 these hooks run when the plugin restores persisted state
-      beforeRestore: (ctx) => { /* optional logging */ },
-      afterRestore: (ctx) => {
-        ctx.store.normalizeShapes();
-      }
-    }]
-  }
+    strategies: [
+      {
+        key: "languageStore",
+        storage: localStorage,
+        paths: [
+          "appVersion",
+          "brandTitle",
+          "currentPath",
+          "currentStudy",
+          "lessonNumber",
+          "maxLessons",
+          "menu",
+          "languageSelected",
+          "languagesUsed",
+          "followingHimSegment",
+          "jVideoSegments",
+          "previousPage",
+          "languages",
+        ],
+        // 👇 these hooks run when the plugin restores persisted state
+        beforeRestore: (ctx) => {
+          /* optional logging */
+        },
+        afterRestore: (ctx) => {
+          ctx.store.normalizeShapes();
+          if (typeof ctx.store.brandTitle !== "string")
+            ctx.store.brandTitle = "";
+        },
+      },
+    ],
+  },
 });

@@ -1,6 +1,6 @@
 import { clearTable } from "src/services/IndexedDBService";
 import { useContentStore } from "src/stores/ContentStore";
-import { loadInterfaceTranslation } from "src/i18n/loadInterfaceTranslation";
+
 
 export async function clearOrUpdateData() {
   const contentStore = useContentStore();

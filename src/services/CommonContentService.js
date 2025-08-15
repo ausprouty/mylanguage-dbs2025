@@ -1,28 +1,33 @@
-import { useContentStore } from "stores/ContentStore";
-import { getContentWithFallback } from "src/services/ContentLoaderService";
-import { buildCommonContentKey } from 'src/utils/ContentKeyBuilder';
-
+import { unref } from 'vue'
+import { normId } from 'src/utils/normalize'
+import { useContentStore } from 'stores/ContentStore'
+import { getContentWithFallback } from 'src/services/ContentLoaderService'
+import { buildCommonContentKey } from 'src/utils/ContentKeyBuilder'
 import {
   getCommonContentFromDB,
-  saveCommonContentToDB,
-} from "./IndexedDBService";
+  saveCommonContentToDB
+} from './IndexedDBService'
+
+
 
 export async function getCommonContent(languageCodeHL, study) {
-  console.log ('I just entered CommonContentService');
-  const key = buildCommonContentKey(study, languageCodeHL);
-  const contentStore = useContentStore();
-  console.log("getCommonContent called for " + key);
-  const result = await getContentWithFallback({
+  const hl = normId(languageCodeHL)
+  const studyId = normId(study)
+  if (!studyId || !hl) throw new Error('study and languageCodeHL required')
+
+  const apiUrl = `api/translate/commonContent/${hl}/${studyId}`
+
+  const key = buildCommonContentKey(studyId, hl)
+  const contentStore = useContentStore()
+
+  return await getContentWithFallback({
     key,
-    store: contentStore, // ✅ inject it here
-    storeGetter: (store) => store.commonContentFor(study, languageCodeHL),
-    storeSetter: (store, data) =>
-      store.setCommonContent(study, languageCodeHL, data),
-    dbGetter: () => getCommonContentFromDB(study, languageCodeHL),
-    dbSetter: (data) => saveCommonContentToDB(study, languageCodeHL, data),
-    apiUrl: `api/translate/commonContent/${languageCodeHL}/${study.value}`,
-    translationType: "commonContent",
-  });
-  console.log(result);
-  return result;
+    store: contentStore,
+    storeGetter: (store) => store.commonContentFor(studyId, hl),
+    storeSetter: (store, data) => store.setCommonContent(studyId, hl, data),
+    dbGetter: () => getCommonContentFromDB(studyId, hl),
+    dbSetter: (data) => saveCommonContentToDB(studyId, hl, data),
+    apiUrl,
+    translationType: 'commonContent'
+  })
 }

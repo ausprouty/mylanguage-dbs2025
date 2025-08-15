@@ -1,74 +1,99 @@
-import { i18n } from "boot/i18n";
-import { useLanguageStore } from "stores/LanguageStore";
-import { currentApi } from "boot/axios";
-import { pollTranslationUntilComplete } from "src/services/TranslationPollingService";
-import { getLanguageObjectFromHL } from "src/i18n/detectLanguage";
+import { i18n } from 'boot/i18n'
+import { useLanguageStore } from 'stores/LanguageStore'
+import { currentApi } from 'boot/axios'
+import { pollTranslationUntilComplete }
+  from 'src/services/TranslationPollingService'
+import { getLanguageObjectFromHL } from 'src/i18n/detectLanguage'
 import {
   getInterfaceFromDB,
-  saveInterfaceToDB,
-} from "src/services/IndexedDBService";
+  saveInterfaceToDB
+} from 'src/services/IndexedDBService'
+import { normId } from 'src/utils/normalize'
 
-const fallback = "eng00";
+const FALLBACK_HL = 'eng00'
 
 /**
- * Loads and sets the translated interface for a given HL language code.
+ * Loads and sets the translated interface for a given HL code.
  * - Checks IndexedDB first
- * - Falls back to API fetch
+ * - Falls back to API
  * - Uses fallback language once if needed
- *
- * @param {string} languageCodeHL
- * @param {boolean} hasRetried
  */
-export async function getTranslatedInterface(languageCodeHL, hasRetried = false) {
-  const languageStore = useLanguageStore();
-  const app = process.env.VITE_APP;
-  console.log('in services/InterfaceService for App ' + app);
-  const cronKey = process.env.VITE_CRON_KEY;
+export async function getTranslatedInterface(
+  languageCodeHL,
+  hasRetried = false
+) {
+  const languageStore = useLanguageStore()
+
+  const hl = normId(languageCodeHL)
+  const app = normId(import.meta.env.VITE_APP) || 'default'
+  const cronKey = normId(import.meta.env.VITE_CRON_KEY)
+
+  if (!hl) {
+    console.error('[InterfaceService] Missing languageCodeHL', { languageCodeHL })
+    // attempt fallback once
+    if (!hasRetried && FALLBACK_HL !== languageCodeHL) {
+      return getTranslatedInterface(FALLBACK_HL, true)
+    }
+    return
+  }
+
+  console.log('[InterfaceService] app:', app, 'hl:', hl)
 
   try {
-    let messages = await getInterfaceFromDB(languageCodeHL);
+    // 1) try IndexedDB
+    let messages = await getInterfaceFromDB(hl)
 
-
+    // 2) fetch if not in DB
     if (!messages) {
-      const res = await currentApi.get(`/api/translate/interface/${languageCodeHL}/${app}`);
-      messages = res.data.data;
+      const apiUrl = `/api/translate/interface/${hl}/${app}`
+      const res = await currentApi.get(apiUrl)
 
+      // support either {data:{...}} or {...}
+      messages = res?.data?.data ?? res?.data ?? null
+
+      // 3) save or trigger translation & poll
       if (messages?.language?.translationComplete) {
-        await saveInterfaceToDB(languageCodeHL, messages);
+        await saveInterfaceToDB(hl, messages)
       } else {
-        // Trigger translation cron
-        currentApi.get(`/api/translate/cron?token=${cronKey}`).catch(() => {});
+        if (cronKey) {
+          currentApi
+            .get(`/api/translate/cron?token=${cronKey}`)
+            .catch(() => {})
+        }
 
-        // Poll until translation is complete
+        // fire-and-forget polling; it will call saveInterfaceToDB when ready
         pollTranslationUntilComplete({
-          languageCodeHL,
+          languageCodeHL: hl,
           translationType: 'interface',
-          apiUrl: `/api/translate/interface/${languageCodeHL}/${app}`,
-          dbSetter: saveInterfaceToDB,
+          apiUrl,
+          dbSetter: (hlCode, data) => saveInterfaceToDB(hlCode, data),
           maxAttempts: 5,
-          interval: 300,
-        });
+          interval: 300
+        })
       }
     }
 
+    // 4) apply to i18n if we have something
     if (messages) {
-      console.log (messages)
-      i18n.global.setLocaleMessage(languageCodeHL, messages);
-      i18n.global.locale.value = languageCodeHL;
+      i18n.global.setLocaleMessage(hl, messages)
+      i18n.global.locale.value = hl
 
-      // Optional: update language object in Pinia
-      // const languageObject = getLanguageObjectFromHL(languageCodeHL);
-      // if (languageObject) {
-      //   languageStore.setLanguageObjectSelected(languageObject);
-      // }
+      // Optional: update Pinia’s language object
+      // const langObj = getLanguageObjectFromHL(hl)
+      // if (langObj) languageStore.setLanguageObjectSelected(langObj)
 
-      document.querySelector("html")?.setAttribute("lang", languageCodeHL);
+      document.querySelector('html')?.setAttribute('lang', hl)
+      return
+    }
+
+    // 5) fallback once if nothing came back
+    if (!hasRetried && hl !== FALLBACK_HL) {
+      return getTranslatedInterface(FALLBACK_HL, true)
     }
   } catch (error) {
-    console.error(`[InterfaceService] Failed to load interface for ${languageCodeHL}`, error);
-
-    if (!hasRetried && languageCodeHL !== fallback) {
-      await getTranslatedInterface(fallback, true);
+    console.error(`[InterfaceService] Load failed for ${hl}`, error)
+    if (!hasRetried && hl !== FALLBACK_HL) {
+      return getTranslatedInterface(FALLBACK_HL, true)
     }
   }
 }

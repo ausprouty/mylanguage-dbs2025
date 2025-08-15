@@ -25,6 +25,9 @@ export const languageActions = {
     }
     if (!Array.isArray(this.menu)) this.menu = [];
   },
+  setBrandTitle(title) {
+    this.brandTitle = typeof title === 'string' ? title.trim() : ''
+  },
   setCurrentStudy(study) {
     if (!validateNonEmptyString(study)) {
       console.warn(`setCurrentStudy: Invalid study '${study}'.`);

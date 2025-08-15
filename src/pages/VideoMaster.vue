@@ -73,7 +73,11 @@ const applyRouteParams = () => {
 // 🚀 Initial setup on mount
 onMounted(async () => {
   applyRouteParams();
-  await Promise.all([loadCommonContent(), loadVideoUrls(), loadProgress()]);
+  await Promise.all([
+    loadCommonContent(),
+    loadVideoUrls(),
+    loadProgress()
+  ]);
   console.log("jVideo.title:", t("jVideo.title")); // Confirm translation loaded
 });
 
@@ -90,8 +94,7 @@ const updateLesson = (nextLessonNumber) => {
 <template>
   <q-page padding>
     <h2>{{ t("jVideo.title") }}</h2>
-    <p>{{ t("jVideo.para.1") }}</p>
-    <p>{{ t("jVideo.para.2") }}</p>
+    <p v-for="(p, i) in tm('jVideo.para')" :key="i">{{ p }}</p>
 
     <SeriesPassageSelect
       :study="currentStudy"
