@@ -2,7 +2,7 @@
   "base": "/",
   "publicDir": "public-dbs",
   "varsPath": "src/sites/dbs/quasar.variables.scss",
-  "title": "Discover Bible Studies",
+  "title": "Discovery Bible Studies",
   "description": "Studies for Discovery Bible Study groups.",
   "env": {
     "VITE_APP": "dbs",

@@ -66,9 +66,9 @@ watch(
   </q-layout>
 </template>
 
-<style>
+<style lang="scss">
 .dark_toolbar{
-  background-color:dark;
+  background-color: $dark
 }
 .toolbar-title {
   color: white;
