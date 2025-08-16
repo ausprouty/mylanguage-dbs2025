@@ -110,7 +110,7 @@ export default {
 
 <template>
   <div v-if="!lessonContent">
-    <p>Your lesson content is loading...</p>
+    <h2 class="warning">Your lesson content is loading...</h2>
   </div>
   <div v-else>
     <h1 class="title dbs">{{ lessonContent.title }}</h1>

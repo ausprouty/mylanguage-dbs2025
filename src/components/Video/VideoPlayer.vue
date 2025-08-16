@@ -1,77 +1,82 @@
+<script setup>
+import { computed, toRefs } from 'vue'
 
+const ARC_BASE = 'https://api.arclight.org/videoPlayerUrl'
 
-<script>
-import { ref, computed, watch, toRefs } from "vue";
+const props = defineProps({
+  // Accepts [{ index: 1, url: '...' }] or a map {1: '...'}
+  videoUrls: { type: [Array, Object], default: () => [] },
+  lesson: { type: Number, required: true },
+  // Layout controls
+  ratio: { type: Number, default: 16 / 9 },
+  maxWidth: { type: Number, default: 960 },
+  // Fallbacks if no matching lesson URL is found
+  fallbackRefId: { type: String, default: '1_529-jf6102-0-0' },
+  playerStyle: { type: String, default: 'default' },
+})
 
-export default {
-  name: "JVideoPlayer",
-  props: {
-    videoUrls: Object, // Object containing video URLs by lesson number
-    lesson: Number, // Computed lesson number
-  },
-  setup(props) {
-    const { videoUrls, lesson } = toRefs(props); // Ensure reactivity
+const { videoUrls, lesson } = toRefs(props)
 
-    const videoIframe = ref(""); // Initialize as an empty string to avoid null issues
-    const iframeStart = '<iframe id="jplayer" ';
-    const iframeEnd =
-      " allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>";
+function findLessonUrl() {
+  const list = Array.isArray(videoUrls.value)
+    ? videoUrls.value
+    : Object.entries(videoUrls.value || {}).map(([index, url]) => ({
+        index: Number(index),
+        url,
+      }))
 
-    // Compute the video URL based on lesson number
-    const videoUrl = computed(() => {
-      if (!videoUrls.value) {
-        return "https://api.arclight.org/videoPlayerUrl?refId=1_529-jf6102-0-0&playerStyle=default";
-      }
+  const item = list.find(v => v.index === lesson.value)
+  return item?.url || null
+}
 
-      const foundVideo = videoUrls.value.find(v => v.index === lesson.value);
-      return foundVideo
-        ? foundVideo.url
-        : "https://api.arclight.org/videoPlayerUrl?refId=1_529-jf6102-0-0&playerStyle=default";
-    });
+const src = computed(() => {
+  const direct = findLessonUrl()
+  if (direct) return direct
 
-    // Update the iframe content when lesson or video URL changes
-    const updateVideoIframe = () => {
-      if (videoUrl.value) {
-        videoIframe.value = `${iframeStart}src="${videoUrl.value}"${iframeEnd}`;
-      } else {
-        videoIframe.value = ""; // Empty string instead of null to avoid issues
-      }
-      console.log("Updated iframe:", videoIframe.value);
-    };
+  const q = new URLSearchParams({
+    refId: props.fallbackRefId,
+    playerStyle: props.playerStyle,
+  })
+  return `${ARC_BASE}?${q.toString()}`
+})
 
-    // Watch for changes in lesson number and videoUrls and update the iframe
-    watch([lesson, videoUrls], updateVideoIframe, { immediate: true });
-
-    return {
-      videoIframe,
-    };
-  },
-};
+const paddingTop = computed(() => `${(1 / props.ratio) * 100}%`)
+const shellStyle = computed(() => ({ maxWidth: `${props.maxWidth}px` }))
 </script>
+
 <template>
-  <div class="arc-cont" v-html="videoIframe"></div>
+  <div class="video-shell" :style="shellStyle">
+    <div class="video-box" :style="{ paddingTop }">
+      <iframe
+        id="jplayer"
+        :src="src"
+        allowfullscreen
+        webkitallowfullscreen
+        mozallowfullscreen
+        loading="lazy"
+        referrerpolicy="origin-when-cross-origin"
+      />
+    </div>
+  </div>
 </template>
 
-<style>
-.arc-cont {
-  position: relative;
-  display: block;
-  margin: 10px auto;
+<style scoped>
+.video-shell {
   width: 100%;
+  margin: 0 auto;
 }
-.arc-cont:after {
-  padding-top: 59%;
-  display: block;
-  content: "";
+.video-box {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  border-radius: 8px;
 }
-.arc-cont > iframe {
+.video-box > iframe {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: 98%;
-  height: 98%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   border: 0;
 }
 </style>

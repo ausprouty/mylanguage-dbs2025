@@ -1,63 +1,90 @@
-
-
-// NoteSection.vue
 <script>
-import { ref, watch, onMounted, computed, nextTick } from "vue";
-import { getNote, saveNote } from "src/services/NoteService";
-import { useLanguageStore } from 'stores/LanguageStore';
-import debounce from 'lodash.debounce';
+import { ref, watch, onMounted, onBeforeUnmount, computed, nextTick } from 'vue'
+import { useLanguageStore } from 'stores/LanguageStore'
+import { getNote, saveNote } from 'src/services/NoteService'
+import debounce from 'lodash.debounce'
+// optional: reuse your shared helpers
+import { normId, normIntish } from 'src/utils/normalize'
+
+const ALLOWED_SECTIONS = new Set(['video', 'look_back', 'look_up', 'look_forward'])
 
 export default {
-  name: "NoteSection",
+  name: 'NoteSection',
   props: {
-    section: { type: String, required: true }, // "back", "up", "forward"
-    placeholder: { type: String, default: "Write your notes here" }
+    section: {
+      type: String,
+      required: true,
+      validator: (v) => ALLOWED_SECTIONS.has(String(v ?? '').trim().toLowerCase())
+    },
+    placeholder: { type: String, default: 'Write your notes here' }
   },
   setup(props) {
-    const note = ref("");
-    const textareaRef = ref(null);
+    const note = ref('')
+    const textareaRef = ref(null)
+    const languageStore = useLanguageStore()
 
-    const languageStore = useLanguageStore();
+    // Hardened params as computeds
+    const studyId = computed(() => normId(languageStore.currentStudySelected))
+    const lessonId = computed(() => {
+      const n = Number(normIntish(languageStore.lessonNumberForStudy))
+      return Number.isInteger(n) && n > 0 ? String(n) : '' // service expects strings
+    })
+    const sectionId = computed(() => {
+      const s = normId(props.section).toLowerCase()
+      return ALLOWED_SECTIONS.has(s) ? s : ''
+    })
 
-    const study = computed(() => languageStore.currentStudySelected);
-    const lesson = computed(() => languageStore.lessonNumberForStudy);
-
-    const loadNote = async () => {
-      note.value = await getNote(study.value, lesson.value, props.section);
-      await nextTick();
-      autoResize();
-    };
-
-    const saveNoteContent = debounce(async (newVal) => {
-      await saveNote(study.value, lesson.value, props.position, newVal);
-    }, 800);
-
+    const ready = computed(() => !!studyId.value && !!lessonId.value && !!sectionId.value)
 
     const autoResize = () => {
-      const el = textareaRef.value;
-      if (!el) return;
-      el.style.height = 'auto';
-      el.style.height = el.scrollHeight + 'px';
-    };
+      const el = textareaRef.value
+      if (!el) return
+      el.style.height = 'auto'
+      el.style.height = el.scrollHeight + 'px'
+    }
 
-    // Watch the lesson or study changing — reload the note
-    watch([study, lesson], loadNote);
+    const loadNote = async () => {
+      if (!ready.value) {
+        note.value = ''
+        return
+      }
+      try {
+        note.value = await getNote(studyId.value, lessonId.value, sectionId.value)
+        await nextTick()
+        autoResize()
+      } catch (e) {
+        console.error('[NoteSection] loadNote failed', {
+          study: studyId.value, lesson: lessonId.value, section: sectionId.value
+        }, e)
+      }
+    }
 
-    // Watch note value changing — save and resize
-    watch(note, (newVal) => {
-      saveNoteContent(newVal);
-      autoResize();
-    });
+    const saveNoteContent = debounce(async (newVal) => {
+      if (!ready.value) return
+      try {
+        await saveNote(studyId.value, lessonId.value, sectionId.value, String(newVal ?? ''))
+      } catch (e) {
+        console.warn('[NoteSection] saveNote failed', e)
+      }
+    }, 800)
 
-    onMounted(loadNote);
+    // Reload note when any param changes
+    watch([studyId, lessonId, sectionId], loadNote)
 
-    return {
-      note,
-      textareaRef,
-      autoResize,
-    };
+    // Persist on edits
+    watch(note, (val) => {
+      saveNoteContent(val)
+      autoResize()
+    })
+
+    onMounted(loadNote)
+    onBeforeUnmount(() => {
+      if (saveNoteContent.flush) saveNoteContent.flush()
+    })
+
+    return { note, textareaRef, autoResize, saveNoteContent }
   }
-};
+}
 </script>
 
 <template>
@@ -68,33 +95,5 @@ export default {
     :placeholder="placeholder"
     @input="autoResize"
     @blur="saveNoteContent.flush && saveNoteContent.flush()"
-  ></textarea>
+  />
 </template>
-
-<style scoped lang="scss">
-textarea.dbs-notes {
-  width: 100%;
-  min-height: 120px;
-  resize: none;
-  overflow: hidden;
-  margin-top: 12px;
-  padding: 12px 16px;
-  border-radius: 6px;
-
-  background-color: $neutral;         // soft off-white/cream
-  border: 2px solid $gold-highlight;  // warm highlight border
-  color: $minor2;                     // dark brown text
-  font-size: 15px;
-  font-family: inherit;
-  line-height: 1.6;
-  box-shadow: 2px 2px 6px $shadow;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-textarea.dbs-notes:focus {
-  outline: none;
-  border-color: $primary;             // warm brown on focus
-  box-shadow: 2px 2px 10px $shadow;
-}
-</style>
-

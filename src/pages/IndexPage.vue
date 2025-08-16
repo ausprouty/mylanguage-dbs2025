@@ -75,22 +75,29 @@ const openExternalWebsite = async () => {
 <style scoped>
 
 .menu-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 16px;
-  justify-content: flex-start;
+  grid-template-columns: 1fr;            /* phones: 1 across */
+  max-width: 1200px;                      /* optional cap so cards don’t sprawl */
+  margin: 0 auto;
 }
 
-.menu-col {
-  flex: 1 1 calc(50% - 8px); /* 2 items per row with 16px gap */
-  box-sizing: border-box;
-}
-
-@media (max-width: 600px) {
-  .menu-col {
-    flex: 1 1 100%; /* stack to 1 item per row on small screens */
+/* tablets */
+@media (min-width: 600px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 across */
   }
 }
+
+/* desktops and larger laptops */
+@media (min-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 across */
+  }
+}
+
+/* no sizing on items - let the grid handle it */
+.menu-col { box-sizing: border-box; }
 
 .menu-card {
   background-color: #dddddd;

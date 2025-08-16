@@ -15,8 +15,10 @@ export default store((/* { ssrContext } */) => {
   const pinia = createPinia()
   pinia.use(piniaPluginPersistedstate);
 
-  // You can add Pinia plugins here
-  // pinia.use(SomePiniaPlugin)
+   // optional: debug in dev
+  if (import.meta.env.DEV && typeof window !== 'undefined') {
+    window.$pinia = pinia
+  }
 
   return pinia
 })

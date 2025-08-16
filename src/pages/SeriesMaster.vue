@@ -71,7 +71,7 @@ const updateLesson = (nextLessonNumber) => {
         {{ para }}
       </p>
 
-     <p>{{ $t('changeLanguage') }}</p>
+     <p class="warning">{{ $t('menu.changeLanguage') }}</p>
 
       <SeriesPassageSelect
         :study="computedStudy"

@@ -187,25 +187,25 @@ export async function saveStudyProgress(study, progress) {
 
 // ----------------- Notes -----------------
 
-export async function getNoteFromDB(study, lesson, position) {
-  const key = ContentKeys.buildNotesKey(study, lesson, position);
-  return getItem("notes", key);
+export async function getNoteFromDB(study, lesson, section) {
+  const key = ContentKeys.buildNotesKey(study, lesson, section)
+  return getItem('notes', key)
 }
 
-export async function saveNoteToDB(study, lesson, position, content) {
-  const key = ContentKeys.buildNotesKey(study, lesson, position);
-  return saveItem("notes", key, content);
+export async function saveNoteToDB(study, lesson, section, content) {
+  const key = ContentKeys.buildNotesKey(study, lesson, section)
+  return saveItem('notes', key, content)
 }
 
-export async function deleteNoteFromDB(study, lesson, position) {
-  const db = await openDatabase();
-  const key = ContentKeys.buildNotesKey(study, lesson, position);
-  const tx = db.transaction("notes", "readwrite");
-  tx.objectStore("notes").delete(key);
+export async function deleteNoteFromDB(study, lesson, section) {
+  const db = await openDatabase()
+  const key = ContentKeys.buildNotesKey(study, lesson, section)
+  const tx = db.transaction('notes', 'readwrite')
+  tx.objectStore('notes').delete(key)
   return new Promise((resolve, reject) => {
-    tx.oncomplete = () => resolve(true);
-    tx.onerror = (e) => reject(e);
-  });
+    tx.oncomplete = () => resolve(true)
+    tx.onerror = (e) => reject(e)
+  })
 }
 
 // ----------------- Clear Table -----------------

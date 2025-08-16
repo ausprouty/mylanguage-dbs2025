@@ -1,100 +1,124 @@
 <script setup>
-import { ref, computed, watch, onMounted } from "vue";
-import { useRoute } from "vue-router";
-import { useI18n } from "vue-i18n";
-import { useLanguageStore } from "stores/LanguageStore";
-import { useContentStore } from "stores/ContentStore";
-import { useCommonContent } from "src/composables/useCommonContent";
-import { useProgressTracker } from "src/composables/useProgressTracker";
+import { ref, computed, watch, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { useLanguageStore } from 'stores/LanguageStore'
+import { useContentStore } from 'stores/ContentStore'
+import { useCommonContent } from 'src/composables/useCommonContent'
+import { useProgressTracker } from 'src/composables/useProgressTracker'
 
-import VideoPlayer from "src/components/video/VideoPlayer.vue";
-import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
-import SeriesSegmentNavigator from "src/components/series/SeriesSegmentNavigator.vue";
-import VideoQuestions from "src/components/video/VideoQuestions.vue";
+import VideoPlayer from 'src/components/video/VideoPlayer.vue'
+import SeriesPassageSelect from 'src/components/series/SeriesPassageSelect.vue'
+import SeriesSegmentNavigator from 'src/components/series/SeriesSegmentNavigator.vue'
+import VideoQuestions from 'src/components/video/VideoQuestions.vue'
 
-// 🧭 Route and i18n setup
-const route = useRoute();
-const { t, locale } = useI18n();
-const localeKey = computed(() => locale.value);
+// Route & i18n
+const route = useRoute()
+const { t, tm, locale } = useI18n({ useScope: 'global' })
+const paras = computed(() => {
+  const v = typeof tm === 'function' ? tm('jVideo.para') : []
+  return Array.isArray(v) ? v : []
+})
+const localeKey = computed(() => locale.value)
 
-// 📦 Stores
-const languageStore = useLanguageStore();
-const contentStore = useContentStore();
+// Stores
+const languageStore = useLanguageStore()
+const contentStore = useContentStore()
 
-// 📚 Study ID (hardcoded for jVideo)
-const currentStudy = "jvideo";
+// Study
+const currentStudy = 'jvideo'
 
-// 🧠 Reactive language/lesson values from store
-const languageCodeHL = computed(() => languageStore.languageCodeHLSelected);
-const languageCodeJF = computed(() => languageStore.languageCodeJFSelected);
-const lessonNumber = computed(() => languageStore.lessonNumberForStudy);
-const sectionKey = computed(() => `video-${lessonNumber.value}`);
+// Reactive language/lesson values
+const languageCodeHL = computed(() => languageStore.languageCodeHLSelected)
+const languageCodeJF = computed(() => languageStore.languageCodeJFSelected)
 
-// 📋 Content from composables
-const { commonContent, topics, loadCommonContent } = useCommonContent(
-  currentStudy,
-  languageCodeHL
-);
+// lessonNumber from store can be string - normalize to number
+const lessonNumber = computed(() => {
+  const n = Number(languageStore.lessonNumberForStudy)
+  return Number.isFinite(n) && n > 0 ? n : 1   // or return undefined and v-if guard
+})
 
-// 🎥 Video URLs (from store via action)
-const videoUrls = ref([]);
+const sectionKey = computed(() =>
+  lessonNumber.value ? `video-${lessonNumber.value}` : undefined
+)
+// Aliases expected by the template
+const computedLessonNumber = lessonNumber
+const computedLanguageHL = languageCodeHL
+const computedSectionKey = sectionKey
 
-// ✅ Track user lesson progress
+// Common content
+const { commonContent, topics, loadCommonContent } =
+  useCommonContent(currentStudy, languageCodeHL)
+
+// Video URLs
+const videoUrls = ref([])
+
 const {
   completedLessons,
   isLessonCompleted,
   markLessonComplete,
-  loadProgress,
-} = useProgressTracker(currentStudy);
+  loadProgress
+} = useProgressTracker(currentStudy)
 
-// 🔄 Load video URLs for current study/language
 const loadVideoUrls = async () => {
   try {
     videoUrls.value = await contentStore.loadVideoUrls(
       languageCodeJF.value,
       currentStudy
-    );
-  } catch (error) {
-    console.error("Error loading video URLs:", error);
+    )
+  } catch (err) {
+    console.error('Error loading video URLs:', err)
   }
-};
+}
 
-// 📦 Apply route params to store on initial mount
 const applyRouteParams = () => {
-  languageStore.setCurrentStudy(currentStudy);
-  if (route.params.lesson) {
-    languageStore.setLessonNumber(currentStudy, route.params.lesson);
-  }
-  if (route.params.languageCodeJF) {
-    languageStore.setLanguageCodeJF(route.params.languageCodeJF);
-  }
-};
+  languageStore.setCurrentStudy(currentStudy)
 
-// 🚀 Initial setup on mount
+  // helper: parse >0 integer from a route param (string or array)
+  const toPositiveInt = (v) => {
+    const raw = Array.isArray(v) ? v[0] : v
+    const s = String(raw ?? '').trim()
+    if (!/^\d+$/.test(s)) return undefined
+    const n = Number(s)
+    return n > 0 ? n : undefined
+  }
+
+  const lessonNumber = toPositiveInt(route.params.lesson)
+  if (lessonNumber !== undefined) {
+    languageStore.setLessonNumber(currentStudy, lessonNumber)
+  }
+
+  // if you also support languageCodeJF via route:
+  const rawJF = Array.isArray(route.params.languageCodeJF)
+    ? route.params.languageCodeJF[0]
+    : route.params.languageCodeJF
+  const jf = String(rawJF ?? '').trim()
+  if (jf && jf.toLowerCase() !== 'undefined') {
+    languageStore.setLanguageCodeJF(jf)
+  }
+}
+
+
 onMounted(async () => {
-  applyRouteParams();
-  await Promise.all([
-    loadCommonContent(),
-    loadVideoUrls(),
-    loadProgress()
-  ]);
-  console.log("jVideo.title:", t("jVideo.title")); // Confirm translation loaded
-});
+  applyRouteParams()
+  await Promise.all([loadCommonContent(), loadVideoUrls(), loadProgress()])
+  console.log('jVideo.title:', t('jVideo.title'))
+})
 
-// 🔁 Reactively reload data when language changes
-watch(languageCodeJF, loadVideoUrls);
-watch(languageCodeHL, loadCommonContent);
+watch(languageCodeJF, loadVideoUrls)
+watch(languageCodeHL, loadCommonContent)
 
-// 📌 When user picks a new lesson
 const updateLesson = (nextLessonNumber) => {
-  languageStore.setLessonNumber(currentStudy, nextLessonNumber);
-};
+  languageStore.setLessonNumber(currentStudy, nextLessonNumber)
+}
 </script>
 
 <template>
   <q-page padding>
-    <h2>{{ t("jVideo.title") }}</h2>
-    <p v-for="(p, i) in tm('jVideo.para')" :key="i">{{ p }}</p>
+    <h2>{{ t('jVideo.title') }}</h2>
+    <p v-for="(p, i) in paras" :key="i">{{ p }}</p>
+
+    <p class="warning">{{ $t('menu.changeLanguage') }}</p>
 
     <SeriesPassageSelect
       :study="currentStudy"
@@ -115,10 +139,12 @@ const updateLesson = (nextLessonNumber) => {
     <VideoPlayer :videoUrls="videoUrls" :lesson="computedLessonNumber" />
 
     <VideoQuestions
+      v-if="sectionKey && computedLessonNumber"
       :commonContent="commonContent"
       :languageCodeHL="computedLanguageHL"
       :lesson="computedLessonNumber"
       :sectionKey="computedSectionKey"
+      section="video"
     />
 
     <q-btn
@@ -135,7 +161,5 @@ const updateLesson = (nextLessonNumber) => {
 </template>
 
 <style>
-.q-page {
-  background-color: white;
-}
+.q-page { background-color: white; }
 </style>

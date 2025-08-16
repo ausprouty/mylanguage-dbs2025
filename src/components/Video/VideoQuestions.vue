@@ -34,6 +34,7 @@ export default {
     <DbsQuestions
       :content="commonContent"
       :sectionKey="sectionKey"
+       section = 'video'
       :placeholder="videoNoteInstruction"
       timing = ""
     />

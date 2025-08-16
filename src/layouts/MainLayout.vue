@@ -26,7 +26,7 @@ watch(
 <template>
   <q-layout view="lHh lpr lFf">
     <q-header elevated>
-      <q-toolbar class="bg-primary text-white">
+      <q-toolbar class="dark_toolbar text-white">
         <q-btn flat dense round icon="menu" aria-label="Menu" to="/index" />
 
         <q-toolbar-title>
@@ -67,6 +67,9 @@ watch(
 </template>
 
 <style>
+.dark_toolbar{
+  background-color:dark;
+}
 .toolbar-title {
   color: white;
   text-decoration: none;

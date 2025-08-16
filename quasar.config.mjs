@@ -59,7 +59,6 @@ export default configure((ctx) => {
 
   return {
     boot: [
-      "pinia",
       "i18n",
       "axios",
       "language-init",
