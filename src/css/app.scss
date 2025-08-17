@@ -207,7 +207,7 @@ td[clickable] {
 
 td[clickable] img.menu_picture:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px $overlay-30;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -218,7 +218,7 @@ td[clickable]::after {
   left: 50%;
   width: 0;
   height: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: $overlay-20;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
@@ -240,7 +240,7 @@ td[clickable]:active::after {
   display: inline-block;
   padding: 8px 15px;
   background-color: $accent;
-  color: white;
+  color: $white;
   text-decoration: none;
   font-weight: bold;
   border-radius: 5px;
@@ -249,7 +249,7 @@ td[clickable]:active::after {
 }
 
 .readmore-button:hover {
-  background-color: #9e562d; // darker version of $accent
+  background-color: $accent-hover;
 }
 
 // ----------------------
@@ -260,18 +260,18 @@ td[clickable]:active::after {
   display: flex;
   align-items: center;
   background-color: $accent;
-  color: white;
+  color: $white;
   padding: 5px 15px;
   border-radius: 50px;
   font-size: 1.2em;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px $overlay-20;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .nav-button:hover {
-  background-color: #9e562d;
+  background-color: $accent-hover;
   transform: scale(1.05);
 }
 
@@ -280,13 +280,14 @@ td[clickable]:active::after {
 }
 
 .mark-complete-btn {
-  background-color: darken($positive, 15%); // #6a4e42
-  color: white; // #6a4e42
+  background-color: $positive-15;
+  color: $white;
   font-weight: bold;
   border-radius: 8px;
 
   &:hover {
-    background-color: darken($positive, 30%);
+    background-color: $positive-30;
   }
 }
+
 

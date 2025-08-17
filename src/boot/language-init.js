@@ -12,13 +12,13 @@ export default boot(async () => {
     !languageStore.languageSelected.languageCodeHL
   ) {
     const languageObject = getBrowserLanguageObject();
-    console.log("Language object (from browser):", languageObject);
+    console.log("setLanguageObjectSelected (from browser):", languageObject);
     languageStore.setLanguageObjectSelected(languageObject);
     // Use the browser language for the interface
-    console.log("calling LoadLanguageAsync from language-init line 18");
+    console.log("calling loadInterfaceTranslation from language-init line 18");
     await loadInterfaceTranslation(languageObject.languageCodeHL);
   } else {
-    console.log("calling LoadLanguageAsync from language-init Line21");
+    console.log("calling loadInterfaceTranslation from language-init Line21");
     // Use the saved language for the interface
     await loadInterfaceTranslation(languageStore.languageSelected.languageCodeHL);
   }

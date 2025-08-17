@@ -9,7 +9,7 @@ export async function clearOrUpdateData() {
   await clearContentTables();
   // Load new i18n interface files (assuming locale is stored in store or localStorage)
   const languageCodeHL = localStorage.getItem("locale") || "en";
-  await loadLanguageAsync(languageCodeHL);
+  await getTranslatedInterface(languageCodeHL);
 }
 
 function deleteLocalStorageContentKeys() {

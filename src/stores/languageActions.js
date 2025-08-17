@@ -1,4 +1,5 @@
 import { loadInterfaceTranslation } from "../i18n/loadInterfaceTranslation.js";
+import { getTranslatedInterface } from "src/services/InterfaceService";
 import { MAX_LESSON_NUMBERS } from "src/constants/Defaults";
 import {
   validateLessonNumber,
@@ -8,6 +9,19 @@ import {
 } from "./validators";
 
 export const languageActions = {
+  _updateRecentLanguages(lang) {
+    const index = this.languagesUsed.findIndex(
+      (item) => item.languageCodeHL === lang.languageCodeHL
+    );
+    if (index !== -1) {
+      this.languagesUsed.splice(index, 1);
+    }
+    this.languagesUsed.unshift(lang);
+    if (this.languagesUsed.length > 5) {
+      this.languagesUsed.length = 5;
+    }
+  },
+
   normalizeShapes() {
     if (
       !this.lessonNumber ||
@@ -25,15 +39,9 @@ export const languageActions = {
     }
     if (!Array.isArray(this.menu)) this.menu = [];
   },
+
   setBrandTitle(title) {
-    this.brandTitle = typeof title === 'string' ? title.trim() : ''
-  },
-  setCurrentStudy(study) {
-    if (!validateNonEmptyString(study)) {
-      console.warn(`setCurrentStudy: Invalid study '${study}'.`);
-      return;
-    }
-    this.currentStudy = study;
+    this.brandTitle = typeof title === "string" ? title.trim() : "";
   },
 
   setCurrentPath(url) {
@@ -44,10 +52,19 @@ export const languageActions = {
     this.currentPath = url;
   },
 
+  setCurrentStudy(study) {
+    if (!validateNonEmptyString(study)) {
+      console.warn(`setCurrentStudy: Invalid study '${study}'.`);
+      return;
+    }
+    this.currentStudy = study;
+  },
+
   setFollowingHimSegment(newValue) {
     if (!validateSegmentFormat(newValue)) {
       console.warn(
-        `setFollowingHimSegment: Invalid newValue '${newValue}'. Expected format '1-0-0'. No change made.`
+        `setFollowingHimSegment: Invalid newValue '${newValue}'. ` +
+          `Expected format '1-0-0'. No change made.`
       );
       return;
     }
@@ -60,7 +77,8 @@ export const languageActions = {
       !validateNonEmptyString(languageCodeJF)
     ) {
       console.warn(
-        `setJVideoSegments: Invalid language codes '${languageCodeHL}', '${languageCodeJF}'.`
+        `setJVideoSegments: Invalid language codes '${languageCodeHL}', ` +
+          `'${languageCodeJF}'.`
       );
       return;
     }
@@ -70,7 +88,8 @@ export const languageActions = {
     }
     if (!validatePositiveInteger(currentId)) {
       console.warn(
-        `setJVideoSegments: Invalid currentId '${currentId}'. Defaulting to 1.`
+        `setJVideoSegments: Invalid currentId '${currentId}'. ` +
+          `Defaulting to 1.`
       );
       currentId = 1;
     }
@@ -82,6 +101,32 @@ export const languageActions = {
       currentId,
     };
   },
+
+  async setLanguageObjectSelected(languageObject) {
+    if (!languageObject) {
+      console.warn(
+        "setLanguageObjectSelected: Invalid languageObject input."
+      );
+      return;
+    }
+    this.languageSelected = languageObject;
+    console.log(
+      `setLanguageObjectSelected: Setting i18n locale to ` +
+        `${languageObject.languageCodeHL}`
+    );
+    console.log("setLanguageObjectSelected -104");
+    await getTranslatedInterface(languageObject.languageCodeHL);
+    this._updateRecentLanguages(languageObject);
+  },
+
+  setLanguages(newLanguages) {
+    if (!Array.isArray(newLanguages)) {
+      console.warn(`setLanguages: Invalid languages input.`);
+      return;
+    }
+    this.languages = newLanguages;
+  },
+
   setLessonNumber(study, lesson) {
     console.log(`setLessonNumber called with study=${study}, lesson=${lesson}`);
 
@@ -101,48 +146,7 @@ export const languageActions = {
     }
 
     const clampedLesson = Math.min(parsedLesson, MAX_LESSON_NUMBERS[study]);
-
     this.lessonNumber[study] = clampedLesson;
-  },
-
-  setLanguages(newLanguages) {
-    if (!Array.isArray(newLanguages)) {
-      console.warn(`setLanguages: Invalid languages input.`);
-      return;
-    }
-    this.languages = newLanguages;
-  },
-  async setLanguageObjectSelected(languageObject) {
-    if (!languageObject) {
-      console.warn("setLanguageObjectSelected: Invalid languageObject input.");
-      return;
-    }
-    this.languageSelected = languageObject;
-    // 🟢 Update i18n locale
-    console.log(
-      `setLanguageObjectSelected: Setting i18n locale to ${languageObject.languageCodeHL}`
-    );
-    console.log("setLanguageObjectSelected -104");
-    await loadLanguageAsync(languageObject.languageCodeHL);
-
-    this._updateRecentLanguages(languageObject);
-  },
-
-  _updateRecentLanguages(lang) {
-    const index = this.languagesUsed.findIndex(
-      (item) => item.languageCodeHL === lang.languageCodeHL
-    );
-    // Remove existing if already present
-    if (index !== -1) {
-      this.languagesUsed.splice(index, 1);
-    }
-    // Add to front
-    this.languagesUsed.unshift(lang);
-
-    // Optional: limit to 5 recent items total
-    if (this.languagesUsed.length > 5) {
-      this.languagesUsed.length = 5;
-    }
   },
 
   setPreviousPage(newPage) {
@@ -152,6 +156,7 @@ export const languageActions = {
     }
     this.previousPage = newPage;
   },
+
   updateLanguageCodeHL(newCodeHL) {
     if (!this.languageSelected) {
       console.warn("updateLanguageCodeHL: No languageSelected set.");
@@ -162,12 +167,12 @@ export const languageActions = {
       return;
     }
 
-    // Shallow clone the object and update only languageCodeHL
     this.languageSelected = {
       ...this.languageSelected,
       languageCodeHL: newCodeHL,
     };
   },
+
   updateLanguageCodeJF(newCodeJF) {
     if (!this.languageSelected) {
       console.warn("updateLanguageCodeJF: No languageSelected set.");
@@ -178,7 +183,6 @@ export const languageActions = {
       return;
     }
 
-    // Shallow clone the object and update only languageCodeJF
     this.languageSelected = {
       ...this.languageSelected,
       languageCodeJF: newCodeJF,
