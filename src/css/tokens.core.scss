@@ -45,7 +45,7 @@ $text-color: #111111 !default;
 
 /* use robust fallbacks for derived colors */
 $__minor2: if($brand-minor2 == null, #6a4e42, $brand-minor2);
-$border-color:  color.scale($__minor2, $lightness: 40%);
+$border-color: color.mix($__minor2, white, 40%);
 $divider-color: color.change($border-color, $alpha: 0.5);
 
 $positive: $brand-positive;
@@ -53,8 +53,8 @@ $negative: $brand-negative;
 $info:     $brand-info;
 $warning:  $brand-warning;
 
-$link:        $secondary;
-$link-hover:  color.scale($secondary, $lightness: -10%);
+$link:        $primary;
+$link-hover:  color.scale($primary, $lightness: -10%);
 
 $focus:      $brand-minor1;
 $focus-ring: 0 0 0 3px color.change($focus, $alpha: 0.45);

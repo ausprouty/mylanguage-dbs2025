@@ -4,6 +4,7 @@
   "varsPath": "src/sites/guru/quasar.variables.scss",
   "title": "Finding a Guru",
   "description": "Finding a guru worth following",
+   "appbar": { "style": "surface" },
   "env": {
     "VITE_APP": "guru",
     "VITE_APP_TITLE" : "Finding a Guru",

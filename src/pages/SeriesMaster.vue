@@ -71,7 +71,7 @@ const updateLesson = (nextLessonNumber) => {
         {{ para }}
       </p>
 
-     <p class="warning">{{ $t('menu.changeLanguage') }}</p>
+     <p class="accent">{{ $t('menu.changeLanguage') }}</p>
 
       <SeriesPassageSelect
         :study="computedStudy"
@@ -121,6 +121,9 @@ const updateLesson = (nextLessonNumber) => {
 </template>
 
 <style lang="scss">
+.accent{
+    color: $accent
+  }
 .mark-complete-btn {
   background-color: darken($positive, 15%); // #6a4e42
   color: white; // #6a4e42
@@ -130,5 +133,6 @@ const updateLesson = (nextLessonNumber) => {
   &:hover {
     background-color: darken($positive, 30%);
   }
+
 }
 </style>

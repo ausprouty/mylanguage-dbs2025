@@ -27,3 +27,23 @@ export function assertRequired(obj, keys, where = 'function') {
     throw new Error(msg)
   }
 }
+
+// if v is an object, pull a sensible identifier; otherwise return v
+export function fromObjId(v, keys = ['slug','code','id','key','name','title']) {
+  const raw = unref(v);
+  if (raw && typeof raw === 'object' && !Array.isArray(raw)) {
+    for (let i = 0; i < keys.length; i++) {
+      const k = keys[i];
+      if (raw[k] !== undefined && raw[k] !== null && String(raw[k]).trim() !== '') {
+        return raw[k];
+      }
+    }
+    return '';
+  }
+  return raw;
+}
+
+// safe for URL path segments
+export function normPathSeg(v) {
+  return encodeURIComponent(normId(fromObjId(v)));
+}

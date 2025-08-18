@@ -14,6 +14,7 @@ const routes = [
         name: "Index",
         path: "/index",
         component: () => import("pages/IndexPage.vue"),
+        meta: { appbar: 'primary' }
       },
       {
         name: "StaticPageMaster",

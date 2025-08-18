@@ -7,6 +7,8 @@
 /* Emit :root variables after Quasar */
 @include core.emit-css-vars();
 
+@import "./appbar.scss";
+
 
 
 

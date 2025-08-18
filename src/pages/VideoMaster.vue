@@ -118,7 +118,7 @@ const updateLesson = (nextLessonNumber) => {
     <h2>{{ t('jVideo.title') }}</h2>
     <p v-for="(p, i) in paras" :key="i">{{ p }}</p>
 
-    <p class="warning">{{ $t('menu.changeLanguage') }}</p>
+   <p class="accent">{{ $t('menu.changeLanguage') }}</p>
 
     <SeriesPassageSelect
       :study="currentStudy"

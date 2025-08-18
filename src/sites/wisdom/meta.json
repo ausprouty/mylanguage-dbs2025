@@ -5,6 +5,7 @@
   "varsPath": "src/sites/wisdom/quasar.variables.scss",
   "title": "Finding Wisdom",
   "description": "Grow in wisdom and your ability to relate to God",
+   "appbar": { "style": "surface" },
   "env": {
     "VITE_APP": "wisdom",
     "VITE_APP_TITLE" : "Finding Wisdom",

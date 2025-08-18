@@ -5,6 +5,7 @@
   "varsPath": "src/sites/uom/quasar.variables.scss",
   "title": "Houses of Peace – UoM",
   "description": "Resources for Houses of Peace at UoM.",
+   "appbar": { "style": "surface" },
   "env": {
     "VITE_APP": "uom",
     "VITE_APP_TITLE" : "HOP Resources",
