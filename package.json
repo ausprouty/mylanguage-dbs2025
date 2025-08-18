@@ -6,25 +6,18 @@
   "author": "ausprouty <bob.prouty@powertochange.org.au>",
   "private": true,
   "scripts": {
-
     "clean": "rimraf --glob \"node_modules/.vite-*\" dist .quasar",
     "clean:site": "rimraf dist/site-%SITE% node_modules/.vite-%SITE%",
-
     "dev:dbs": "yarn clean:site && cross-env SITE=dbs quasar dev -m pwa",
     "build:dbs": "yarn clean:site && cross-env SITE=dbs quasar build -m pwa",
-
     "dev:uom": "yarn clean:site && cross-env SITE=uom quasar dev -m pwa",
     "build:uom": "yarn clean:site && cross-env SITE=uom quasar build -m pwa",
-
     "dev:guru": "yarn clean:site && cross-env SITE=guru quasar dev -m pwa",
     "build:guru": "yarn clean:site && cross-env SITE=guru quasar build -m pwa",
-
     "dev:wisdom": "yarn clean:site && cross-env SITE=wisdom quasar dev -m pwa",
     "build:wisdom": "yarn clean:site && cross-env SITE=wisdom quasar build -m pwa",
-
     "dev:wsu": "yarn clean:site && cross-env SITE=wsu quasar dev -m pwa",
     "build:wsu": "yarn clean:site && cross-env SITE=wsu quasar build -m pwa",
-
     "lint": "eslint --ext .js,.vue ./",
     "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "vitest",
@@ -66,7 +59,8 @@
     "postcss": "^8.4.14",
     "prettier": "^2.5.1",
     "rimraf": "^6.0.1",
-    "sass": "^1.88.0",
+    "sass": "^1.90.0",
+    "sass-embedded": "^1.90.0",
     "typescript": "^5.7.3",
     "vitest": "^3.2.4",
     "webpack": "^5.97.1",

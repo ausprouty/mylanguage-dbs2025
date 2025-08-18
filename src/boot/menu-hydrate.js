@@ -38,8 +38,6 @@ export default boot(async () => {
   const urls = [
     `${base}menu.json?v=${ver}`,
     `${base}config/menu.json?v=${ver}`,
-    `/public-${site}/menu.json?v=${ver}`,
-    `/sites-${site}/menu.json?v=${ver}`,
   ]
   const data = await fetchFirst(urls)
 

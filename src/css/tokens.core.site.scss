@@ -1,0 +1,16 @@
+@use "@site/tokens.site.scss" as brand;
+
+@forward "@/css/tokens.core.scss" with (
+  $brand-primary:   brand.$brand-primary,
+  $brand-secondary: brand.$brand-secondary,
+  $brand-accent:    brand.$brand-accent,
+  $brand-minor1:    brand.$brand-minor1,
+  $brand-minor2:    brand.$brand-minor2,
+  $brand-neutral:   brand.$brand-neutral,
+  $brand-dark:      brand.$brand-dark,
+  $brand-dark-page: brand.$brand-dark-page,
+  $brand-positive:  brand.$brand-positive,
+  $brand-negative:  brand.$brand-negative,
+  $brand-info:      brand.$brand-info,
+  $brand-warning:   brand.$brand-warning
+);

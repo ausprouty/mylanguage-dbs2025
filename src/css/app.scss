@@ -1,22 +1,31 @@
-@import 'quasar/src/css/index.sass';
+/* src/css/app.scss */
+@use "@/css/tokens.core.site.scss" as core;
 
-/* debug: $gold-highlight = #{$gold-highlight} */
-// ----------------------
-// General Layout
-// ----------------------
+/* Quasar base */
+@import "quasar/src/css/index.sass";
+
+/* Emit :root variables after Quasar */
+@include core.emit-css-vars();
+
+
+
+
+/* ----------------------
+   General Layout
+----------------------- */
 
 body {
-  background-color: $dark-page;
-  color: $dark;
+  background-color: var(--color-surface);
+  color: var(--color-text);
 }
 
-// ----------------------
-// Bible Reference and Text
-// ----------------------
+/* ----------------------
+   Bible Reference and Text
+----------------------- */
 
 .bible-reference {
   font-weight: bold;
-  color: $accent;
+  color: var(--color-accent);
   font-size: 1.2em;
 }
 
@@ -25,7 +34,7 @@ body {
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  background-color: $gold-highlight;
+  background-color: var(--color-warning);
   border-radius: 5px;
 }
 
@@ -34,24 +43,24 @@ body {
 }
 
 div.bible-text {
-  color: $minor2;
+  color: var(--color-text);
   font-weight: 400;
   font-size: 1rem;
 }
 
-// ----------------------
-// Select Elements
-// ----------------------
+/* ----------------------
+   Select Elements
+----------------------- */
 
 .select {
-  background-color: $neutral;
-  color: $accent;
-  border: 1px solid $secondary;
+  background-color: var(--color-surface);
+  color: var(--color-accent);
+  border: 1px solid var(--color-secondary);
 }
 
-// ----------------------
-// Layout & Gutters
-// ----------------------
+/* ----------------------
+   Layout & Gutters
+----------------------- */
 
 .q-gutter-md,
 .q-mr-md,
@@ -59,7 +68,7 @@ div.bible-text {
   margin-top: 10px;
   margin-left: 0;
   margin-right: 0;
-  background-color: $warning;
+  background-color: var(--color-warning);
 }
 
 .q-gutter-y-md,
@@ -72,26 +81,26 @@ div.bible-text {
   margin-top: 0;
 }
 
-// ----------------------
-// DBS Container
-// ----------------------
+/* ----------------------
+   DBS Container
+----------------------- */
 
 div.dbs {
-  background-color: $gold-highlight;
+  background-color: var(--color-warning);
   max-width: 800px;
   margin: auto;
   padding: 10px;
-  border: 2px solid $accent;
+  border: 2px solid var(--color-accent);
 }
 
-// ----------------------
-// Tables
-// ----------------------
+/* ----------------------
+   Tables
+----------------------- */
 
 table {
   width: 100%;
   max-width: 800px;
-  border: 1px solid $warning;
+  border: 1px solid var(--color-warning);
 }
 
 table.dbs {
@@ -107,7 +116,7 @@ th {
 
 td {
   width: 50%;
-  border-bottom: 1px solid $secondary;
+  border-bottom: 1px solid var(--color-secondary);
 }
 
 td.dbs,
@@ -123,9 +132,9 @@ td.rtl {
   text-align: center;
 }
 
-// ----------------------
-// Lists & Notes
-// ----------------------
+/* ----------------------
+   Lists & Notes
+----------------------- */
 
 li {
   padding-top: 10px;
@@ -143,16 +152,16 @@ li.dbs {
   font-size: 14px;
 }
 
-// ----------------------
-// Headers
-// ----------------------
+/* ----------------------
+   Headers
+----------------------- */
 
 h1.dbs,
 h2.dbs,
 h3.dbs,
 h4.dbs {
-  font-family: 'Arial', sans-serif;
-  color: $accent;
+  font-family: "Arial", sans-serif;
+  color: var(--color-accent);
 }
 
 h1.dbs {
@@ -177,27 +186,27 @@ h4.dbs {
   font-size: 1em;
 }
 
-// ----------------------
-// Footer
-// ----------------------
+/* ----------------------
+   Footer
+----------------------- */
 
 p.copyright {
   text-align: center;
-  color: $shadow;
+  color: var(--color-divider);
 }
 
-// ----------------------
-// Hover Effects
-// ----------------------
+/* ----------------------
+   Hover Effects
+----------------------- */
 
 .link:hover {
-  color: $warning;
+  color: var(--color-warning);
   text-decoration: underline;
 }
 
-// ----------------------
-// Clickable Images
-// ----------------------
+/* ----------------------
+   Clickable Images
+----------------------- */
 
 td[clickable] {
   cursor: pointer;
@@ -207,18 +216,18 @@ td[clickable] {
 
 td[clickable] img.menu_picture:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 10px $overlay-30;
+  box-shadow: 0 4px 10px var(--overlay);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 td[clickable]::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 0;
   height: 0;
-  background: $overlay-20;
+  background: var(--overlay);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
@@ -232,62 +241,66 @@ td[clickable]:active::after {
   transition: 0s;
 }
 
-// ----------------------
-// Read More Button
-// ----------------------
+/* ----------------------
+   Read More Button
+----------------------- */
 
 .readmore-button {
   display: inline-block;
   padding: 8px 15px;
-  background-color: $accent;
-  color: $white;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
   text-decoration: none;
   font-weight: bold;
   border-radius: 5px;
   text-align: center;
-  transition: background-color 0.3s ease;
+  transition: filter 0.3s ease;
 }
 
 .readmore-button:hover {
-  background-color: $accent-hover;
+  filter: brightness(0.92);
 }
 
-// ----------------------
-// Navigation Buttons
-// ----------------------
+/* ----------------------
+   Navigation Buttons
+----------------------- */
 
 .nav-button {
   display: flex;
   align-items: center;
-  background-color: $accent;
-  color: $white;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
   padding: 5px 15px;
   border-radius: 50px;
   font-size: 1.2em;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 10px $overlay-20;
-  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px var(--overlay);
+  transition: filter 0.3s ease, transform 0.2s ease;
 }
 
 .nav-button:hover {
-  background-color: $accent-hover;
+  filter: brightness(0.92);
   transform: scale(1.05);
 }
 
 .nav-button.active {
-  background-color: $success-highlight;
+  background-color: var(--color-positive);
+  color: var(--color-on-positive);
 }
+
+/* ----------------------
+   Mark Complete
+----------------------- */
 
 .mark-complete-btn {
-  background-color: $positive-15;
-  color: $white;
+  background-color: var(--color-positive);
+  color: var(--color-on-positive);
   font-weight: bold;
   border-radius: 8px;
+  transition: filter 0.2s ease;
 
   &:hover {
-    background-color: $positive-30;
+    filter: brightness(0.88);
   }
 }
-
-

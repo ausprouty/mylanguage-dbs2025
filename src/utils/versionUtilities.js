@@ -1,5 +1,6 @@
 import { clearTable } from "src/services/IndexedDBService";
 import { useContentStore } from "src/stores/ContentStore";
+import {getTranslatedInterface} from "src/services/InterfaceService"
 
 
 export async function clearOrUpdateData() {

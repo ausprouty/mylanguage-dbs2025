@@ -21,13 +21,24 @@ export default configure((ctx) => {
   const base = meta.base ?? "/";
 
   // --- SCSS variables file (per-site or fallback) ---
-  const varsCandidate =
-    meta.varsPath ?? `src/sites/${site}/quasar.variables.scss`;
-  const varsRel = fs.existsSync(path.resolve(__dirname, varsCandidate))
-    ? varsCandidate
-    : "src/css/quasar.variables.scss";
-  const varsAbs = path.resolve(__dirname, varsRel);
-  const varsAbsPosix = varsAbs.split(path.sep).join("/");
+  //const varsCandidate =
+  //  meta.varsPath ?? `src/sites/${site}/quasar.variables.scss`;
+  //const varsRel = fs.existsSync(path.resolve(__dirname, varsCandidate))
+  //  ? varsCandidate
+  //  : "src/css/quasar.variables.scss";
+  //const varsAbs = path.resolve(__dirname, varsRel);
+  //const varsAbsPosix = varsAbs.split(path.sep).join("/");
+  const candidate =
+    `src/sites/${site}/quasar.variables.scss`;
+
+  const candidateAbs = path.resolve(__dirname, candidate);
+
+  if (!fs.existsSync(candidateAbs)) {
+    throw new Error(
+      `Missing SCSS variables for site "${site}". ` +
+      `Expected: ${candidate}`
+    );
+  }
 
   // --- Public dir ---
   const candidatePublicDir = path.resolve(
@@ -51,8 +62,8 @@ export default configure((ctx) => {
   console.log("site:", site);
   console.log("meta:", fs.existsSync(metaPath) ? metaPath : "(none; defaults)");
   console.log("base:", base);
-  console.log("scssVariables (rel):", varsRel);
-  console.log("scssVariables (abs):", varsAbsPosix);
+//  console.log("scssVariables (rel):", varsRel);
+//  console.log("scssVariables (abs):", varsAbsPosix);
   console.log("publicDir (resolved):", publicDir);
   console.log("dev:", dev);
   console.groupEnd();
@@ -86,7 +97,8 @@ export default configure((ctx) => {
       publicPath: base,
 
       // ✅ Let Quasar components see your variables
-      scssVariables: varsAbsPosix,
+      //scssVariables: varsRel,
+       scssVariables: candidateAbs,
 
       // Optional: pass VITE_* to Quasar (server-side) too
       env: {
@@ -124,13 +136,13 @@ export default configure((ctx) => {
         viteConf.define["import.meta.env.VITE_SITE_KEY"] = JSON.stringify(site);
 
         // ----- SCSS: inject vars into ALL your scss files -----
-        viteConf.css ??= {};
-        viteConf.css.preprocessorOptions ??= {};
-        viteConf.css.preprocessorOptions.scss ??= {};
-        const add = `@use "${varsAbsPosix}" as *;`;
-        const existing =
-          viteConf.css.preprocessorOptions.scss.additionalData || "";
-        viteConf.css.preprocessorOptions.scss.additionalData = add + existing;
+        //viteConf.css ??= {};
+        //viteConf.css.preprocessorOptions ??= {};
+        //viteConf.css.preprocessorOptions.scss ??= {};
+        //const add = `@use "${varsAbsPosix}" as *;`;
+        //const existing =
+        //  viteConf.css.preprocessorOptions.scss.additionalData || "";
+        //viteConf.css.preprocessorOptions.scss.additionalData = add + existing;
 
         // ----- Aliases -----
         const existingAlias =
