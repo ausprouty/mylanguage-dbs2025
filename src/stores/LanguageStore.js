@@ -8,6 +8,7 @@ export const useLanguageStore = defineStore("languageStore", {
     currentStudy: "ctc",
     appVersion: null,
     brandTitle: "",
+    apiProfile: "staqndard",
     currentPath: null,
 
     // keep defaults; we will merge/fill later

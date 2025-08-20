@@ -39,6 +39,9 @@ export const languageActions = {
     }
     if (!Array.isArray(this.menu)) this.menu = [];
   },
+  setApiProfile(val) {
+    this.apiProfile = (typeof val === 'string' && val.trim()) ? val.trim() : 'standard';
+  },
 
   setBrandTitle(title) {
     this.brandTitle = typeof title === "string" ? title.trim() : "";

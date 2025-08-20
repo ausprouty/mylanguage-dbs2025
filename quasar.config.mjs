@@ -74,6 +74,7 @@ export default configure((ctx) => {
       "axios",
       "language-init",
       "brand-hydrate",
+      "profile-hydrate",
       "menu-hydrate",
       "route-resume",
       "version-check",

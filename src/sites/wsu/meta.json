@@ -6,6 +6,7 @@
   "title": "Thursday Bible Study",
   "description": "Resources for Thursday Bible Study",
   "appbar": { "style": "surface" },
+  "apiProfile":"wsu",
   "env": {
     "VITE_APP": "wsu",
     "VITE_APP_TITLE" : "Thursday Bible Study",

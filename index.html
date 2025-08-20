@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title></title> <!-- set at runtime via router/site meta -->
+    <title></title>
+    <!-- set at runtime via router/site meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Quasar injects PWA meta/links when injectPwaMetaTags: true -->
   </head>
@@ -10,6 +11,108 @@
     <noscript>
       <p>This site requires JavaScript to function. Please enable it.</p>
     </noscript>
+
     <!-- quasar:entry-point -->
+
+    <style>
+      /* --- Generic PWA Splash (multi-site) --- */
+
+      :root {
+        --splash-bg: none;
+        --splash-pos: 50% 42%;
+      }
+
+      /* Fullscreen splash while #q-app is empty */
+      #q-app:empty::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: block;
+        background: var(--splash-bg), #111; /* fallback color */
+        background-position: var(--splash-pos);
+        background-repeat: no-repeat;
+        background-size: cover;
+        transition: opacity 420ms ease;
+      }
+      /* Ultra-wide screens: avoid cropping */
+      @media (min-aspect-ratio: 21/9) {
+        #q-app:empty::before {
+          background-size: contain; /* show whole image */
+          background-color: #111; /* letterbox bars color */
+          background-position: center; /* re-center for contain */
+        }
+      }
+
+      /* Very tall windows (portrait-ish on desktop): avoid cropping */
+      @media (max-aspect-ratio: 9/21) {
+        #q-app:empty::before {
+          background-size: contain;
+          background-color: #111;
+          background-position: center;
+        }
+      }
+
+      /* Fade out when ready */
+      html.splash-done #q-app:empty::before {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Accessibility: disable fade for users who prefer reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        #q-app:empty::before {
+          transition: none;
+        }
+      }
+    </style>
+
+    <script>
+      (function () {
+        function pickSplash() {
+          var portrait = window.matchMedia("(orientation: portrait)").matches;
+          var path =
+            "/splash/" +
+            (portrait ? "splash-portrait.webp" : "splash-landscape.webp");
+          document.documentElement.style.setProperty(
+            "--splash-bg",
+            'url("' + path + '")'
+          );
+        }
+
+        pickSplash();
+        window
+          .matchMedia("(orientation: portrait)")
+          .addEventListener("change", pickSplash);
+
+        // record when splash first appeared
+        var splashStart = Date.now();
+        var minDuration = 1500; // in ms (1.2 seconds for example)
+
+        window.addEventListener("load", function () {
+          var elapsed = Date.now() - splashStart;
+          var delay = Math.max(0, minDuration - elapsed);
+
+          setTimeout(function () {
+            document.documentElement.classList.add("splash-done");
+          }, delay);
+        });
+      })();
+    </script>
+
+    <!-- Optional: help the splash appear instantly -->
+    <link
+      rel="preload"
+      as="image"
+      href="/splash/splash-portrait.webp"
+      imagesrcset="/splash/splash-portrait.webp 1x, /splash/splash-portrait@2x.webp 2x"
+    />
+
+    <link
+      rel="preload"
+      as="image"
+      href="/splash/splash-landscape.webp"
+      imagesrcset="/splash/splash-landscape.webp 1x, /splash/splash-landscape@2x.webp 2x"
+    />
   </body>
 </html>

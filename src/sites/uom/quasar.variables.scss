@@ -1,43 +1,40 @@
+// quasar.variables.scss — UoM
 @use "sass:color";
-@use "@/css/quasar.variables.scss" as *;
+@use "./tokens.site.scss" as site;
 
-// University of Melbourne (UoM) theme — Quasar SCSS variables
-// Place at: src/sites/uom/quasar.variables.scss
-// Your quasar.config.mjs already imports @site/quasar.variables.scss
+// ==== Corporate defaults (fallbacks) ====
+$accent: #bf6b30 !default;
+$minor1: #d3b18c !default;
+$minor2: #6a4e42 !default;
+$primary: #a05a2c !default;
+$secondary: #d59744 !default;
 
-// ==== Brand Core ====
-$primary:   #000F46; // Traditional Heritage (Blue)
-$secondary: #ABC1A7; // Mt William Greenstone (Light Sage)
-$accent:    #46C8F0; // Bright blue accent (tertiary)
+$dark: #2e2e2e !default;
+$dark-page: #1c1c1c !default;
+$neutral: #f8f3ee !default;
 
-// Added to match master list (defaults)
-$minor1:    #d3b18c; // Soft beige (background tone)
-$minor2:    #6a4e42; // Dark brown (for text or shadows)
+$info: #a05a2c !default;
+$negative: #b03a2e !default;
+$positive: #65c058 !default;
+$warning: #d59744 !default;
 
-// ==== Background / Greys ====
-$dark:      #2D2D2D; // Dark grey (text secondary)
-$dark-page: #000B34; // Deep background
-$neutral:   #C8C8C8; // Magpie (Light Grey)
+$gold-highlight: #d59744 !default;
+$shadow: #7f6e63 !default;
+$success-highlight: #a05a2c !default;
 
-// ==== Functional States ====
-$positive:  #2C421D; // River Red Gum (Dark Green)
-$negative:  #FF2D3C; // Black Sheoak (Light Red)
-$info:      #46C8F0; // Accent/tertiary blue
-$warning:   #FFD629; // Yam Daisy (Yellow)
+// ==== UoM minimal overrides ====
+$primary:   site.$brand-primary;
+$secondary: site.$brand-secondary;
+$accent:    site.$brand-accent;
 
-// ==== Highlights ====
-// Added to match master list (defaults)
-$gold-highlight:    #d59744; // Special accents
-$shadow:            #7f6e63; // Subtle warm gray for shadows
-$success-highlight: #a05a2c; // Use primary for success
+$dark:      site.$brand-dark;
+$dark-page: site.$brand-dark-page;
+$neutral:   site.$brand-neutral;
 
-// ==== Optional references (handy tokens) ====
-$brand-heritage-blue:  #000F46;
-$brand-sage-light:     #ABC1A7;
-$brand-sage-dark:      #444A40;
-$brand-green-light:    #9FB825;
-$brand-green-dark:     #2C421D;
-$brand-grey-light:     #C8C8C8;
-$brand-cyan:           #46C8F0;
-$brand-yellow:         #FFD629;
-$brand-red:            #FF2D3C;
+// Keep functionals minimal; derive or map where sensible
+$info:    $accent; // reuse accent
+$warning: if(global-variable-exists(brand-warning),
+              site.$brand-warning,
+              $warning); // fallback to corporate default
+$positive: color.mix(site.$brand-secondary, #000, 35%); // darker sage
+$negative: #FF2D3C; // single clear red; remove if you prefer corporate default

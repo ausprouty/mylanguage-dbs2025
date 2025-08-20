@@ -74,5 +74,6 @@ export const languageGetters = {
 
     return lesson >= max;
   },
+  isStandardProfile: s => s.apiProfile === 'standard',
 
 };

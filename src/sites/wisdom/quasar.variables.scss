@@ -1,33 +1,44 @@
-
+// quasar.variables.scss
 @use "sass:color";
-@use "@/css/quasar.variables.scss" as *;
-// Quasar SCSS (& Sass) Variables
-// --------------------------------------------------
-// Customized for Lunar New Year theme
+@use "./tokens.site.scss" as site;
 
-// Primary colors inspired by Lunar New Year
-$primary: #d32f2f;   // Vibrant red, symbolizing good fortune and joy
-$secondary: #ffcc00; // Gold, representing prosperity and wealth
-$accent: #8e44ad;    // Deep purple for an additional royal, festive touch
+// ==== Corporate defaults (fallbacks) ====
+$accent: #bf6b30 !default;
+$minor1: #d3b18c !default;
+$minor2: #6a4e42 !default;
+$primary: #a05a2c !default;
+$secondary: #d59744 !default;
 
-// Added to match master list
-$minor1: #d3b18c;    // Soft beige (background tone)
-$minor2: #6a4e42;    // Dark brown (for text or shadows)
+$dark: #2e2e2e !default;
+$dark-page: #1c1c1c !default;
+$neutral: #f8f3ee !default;
 
-// Background colors
-$dark: #2e2e2e;      // Dark background for contrast
-$dark-page: #1c1c1c; // Slightly darker for page backgrounds
+$info: #a05a2c !default;
+$negative: #b03a2e !default;
+$positive: #65c058 !default;
+$warning: #d59744 !default;
 
-// Functional colors
-$positive: #28a745;  // Green, symbolizing growth and harmony
-$negative: #c0392b;  // Bright red for warnings or errors
-$info: #3498db;      // Blue for informational highlights
-$warning: #f39c12;   // Orange-yellow, symbolizing energy and caution
+$gold-highlight: #d59744 !default;
+$shadow: #7f6e63 !default;
+$success-highlight: #a05a2c !default;
 
-// Custom add-ons for Lunar New Year feel
-$success-highlight: #e74c3c; // Festive red for success messages
-$gold-highlight: #f1c40f;    // Gold accents for special elements
+// ==== Site overrides (from tokens.site.scss) ====
+$primary: site.$brand-primary;
+$secondary: site.$brand-secondary;
+$accent: site.$brand-accent;
 
-// Optional complementary colors
-$neutral: #f0f0f0;   // Soft white-gray for neutral backgrounds
-$shadow: #7f8c8d;    // Subtle gray for shadows
+$minor1: site.$brand-minor1;
+$minor2: site.$brand-minor2;
+
+$dark: site.$brand-dark;
+$dark-page: site.$brand-dark-page;
+$neutral: site.$brand-neutral;
+
+$positive: site.$brand-positive;
+$negative: site.$brand-negative;
+$info: site.$brand-info;
+$warning: site.$brand-warning;
+
+$success-highlight: site.$brand-success-highlight;
+$gold-highlight: site.$brand-gold-highlight;
+$shadow: site.$brand-shadow;

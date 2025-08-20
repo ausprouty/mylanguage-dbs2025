@@ -4,7 +4,7 @@
   "varsPath": "src/sites/dbs/quasar.variables.scss",
   "title": "Discovery Bible Studies",
   "description": "Studies for Discovery Bible Study groups.",
-   "appbar": { "style": "surface" },
+  "appbar": { "style": "surface" },
   "env": {
     "VITE_APP": "dbs",
     "VITE_APP_TITLE" : "Discover Community",
