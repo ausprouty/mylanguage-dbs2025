@@ -37,7 +37,9 @@ const loadPreviousNote = async () => {
     const trimmed = note?.trim();
     if (trimmed) {
       cleanedNote.value = trimmed;
-      noteLines.value = trimmed.split(/\r?\n/).filter(line => line.trim() !== "");
+      noteLines.value = trimmed
+        .split(/\r?\n/)
+        .filter((line) => line.trim() !== "");
       hasNote.value = true;
       reviewIntro.value = loadIntroParagraphs();
     } else {
@@ -75,14 +77,16 @@ onMounted(loadPreviousNote);
 watch(() => languageStore.currentStudySelected, loadPreviousNote);
 </script>
 
-
-
 <template>
   <div class="last-week-box">
     <template v-if="hasNote">
-      <p v-for="(para, index) in reviewIntro" :key="'review-' + index">{{ para }}</p>
+      <p v-for="(para, index) in reviewIntro" :key="'review-' + index">
+        {{ para }}
+      </p>
       <p><strong>📝 Last week you said:</strong></p>
-      <p v-for="(line, index) in noteLines" :key="'note-' + index">{{ line }}</p>
+      <p v-for="(line, index) in noteLines" :key="'note-' + index">
+        {{ line }}
+      </p>
     </template>
     <template v-else>
       <p>{{ t("review.empty") }}</p>
@@ -92,19 +96,19 @@ watch(() => languageStore.currentStudySelected, loadPreviousNote);
 
 <style scoped lang="scss">
 .last-week-box {
-  background-color: $minor1;         // soft beige background
-  border-left: 6px solid $gold-highlight; // visual cue for importance
+  background-color: $minor1; // soft beige background
+  border-left: 6px solid $highlight-scripture; // visual cue for importance
   padding: 16px 20px;
   margin-bottom: 24px;
   border-radius: 8px;
-  box-shadow: 2px 2px 8px $shadow;   // subtle depth
+  box-shadow: 2px 2px 8px $shadow; // subtle depth
   font-size: 15px;
-  color: $minor2;                    // warm dark brown text
+  color: $minor2; // warm dark brown text
   transition: background-color 0.3s ease;
 }
 
 .last-week-box strong {
-  color: $primary;                   // warm brown header
+  color: $primary; // warm brown header
   font-size: 16px;
 }
 
@@ -113,4 +117,3 @@ watch(() => languageStore.currentStudySelected, loadPreviousNote);
   line-height: 1.5;
 }
 </style>
-

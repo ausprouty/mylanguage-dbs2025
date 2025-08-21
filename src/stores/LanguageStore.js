@@ -5,10 +5,10 @@ import { languageActions } from "./languageActions";
 
 export const useLanguageStore = defineStore("languageStore", {
   state: () => ({
-    currentStudy: "ctc",
+    currentStudy: "",
     appVersion: null,
     brandTitle: "",
-    apiProfile: "staqndard",
+    apiProfile: "standard",
     currentPath: null,
 
     // keep defaults; we will merge/fill later
@@ -35,6 +35,7 @@ export const useLanguageStore = defineStore("languageStore", {
         paths: [
           "appVersion",
           "brandTitle",
+          apiProfile,
           "currentPath",
           "currentStudy",
           "lessonNumber",

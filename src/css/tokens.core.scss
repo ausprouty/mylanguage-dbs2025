@@ -1,82 +1,78 @@
-/* shared semantics + a mixin to emit CSS vars */
 /* src/css/tokens.core.scss */
 @use "sass:color";
 @use "sass:math";
 
-/* --- helpers for readable text on any brand color --- */
+/* ---------- helpers ---------- */
 @function _linear-channel($c) {
   $c: $c / 255;
   @return if($c <= 0.03928, $c / 12.92, math.pow(($c + 0.055)/1.055, 2.4));
 }
-
 @function luminance($c) {
-  $r: _linear-channel(color.channel($c, 'red'));
-  $g: _linear-channel(color.channel($c, 'green'));
-  $b: _linear-channel(color.channel($c, 'blue'));
+  $r: _linear-channel(color.channel($c, "red"));
+  $g: _linear-channel(color.channel($c, "green"));
+  $b: _linear-channel(color.channel($c, "blue"));
   @return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
 }
-@function contrast-color($bg, $light: #ffffff, $dark: #111111, $threshold: 0.55) {
+@function contrast-color($bg, $light: #fff, $dark: #111, $threshold: 0.55) {
   @return if(luminance($bg) > $threshold, $dark, $light);
 }
 
+/* ---------- configurable inputs (Quasar-style only) ---------- */
+$primary: #a05a2c !default;
+$secondary: #d59744 !default;
+$accent: #bf6b30 !default;
 
-/* ---------- Brand inputs (override via @use ... with (...)) ---------- */
-/* Core defaults (safe if a site forgets to override) */
-$brand-primary:   #a05a2c !default;
-$brand-secondary: #d59744 !default;
-$brand-accent:    #bf6b30 !default;
-$brand-minor1:    #d3b18c !default;
-$brand-minor2:    #6a4e42 !default;
-$brand-neutral:   #f8f3ee !default;
-$brand-dark:      #2e2e2e !default;
-$brand-dark-page: #1c1c1c !default;
-$brand-positive:  #65c058 !default;
-$brand-negative:  #b03a2e !default;
-$brand-info:      #a05a2c !default;
-$brand-warning:   #d59744 !default;
+$minor1: #d3b18c !default;
+$minor2: #6a4e42 !default;
 
-/* ---------- Semantic mapping ---------- */
-$primary:   $brand-primary;
-$secondary: $brand-secondary;
-$accent:    $brand-accent;
+$neutral: #f8f3ee !default;
 
-$surface:    #ffffff !default;
+$dark: #2e2e2e !default;
+$dark-page: #1c1c1c !default;
+
+$positive: #65c058 !default;
+$negative: #b03a2e !default;
+$info: #a05a2c !default;
+$warning: #d59744 !default;
+
+$highlight-scripture: #d59744 !default;
+$shadow: #7f6e63 !default;
+$success-highlight: #a05a2c !default;
+
+/* ---------- derived semantics ---------- */
+$surface: #ffffff !default;
 $text-color: #111111 !default;
 
-/* use robust fallbacks for derived colors */
-$__minor2: if($brand-minor2 == null, #6a4e42, $brand-minor2);
-$border-color: color.mix($__minor2, white, 40%);
+$border-color: color.mix($minor2, white, 40%);
 $divider-color: color.change($border-color, $alpha: 0.5);
 
-$positive: $brand-positive;
-$negative: $brand-negative;
-$info:     $brand-info;
-$warning:  $brand-warning;
+$link: $primary;
+$link-hover: color.scale($primary, $lightness: -10%);
 
-$link:        $primary;
-$link-hover:  color.scale($primary, $lightness: -10%);
-
-$focus:      $brand-minor1;
+$focus: $minor1;
 $focus-ring: 0 0 0 3px color.change($focus, $alpha: 0.45);
 
 $overlay: rgba(0, 0, 0, 0.45);
 
-/* replace the static on-* block with these auto-contrast defaults */
-$on-primary:   contrast-color($primary) !default;
+/* auto-contrast “on-*” tokens */
+$on-primary: contrast-color($primary) !default;
 $on-secondary: contrast-color($secondary) !default;
-$on-accent:    contrast-color($accent) !default;
-$on-positive:  contrast-color($positive) !default;
-$on-negative:  contrast-color($negative) !default;
-$on-warning:   contrast-color($warning) !default;
-$on-info:      contrast-color($info) !default;
+$on-accent: contrast-color($accent) !default;
+$on-positive: contrast-color($positive) !default;
+$on-negative: contrast-color($negative) !default;
+$on-warning: contrast-color($warning) !default;
+$on-info: contrast-color($info) !default;
 
-/* ---------- Mixin: emit CSS variables on demand ---------- */
+/* ---------- Mixin to emit CSS vars ---------- */
 @mixin emit-css-vars {
   :root {
-    /* project vars */
     --color-primary: #{$primary};
     --color-secondary: #{$secondary};
     --color-accent: #{$accent};
+
+    --color-minor1: #{$minor1};
+    --color-minor2: #{$minor2};
+    --color-neutral: #{$neutral};
 
     --color-surface: #{$surface};
     --color-text: #{$text-color};
@@ -91,7 +87,6 @@ $on-info:      contrast-color($info) !default;
     --color-link: #{$link};
     --color-link-hover: #{$link-hover};
 
-    /* on-color */
     --color-on-primary: #{$on-primary};
     --color-on-secondary: #{$on-secondary};
     --color-on-accent: #{$on-accent};
@@ -104,7 +99,7 @@ $on-info:      contrast-color($info) !default;
     --focus-ring: #{$focus-ring};
     --overlay: #{$overlay};
 
-    /* quasar-style vars too (handy in DevTools) */
+    /* handy mirrors for Quasar debugging */
     --q-primary: #{$primary};
     --q-secondary: #{$secondary};
     --q-accent: #{$accent};
@@ -112,13 +107,16 @@ $on-info:      contrast-color($info) !default;
     --q-negative: #{$negative};
     --q-info: #{$info};
     --q-warning: #{$warning};
-    --q-dark: #{$brand-dark};
-    --q-dark-page: #{$brand-dark-page};
+    --q-dark: #{$dark};
+    --q-dark-page: #{$dark-page};
+
+    --color-highlight-scripture: #{$highlight-scripture};
+    --color-shadow: #{$shadow};
+    --color-success-highlight: #{$success-highlight};
   }
 
-  /* Dark body class override (Quasar uses .body--dark) */
   .body--dark {
-    --color-surface: #{$brand-dark};
+    --color-surface: #{$dark};
     --color-text: #ffffff;
     --color-border: #{color.change(#ffffff, $alpha: 0.2)};
     --color-divider: #{color.change(#ffffff, $alpha: 0.12)};

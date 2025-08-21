@@ -6,6 +6,9 @@
   "author": "ausprouty <bob.prouty@powertochange.org.au>",
   "private": true,
   "scripts": {
+    "validate:tokens": "node scripts/validate-site-tokens.mjs",
+    "predev": "npm run validate:tokens",
+    "prebuild": "npm run validate:tokens",
     "clean": "rimraf --glob \"node_modules/.vite-*\" dist .quasar",
     "clean:site": "rimraf dist/site-%SITE% node_modules/.vite-%SITE%",
     "dev:dbs": "yarn clean:site && cross-env SITE=dbs quasar dev -m pwa",

@@ -1,44 +1,20 @@
-// quasar.variables.scss
-@use "sass:color";
-@use "./tokens.site.scss" as site;
+/* src/sites/wisdom/quasar.variables.scss */
+$primary:   #d32f2f;  /* red — good fortune & joy */
+$secondary: #ffcc00;  /* gold — prosperity & wealth */
+$accent:    #8e44ad;  /* deep purple — festive touch */
 
-// ==== Corporate defaults (fallbacks) ====
-$accent: #bf6b30 !default;
-$minor1: #d3b18c !default;
-$minor2: #6a4e42 !default;
-$primary: #a05a2c !default;
-$secondary: #d59744 !default;
+$minor1:    #d3b18c;  /* soft beige */
+$minor2:    #6a4e42;  /* dark brown */
+$neutral:   #f0f0f0;  /* soft white-gray */
 
-$dark: #2e2e2e !default;
-$dark-page: #1c1c1c !default;
-$neutral: #f8f3ee !default;
+$dark:      #2e2e2e;  /* dark bg */
+$dark-page: #1c1c1c;  /* darker page bg */
 
-$info: #a05a2c !default;
-$negative: #b03a2e !default;
-$positive: #65c058 !default;
-$warning: #d59744 !default;
+$positive:  #28a745;  /* green */
+$negative:  #c0392b;  /* warning/error red */
+$info:      #3498db;  /* info blue */
+$warning:   #f39c12;  /* orange-yellow */
 
-$gold-highlight: #d59744 !default;
-$shadow: #7f6e63 !default;
-$success-highlight: #a05a2c !default;
-
-// ==== Site overrides (from tokens.site.scss) ====
-$primary: site.$brand-primary;
-$secondary: site.$brand-secondary;
-$accent: site.$brand-accent;
-
-$minor1: site.$brand-minor1;
-$minor2: site.$brand-minor2;
-
-$dark: site.$brand-dark;
-$dark-page: site.$brand-dark-page;
-$neutral: site.$brand-neutral;
-
-$positive: site.$brand-positive;
-$negative: site.$brand-negative;
-$info: site.$brand-info;
-$warning: site.$brand-warning;
-
-$success-highlight: site.$brand-success-highlight;
-$gold-highlight: site.$brand-gold-highlight;
-$shadow: site.$brand-shadow;
+$highlight-scripture: #f1c40f; /* gold accents for Scripture */
+$shadow:              #7f8c8d; /* subtle gray */
+$success-highlight:   #e74c3c; /* festive success red */

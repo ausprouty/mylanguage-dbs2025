@@ -1,40 +1,20 @@
-// quasar.variables.scss — UoM
-@use "sass:color";
-@use "./tokens.site.scss" as site;
+/* src/sites/uom/quasar.variables.scss */
+$primary:   #000F46;  /* Heritage blue */
+$secondary: #ABC1A7;  /* Light sage */
+$accent:    #46C8F0;  /* Bright blue */
 
-// ==== Corporate defaults (fallbacks) ====
-$accent: #bf6b30 !default;
-$minor1: #d3b18c !default;
-$minor2: #6a4e42 !default;
-$primary: #a05a2c !default;
-$secondary: #d59744 !default;
+$minor1:    #DDE7DF;  /* light sage tint (focus) */
+$minor2:    #5E6F63;  /* deep sage (dividers) */
+$neutral:   #C8C8C8;  /* light neutral */
 
-$dark: #2e2e2e !default;
-$dark-page: #1c1c1c !default;
-$neutral: #f8f3ee !default;
+$dark:      #2D2D2D;  /* dark gray (ink) */
+$dark-page: #000B34;  /* deep page bg */
 
-$info: #a05a2c !default;
-$negative: #b03a2e !default;
-$positive: #65c058 !default;
-$warning: #d59744 !default;
+$positive:  #2E7D32;  /* green */
+$negative:  #C62828;  /* danger red */
+$info:      $primary; /* info tone */
+$warning:   #FFD629;  /* UoM yellow */
 
-$gold-highlight: #d59744 !default;
-$shadow: #7f6e63 !default;
-$success-highlight: #a05a2c !default;
-
-// ==== UoM minimal overrides ====
-$primary:   site.$brand-primary;
-$secondary: site.$brand-secondary;
-$accent:    site.$brand-accent;
-
-$dark:      site.$brand-dark;
-$dark-page: site.$brand-dark-page;
-$neutral:   site.$brand-neutral;
-
-// Keep functionals minimal; derive or map where sensible
-$info:    $accent; // reuse accent
-$warning: if(global-variable-exists(brand-warning),
-              site.$brand-warning,
-              $warning); // fallback to corporate default
-$positive: color.mix(site.$brand-secondary, #000, 35%); // darker sage
-$negative: #FF2D3C; // single clear red; remove if you prefer corporate default
+$highlight-scripture: #FFD629; /* Scripture highlight */
+$shadow:              #7F6E63; /* subtle shadow */
+$success-highlight:   $primary; /* brand-tinted success */

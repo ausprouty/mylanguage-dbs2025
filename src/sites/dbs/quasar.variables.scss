@@ -1,39 +1,20 @@
-@use "sass:color";
-@use "@/css/quasar.variables.scss" as *;
-
-// ==== Primary Palette ====
-$accent: #bf6b30;
-$minor1: #d3b18c;
-$minor2: #6a4e42;
-$primary: #a05a2c;
+/* src/sites/dbs/quasar.variables.scss */
+$primary:   #a05a2c;
 $secondary: #d59744;
+$accent:    #bf6b30;
 
-// ==== Background Colors ====
-$dark: #2e2e2e;
+$minor1:    #d3b18c;
+$minor2:    #6a4e42;
+$neutral:   #f8f3ee;
+
+$dark:      #2e2e2e;
 $dark-page: #1c1c1c;
-$neutral: #f8f3ee;
 
-// ==== Functional Colors ====
-$info: #a05a2c;
-$negative: #b03a2e;
-$positive: #65c058;
-$warning: #d59744;
+$positive:  #65c058;
+$negative:  #b03a2e;
+$info:      #a05a2c;
+$warning:   #d59744;
 
-// ==== Highlights ====
-$gold-highlight: #d59744;
-$shadow: #7f6e63;
-$success-highlight: #a05a2c;
-
-// ==== Additions (utility tokens) ====
-$white: #ffffff;
-$black: #000000;
-$overlay-20: rgba($black, 0.2);
-$overlay-30: rgba($black, 0.3);
-
-// Replacements for deprecated darken()
-$accent-hover: color.adjust($accent, $lightness: -12%);
-$accent-active: color.adjust($accent, $lightness: -18%);
-
-// Helpful precomputed positives for buttons
-$positive-15: color.adjust($positive, $lightness: -15%);
-$positive-30: color.adjust($positive, $lightness: -30%);
+$highlight-scripture: #d59744;
+$shadow:              #7f6e63;
+$success-highlight:   #a05a2c;

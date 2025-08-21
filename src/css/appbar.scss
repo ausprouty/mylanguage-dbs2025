@@ -17,8 +17,12 @@
 }
 
 .appbar--transparent {
+  /* fallback first */
+  background: var(--color-surface);
+  /* then fancy */
   --appbar-bg: color-mix(in srgb, var(--color-surface) 75%, transparent);
   --appbar-fg: var(--color-text);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  border-bottom:
+    1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
 }

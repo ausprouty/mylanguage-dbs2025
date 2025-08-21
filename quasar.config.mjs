@@ -7,49 +7,42 @@ import fs from "node:fs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default configure((ctx) => {
-  const site = process.env.SITE || process.env.VITE_APP || "default";
+  const site = process.env.SITE || process.env.VITE_APP || "dbs";
 
-  // --- Load per-site meta ---
+  // --- Load per-site meta (optional) ---
   const metaPath = path.resolve(__dirname, `src/sites/${site}/meta.json`);
-  const meta = fs.existsSync(metaPath)
-    ? JSON.parse(fs.readFileSync(metaPath, "utf-8"))
-    : {};
+  let meta = {};
+  if (fs.existsSync(metaPath)) {
+    try {
+      meta = JSON.parse(fs.readFileSync(metaPath, "utf-8"));
+    } catch (e) {
+      console.warn(`[meta] Failed to parse ${metaPath}:`, e.message);
+    }
+  }
+
   const envFromMeta = Object.fromEntries(
     Object.entries(meta?.env || {}).filter(([k]) => k.startsWith("VITE_"))
   );
-
   const base = meta.base ?? "/";
 
-  // --- SCSS variables file (per-site or fallback) ---
-  //const varsCandidate =
-  //  meta.varsPath ?? `src/sites/${site}/quasar.variables.scss`;
-  //const varsRel = fs.existsSync(path.resolve(__dirname, varsCandidate))
-  //  ? varsCandidate
-  //  : "src/css/quasar.variables.scss";
-  //const varsAbs = path.resolve(__dirname, varsRel);
-  //const varsAbsPosix = varsAbs.split(path.sep).join("/");
-  const candidate =
-    `src/sites/${site}/quasar.variables.scss`;
-
-  const candidateAbs = path.resolve(__dirname, candidate);
-
-  if (!fs.existsSync(candidateAbs)) {
+  // --- Per-site SCSS variables file (single source of truth) ---
+  const brandRel = `src/sites/${site}/quasar.variables.scss`;
+  const brandAbs = path.resolve(__dirname, brandRel);
+  if (!fs.existsSync(brandAbs)) {
     throw new Error(
-      `Missing SCSS variables for site "${site}". ` +
-      `Expected: ${candidate}`
+      `Missing SCSS variables for site "${site}". Expected: ${brandRel}`
     );
   }
 
-  // --- Public dir ---
-  const candidatePublicDir = path.resolve(
-    __dirname,
-    meta.publicDir ?? `public-${site}`
-  );
-  const publicDir = fs.existsSync(candidatePublicDir)
-    ? candidatePublicDir
+  // --- Public dir (per site, fallback to ./public) ---
+  const publicDirCandidate =
+    meta.publicDir != null ? path.resolve(__dirname, meta.publicDir)
+                           : path.resolve(__dirname, `public-${site}`);
+  const publicDir = fs.existsSync(publicDirCandidate)
+    ? publicDirCandidate
     : path.resolve(__dirname, "public");
 
-  // --- Dev server ---
+  // --- Dev server defaults ---
   const defaultDevPort = ctx.mode.pwa ? 9200 : ctx.mode.ssr ? 9300 : 9100;
   const dev = {
     host: meta.dev?.host ?? "localhost",
@@ -62,8 +55,7 @@ export default configure((ctx) => {
   console.log("site:", site);
   console.log("meta:", fs.existsSync(metaPath) ? metaPath : "(none; defaults)");
   console.log("base:", base);
-//  console.log("scssVariables (rel):", varsRel);
-//  console.log("scssVariables (abs):", varsAbsPosix);
+  console.log("scssVariables:", brandRel);
   console.log("publicDir (resolved):", publicDir);
   console.log("dev:", dev);
   console.groupEnd();
@@ -80,7 +72,6 @@ export default configure((ctx) => {
       "version-check",
     ],
 
-    // Your global stylesheet (src/css/app.scss)
     css: ["app.scss"],
 
     extras: ["material-icons"],
@@ -91,69 +82,56 @@ export default configure((ctx) => {
       plugins: ["Notify", "Dialog"],
     },
 
-    // ✅ All build-related wiring goes under "build"
     build: {
       vueRouterMode: "history",
       distDir: `dist/site-${site}`,
       publicPath: base,
 
-      // ✅ Let Quasar components see your variables
-      //scssVariables: varsRel,
-       scssVariables: candidateAbs,
+      // Let Quasar (its own Sass) see your site variables
+      scssVariables: brandRel,
 
-      // Optional: pass VITE_* to Quasar (server-side) too
+      // Make VITE_* available at build time
       env: {
         ...envFromMeta,
         VITE_APP: site,
         VITE_SITE_KEY: site,
       },
 
-      // Compile-time constants (available via bare identifiers)
+      // Compile-time constants
       define: {
         __SITE_META__: JSON.stringify(meta),
       },
 
-      // ✅ Extend Vite correctly
       extendViteConf(viteConf) {
-        // site-specific cache
+        // Per-site cache & public folder
         viteConf.cacheDir = path.resolve(__dirname, `node_modules/.vite-${site}`);
-
-        // Serve the correct per-site public folder
         viteConf.publicDir = publicDir;
 
-        // ----- define: merge safely -----
+        // Safe merge for define
         viteConf.define ??= {};
         Object.assign(viteConf.define, {
           __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
           __SITE__: JSON.stringify(site),
-          __SITE_META__: JSON.stringify(meta), // ensure it survives merges
+          __SITE_META__: JSON.stringify(meta),
         });
 
-        // Inject every VITE_* into import.meta.env.*
+        // Inject every VITE_* from meta into import.meta.env.*
         for (const [k, v] of Object.entries(envFromMeta)) {
           viteConf.define[`import.meta.env.${k}`] = JSON.stringify(v);
         }
         viteConf.define["import.meta.env.VITE_APP"] = JSON.stringify(site);
         viteConf.define["import.meta.env.VITE_SITE_KEY"] = JSON.stringify(site);
 
-        // ----- SCSS: inject vars into ALL your scss files -----
-        //viteConf.css ??= {};
-        //viteConf.css.preprocessorOptions ??= {};
-        //viteConf.css.preprocessorOptions.scss ??= {};
-        //const add = `@use "${varsAbsPosix}" as *;`;
-        //const existing =
-        //  viteConf.css.preprocessorOptions.scss.additionalData || "";
-        //viteConf.css.preprocessorOptions.scss.additionalData = add + existing;
-
-        // ----- Aliases -----
-        const existingAlias =
-          (viteConf.resolve && viteConf.resolve.alias) || {};
+        // Aliases
+        const prev = (viteConf.resolve && viteConf.resolve.alias) || {};
         viteConf.resolve = {
           ...viteConf.resolve,
           alias: {
-            ...existingAlias,
-            "@": path.resolve(__dirname, "./src"),
+            ...prev,
+            "@": path.resolve(__dirname, "src"),
             "@site": path.resolve(__dirname, `src/sites/${site}`),
+            // IMPORTANT: allows `@use "@brand"` in Sass
+            "@brand": brandAbs,
           },
         };
       },
