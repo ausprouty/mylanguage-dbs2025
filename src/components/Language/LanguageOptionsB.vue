@@ -1,18 +1,18 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 import languageList from "@/i18n/metadata/consolidated_languages.json";
-import { useLanguageStore } from "stores/LanguageStore";
+import { useSettingsStore } from "src/stores/SettingsStore";
 
 const selectedLanguage = ref(null);
 const recentLanguagesToShow = 5;
-const languageStore = useLanguageStore();
+const settingsStore = useSettingsStore();
 const searchInput = ref("");
 const filteredOptions = ref([]);
 const recentLanguages = ref([]); // Max of recentLanguagesToShow frequent languages
 
 // Reactive label for currently selected language
 const currentLanguageLabel = computed(() => {
-  const lang = languageStore.languageObjectSelected;
+  const lang = settingsStore.languageObjectSelected;
   return lang ? `${lang.name} (${lang.ethnicName})` : "None";
 });
 // Generate list with labels
@@ -43,7 +43,7 @@ function handleChange(value) {
   console.log("Selected language:", value);
   selectedLanguage.value = value;
   updateRecentLanguages(value);
-  languageStore.setLanguageObjectSelected(value);
+  settingsStore.setLanguageObjectSelected(value);
 }
 
 // Maintain list of 2 most recent languages

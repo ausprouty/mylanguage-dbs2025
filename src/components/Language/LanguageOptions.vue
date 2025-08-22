@@ -1,32 +1,32 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { useLanguageStore } from 'stores/LanguageStore';
-import languageList from '@/i18n/metadata/consolidated_languages.json';
+import { ref, computed } from "vue";
+import { useSettingsStore } from "src/stores/SettingsStore";
+import languageList from "@/i18n/metadata/consolidated_languages.json";
 
-const languageStore = useLanguageStore();
+const settingsStore = useSettingsStore();
 
 // 1) Computed v-model proxy → Pinia store
 const selectedLanguage = computed({
   get() {
-    return languageStore.languageObjectSelected;
+    return settingsStore.languageObjectSelected;
   },
   set(langObj) {
-    languageStore.setLanguageObjectSelected(langObj);
+    settingsStore.setLanguageObjectSelected(langObj);
     // reset filter input & options after selection
-    searchInput.value = '';
+    searchInput.value = "";
     filteredOptions.value = languageOptions.value;
-  }
+  },
 });
 
 // 2) Your search input & filtered list
-const searchInput = ref('');
+const searchInput = ref("");
 const filteredOptions = ref([]);
 
 // 3) Build master list once
 const languageOptions = computed(() =>
-  languageList.map(lang => ({
+  languageList.map((lang) => ({
     label: `${lang.name} (${lang.ethnicName})`,
-    value: lang
+    value: lang,
   }))
 );
 
@@ -42,7 +42,7 @@ function onFilter(val, update) {
     if (!needle) {
       filteredOptions.value = languageOptions.value;
     } else {
-      filteredOptions.value = languageOptions.value.filter(option =>
+      filteredOptions.value = languageOptions.value.filter((option) =>
         option.label.toLowerCase().includes(needle)
       );
     }
@@ -51,8 +51,8 @@ function onFilter(val, update) {
 
 // 5) Computed for the “Current Language” display
 const currentLanguageLabel = computed(() => {
-  const lang = languageStore.languageObjectSelected;
-  return lang ? `${lang.name} (${lang.ethnicName})` : 'None';
+  const lang = settingsStore.languageObjectSelected;
+  return lang ? `${lang.name} (${lang.ethnicName})` : "None";
 });
 
 // 6) Handler for “Frequently Used” chips
@@ -82,10 +82,10 @@ function pickChip(lang) {
     />
 
     <!-- Frequently Used -->
-    <div v-if="languageStore.languagesUsed.length" class="q-mt-md">
+    <div v-if="settingsStore.languagesUsed.length" class="q-mt-md">
       <p><strong>Frequently Used:</strong></p>
       <q-chip
-        v-for="lang in languageStore.languagesUsed.slice(0, 4)"
+        v-for="lang in settingsStore.languagesUsed.slice(0, 4)"
         :key="lang.languageCodeHL"
         clickable
         @click="pickChip(lang)"

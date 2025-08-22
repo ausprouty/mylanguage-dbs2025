@@ -1,15 +1,15 @@
 <script>
-import { computed, onMounted, ref } from 'vue';
-import { useQuasar } from 'quasar';
-import { useLanguageStore } from 'stores/LanguageStore';
-import { normId, fromObjId, normPathSeg } from 'src/utils/normalize';
-import { getAllowedStudyKeys } from 'src/utils/allowedStudies';
+import { computed, onMounted, ref } from "vue";
+import { useQuasar } from "quasar";
+import { useSettingsStore } from "src/stores/SettingsStore";
+import { normId, fromObjId, normPathSeg } from "src/utils/normalize";
+import { getAllowedStudyKeys } from "src/utils/allowedStudies";
 
 export default {
-  name: 'ShareLink',
+  name: "ShareLink",
   setup() {
     const $q = useQuasar();
-    const store = useLanguageStore();
+    const store = useSettingsStore();
 
     const allowed = ref(new Set());
     onMounted(async () => {
@@ -24,22 +24,24 @@ export default {
 
     const pickLessonFor = (seriesLike) => {
       const ln = store.lessonNumber;
-      if (!ln || typeof ln !== 'object' || Array.isArray(ln)) {
+      if (!ln || typeof ln !== "object" || Array.isArray(ln)) {
         return normId(ln);
       }
 
       const raw = normId(fromObjId(seriesLike));
-      const wanted = raw.replace(/[\s_-]+/g, '').toLowerCase();
+      const wanted = raw.replace(/[\s_-]+/g, "").toLowerCase();
 
       const keys = Object.keys(ln);
       for (let i = 0; i < keys.length; i++) {
         const k = keys[i];
-        const nk = normId(k).replace(/[\s_-]+/g, '').toLowerCase();
+        const nk = normId(k)
+          .replace(/[\s_-]+/g, "")
+          .toLowerCase();
         if (nk === wanted) return normId(ln[k]);
       }
 
       // default-ish keys can be configured in the store
-      const fallbacks = store.lessonKeyFallbacks || ['default', 'current'];
+      const fallbacks = store.lessonKeyFallbacks || ["default", "current"];
       for (let i = 0; i < fallbacks.length; i++) {
         const fk = fallbacks[i];
         if (ln[fk] != null) return normId(ln[fk]);
@@ -50,28 +52,32 @@ export default {
         const s = normId(vals[i]);
         if (/^\d+$/.test(s)) return s;
       }
-      return '';
+      return "";
     };
 
     const getUrlLink = computed(() => {
       const root = window.location.origin;
-      const p = window.location.pathname +
-                window.location.search +
-                window.location.hash;
+      const p =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
 
-      if (p.includes('video')) return videoUrlLink(root);
-      if (p.includes('series')) return seriesUrlLink(root);
+      if (p.includes("video")) return videoUrlLink(root);
+      if (p.includes("series")) return seriesUrlLink(root);
       return root;
     });
 
     const videoUrlLink = (root) => {
       const codeJF = normId(store.languageCodeJFSelected);
       const codeHL = normId(store.languageCodeHLSelected);
-      const lesson = pickLessonFor('jvideo'); // no hard coding elsewhere
+      const lesson = pickLessonFor("jvideo"); // no hard coding elsewhere
       return (
-        root + '/jvideo/' +
-        normPathSeg(lesson) + '/' +
-        normPathSeg(codeHL) + '/' +
+        root +
+        "/jvideo/" +
+        normPathSeg(lesson) +
+        "/" +
+        normPathSeg(codeHL) +
+        "/" +
         normPathSeg(codeJF)
       );
     };
@@ -82,59 +88,64 @@ export default {
 
       // gate on allowed studies from menu.json
       if (!isAllowedSeries(series)) {
-        console.warn('Blocked non-allowed series:', series);
+        console.warn("Blocked non-allowed series:", series);
         return root; // safe fallback
       }
 
       const lesson = pickLessonFor(series);
       return (
-        root + '/series/' +
-        normPathSeg(series) + '/' +
-        normPathSeg(lesson) + '/' +
+        root +
+        "/series/" +
+        normPathSeg(series) +
+        "/" +
+        normPathSeg(lesson) +
+        "/" +
         normPathSeg(codeHL)
       );
     };
 
     const shareUrl = async () => {
-      const subject = 'Discovering Spiritual Community';
-      const message = 'Here is the link';
+      const subject = "Discovering Spiritual Community";
+      const message = "Here is the link";
       const url = getUrlLink.value;
 
       if (navigator.share) {
         try {
           await navigator.share({ title: subject, text: message, url });
-          $q.notify({ type: 'positive', message: 'Shared successfully!' });
+          $q.notify({ type: "positive", message: "Shared successfully!" });
         } catch (e) {
-          console.error('Error sharing:', e);
-          $q.notify({ type: 'negative', message: 'Sharing failed!' });
+          console.error("Error sharing:", e);
+          $q.notify({ type: "negative", message: "Sharing failed!" });
         }
       } else {
-        $q.notify({ type: 'warning',
-          message: 'Sharing not supported. Using fallback.' });
+        $q.notify({
+          type: "warning",
+          message: "Sharing not supported. Using fallback.",
+        });
         shareFallback(url, subject, message);
       }
     };
 
     const shareFallback = (url, subject, message) => {
       const encodedSubject = encodeURIComponent(subject);
-      const encodedMessage = encodeURIComponent(message + ': ' + url);
+      const encodedMessage = encodeURIComponent(message + ": " + url);
       const shareOptions = {
-        email: 'mailto:?subject=' + encodedSubject + '&body=' + encodedMessage,
-        whatsapp: 'https://api.whatsapp.com/send?text=' + encodedMessage,
+        email: "mailto:?subject=" + encodedSubject + "&body=" + encodedMessage,
+        whatsapp: "https://api.whatsapp.com/send?text=" + encodedMessage,
         facebook:
-          'https://www.facebook.com/sharer/sharer.php?u=' +
+          "https://www.facebook.com/sharer/sharer.php?u=" +
           encodeURIComponent(url),
-        twitter: 'https://twitter.com/intent/tweet?text=' + encodedMessage,
+        twitter: "https://twitter.com/intent/tweet?text=" + encodedMessage,
         linkedin:
-          'https://www.linkedin.com/sharing/share-offsite/?url=' +
+          "https://www.linkedin.com/sharing/share-offsite/?url=" +
           encodeURIComponent(url),
       };
       $q.dialog({
-        title: 'Share via',
-        message: 'Choose a platform:',
+        title: "Share via",
+        message: "Choose a platform:",
         options: Object.keys(shareOptions).map((p) => ({
           label: p.charAt(0).toUpperCase() + p.slice(1),
-          handler: () => window.open(shareOptions[p], '_blank'),
+          handler: () => window.open(shareOptions[p], "_blank"),
         })),
         cancel: true,
       });
@@ -143,10 +154,10 @@ export default {
     const copyToClipboard = async (text) => {
       try {
         await navigator.clipboard.writeText(text);
-        $q.notify({ type: 'positive', message: 'Link copied to clipboard!' });
+        $q.notify({ type: "positive", message: "Link copied to clipboard!" });
       } catch (err) {
-        console.error('Failed to copy:', err);
-        $q.notify({ type: 'negative', message: 'Failed to copy the link.' });
+        console.error("Failed to copy:", err);
+        $q.notify({ type: "negative", message: "Failed to copy the link." });
       }
     };
 

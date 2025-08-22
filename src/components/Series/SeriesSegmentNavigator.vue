@@ -1,7 +1,6 @@
-
 <script setup>
 import { computed, ref } from "vue";
-import { useLanguageStore } from "stores/LanguageStore";
+import { useSettingsStore } from "src/stores/SettingsStore";
 import { useI18n } from "vue-i18n";
 
 const props = defineProps({
@@ -13,13 +12,13 @@ const { t } = useI18n();
 
 const emit = defineEmits(["updateLesson"]);
 
-const languageStore = useLanguageStore();
+const settingsStore = useSettingsStore();
 const minLesson = ref(1);
-const maxLesson = computed(() => languageStore.maxLesson);
+const maxLesson = computed(() => settingsStore.maxLesson);
 
 // ✅ Ensure `currentLesson` is always a number
 const currentLesson = computed(() => {
-  const lesson = languageStore.lessonNumber[props.study] || 1;
+  const lesson = settingsStore.lessonNumber[props.study] || 1;
   return Number(lesson); // Convert to number to avoid string concatenation issue
 });
 
@@ -27,7 +26,7 @@ const showNextLesson = () => {
   const nextLesson = currentLesson.value + 1;
   console.log("Study:", props.study);
   console.log("Next Lesson:", nextLesson);
-  languageStore.setLessonNumber(props.study, nextLesson);
+  settingsStore.setLessonNumber(props.study, nextLesson);
   emit("updateLesson", nextLesson);
 };
 
@@ -35,7 +34,7 @@ const showPreviousLesson = () => {
   const previousLesson = currentLesson.value - 1;
   console.log("Study:", props.study);
   console.log("Previous Lesson:", previousLesson);
-  languageStore.setLessonNumber(props.study, previousLesson);
+  settingsStore.setLessonNumber(props.study, previousLesson);
   emit("updateLesson", previousLesson);
 };
 </script>
@@ -48,7 +47,7 @@ const showPreviousLesson = () => {
       @click="showPreviousLesson"
     >
       <q-btn flat dense round icon="arrow_back" aria-label="Previous" />
-      <span>{{t('menu.previous')}}</span>
+      <span>{{ t("menu.previous") }}</span>
     </div>
 
     <!-- Next Button -->
@@ -57,13 +56,11 @@ const showPreviousLesson = () => {
       class="nav-button next"
       @click="showNextLesson"
     >
-       <span>{{t('menu.next')}}</span>
+      <span>{{ t("menu.next") }}</span>
       <q-btn flat dense round icon="arrow_forward" aria-label="Next" />
-
     </div>
   </div>
 </template>
-
 
 <style scoped>
 /* Parent container to position elements on opposite sides */

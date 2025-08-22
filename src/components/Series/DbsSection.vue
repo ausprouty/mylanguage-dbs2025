@@ -27,3 +27,8 @@ export default {
     <NoteSection :section="section" :placeholder="placeholder" />
   </section>
 </template>
+<style>
+  .timing{
+    color:var(--q-primary);
+  }
+</style>

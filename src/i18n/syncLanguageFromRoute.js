@@ -1,17 +1,17 @@
-import { useLanguageStore } from "src/stores/LanguageStore";
+import { useSettingsStore } from "src/stores/SettingsStore";
 import { getLanguageObjectFromHL } from "./detectLanguage";
 
 export function syncLanguageFromRoute(route) {
-  const languageStore = useLanguageStore();
+  const settingsStore = useSettingsStore();
   const langCodeFromRoute = route.params.languageCodeHL;
 
   if (!langCodeFromRoute) return;
 
-  const currentHL = languageStore.languageSelected?.languageCodeHL;
+  const currentHL = settingsStore.languageSelected?.languageCodeHL;
   if (langCodeFromRoute !== currentHL) {
     const languageObject = getLanguageObjectFromHL(langCodeFromRoute);
     if (languageObject) {
-      languageStore.setLanguageObjectSelected(languageObject);
+      settingsStore.setLanguageObjectSelected(languageObject);
     } else {
       console.warn(`Unknown language code in route: ${langCodeFromRoute}`);
     }

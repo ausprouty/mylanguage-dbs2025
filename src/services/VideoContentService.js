@@ -32,7 +32,7 @@ export async function getJesusVideoUrls(languageCodeJF) {
   }
 
   const key = buildVideoUrlsKey(studyId, jf)
-  const apiUrl = `api/translate/videoUrls/${studyId}/${jf}`
+  const apiUrl = `/translate/videoUrls/${studyId}/${jf}`
 
   const contentStore = useContentStore()
 

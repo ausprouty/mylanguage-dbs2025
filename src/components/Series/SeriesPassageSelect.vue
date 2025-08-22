@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from "vue";
-import { useLanguageStore } from "stores/LanguageStore";
+import { useSettingsStore } from "src/stores/SettingsStore";
 import { useI18n } from "vue-i18n";
 
 const props = defineProps({
@@ -11,14 +11,14 @@ const props = defineProps({
   isLessonCompleted: Function,
   completedLessons: Array,
 });
-console.log ('topics')
-console.log (props.topics)
+console.log("topics");
+console.log(props.topics);
 // Access the i18n instance
 const { t } = useI18n();
-const topicLabel = t('menu.topic')
+const topicLabel = t("menu.topic");
 
 const emit = defineEmits(["updateLesson"]);
-const LanguageStore = useLanguageStore();
+const settingsStore = useSettingsStore();
 
 // ✅ Computed list of topics with completion status
 const markedTopics = computed(() => {
@@ -42,12 +42,11 @@ const selectedLesson = computed({
   },
   set(newValue) {
     const studyKey = props.study || "dbs";
-    LanguageStore.setLessonNumber(studyKey, newValue.value);
+    settingsStore.setLessonNumber(studyKey, newValue.value);
     emit("updateLesson", newValue.value);
   },
 });
 </script>
-
 
 <template>
   <div>
@@ -57,7 +56,7 @@ const selectedLesson = computed({
       :options="markedTopics"
       option-label="label"
       option-value="value"
-      :label= "topicLabel"
+      :label="topicLabel"
       class="select"
     >
       <template v-slot:option="scope">

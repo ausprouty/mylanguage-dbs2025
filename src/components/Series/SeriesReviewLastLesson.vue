@@ -1,13 +1,13 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
 import { useI18n } from "vue-i18n";
-import { useLanguageStore } from "stores/LanguageStore";
+import { useSettingsStore } from "src/stores/SettingsStore";
 import { getNote } from "src/services/NoteService";
 import { getStudyProgress } from "src/services/IndexedDBService";
 import { buildNotesKey } from "src/utils/ContentKeyBuilder";
 
 const { t } = useI18n();
-const languageStore = useLanguageStore();
+const settingsStore = useSettingsStore();
 
 const cleanedNote = ref("");
 const noteLines = ref([]);
@@ -16,7 +16,7 @@ const reviewIntro = ref([]);
 
 // Load previous note and intro paragraphs
 const loadPreviousNote = async () => {
-  const study = languageStore.currentStudySelected;
+  const study = settingsStore.currentStudySelected;
   if (!study) {
     resetNote();
     return;
@@ -74,7 +74,7 @@ function loadIntroParagraphs() {
 onMounted(loadPreviousNote);
 
 // Optional: Watch if currentStudySelected changes in real time
-watch(() => languageStore.currentStudySelected, loadPreviousNote);
+watch(() => settingsStore.currentStudySelected, loadPreviousNote);
 </script>
 
 <template>

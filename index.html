@@ -15,90 +15,115 @@
     <!-- quasar:entry-point -->
 
     <style>
-      /* --- Generic PWA Splash (multi-site) --- */
+    /* --- Generic PWA Splash (multi-site) --- */
+:root {
+  --splash-bg: none;
+  --splash-pos: 50% 42%;
+}
 
-      :root {
-        --splash-bg: none;
-        --splash-pos: 50% 42%;
-      }
+/* Show until JS adds .splash-done to <html> */
+html:not(.splash-done)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: block;
+  background:
+    var(--splash-bg) no-repeat,
+    #111; /* fallback color behind image */
+  background-position: var(--splash-pos);
+  background-size: cover;
+  transition: opacity 420ms ease;
+  will-change: opacity;
+}
 
-      /* Fullscreen splash while #q-app is empty */
-      #q-app:empty::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        display: block;
-        background: var(--splash-bg), #111; /* fallback color */
-        background-position: var(--splash-pos);
-        background-repeat: no-repeat;
-        background-size: cover;
-        transition: opacity 420ms ease;
-      }
-      /* Ultra-wide screens: avoid cropping */
-      @media (min-aspect-ratio: 21/9) {
-        #q-app:empty::before {
-          background-size: contain; /* show whole image */
-          background-color: #111; /* letterbox bars color */
-          background-position: center; /* re-center for contain */
-        }
-      }
+/* Ultra-wide screens: avoid cropping */
+@media (min-aspect-ratio: 21/9) {
+  html:not(.splash-done)::before {
+    background-size: contain;   /* show whole image */
+    background-color: #111;     /* letterbox bars color */
+    background-position: center;
+  }
+}
 
-      /* Very tall windows (portrait-ish on desktop): avoid cropping */
-      @media (max-aspect-ratio: 9/21) {
-        #q-app:empty::before {
-          background-size: contain;
-          background-color: #111;
-          background-position: center;
-        }
-      }
+/* Very tall windows: avoid cropping */
+@media (max-aspect-ratio: 9/21) {
+  html:not(.splash-done)::before {
+    background-size: contain;
+    background-color: #111;
+    background-position: center;
+  }
+}
 
-      /* Fade out when ready */
-      html.splash-done #q-app:empty::before {
-        opacity: 0;
-        pointer-events: none;
-      }
+/* Fade out when ready */
+html.splash-done::before {
+  opacity: 0;
+  pointer-events: none;
+}
 
-      /* Accessibility: disable fade for users who prefer reduced motion */
-      @media (prefers-reduced-motion: reduce) {
-        #q-app:empty::before {
-          transition: none;
-        }
-      }
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html:not(.splash-done)::before {
+    transition: none;
+  }
+}
+
     </style>
 
     <script>
-      (function () {
-        function pickSplash() {
-          var portrait = window.matchMedia("(orientation: portrait)").matches;
-          var path =
-            "/splash/" +
-            (portrait ? "splash-portrait.webp" : "splash-landscape.webp");
-          document.documentElement.style.setProperty(
-            "--splash-bg",
-            'url("' + path + '")'
-          );
-        }
+(function () {
+  var mq = window.matchMedia("(orientation: portrait)");
+  var onOrient = function () {
+    var portrait = mq.matches;
+    var path = "/splash/" + (portrait ? "splash-portrait.webp" : "splash-landscape.webp");
+    document.documentElement.style.setProperty("--splash-bg", 'url("' + path + '")');
+  };
 
-        pickSplash();
-        window
-          .matchMedia("(orientation: portrait)")
-          .addEventListener("change", pickSplash);
+  // Set initial splash background
+  onOrient();
+  mq.addEventListener("change", onOrient);
 
-        // record when splash first appeared
-        var splashStart = Date.now();
-        var minDuration = 1500; // in ms (1.2 seconds for example)
+  // Timing controls
+  var MIN_MS = 2200;   // set your desired minimum
+  var MAX_MS = 6000;   // safety cap so it never hangs
 
-        window.addEventListener("load", function () {
-          var elapsed = Date.now() - splashStart;
-          var delay = Math.max(0, minDuration - elapsed);
+  // If coming from bfcache, skip long splash
+  window.addEventListener("pageshow", function (e) {
+    if (e.persisted) {
+      document.documentElement.classList.add("splash-done");
+    }
+  });
 
-          setTimeout(function () {
-            document.documentElement.classList.add("splash-done");
-          }, delay);
-        });
-      })();
-    </script>
+  // Start the timer after the first paint
+  var splashStart = performance.now();
+  requestAnimationFrame(function () {
+    splashStart = performance.now();
+  });
+
+  // Wait for either 'load' or the max cap, whichever comes first
+  var loaded = false;
+  function finishIfReady() {
+    if (loaded) return;
+    loaded = true;
+
+    var elapsed = performance.now() - splashStart;
+    var remaining = Math.max(0, MIN_MS - elapsed);
+
+    setTimeout(function () {
+      document.documentElement.classList.add("splash-done");
+      // cleanup
+      mq.removeEventListener("change", onOrient);
+    }, remaining);
+  }
+
+  // Normal path: finish after load + min duration
+  window.addEventListener("load", finishIfReady);
+
+  // Safety cap: if 'load' takes too long, end at MAX_MS
+  setTimeout(finishIfReady, MAX_MS);
+})();
+</script>
+
 
     <!-- Optional: help the splash appear instantly -->
     <link

@@ -1,12 +1,12 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue";
 import { useRoute } from "vue-router";
-import { useLanguageStore } from "stores/LanguageStore";
+import { useSettingsStore } from "src/stores/SettingsStore";
 import LanguageOptions from "components/language/LanguageOptionsB.vue";
 import ShareLink from "components/ShareLink.vue";
 
 const route = useRoute();
-const store = useLanguageStore();
+const store = useSettingsStore();
 
 const rightDrawerOpen = ref(false);
 const brandTitle = computed(() => store.brandTitle || "Not Set");
@@ -22,16 +22,15 @@ watch(
   }
 );
 
-const appbarStyle = computed(() =>
-  route.meta?.appbar ??
-  globalThis.__SITE_META__?.appbar?.style ??
-  "surface"
+const appbarStyle = computed(
+  () =>
+    route.meta?.appbar ?? globalThis.__SITE_META__?.appbar?.style ?? "surface"
 );
 
 const appbarClass = computed(() => ({
   "appbar--surface": appbarStyle.value === "surface",
   "appbar--primary": appbarStyle.value === "primary",
-  "appbar--transparent": appbarStyle.value === "transparent"
+  "appbar--transparent": appbarStyle.value === "transparent",
 }));
 
 const scrolled = ref(false);
@@ -60,14 +59,7 @@ const actionBtnColor = computed(() =>
       :class="appbarClass"
     >
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          to="/index"
-        />
+        <q-btn flat dense round icon="menu" aria-label="Menu" to="/index" />
 
         <q-toolbar-title>
           <router-link to="/index" class="toolbar-title">
@@ -111,10 +103,7 @@ const actionBtnColor = computed(() =>
 .appbar {
   background: var(--appbar-bg);
   color: var(--appbar-fg);
-  transition:
-    background 120ms ease,
-    color 120ms ease,
-    box-shadow 120ms ease;
+  transition: background 120ms ease, color 120ms ease, box-shadow 120ms ease;
 }
 
 .appbar--surface {
@@ -129,18 +118,11 @@ const actionBtnColor = computed(() =>
 }
 
 .appbar--transparent {
-  --appbar-bg: color-mix(
-    in srgb,
-    var(--color-surface) 75%,
-    transparent
-  );
+  --appbar-bg: color-mix(in srgb, var(--color-surface) 75%, transparent);
   --appbar-fg: var(--color-text);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid color-mix(
-    in srgb,
-    var(--color-border) 50%,
-    transparent
-  );
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-border) 50%, transparent);
 }
 
 .toolbar-title {

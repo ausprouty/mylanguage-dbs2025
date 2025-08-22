@@ -27,7 +27,7 @@ export async function getLessonContent(
   }
 
   // You said your URL order is /hl/jf/study/lesson
-  const url = `api/translate/lessonContent/${hl}/${jf}/${studyId}/${lessonId}`
+  const url = `/translate/lessonContent/${hl}/${jf}/${studyId}/${lessonId}`
   const key = buildLessonContentKey(studyId, hl, jf, lessonId)
   const contentStore = useContentStore()
 

@@ -2,29 +2,29 @@
 import { computed } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import { useLanguageStore } from "stores/LanguageStore";
-import { legacyApi } from "boot/axios";
+import { useSettingsStore } from "src/stores/SettingsStore";
+import { currentApi } from "boot/axios";
 
 const router = useRouter();
 const { t } = useI18n();
-const languageStore = useLanguageStore();
+const settingsStore = useSettingsStore();
 
 const loading = computed(
   () =>
-    languageStore.menuStatus === "loading" &&
-    (!languageStore.menu || languageStore.menu.length === 0)
+    settingsStore.menuStatus === "loading" &&
+    (!settingsStore.menu || settingsStore.menu.length === 0)
 );
-const error = computed(() => languageStore.menuError);
-const menuItems = computed(() => languageStore.menu || []);
+const error = computed(() => settingsStore.menuError);
+const menuItems = computed(() => settingsStore.menu || []);
 
 const handleImageClick = (to) => {
   if (to) router.push(to);
 };
 
 const openExternalWebsite = async () => {
-  const url = `api/ask/${languageStore.languageCodeHLSelected}`;
+  const url = `/ask/${settingsStore.languageCodeHLSelected}`;
   try {
-    const { data } = await legacyApi.get(url);
+    const { data } = await currentApi.get(url);
     const externalURL =
       (data && data.contactPage) || "https://www.everyperson.com/contact.php";
     const win = window.open(externalURL, "_blank");
@@ -74,9 +74,7 @@ const openExternalWebsite = async () => {
   </q-page>
 </template>
 
-
 <style scoped>
-
 .menu-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -90,8 +88,8 @@ const openExternalWebsite = async () => {
 .menu-grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: 1fr;            /* phones: 1 across */
-  max-width: 1200px;                      /* optional cap so cards don’t sprawl */
+  grid-template-columns: 1fr; /* phones: 1 across */
+  max-width: 1200px; /* optional cap so cards don’t sprawl */
   margin: 0 auto;
 }
 
@@ -110,7 +108,9 @@ const openExternalWebsite = async () => {
 }
 
 /* no sizing on items - let the grid handle it */
-.menu-col { box-sizing: border-box; }
+.menu-col {
+  box-sizing: border-box;
+}
 
 .menu-card {
   background-color: #dddddd;
@@ -136,7 +136,6 @@ const openExternalWebsite = async () => {
   object-fit: cover;
 }
 
-
 .menu-label h6 {
   margin: 0 0 4px 0; /* top, right, bottom, left */
   font-size: 1.5rem; /* Optional: adjust text size */
@@ -151,5 +150,4 @@ img.icon {
   height: 30px;
   cursor: pointer;
 }
-
 </style>

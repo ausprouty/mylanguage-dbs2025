@@ -1,27 +1,25 @@
-// stores/LanguageStore.js
+// stores/settingsStore.js
 import { defineStore } from "pinia";
-import { languageGetters } from "./languageGetters";
+import { languageGetters } from "./settingsGetters";
 import { languageActions } from "./languageActions";
 
-export const useLanguageStore = defineStore("languageStore", {
+export const useSettingsStore = defineStore("settingsStore", {
   state: () => ({
-    currentStudy: "",
+    apiProfile: "standard",
     appVersion: null,
     brandTitle: "",
-    apiProfile: "standard",
     currentPath: null,
-
-    // keep defaults; we will merge/fill later
+    currentStudy: "",
+    followingHimSegment: "1-0-0",
+    jVideoSegments: { segments: [], currentId: 1 },
+    languageSelected: {},
+    languages: [],
+    languagesUsed: [],
     lessonNumber: { ctc: 1, lead: 1, life: 1, jvideo: 1 },
     maxLessons: {},
     menu: [],
-    menuStatus: "idle",
     menuError: null,
-    languages: [],
-    languageSelected: {},
-    languagesUsed: [],
-    followingHimSegment: "1-0-0",
-    jVideoSegments: { segments: [], currentId: 1 },
+    menuStatus: "idle",
     previousPage: "/index",
   }),
   getters: languageGetters,
@@ -30,23 +28,25 @@ export const useLanguageStore = defineStore("languageStore", {
     enabled: true,
     strategies: [
       {
-        key: "languageStore",
+        key: "settingsStore",
         storage: localStorage,
         paths: [
+          "apiProfile",
           "appVersion",
           "brandTitle",
-          apiProfile,
           "currentPath",
           "currentStudy",
+          "followingHimSegment",
+          "jVideoSegments",
+          "languageSelected",
+          "languages",
+          "languagesUsed",
           "lessonNumber",
           "maxLessons",
           "menu",
-          "languageSelected",
-          "languagesUsed",
-          "followingHimSegment",
-          "jVideoSegments",
+          "menuError",
+          "menuStatus",
           "previousPage",
-          "languages",
         ],
         // 👇 these hooks run when the plugin restores persisted state
         beforeRestore: (ctx) => {

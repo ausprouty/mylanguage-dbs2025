@@ -2,10 +2,10 @@
 import { computed, onMounted, watch, unref } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
-import { useLanguageStore } from "stores/LanguageStore";
+import { useSettingsStore } from "src/stores/SettingsStore";
 import { useCommonContent } from "src/composables/useCommonContent";
 import { useProgressTracker } from "src/composables/useProgressTracker.js";
-import { useInitializeLanguageStore } from "src/composables/useInitializeLanguageStore.js";
+import { useInitializesettingsStore } from "src/composables/useInitializesettingsStore.js";
 import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/series/SeriesSegmentNavigator.vue";
 import SeriesLessonFramework from "src/components/series/SeriesLessonFramework.vue";
@@ -14,18 +14,18 @@ import SeriesLessonFramework from "src/components/series/SeriesLessonFramework.v
 const route = useRoute();
 const i18n = useI18n();
 const { t } = i18n;
-const languageStore = useLanguageStore();
+const settingsStore = useSettingsStore();
 console.log("i opened language store");
 
-useInitializeLanguageStore(route, languageStore);
+useInitializesettingsStore(route, settingsStore);
 
-const computedStudy = computed(() => languageStore.currentStudySelected);
-const computedLessonNumber = computed(() => languageStore.lessonNumberForStudy);
+const computedStudy = computed(() => settingsStore.currentStudySelected);
+const computedLessonNumber = computed(() => settingsStore.lessonNumberForStudy);
 const computedLanguageHL = computed(
-  () => languageStore.languageSelected.languageCodeHL
+  () => settingsStore.languageSelected.languageCodeHL
 );
 const computedLanguageJF = computed(() => {
-  const code = languageStore.languageSelected.languageCodeJF;
+  const code = settingsStore.languageSelected.languageCodeJF;
   return code != null ? String(code) : "";
 });
 
@@ -60,7 +60,7 @@ watch([computedLanguageHL, computedLanguageJF, computedStudy], () => {
 
 // Lesson update function
 const updateLesson = (nextLessonNumber) => {
-  languageStore.setLessonNumber(computedStudy.value, nextLessonNumber);
+  settingsStore.setLessonNumber(computedStudy.value, nextLessonNumber);
 };
 </script>
 <template>
@@ -71,7 +71,7 @@ const updateLesson = (nextLessonNumber) => {
         {{ para }}
       </p>
 
-     <p class="accent">{{ $t('menu.changeLanguage') }}</p>
+      <p class="accent">{{ $t("menu.changeLanguage") }}</p>
 
       <SeriesPassageSelect
         :study="computedStudy"
@@ -121,9 +121,9 @@ const updateLesson = (nextLessonNumber) => {
 </template>
 
 <style lang="scss">
-.accent{
-    color: $accent
-  }
+.accent {
+  color: $accent;
+}
 .mark-complete-btn {
   background-color: darken($positive, 15%); // #6a4e42
   color: white; // #6a4e42
@@ -133,6 +133,5 @@ const updateLesson = (nextLessonNumber) => {
   &:hover {
     background-color: darken($positive, 30%);
   }
-
 }
 </style>

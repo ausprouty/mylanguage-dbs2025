@@ -156,6 +156,7 @@ export async function getContentWithFallback({
     return data
   } catch (error) {
     console.error(`❌ Failed to load ${key} from API:`, error)
+    console.error (apiUrl)
     throw error
   }
 }

@@ -9,6 +9,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default configure((ctx) => {
   const site = process.env.SITE || process.env.VITE_APP || "dbs";
 
+   const apiTarget = process.env.VITE_API;
+
   // --- Load per-site meta (optional) ---
   const metaPath = path.resolve(__dirname, `src/sites/${site}/meta.json`);
   let meta = {};
@@ -137,18 +139,22 @@ export default configure((ctx) => {
       },
     },
 
+
+
     devServer: {
-      host: dev.host,
-      port: dev.port,
-      https: dev.https,
-      strictPort: true,
+      host: dev.host,     // typically "localhost" or "0.0.0.0"
+      port: dev.port,     // your site’s dev port (e.g. 9224, 5173, etc.)
+      https: dev.https,   // true/false, depending if you want HTTPS in dev
+      strictPort: true,   // fail if port is taken (rather than fallback)
       proxy: {
-        "/api_mylanguage": {
-          target: "http://127.0.0.1:5559",
-          changeOrigin: true,
+        '^/api(/|$)': {
+          target: apiTarget,      // from your VITE_API (https://api2.mylanguage.net.au)
+          changeOrigin: true,     // sets Host header to match apiTarget
+          secure: true,           // true since your API has a valid cert
+          rewrite: path => path,  // keep /api prefix unchanged
         },
       },
-      open: true,
+      open: true,        // automatically open the browser
     },
 
     pwa: {
