@@ -66,12 +66,12 @@ const updateLesson = (nextLessonNumber) => {
 <template>
   <template v-if="commonContent">
     <q-page padding>
-      <h2>{{ t(`${computedStudy}.title`) }}</h2>
+      <h1 class="dbs">{{ t(`${computedStudy}.title`) }}</h1>
       <p v-for="(para, index) in $tm(`${computedStudy}.para`)" :key="index">
         {{ para }}
       </p>
 
-      <p class="accent">{{ $t("menu.changeLanguage") }}</p>
+      <p class="language-select">{{ $t("menu.changeLanguage") }}</p>
 
       <SeriesPassageSelect
         :study="computedStudy"
@@ -120,18 +120,5 @@ const updateLesson = (nextLessonNumber) => {
   </template>
 </template>
 
-<style lang="scss">
-.accent {
-  color: $accent;
-}
-.mark-complete-btn {
-  background-color: darken($positive, 15%); // #6a4e42
-  color: white; // #6a4e42
-  font-weight: bold;
-  border-radius: 8px;
 
-  &:hover {
-    background-color: darken($positive, 30%);
-  }
-}
-</style>
+

@@ -10,6 +10,7 @@ const loading = ref(true);
 const notFound = ref(false);
 const errorMsg = ref("");
 const html = ref("");
+console.log (route.params.page);
 
 const pageSlug = computed(() => String(route.params.page || "").trim());
 

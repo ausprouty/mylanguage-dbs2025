@@ -18,7 +18,7 @@
       "2": "Gather your friends and start exploring! Click on the images below to begin your journey — discovering not just wisdom, but a relationship with God and the spiritual community He invites you into."
     }
   },
-  "jVideo": {
+  "jvideo": {
     "title": "The Life of Jesus",
     "summary": "See how Jesus’ actions and teachings challenged expectations, inspired hope, and still speak powerfully today.",
     "para": {
@@ -124,7 +124,7 @@
     "p1": "Before we begin, let’s take a moment to review what you committed to last time.",
     "p2": "This helps us encourage each other and see how God is at work.",
     "empty": "You didn’t write any notes in Look Forward the last time we met. Taking a few notes can help you grow!"
-  }
+  },
   "menu": {
     "next": "Next",
     "nextVideo": "Next Video",

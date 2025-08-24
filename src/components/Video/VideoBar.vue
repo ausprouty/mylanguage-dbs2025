@@ -43,49 +43,33 @@ const isVisible = ref(false);
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .video-container {
   margin-top: 20px;
   padding: 16px;
-  border: 2px solid $accent;
+  border: 2px solid var(--color-accent);
   border-radius: 8px;
-  background-color: $neutral;
-  color: $minor2;
-  box-shadow: 0 2px 6px $shadow;
+  background-color: var(--color-neutral);
+  color: var(--color-minor2);
+  box-shadow: 0 2px 6px var(--color-shadow);
 }
 
-// Toggle Button
-.toggle-button {
-  width: 100%;
-  text-align: left;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 12px;
-  border: none;
-  background-color: $accent;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 
-  &:hover {
-    background-color: $warning;
-    color: $minor2;
-  }
-}
 
-// Video Section
+/* Video Section */
 .video-section {
   margin-top: 12px;
-  background-color: lighten($minor1, 15%);
+  /* SCSS lighten() -> CSS color-mix() for runtime safety */
+  background-color: color-mix(in srgb, var(--color-minor1) 85%, white);
   padding: 14px;
-  border-left: 4px solid $accent;
+  border-left: 4px solid var(--color-accent);
   border-radius: 4px;
+}
 
-  iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: 0;
-  }
+.video-section iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 </style>
+

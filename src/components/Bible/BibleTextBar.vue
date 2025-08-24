@@ -38,21 +38,18 @@ const isVisible = ref(false);
   </div>
 </template>
 
-<style scoped lang="scss">
-// Import theme variables if needed
-// @use "@/css/quasar.variables.scss" as *;
-
+<style scoped>
 .bible-container {
   margin-top: 20px;
   padding: 16px;
-  border: 2px solid $accent; // Burnt orange
+  border: 2px solid var(--color-accent); /* Burnt orange */
   border-radius: 8px;
-  background-color: $neutral; // Off-white
-  color: $minor2; // Dark brown
-  box-shadow: 0 2px 6px $shadow;
+  background-color: var(--color-neutral); /* Off-white */
+  color: var(--color-minor2); /* Dark brown */
+  box-shadow: 0 2px 6px var(--color-shadow);
 }
 
-// Toggle Button
+/* Toggle Button */
 .toggle-button {
   width: 100%;
   text-align: left;
@@ -60,49 +57,34 @@ const isVisible = ref(false);
   font-weight: bold;
   padding: 12px;
   border: none;
-  background-color: $accent; // Burnt orange
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: $warning; // Earthy gold on hover
-    color: $minor2; // Dark brown text
-  }
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-// Bible section
+.toggle-button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+/* Bible section */
 .bible-section {
   margin-top: 12px;
-  background-color: lighten($minor1, 15%);
+  background-color: color-mix(in srgb, var(--color-minor1) 85%, white);
   padding: 14px;
-  border-left: 4px solid $accent;
+  border-left: 4px solid var(--color-accent);
   border-radius: 4px;
 }
 
-// Bible text
+/* Bible text */
 .bible-text {
   font-size: 16px;
   line-height: 1.6;
-  color: $minor2;
+  color: var(--color-minor2);
+  color:black;
 }
 
-// Read more button
-.readmore-button {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 12px;
-  background-color: $secondary; // Earthy gold
-  color: $minor2;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
 
-  &:hover {
-    background-color: $info; // Warm brown
-    color: white;
-  }
-}
 </style>

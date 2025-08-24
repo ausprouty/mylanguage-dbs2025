@@ -94,21 +94,21 @@ watch(() => settingsStore.currentStudySelected, loadPreviousNote);
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .last-week-box {
-  background-color: $minor1; // soft beige background
-  border-left: 6px solid $highlight-scripture; // visual cue for importance
+  background-color: var(--color-minor1); /* soft beige background */
+  border-left: 6px solid var(--color-highlight-scripture); /* visual cue for importance */
   padding: 16px 20px;
   margin-bottom: 24px;
   border-radius: 8px;
-  box-shadow: 2px 2px 8px $shadow; // subtle depth
+  box-shadow: 2px 2px 8px var(--color-shadow); /* subtle depth */
   font-size: 15px;
-  color: $minor2; // warm dark brown text
+  color: var(--color-minor2); /* warm dark brown text */
   transition: background-color 0.3s ease;
 }
 
 .last-week-box strong {
-  color: $primary; // warm brown header
+  color: var(--color-primary); /* warm brown header */
   font-size: 16px;
 }
 
@@ -117,3 +117,4 @@ watch(() => settingsStore.currentStudySelected, loadPreviousNote);
   line-height: 1.5;
 }
 </style>
+

@@ -99,7 +99,7 @@ const actionBtnColor = computed(() =>
   </q-layout>
 </template>
 
-<style lang="scss">
+<style>
 .appbar {
   background: var(--appbar-bg);
   color: var(--appbar-fg);

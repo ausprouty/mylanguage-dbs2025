@@ -163,7 +163,7 @@ h2.dbs,
 h3.dbs,
 h4.dbs {
   font-family: "Arial", sans-serif;
-  color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 h1.dbs {
@@ -250,8 +250,8 @@ td[clickable]:active::after {
 .readmore-button {
   display: inline-block;
   padding: 8px 15px;
-  background-color: var(--color-accent);
-  color: var(--color-on-accent);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
   text-decoration: none;
   font-weight: bold;
   border-radius: 5px;
@@ -261,6 +261,32 @@ td[clickable]:active::after {
 
 .readmore-button:hover {
   filter: brightness(0.92);
+}
+
+/* Toggle Button */
+.toggle-button {
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px;
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.language-select{
+  color:var(--color-primary);
+  font-size: 18px;
+
 }
 
 /* ----------------------
@@ -291,13 +317,19 @@ td[clickable]:active::after {
   color: var(--color-on-positive);
 }
 
+
+.accent {
+  color: var(--color-accent);
+}
+
+
 /* ----------------------
    Mark Complete
 ----------------------- */
 
 .mark-complete-btn {
-  background-color: var(--color-positive);
-  color: var(--color-on-positive);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
   font-weight: bold;
   border-radius: 8px;
   transition: filter 0.2s ease;
