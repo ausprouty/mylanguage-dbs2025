@@ -3,9 +3,14 @@
 @use "sass:math";
 
 /* ---------- helpers ---------- */
-@function _linear-channel($c) {
-  $c: $c / 255;
-  @return if($c <= 0.03928, $c / 12.92, math.pow(($c + 0.055)/1.055, 2.4));
+@function -linear-channel($c) {
+  // old: $c: $c / 255;
+  $c: math.div($c, 255);
+
+  // old: $c: $c / 12.92;
+  @return if($c <= 0.04045, math.div($c, 12.92),
+    math.pow((($c + 0.055) / 1.055), 2.4)
+  );
 }
 @function luminance($c) {
   $r: _linear-channel(color.channel($c, "red"));

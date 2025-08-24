@@ -9,8 +9,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default configure((ctx) => {
   const site = process.env.SITE || process.env.VITE_APP || "dbs";
 
-   const apiTarget = process.env.VITE_API;
-
   // --- Load per-site meta (optional) ---
   const metaPath = path.resolve(__dirname, `src/sites/${site}/meta.json`);
   let meta = {};
@@ -27,7 +25,15 @@ export default configure((ctx) => {
   );
   const base = meta.base ?? "/";
 
-  // --- Per-site SCSS variables file (single source of truth) ---
+  // --- Determine API target (Node context) ---
+  // Priority: env var → meta.json → sensible local default
+  const rawViteApi =
+    process.env.VITE_API ||
+    envFromMeta.VITE_API ||
+    "http://localhost/api_mylanguage";
+  const apiTarget = rawViteApi.replace(/\/+$/, ""); // strip trailing slash
+
+  // --- Per-site SCSS variables (required) ---
   const brandRel = `src/sites/${site}/quasar.variables.scss`;
   const brandAbs = path.resolve(__dirname, brandRel);
   if (!fs.existsSync(brandAbs)) {
@@ -38,8 +44,9 @@ export default configure((ctx) => {
 
   // --- Public dir (per site, fallback to ./public) ---
   const publicDirCandidate =
-    meta.publicDir != null ? path.resolve(__dirname, meta.publicDir)
-                           : path.resolve(__dirname, `public-${site}`);
+    meta.publicDir != null
+      ? path.resolve(__dirname, meta.publicDir)
+      : path.resolve(__dirname, `public-${site}`);
   const publicDir = fs.existsSync(publicDirCandidate)
     ? publicDirCandidate
     : path.resolve(__dirname, "public");
@@ -60,6 +67,7 @@ export default configure((ctx) => {
   console.log("scssVariables:", brandRel);
   console.log("publicDir (resolved):", publicDir);
   console.log("dev:", dev);
+  console.log("VITE_API (computed apiTarget):", apiTarget);
   console.groupEnd();
 
   return {
@@ -92,11 +100,12 @@ export default configure((ctx) => {
       // Let Quasar (its own Sass) see your site variables
       scssVariables: brandRel,
 
-      // Make VITE_* available at build time
+      // Make VITE_* available at build time (and add VITE_API explicitly)
       env: {
         ...envFromMeta,
         VITE_APP: site,
         VITE_SITE_KEY: site,
+        VITE_API: apiTarget,
       },
 
       // Compile-time constants
@@ -106,7 +115,10 @@ export default configure((ctx) => {
 
       extendViteConf(viteConf) {
         // Per-site cache & public folder
-        viteConf.cacheDir = path.resolve(__dirname, `node_modules/.vite-${site}`);
+        viteConf.cacheDir = path.resolve(
+          __dirname,
+          `node_modules/.vite-${site}`
+        );
         viteConf.publicDir = publicDir;
 
         // Safe merge for define
@@ -123,6 +135,8 @@ export default configure((ctx) => {
         }
         viteConf.define["import.meta.env.VITE_APP"] = JSON.stringify(site);
         viteConf.define["import.meta.env.VITE_SITE_KEY"] = JSON.stringify(site);
+        // Ensure VITE_API is visible to browser code too
+        viteConf.define["import.meta.env.VITE_API"] = JSON.stringify(apiTarget);
 
         // Aliases
         const prev = (viteConf.resolve && viteConf.resolve.alias) || {};
@@ -132,29 +146,29 @@ export default configure((ctx) => {
             ...prev,
             "@": path.resolve(__dirname, "src"),
             "@site": path.resolve(__dirname, `src/sites/${site}`),
-            // IMPORTANT: allows `@use "@brand"` in Sass
+            // allows `@use "@brand"` in Sass
             "@brand": brandAbs,
           },
         };
       },
     },
 
-
-
     devServer: {
-      host: dev.host,     // typically "localhost" or "0.0.0.0"
-      port: dev.port,     // your site’s dev port (e.g. 9224, 5173, etc.)
-      https: dev.https,   // true/false, depending if you want HTTPS in dev
-      strictPort: true,   // fail if port is taken (rather than fallback)
+      host: dev.host,
+      port: dev.port,
+      https: dev.https,
+      strictPort: true,
       proxy: {
-        '^/api(/|$)': {
-          target: apiTarget,      // from your VITE_API (https://api2.mylanguage.net.au)
-          changeOrigin: true,     // sets Host header to match apiTarget
-          secure: true,           // true since your API has a valid cert
-          rewrite: path => path,  // keep /api prefix unchanged
+        "^/api(/|$)": {
+          target: apiTarget, // e.g. http://localhost/api_mylanguage
+          changeOrigin: true,
+          secure: false, // false since target is http://localhost
+          // keep /api prefix unchanged so:
+          //   /api/... -> {apiTarget}/api/...
+          rewrite: (path) => path,
         },
       },
-      open: true,        // automatically open the browser
+      open: true,
     },
 
     pwa: {
@@ -170,22 +184,23 @@ export default configure((ctx) => {
         theme_color: meta.pwa?.theme_color ?? "#3e81ef",
         start_url: meta.pwa?.start_url ?? base,
         scope: meta.pwa?.scope ?? base,
-        icons: meta.pwa?.icons ?? [
-          { src: "icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
-          { src: "icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
-          {
-            src: "icons/icon-192x192-maskable.png",
-            sizes: "192x192",
-            type: "image/png",
-            purpose: "any maskable",
-          },
-          {
-            src: "icons/icon-512x512-maskable.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable",
-          },
-        ],
+        icons:
+          meta.pwa?.icons ?? [
+            { src: "icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+            { src: "icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
+            {
+              src: "icons/icon-192x192-maskable.png",
+              sizes: "192x192",
+              type: "image/png",
+              purpose: "any maskable",
+            },
+            {
+              src: "icons/icon-512x512-maskable.png",
+              sizes: "512x512",
+              type: "image/png",
+              purpose: "any maskable",
+            },
+          ],
       },
     },
   };

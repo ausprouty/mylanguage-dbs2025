@@ -1,7 +1,7 @@
 // stores/settingsStore.js
 import { defineStore } from "pinia";
-import { languageGetters } from "./settingsGetters";
-import { languageActions } from "./languageActions";
+import { settingsGetters } from "./settingsGetters";
+import { settingsActions } from "./settingsActions";
 
 export const useSettingsStore = defineStore("settingsStore", {
   state: () => ({
@@ -22,8 +22,8 @@ export const useSettingsStore = defineStore("settingsStore", {
     menuStatus: "idle",
     previousPage: "/index",
   }),
-  getters: languageGetters,
-  actions: languageActions,
+  getters: settingsGetters,
+  actions: settingsActions,
   persist: {
     enabled: true,
     strategies: [

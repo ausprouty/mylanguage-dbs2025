@@ -18,7 +18,7 @@
   },
   "dev": {
     "host": "localhost",
-    "port": 9222,
+    "port": 9232,
     "https": false
   },
   "pwa": {

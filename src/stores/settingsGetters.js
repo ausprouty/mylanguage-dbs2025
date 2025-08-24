@@ -1,6 +1,6 @@
-import {DEFAULTS, MAX_LESSON_NUMBERS} from "src/constants/Defaults";
+import { DEFAULTS, MAX_LESSON_NUMBERS } from "src/constants/Defaults";
 
-export const languageGetters = {
+export const settingsGetters = {
   languageCodeHLSelected: (state) =>
     state.languageSelected?.languageCodeHL || DEFAULTS.languageCodeHL,
 
@@ -56,7 +56,6 @@ export const languageGetters = {
     }
 
     return max;
-
   },
 
   isAtMaxLesson: (state) => {
@@ -74,6 +73,5 @@ export const languageGetters = {
 
     return lesson >= max;
   },
-  isStandardProfile: s => s.apiProfile === 'standard',
-
+  isStandardProfile: (s) => s.apiProfile === "standard",
 };

@@ -1,6 +1,7 @@
 /* src/css/tokens.core.site.scss */
 /* Re-export the configured tokens so app.scss can include the mixin */
 @use "@brand" as brand;
+@use 'sass:math';
 
 @forward "@/css/tokens.core.scss" with (
   $primary:   brand.$primary,

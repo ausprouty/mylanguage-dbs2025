@@ -1,9 +1,12 @@
 [
-  {"key":"jvideo","title":"Jesus Video","image":"/menu/jesus.png","route":"/jvideo","maxLessons":61},
-  {"key":"life","title":"Life Issues","image":"/menu/life.png","route":"/series/life","maxLessons":23},
-  {"key":"ctc","title":"Connect to Community","image":"/menu/community.png","route":"/series/ctc","maxLessons":23},
-  {"key":"obey","title":"Obey","image":"/menu/obey.png","route":"/series/obey","maxLessons":8},
-  {"key":"serve","title":"Serve","image":"/menu/serve.png","route":"/series/serve","maxLessons":9},
-  {"key":"hope","title":"Seven Stories of Hope","image":"hope.png","route":"/series/hope","maxLessons":7},
-  {"key":"share","title":"Share","image":"/menu/share.png","route":"/series/share","maxLessons":9}
+   {"key":"deepavli","title":"Deepavali","image":"/menu/deepavali.png","route":"/content/deepavali"},
+   {"key":"karma","title":"Karma","image":"/menu/karma.png","route":"/content/karma"},
+  {"key":"mountain","title":"Mountain of God","image":"/menu/mountain.png","route":"/video/mountain","maxLessons":1},
+  {"key":"wisemen","title":"Birth of the Guru","image":"/menu/christmas.png","route":"/video/wisemen","maxLessons":1},
+  {"key":"jvideo","title":"His Life","image":"/menu/jesus.png","route":"/video/jvideo","maxLessons":61},
+  {"key":"life","title":"His Teachings","image":"/menu/life.png","route":"/series/life","maxLessons":23},
+  {"key":"ctc","title":"His Holy Book","image":"/menu/scroll.png","route":"/series/ctc","maxLessons":23},
+  {"key":"follow","title":"Following Him","image":"/menu/follow.png","route":"/video/follow","maxLessons":5},
+
+  {"key":"ask","title":"Questions","image":"/menu/ask.png","route":"/ask"}
   ]

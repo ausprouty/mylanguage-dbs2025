@@ -5,7 +5,7 @@ import { useI18n } from "vue-i18n";
 import { useSettingsStore } from "src/stores/SettingsStore";
 import { useCommonContent } from "src/composables/useCommonContent";
 import { useProgressTracker } from "src/composables/useProgressTracker.js";
-import { useInitializesettingsStore } from "src/composables/useInitializesettingsStore.js";
+import { useInitializeSettingsStore } from "src/composables/useInitializeSettingsStore.js";
 import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/series/SeriesSegmentNavigator.vue";
 import SeriesLessonFramework from "src/components/series/SeriesLessonFramework.vue";
@@ -17,7 +17,7 @@ const { t } = i18n;
 const settingsStore = useSettingsStore();
 console.log("i opened language store");
 
-useInitializesettingsStore(route, settingsStore);
+useInitializeSettingsStore(route, settingsStore);
 
 const computedStudy = computed(() => settingsStore.currentStudySelected);
 const computedLessonNumber = computed(() => settingsStore.lessonNumberForStudy);

@@ -8,7 +8,7 @@ import {
   validatePositiveInteger,
 } from "./validators";
 
-export const languageActions = {
+export const settingsActions = {
   _updateRecentLanguages(lang) {
     const index = this.languagesUsed.findIndex(
       (item) => item.languageCodeHL === lang.languageCodeHL
@@ -40,7 +40,8 @@ export const languageActions = {
     if (!Array.isArray(this.menu)) this.menu = [];
   },
   setApiProfile(val) {
-    this.apiProfile = (typeof val === 'string' && val.trim()) ? val.trim() : 'standard';
+    this.apiProfile =
+      typeof val === "string" && val.trim() ? val.trim() : "standard";
   },
 
   setBrandTitle(title) {
@@ -107,9 +108,7 @@ export const languageActions = {
 
   async setLanguageObjectSelected(languageObject) {
     if (!languageObject) {
-      console.warn(
-        "setLanguageObjectSelected: Invalid languageObject input."
-      );
+      console.warn("setLanguageObjectSelected: Invalid languageObject input.");
       return;
     }
     this.languageSelected = languageObject;

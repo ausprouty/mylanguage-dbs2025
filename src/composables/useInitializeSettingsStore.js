@@ -1,5 +1,5 @@
 import { DEFAULTS } from "src/constants/Defaults";
-export function useInitializesettingsStore(route, settingsStore) {
+export function useInitializeSettingsStore(route, settingsStore) {
   // Update store initially
 
   const initialStudy =
