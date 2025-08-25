@@ -1,207 +1,177 @@
-/* eslint-env node */
-import { configure } from "quasar/wrappers";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import fs from "node:fs";
+// quasar.config.mjs
+import { configure } from 'quasar/wrappers'
+import { loadEnv } from 'vite'
+import fs from 'node:fs'
+import path from 'node:path'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = process.cwd()
 
+// ---------- small helpers ----------
+const exists = p => fs.existsSync(path.join(ROOT, p))
+const presentEnvFiles = mode => [
+  '.env',
+  '.env.local',
+  `.env.${mode}`,
+  `.env.${mode}.local`,
+].filter(exists)
+
+function cleanUrl(v) {
+  if (!v) return ''
+  let x = String(v)
+  x = x.replace(/^["']|["']$/g, '')     // strip quotes
+       .replace(/\s*[#;].*$/, '')       // drop inline comments
+       .trim()
+  return x.replace(/\/+$/, '')          // drop trailing slashes
+}
+function asOrigin(s) {
+  try {
+    const u = new URL(s)
+    return (u.protocol === 'https:' || u.protocol === 'http:') ? u.origin : ''
+  } catch { return '' }
+}
+
+// ---------- main export ----------
 export default configure((ctx) => {
-  const site = process.env.SITE || process.env.VITE_APP || "dbs";
+  // site key used by your project structure
+  const site = process.env.SITE || 'dbs'
 
-  // --- meta.json (optional) ---
-  const metaPath = path.resolve(__dirname, `src/sites/${site}/meta.json`);
-  let meta = {};
-  if (fs.existsSync(metaPath)) {
-    try {
-      meta = JSON.parse(fs.readFileSync(metaPath, "utf-8"));
-    } catch (e) {
-      console.warn(`[meta] Failed to parse ${metaPath}:`, e.message);
-    }
-  }
+  // Base mode = dev/prod; Site mode = uom/wsu/... (optional)
+  const baseMode = ctx.dev ? 'development' : 'production'
+  // You can pass V_MODE=uom in your scripts; fallback to SITE for convenience
+  const siteMode = process.env.V_MODE || process.env.SITE || ''
 
-  const envFromMeta = Object.fromEntries(
-    Object.entries(meta?.env || {}).filter(([k]) => k.startsWith("VITE_"))
-  );
-  const base = meta.base ?? "/";
+  // Load both layers explicitly, so we can merge + log clearly.
+  // loadEnv() already includes .env + .env.<mode>(.local) automatically.
+  const envBase = loadEnv(baseMode, ROOT, '')
+  const envSite = siteMode ? loadEnv(siteMode, ROOT, '') : {}
+  // Site overrides base
+  const envAll  = { ...envBase, ...envSite }
 
-  // --- API target ---
-  const rawViteApi =
-    process.env.VITE_API ||
-    envFromMeta.VITE_API ||
-    "http://localhost/api_mylanguage";
-  const apiTarget = rawViteApi.replace(/\/+$/, "");
+  // Resolve API origin from merged env, with safe fallbacks
+  const apiFromEnv = asOrigin(cleanUrl(envAll.VITE_API))
+  const apiFallback = ctx.dev
+    ? 'http://localhost:5173' // change if your dev API is elsewhere
+    : 'https://api2.mylanguage.net.au'
+  const apiOrigin = apiFromEnv || apiFallback
 
-  // --- per-site SCSS variables (required) ---
-  const brandRel = `src/sites/${site}/quasar.variables.scss`;
-  const brandAbs = path.resolve(__dirname, brandRel);
-  if (!fs.existsSync(brandAbs)) {
-    throw new Error(
-      `Missing SCSS variables for site "${site}". Expected: ${brandRel}`
-    );
-  }
-  const scssInject = `@use "${brandRel}" as *;`;
+  // Optional: per-site public dir (public-uom → else public)
+  const publicDir = exists(`public-${site}`) ? `public-${site}` : 'public'
 
-  // --- public dir (per site, fallback ./public) ---
-  const publicDirCandidate =
-    meta.publicDir != null
-      ? path.resolve(__dirname, meta.publicDir)
-      : path.resolve(__dirname, `public-${site}`);
-  const publicDir = fs.existsSync(publicDirCandidate)
-    ? publicDirCandidate
-    : path.resolve(__dirname, "public");
+  // Optional: per-site SCSS variables path
+  const scssVarsPath = `src/sites/${site}/quasar.variables.scss`
+  const hasScssVars = exists(scssVarsPath)
 
-  // --- dev server defaults ---
-  const defaultDevPort = ctx.mode.pwa ? 9200 : ctx.mode.ssr ? 9300 : 9100;
-  const dev = {
-    host: meta.dev?.host ?? "localhost",
-    port: meta.dev?.port ?? defaultDevPort,
-    https: !!meta.dev?.https,
-  };
+  // Optional: per-site meta.json (for base path, etc.)
+  const metaPath = path.join(ROOT, `src/sites/${site}/meta.json`)
+  const meta = exists(`src/sites/${site}/meta.json`)
+    ? JSON.parse(fs.readFileSync(metaPath, 'utf-8'))
+    : {}
+  const base = meta.base || '/'
 
-  console.group("▶ Build context");
-  console.log("site:", site);
-  console.log("meta:", fs.existsSync(metaPath) ? metaPath : "(none)");
-  console.log("base:", base);
-  console.log("scssVariables:", brandRel);
-  console.log("publicDir (resolved):", publicDir);
-  console.log("dev:", dev);
-  console.log("VITE_API (computed apiTarget):", apiTarget);
-  console.groupEnd();
+  // ---------- friendly build logs ----------
+  console.log('▶ Env resolution')
+  console.log('  site:', site)
+  console.log('  baseMode:', baseMode, 'siteMode:', siteMode || '(none)')
+  console.log('  present (base):',
+    presentEnvFiles(baseMode).join(', ') || '(none)')
+  console.log('  present (site):',
+    (siteMode && presentEnvFiles(siteMode).join(', ')) || '(none)')
+  console.log('  VITE_API from baseMode:',
+    cleanUrl(envBase.VITE_API) || '(empty)')
+  console.log('  VITE_API from siteMode:',
+    cleanUrl(envSite.VITE_API) || '(empty)')
+  console.log('  → Effective VITE_API:', apiOrigin)
+  console.log('  publicDir:', publicDir)
+  console.log('  meta.json:', exists(`src/sites/${site}/meta.json`) ? metaPath : '(none)')
+  console.log('  base:', base)
+  if (hasScssVars) console.log('  scssVariables:', scssVarsPath)
 
   return {
-    boot: [
-      "i18n",
-      "axios",
-      "language-init",
-      "brand-hydrate",
-      "profile-hydrate",
-      "menu-hydrate",
-      "route-resume",
-      "version-check",
-    ],
-
-    css: ["app.scss"],
-
-    extras: ["material-icons"],
-
-    framework: {
-      config: {},
-      iconSet: "material-icons",
-      plugins: ["Notify", "Dialog"],
+    // Where Quasar copies static assets from
+    sourceFiles: {
+      // leave defaults unless you have custom index/template locations
     },
 
-    // Make every <style lang="scss"> see site vars ($accent, etc.)
-    vite: {
-      css: {
-        preprocessorOptions: {
-          scss: {
-            additionalData: scssInject,
-          },
-        },
-      },
-    },
-
+    // Per-site public assets (optional)
+    // (Quasar accepts "public" path via vite.publicDir)
+    // Use extendViteConf to set it.
     build: {
-      vueRouterMode: "history",
-      distDir: `dist/site-${site}`,
-      publicPath: base,
-
-      // Quasar’s own SCSS also gets the site vars
-      scssVariables: brandRel,
-
-      env: {
-        ...envFromMeta,
-        VITE_APP: site,
-        VITE_SITE_KEY: site,
-        VITE_API: apiTarget,
-      },
-
-      define: {
-        __SITE_META__: JSON.stringify(meta),
-      },
-
+      vueRouterMode: 'history',
+      publicPath: base, // keep consistent with your hosting path
+      // any other build options you already use…
       extendViteConf(viteConf) {
-        viteConf.cacheDir = path.resolve(
-          __dirname,
-          `node_modules/.vite-${site}`
-        );
-        viteConf.publicDir = publicDir;
+        // Public dir
+        viteConf.publicDir = publicDir
 
-        viteConf.define ??= {};
-        Object.assign(viteConf.define, {
-          __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
-          __SITE__: JSON.stringify(site),
-          __SITE_META__: JSON.stringify(meta),
-          "import.meta.env.VITE_APP": JSON.stringify(site),
-          "import.meta.env.VITE_SITE_KEY": JSON.stringify(site),
-          "import.meta.env.VITE_API": JSON.stringify(apiTarget),
-        });
-
-        for (const [k, v] of Object.entries(envFromMeta)) {
-          viteConf.define[`import.meta.env.${k}`] = JSON.stringify(v);
+        // Ensure the client bundle sees the merged env values
+        viteConf.define = {
+          ...(viteConf.define || {}),
+          'import.meta.env.MODE': JSON.stringify(baseMode),
+          'import.meta.env.SITE': JSON.stringify(site),
+          'import.meta.env.VITE_API': JSON.stringify(apiOrigin),
         }
 
-        const prev = (viteConf.resolve && viteConf.resolve.alias) || {};
+        // Per-site SCSS variables (optional)
+        if (hasScssVars) {
+          viteConf.css = viteConf.css || {}
+          viteConf.css.preprocessorOptions = {
+            ...(viteConf.css.preprocessorOptions || {}),
+            scss: {
+              ...(viteConf.css.preprocessorOptions?.scss || {}),
+              additionalData:
+                `@use "${scssVarsPath.replace(/\\/g, '/')}" as *;`
+            }
+          }
+        }
+
+        // --- NEW: aliases so @site/meta.json resolves ---
         viteConf.resolve = {
-          ...viteConf.resolve,
+          ...(viteConf.resolve || {}),
           alias: {
-            ...prev,
-            "@": path.resolve(__dirname, "src"),
-            "@site": path.resolve(__dirname, `src/sites/${site}`),
-            "@brand": brandAbs,
+            ...(viteConf.resolve?.alias || {}),
+            '@': path.resolve(ROOT, 'src'),
+            '@site': path.resolve(ROOT, `src/sites/${site}`),
+            '@sites': path.resolve(ROOT, 'src/sites'),
           },
-        };
-      },
+        }
+
+        // Inject (or update) <meta name="api-origin" ...> into index.html
+        viteConf.plugins = [
+          ...(viteConf.plugins || []),
+          {
+            name: 'inject-api-origin-meta',
+            enforce: 'pre',
+            transformIndexHtml(html) {
+              const tag = `<meta name="api-origin" content="${apiOrigin}">`
+              return html.includes('name="api-origin"')
+                ? html.replace(/<meta[^>]*name="api-origin"[^>]*>/, tag)
+                : html.replace('<head>', `<head>\n    ${tag}`)
+            }
+          }
+        ]
+      }
     },
 
+    // Dev server: keep your /api proxy if you use it
     devServer: {
-      host: dev.host,
-      port: dev.port,
-      https: dev.https,
-      strictPort: true,
-      proxy: {
-        "^/api(/|$)": {
-          target: apiTarget,
-          changeOrigin: true,
-          secure: false,
-          rewrite: (p) => p,
-        },
-      },
+      host: 'localhost',
+      port: meta?.dev?.port || 9232,
+      https: !!meta?.dev?.https,
       open: true,
+      proxy: {
+        // forward /api to the chosen API origin in dev
+        '^/api(/|$)': {
+          target: `${apiOrigin}/api`,
+          changeOrigin: true,
+          secure: true,
+          rewrite: p => p, // keep /api
+        }
+      }
     },
 
-    pwa: {
-      workboxMode: "InjectManifest",
-      swSrc: "src-pwa/custom-service-worker.js",
-      manifest: {
-        name: meta.pwa?.name ?? "App",
-        short_name: meta.pwa?.short_name ?? "App",
-        description: meta.pwa?.description ?? "",
-        display: meta.pwa?.display ?? "standalone",
-        orientation: meta.pwa?.orientation ?? "portrait",
-        background_color: meta.pwa?.background_color ?? "#ffffff",
-        theme_color: meta.pwa?.theme_color ?? "#3e81ef",
-        start_url: meta.pwa?.start_url ?? base,
-        scope: meta.pwa?.scope ?? base,
-        icons:
-          meta.pwa?.icons ?? [
-            { src: "icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
-            { src: "icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
-            {
-              src: "icons/icon-192x192-maskable.png",
-              sizes: "192x192",
-              type: "image/png",
-              purpose: "any maskable",
-            },
-            {
-              src: "icons/icon-512x512-maskable.png",
-              sizes: "512x512",
-              type: "image/png",
-              purpose: "any maskable",
-            },
-          ],
-      },
-    },
-  };
-});
+    framework: {
+      // keep your usual Quasar plugins here if needed
+      plugins: []
+    }
+  }
+})
