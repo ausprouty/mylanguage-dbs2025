@@ -6,7 +6,8 @@ import { useSettingsStore } from "src/stores/SettingsStore";
 import { currentApi } from "boot/axios";
 
 const router = useRouter();
-const { t } = useI18n();
+
+const { t, locale } = useI18n({ useScope: 'global' })
 const settingsStore = useSettingsStore();
 
 const loading = computed(

@@ -67,6 +67,9 @@ export default configure((ctx) => {
     ? JSON.parse(fs.readFileSync(metaPath, 'utf-8'))
     : {}
   const base = meta.base || '/'
+  // for debug
+  const debugProd = process.env.DEBUG_BUILD === '1'
+
 
   // ---------- friendly build logs ----------
   console.log('▶ Env resolution')
@@ -96,9 +99,13 @@ export default configure((ctx) => {
     // (Quasar accepts "public" path via vite.publicDir)
     // Use extendViteConf to set it.
     build: {
+      distDir: `dist/site-${site}`,
       vueRouterMode: 'history',
       publicPath: base, // keep consistent with your hosting path
-      // any other build options you already use…
+     // begin debug
+      sourcemap: debugProd,          // show original source in prod
+      minify: debugProd ? false : 'esbuild',
+      // end debug
       extendViteConf(viteConf) {
         // Public dir
         viteConf.publicDir = publicDir

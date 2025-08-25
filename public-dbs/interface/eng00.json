@@ -1,17 +1,12 @@
-// this file is not used.  The interface is imported from api_mylanguage
-
-
 {
   "language": {
     "EnglishName": "English",
     "hlCode": "eng00",
     "google": "en",
-    "folder": "interface",
-    "subfolder": "dbs",
     "translationComplete": "true",
-    "lastUpdated": "2025-08-06T14:00:00Z"
+    "lastUpdated": "2025-08-16T14:00:00Z"
   },
-
+  
   "index": {
     "para": {
       "1": "Spiritual growth isn’t a solo journey — it happens in community. We all need wisdom we can trust and people who encourage us along the way. The lessons below will help you discover how God’s wisdom shapes lives, builds genuine relationships, and reveals His love and care for you.",
@@ -124,7 +119,7 @@
     "p1": "Before we begin, let’s take a moment to review what you committed to last time.",
     "p2": "This helps us encourage each other and see how God is at work.",
     "empty": "You didn’t write any notes in Look Forward the last time we met. Taking a few notes can help you grow!"
-  }
+  },
   "menu": {
     "next": "Next",
     "nextVideo": "Next Video",

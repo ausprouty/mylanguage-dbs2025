@@ -1,5 +1,3 @@
-// this file is not used.  The interface is imported from api_mylanguage
-
 
 {
   "language": {
@@ -7,7 +5,7 @@
     "hlCode": "eng00",
     "google": "en",
     "folder": "interface",
-    "subfolder": "uom",
+    "subfolder": "dbs",
     "translationComplete": "true",
     "lastUpdated": "2025-08-06T14:00:00Z"
   },
@@ -18,7 +16,7 @@
       "2": "Gather your friends and start exploring! Click on the images below to begin your journey — discovering not just wisdom, but a relationship with God and the spiritual community He invites you into."
     }
   },
-  "jvideo": {
+  "jVideo": {
     "title": "The Life of Jesus",
     "summary": "See how Jesus’ actions and teachings challenged expectations, inspired hope, and still speak powerfully today.",
     "para": {
