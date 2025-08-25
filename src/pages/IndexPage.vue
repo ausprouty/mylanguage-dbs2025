@@ -3,11 +3,10 @@ import { computed } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useSettingsStore } from "src/stores/SettingsStore";
-import { currentApi } from "boot/axios";
 
 const router = useRouter();
 
-const { t, locale } = useI18n({ useScope: 'global' })
+const { t } = useI18n({ useScope: 'global' })
 const settingsStore = useSettingsStore();
 
 const loading = computed(
@@ -22,20 +21,6 @@ const handleImageClick = (to) => {
   if (to) router.push(to);
 };
 
-const openExternalWebsite = async () => {
-  const url = `/ask/${settingsStore.languageCodeHLSelected}`;
-  try {
-    const { data } = await currentApi.get(url);
-    const externalURL =
-      (data && data.contactPage) || "https://www.everyperson.com/contact.php";
-    const win = window.open(externalURL, "_blank");
-    if (!win || win.closed || typeof win.closed === "undefined") {
-      window.location.href = externalURL;
-    }
-  } catch (err) {
-    console.error("Error fetching external URL:", err);
-  }
-};
 </script>
 
 <template>

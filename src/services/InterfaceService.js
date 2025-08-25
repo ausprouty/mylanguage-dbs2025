@@ -1,8 +1,11 @@
-import { i18n } from "boot/i18n";
+import { i18n } from "src/lib/i18n";
 import { useSettingsStore } from "src/stores/SettingsStore";
-import { currentApi } from "boot/axios";
+import { http } from 'src/lib/http'
 import { pollTranslationUntilComplete } from "src/services/TranslationPollingService";
-import { getInterfaceFromDB, saveInterfaceToDB } from "src/services/IndexedDBService";
+import {
+  getInterfaceFromDB,
+  saveInterfaceToDB,
+} from "src/services/IndexedDBService";
 import { normId } from "src/utils/normalize";
 
 const FALLBACK_HL = "eng00";
@@ -72,7 +75,10 @@ function validateMessages(lang, bundle) {
  * - Uses eng00 once if needed
  * - Validates i18n strings to avoid runtime compile errors
  */
-export async function getTranslatedInterface(languageCodeHL, hasRetried = false) {
+export async function getTranslatedInterface(
+  languageCodeHL,
+  hasRetried = false
+) {
   const settingsStore = useSettingsStore();
 
   const hl = normId(languageCodeHL);
@@ -80,7 +86,9 @@ export async function getTranslatedInterface(languageCodeHL, hasRetried = false)
   const cronKey = normId(import.meta.env.VITE_CRON_KEY);
 
   if (!hl) {
-    console.error("[InterfaceService] Missing languageCodeHL", { languageCodeHL });
+    console.error("[InterfaceService] Missing languageCodeHL", {
+      languageCodeHL,
+    });
     if (!hasRetried && FALLBACK_HL !== languageCodeHL) {
       return getTranslatedInterface(FALLBACK_HL, true);
     }
@@ -97,14 +105,17 @@ export async function getTranslatedInterface(languageCodeHL, hasRetried = false)
     if (!messages) {
       const apiPath = `/translate/interface/${hl}/${app}`;
       // fetch as text so we can inspect the head on errors
-      const res = await currentApi.get(apiPath, { responseType: "text" });
+      const res = await http.get(apiPath, { responseType: "text" });
 
       const ctype = res?.headers?.["content-type"] || "";
       const body = res?.data ?? "";
       console.debug(
-        "[Interface] status=", res?.status,
-        "ctype=", ctype,
-        "head=", String(body).slice(0, 180)
+        "[Interface] status=",
+        res?.status,
+        "ctype=",
+        ctype,
+        "head=",
+        String(body).slice(0, 180)
       );
 
       const parsed = typeof body === "string" ? safeParseJson(body) : body;
@@ -116,7 +127,7 @@ export async function getTranslatedInterface(languageCodeHL, hasRetried = false)
         await saveInterfaceToDB(hl, messages);
       } else {
         if (cronKey) {
-          currentApi.get(`/translate/cron?token=${cronKey}`).catch(() => {});
+          http.get(`/translate/cron?token=${cronKey}`).catch(() => {});
         }
         pollTranslationUntilComplete({
           languageCodeHL: hl,

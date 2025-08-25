@@ -98,6 +98,23 @@ export default configure((ctx) => {
     // Per-site public assets (optional)
     // (Quasar accepts "public" path via vite.publicDir)
     // Use extendViteConf to set it.
+     boot: [
+      "i18n",
+      "axios",
+      "language-init",
+      "brand-hydrate",
+      "profile-hydrate",
+      "menu-hydrate",
+      "route-resume",
+      "version-check",
+    ],
+    extras: ["material-icons"],
+
+    framework: {
+      config: {},
+      iconSet: "material-icons",
+      plugins: ["Notify", "Dialog"],
+    },
     build: {
       distDir: `dist/site-${site}`,
       vueRouterMode: 'history',
@@ -176,9 +193,6 @@ export default configure((ctx) => {
       }
     },
 
-    framework: {
-      // keep your usual Quasar plugins here if needed
-      plugins: []
-    }
+    
   }
 })

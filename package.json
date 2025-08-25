@@ -7,6 +7,8 @@
   "private": true,
 
   "scripts": {
+
+    "dev:uom:spa": "cross-env SITE=uom quasar dev",
     "validate:tokens": "node scripts/validate-site-tokens.mjs",
     "clean": "rimraf --glob \"node_modules/.vite*\" dist .quasar",
     "clean:site": "rimraf dist/site-%SITE% node_modules/.vite-%SITE%",
