@@ -1,0 +1,6 @@
+# create/overwrite .gitattributes with the right rules
+cat > .gitattributes <<'EOF'
+*.sh    text eol=lf
+*.patch text eol=lf
+*.diff  text eol=lf
+EOF
