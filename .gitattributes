@@ -1,6 +1,4 @@
-# create/overwrite .gitattributes with the right rules
-cat > .gitattributes <<'EOF'
+# Normalize line endings for scripts and patches
 *.sh    text eol=lf
 *.patch text eol=lf
 *.diff  text eol=lf
-EOF
