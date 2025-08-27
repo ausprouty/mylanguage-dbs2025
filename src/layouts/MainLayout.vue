@@ -2,8 +2,8 @@
 import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useSettingsStore } from "src/stores/SettingsStore";
-import LanguageOptions from "components/language/LanguageOptionsB.vue";
-import ShareLink from "components/ShareLink.vue";
+import LanguageOptions from "src/components/language/LanguageOptionsB.vue";
+import ShareLink from "src/components/ShareLink.vue";
 
 const route = useRoute();
 const store = useSettingsStore();

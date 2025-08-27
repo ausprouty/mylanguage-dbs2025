@@ -47,3 +47,29 @@ export function fromObjId(v, keys = ['slug','code','id','key','name','title']) {
 export function normPathSeg(v) {
   return encodeURIComponent(normId(fromObjId(v)));
 }
+
+// For comparing keys like series names/IDs consistently
+export function normKey(v) {
+  return normId(fromObjId(v)).replace(/[\s_-]+/g, '').toLowerCase()
+}
+
+// Basic object guards (useful in loaders/mergers)
+export const isObj = v => v && typeof v === 'object' && !Array.isArray(v)
+export const safeObj = v => (isObj(v) ? v : {})
+export const safeKeys = o => (isObj(o) ? Object.keys(o) : [])
+
+// Join a base path and a relative path cleanly
+export function withBase(base, path = '') {
+  const b = String(base || '/').replace(/\/+$/, '/')
+  const p = String(path || '').replace(/^\/+/, '')
+  return b + p
+}
+
+// Turn “true/1/yes/on” and “false/0/no/off” into booleans
+export function normBoolish(v, def = false) {
+  const s = normId(v)
+  if (!s) return def
+  if (/^(true|1|yes|y|on)$/i.test(s)) return true
+  if (/^(false|0|no|n|off)$/i.test(s)) return false
+  return def
+}

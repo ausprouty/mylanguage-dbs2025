@@ -71,74 +71,75 @@ html.splash-done::before {
 
     </style>
 
-    <script>
+<script>
 (function () {
-  var mq = window.matchMedia("(orientation: portrait)");
-  var onOrient = function () {
+  // --- pick the right splash image & preload only what's used ---
+  var mq = matchMedia("(orientation: portrait)");
+
+  function choosePaths() {
     var portrait = mq.matches;
-    var path = "/splash/" + (portrait ? "splash-portrait.webp" : "splash-landscape.webp");
-    document.documentElement.style.setProperty("--splash-bg", 'url("' + path + '")');
-  };
+    var base = portrait
+      ? "/splash/splash-portrait.webp"
+      : "/splash/splash-landscape.webp";
+    var hidpi = base.replace(/\.webp$/, "@2x.webp");
+    return { base: base, hidpi: hidpi };
+  }
 
-  // Set initial splash background
-  onOrient();
-  mq.addEventListener("change", onOrient);
+  function setBgAndPreload() {
+    var p = choosePaths();
 
-  // Timing controls
-  var MIN_MS = 2200;   // set your desired minimum
-  var MAX_MS = 6000;   // safety cap so it never hangs
+    // Let CSS pick 1x/2x by device pixel ratio
+    var cssVal = 'image-set(url("' + p.base + '") 1x, url("' + p.hidpi + '") 2x)';
+    document.documentElement.style.setProperty("--splash-bg", cssVal);
+
+    // Preload only the variant this device will actually use
+    var dpr2 = (window.devicePixelRatio || 1) >= 2;
+    var href = dpr2 ? p.hidpi : p.base;
+
+    if (!document.querySelector('link[rel="preload"][data-splash="'+href+'"]')) {
+      var link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = href;
+      link.dataset.splash = href;
+      document.head.appendChild(link);
+    }
+  }
+
+  setBgAndPreload();
+  mq.addEventListener("change", setBgAndPreload);
+
+  // --- your existing timing controls (unchanged) ---
+  var MIN_MS = 2200;  // minimum time the splash stays visible
+  var MAX_MS = 6000;  // hard cap
 
   // If coming from bfcache, skip long splash
   window.addEventListener("pageshow", function (e) {
-    if (e.persisted) {
-      document.documentElement.classList.add("splash-done");
-    }
+    if (e.persisted) document.documentElement.classList.add("splash-done");
   });
 
-  // Start the timer after the first paint
   var splashStart = performance.now();
-  requestAnimationFrame(function () {
-    splashStart = performance.now();
-  });
+  requestAnimationFrame(function () { splashStart = performance.now(); });
 
-  // Wait for either 'load' or the max cap, whichever comes first
-  var loaded = false;
+  var finished = false;
   function finishIfReady() {
-    if (loaded) return;
-    loaded = true;
+    if (finished) return;
+    finished = true;
 
     var elapsed = performance.now() - splashStart;
-    var remaining = Math.max(0, MIN_MS - elapsed);
+    var waitMore = Math.max(0, MIN_MS - elapsed);
 
     setTimeout(function () {
       document.documentElement.classList.add("splash-done");
-      // cleanup
-      mq.removeEventListener("change", onOrient);
-    }, remaining);
+      // cleanup listeners
+      mq.removeEventListener("change", setBgAndPreload);
+    }, waitMore);
   }
 
-  // Normal path: finish after load + min duration
   window.addEventListener("load", finishIfReady);
-
-  // Safety cap: if 'load' takes too long, end at MAX_MS
   setTimeout(finishIfReady, MAX_MS);
 })();
 </script>
 
 
-    <!-- Optional: help the splash appear instantly -->
-    <link
-      rel="preload"
-      as="image"
-      href="/splash/splash-portrait.webp"
-      imagesrcset="/splash/splash-portrait.webp 1x, /splash/splash-portrait@2x.webp 2x"
-    />
-
-    <link
-      rel="preload"
-      as="image"
-      href="/splash/splash-landscape.webp"
-      imagesrcset="/splash/splash-landscape.webp 1x, /splash/splash-landscape@2x.webp 2x"
-    />
-  </body>
 </html>

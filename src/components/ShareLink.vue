@@ -2,14 +2,17 @@
 import { computed, onMounted, ref } from "vue";
 import { useQuasar } from "quasar";
 import { useSettingsStore } from "src/stores/SettingsStore";
-import { normId, fromObjId, normPathSeg } from "src/utils/normalize";
+import { normId, normKey, fromObjId, normPathSeg } from "src/utils/normalize";
 import { getAllowedStudyKeys } from "src/utils/allowedStudies";
+import { useI18n } from 'vue-i18n';
 
 export default {
   name: "ShareLink",
   setup() {
-    const $q = useQuasar();
-    const store = useSettingsStore();
+    const { t } = useI18n({ useScope: 'global' })
+    const $q = useQuasar()
+    const store = useSettingsStore()
+
 
     const allowed = ref(new Set());
     onMounted(async () => {
@@ -17,7 +20,7 @@ export default {
     });
 
     const isAllowedSeries = (seriesLike) => {
-      const k = normId(fromObjId(seriesLike));
+      const k = normKey(seriesLike);
       return allowed.value.size === 0 || allowed.value.has(k);
       // if not yet loaded, don't block - allow temporarily
     };
@@ -28,16 +31,9 @@ export default {
         return normId(ln);
       }
 
-      const raw = normId(fromObjId(seriesLike));
-      const wanted = raw.replace(/[\s_-]+/g, "").toLowerCase();
-
-      const keys = Object.keys(ln);
-      for (let i = 0; i < keys.length; i++) {
-        const k = keys[i];
-        const nk = normId(k)
-          .replace(/[\s_-]+/g, "")
-          .toLowerCase();
-        if (nk === wanted) return normId(ln[k]);
+      const wanted = normKey(seriesLike);
+      for (const k of Object.keys(ln)) {
+        if (normKey(k) === wanted) return normId(ln[k])
       }
 
       // default-ish keys can be configured in the store
@@ -161,7 +157,20 @@ export default {
       }
     };
 
-    return { shareUrl, copyToClipboard, getUrlLink };
+    return { shareUrl, copyToClipboard, getUrlLink, t };
   },
 };
 </script>
+
+<template>
+  <div class="row items-center no-wrap q-gutter-xs">
+    <q-btn flat dense round icon="share"
+           :aria-label="t('ui.share')" @click="shareUrl" />
+    <q-btn flat dense round icon="content_copy"
+           :aria-label="t('ui.copyLink')"
+           @click="copyToClipboard(getUrlLink)">
+      <q-tooltip>{{ t('ui.copyLink') }}</q-tooltip>
+    </q-btn>
+  </div>
+</template>
+

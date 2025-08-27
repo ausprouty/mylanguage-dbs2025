@@ -126,7 +126,7 @@ export async function pollTranslationUntilComplete({
         const cronKey = translation?.language?.cronKey;
         if (cronKey) {
           http
-            .get(`/translate/cron?token=${encodeURIComponent(cronKey)}`)
+            .get(`/translate/cron/${encodeURIComponent(cronKey)}`)
             .catch((err) => console.warn("⚠️ Cron trigger failed:", err));
         }
 

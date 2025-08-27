@@ -20,14 +20,7 @@ function cleanUrl(v) {
     .trim();
   return x.replace(/\/+$/, ""); // drop trailing slashes
 }
-function asOrigin(s) {
-  try {
-    const u = new URL(s);
-    return u.protocol === "https:" || u.protocol === "http:" ? u.origin : "";
-  } catch {
-    return "";
-  }
-}
+
 
 // ---------- main export ----------
 export default configure((ctx) => {
@@ -46,26 +39,38 @@ export default configure((ctx) => {
   // Site overrides base
   const envAll = { ...envBase, ...envSite };
 
-  // Resolve API origin from merged env, with safe fallbacks
-  // Keep full base (may include a path, e.g. /api_mylanguage)
-  // Keep full base
-  const apiFromEnvFull = cleanUrl(envAll.VITE_API);
-  const apiFallback = ctx.dev
-    ? "http://localhost/api_mylanguage"
-    : "https://api2.mylanguage.net.au";
+  // Load per-site meta.json (if present)
+  const metaPath = path.resolve(ROOT, `src/sites/${site}/meta.json`)
+  const meta = fs.existsSync(metaPath)
+    ? JSON.parse(fs.readFileSync(metaPath, 'utf8'))
+    : {}
+  const envFromMeta = Object.fromEntries(
+    Object.entries(meta?.env || {}).filter(([k]) => k.startsWith('VITE_'))
+  )
 
-  const apiBase = (apiFromEnvFull || apiFallback).replace(/\/+$/, "");
+  // ---- Resolve API once, expose everywhere ----
+  const resolvedApiRaw =
+    cleanUrl(
+      process.env.VITE_API ||
+      envAll.VITE_API ||
+      envFromMeta.VITE_API ||
+      meta.api ||
+      (ctx.dev
+        ? 'http://localhost/api_mylanguage'
+        : 'https://api2.mylanguage.net.au')
+    );
 
-  let apiOrigin = "";
-  let apiPath = "";
+  const apiBase = (resolvedApiRaw || '').replace(/\/+$/, '');
+
+  let apiOrigin = '';
+  let apiPath = '';
   try {
     const u = new URL(apiBase);
     apiOrigin = `${u.protocol}//${u.host}`;
-    apiPath = (u.pathname || "").replace(/\/$/, "");
-  } catch (e) {
-    // fallback: treat as origin-only
-    apiOrigin = apiBase.replace(/\/.*$/, "");
-    apiPath = "";
+    apiPath = (u.pathname || '').replace(/\/$/, '');
+  } catch {
+    apiOrigin = apiBase.replace(/\/.*$/, '');
+    apiPath = '';
   }
 
   // Optional: per-site public dir (public-uom → else public)
@@ -76,14 +81,7 @@ export default configure((ctx) => {
   const hasScssVars = exists(scssVarsPath);
 
 
-  // Load per-site meta.json (if present)
-  const metaPath = path.resolve(ROOT, `src/sites/${site}/meta.json`)
-  const meta = fs.existsSync(metaPath)
-    ? JSON.parse(fs.readFileSync(metaPath, 'utf8'))
-    : {}
-  const envFromMeta = Object.fromEntries(
-    Object.entries(meta?.env || {}).filter(([k]) => k.startsWith('VITE_'))
-  )
+
 
   const base = meta.base || "/";
   // for debug
@@ -136,6 +134,7 @@ export default configure((ctx) => {
       "menu-hydrate",
       "route-resume",
       "version-check",
+       ...(ctx.dev ? ['dev-expose-env'] : []),   
     ],
     extras: ["material-icons"],
 
@@ -150,7 +149,7 @@ export default configure((ctx) => {
         ...envFromMeta,
         VITE_APP: site,
         VITE_SITE_KEY: site,
-        VITE_API: apiTarget,
+        VITE_API: apiBase, // <- single source
       },
       htmlVariables: { SITE_META: meta },
       vueRouterMode: "history",
@@ -168,7 +167,6 @@ export default configure((ctx) => {
           ...(viteConf.define || {}),
           "import.meta.env.MODE": JSON.stringify(baseMode),
           "import.meta.env.SITE": JSON.stringify(site),
-          "import.meta.env.VITE_API": JSON.stringify(apiBase),
         };
 
         // Per-site SCSS variables (optional)
