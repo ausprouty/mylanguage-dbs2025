@@ -33,9 +33,9 @@ export default boot(async () => {
         console.log("[language-init] from browser:", detected);
       } else {
         console.warn(
-          "[language-init] no valid browser language detected; falling back to 'en'"
+          "[language-init] no valid browser language detected; falling back to 'eng00'"
         );
-        langObj = { languageCodeHL: "en" };
+        langObj = { languageCodeHL: "eng00" };
         if (typeof settings.setLanguageObjectSelected === "function") {
           settings.setLanguageObjectSelected(langObj);
         } else {
@@ -45,8 +45,9 @@ export default boot(async () => {
     }
 
     // Load interface strings for the chosen language
-    const code = String(langObj.languageCodeHL || "en");
-    console.log("[language-init] loading interface translation:", code);
+    const code = String(langObj.languageCodeHL || "eng00");
+    const site = import.meta.env.VITE_APP || "dbs";
+    console.log("[language-init] loading interface:", { code, site });
 
     try {
       await loadInterfaceTranslation(code);
@@ -57,7 +58,7 @@ export default boot(async () => {
         e
       );
       // Fallback to English once, if not already tried
-      if (code !== "en") {
+      if (code !== "eng00") {
         try {
           await loadInterfaceTranslation("en");
           console.warn("[language-init] fell back to English UI");

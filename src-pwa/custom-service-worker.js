@@ -1,44 +1,71 @@
 /* eslint-env serviceworker */
 
-import { clientsClaim } from 'workbox-core'
+import {clientsClaim} from 'workbox-core'
+import {enable as enableNavigationPreload} from 'workbox-navigation-preload'
 import {
   precacheAndRoute,
   cleanupOutdatedCaches,
   createHandlerBoundToURL
 } from 'workbox-precaching'
-import { registerRoute, NavigationRoute } from 'workbox-routing'
+import {registerRoute, NavigationRoute} from 'workbox-routing'
+import {StaleWhileRevalidate, NetworkFirst} from 'workbox-strategies'
+import {CacheableResponsePlugin} from 'workbox-cacheable-response'
 
+// --- Activation strategy ---
 self.skipWaiting()
 clientsClaim()
+enableNavigationPreload()
 
-// In dev with InjectManifest, __WB_MANIFEST can be empty.
-// Using "|| []" is harmless in prod and prevents crashes in dev.
-precacheAndRoute(self.__WB_MANIFEST || [])
+// --- Precache ---
+precacheAndRoute(self.__WB_MANIFEST || [], {
+  ignoreURLParametersMatching: [/^v$/, /^__WB_REVISION__$/]
+})
 cleanupOutdatedCaches()
 
-// Build an index.html path that respects the SW scope (handles non-root base paths)
-function scopedIndexUrl () {
-  const scopePath = new URL(self.registration.scope).pathname
-  return (scopePath.endsWith('/') ? scopePath : scopePath + '/') + 'index.html'
-}
+// --- SPA fallback aware of non-root base path ---
+const scopePath = new URL(self.registration.scope).pathname
+const indexURL = (scopePath.endsWith('/') ? scopePath : scopePath + '/') + 'index.html'
 
-// Only register the SPA fallback if index.html is actually precached.
-// In dev it often isn't, which caused your "non-precached-url" error.
 try {
-  const handler = createHandlerBoundToURL(scopedIndexUrl())
-  const navRoute = new NavigationRoute(handler, {
-    // don't fall back for APIs and static files
+  const handler = createHandlerBoundToURL(indexURL)
+  registerRoute(new NavigationRoute(handler, {
     denylist: [
-      /^\/api/i,
-      /\/_/,                                // vite internal, etc.
-      /\.(?:json|txt|xml|map)$/i,
-      /\.(?:png|jpe?g|gif|webp|svg|ico)$/i,
-      /\.(?:css|js|mjs|wasm)$/i,
+      new RegExp(`^${scopePath}api/`, 'i'), // don’t hijack API navigations
+      new RegExp(`^${scopePath}_/`),        // typical Next/Quasar pattern
+      /\/[^/?]+\.[^/]+$/i,                  // any “/file.ext”
+      /service-worker\.js$/i,
       /sw\.js$/i,
       /workbox-(?:.*)\.js$/i
     ]
-  })
-  registerRoute(navRoute)
-} catch (e) {
-  // In dev, index.html may not be in the precache. Skip the SPA fallback to avoid the error.
+  }))
+} catch (_) {
+  // In dev, index.html might not be precached; skip SPA fallback.
 }
+
+// --- Runtime caching (site-aware cache names) ---
+const scopeSlug = scopePath.replace(/[^\w-]+/g, '_')
+
+// Interface JSON: fast + updates in background, ignore Vary: Origin
+const interfacePrefix = (scopePath.endsWith('/') ? scopePath : scopePath + '/') + 'interface/'
+const interfaceHandler = new StaleWhileRevalidate({
+  cacheName: 'interface-cache',                 // or `interface-${scopeSlug}`
+  matchOptions: { ignoreVary: true },
+  plugins: [ new CacheableResponsePlugin({ statuses: [0, 200] }) ],
+})
+registerRoute(({url}) => url.pathname.startsWith(interfacePrefix), interfaceHandler)
+
+// API: prefer network, cache fallback if slow/offline
+registerRoute(
+  ({url}) => url.pathname.startsWith(`${scopePath}api/`),
+  new NetworkFirst({
+    cacheName: `api-${scopeSlug}`,
+    networkTimeoutSeconds: 4,
+    plugins: [ new CacheableResponsePlugin({ statuses: [0, 200] }) ]
+  })
+)
+
+/* Optional controlled updates:
+self.addEventListener('message', (e) => {
+  if (e.data?.type === 'SKIP_WAITING') self.skipWaiting()
+})
+*/

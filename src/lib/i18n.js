@@ -12,6 +12,7 @@ export const i18n = createI18n({
 export async function loadPublicInterface(locale) {
   const base = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '') + '/'
   const url = `${base}interface/${locale}.json`
+  console.log("[loadPublicInterface] trying to load url");
   try {
     const res = await fetch(url, { cache: 'no-store' })
     return res.ok ? await res.json() : {}

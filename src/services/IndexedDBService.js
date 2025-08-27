@@ -53,33 +53,57 @@ export function openDatabase() {
   });
 }
 
-async function saveItem(storeName, key, value) {
-  if (key === null) {
+// --- IndexedDB core -----------------------------------------
+async function saveItem(storeName, key, value, opts = {}) {
+  const {
+    allowEmpty = false,        // if true, permits saving empties (default: refuse)
+    deleteOnEmpty = true       // if value is empty, delete key instead of saving
+  } = opts;
+
+  if (key == null) {
     console.warn(`❌ Refusing to save to "${storeName}" because key is null.`);
     return false;
   }
 
-  if (value && typeof value === "object" && "error" in value) {
-    console.warn(
-      `⛔ Skipping save for key "${key}" due to error: ${value.error}`
-    );
+  // Refuse error objects
+  if (isPlainObject(value) && ('error' in value)) {
+    console.warn(`⛔ Skipping save for key "${key}" due to error: ${value.error}`);
     return false;
   }
 
   const db = await openDatabase();
 
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(storeName, "readwrite");
-    const store = tx.objectStore(storeName);
-    const request = store.put(value, key);
+  // Block empties (and optionally delete existing)
+  if (!allowEmpty && !isMeaningful(value)) {
+    console.warn(`⚠️ Empty/meaningless value for "${storeName}/${key}" — not saving.`);
+    if (deleteOnEmpty) {
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(storeName, 'readwrite');
+        const store = tx.objectStore(storeName);
+        const del = store.delete(key);
+        del.onsuccess = () => resolve(true);
+        del.onerror = (e) => reject(e);
+      });
+    }
+    return false;
+  }
 
-    request.onsuccess = () => resolve(true);
-    request.onerror = (e) => reject(e);
+  // Save meaningful values
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(storeName, 'readwrite');
+    const store = tx.objectStore(storeName);
+    const req = store.put(value, key);
+    req.onsuccess = () => resolve(true);
+    req.onerror = (e) => reject(e);
   });
 }
 
-async function getItem(storeName, key) {
-  if (key === null) {
+async function getItem(storeName, key, opts = {}) {
+  const {
+    deleteIfEmpty = true       // delete `{}`/empty-on-read (default: true)
+  } = opts;
+
+  if (key == null) {
     console.warn(`❌ Refusing to get from "${storeName}" because key is null.`);
     return null;
   }
@@ -87,15 +111,28 @@ async function getItem(storeName, key) {
   const db = await openDatabase();
 
   return new Promise((resolve, reject) => {
-    const tx = db.transaction(storeName, "readonly");
+    // Use readwrite so we can delete inside the same transaction if empty
+    const tx = db.transaction(storeName, deleteIfEmpty ? 'readwrite' : 'readonly');
     const store = tx.objectStore(storeName);
-    const request = store.get(key);
+    const req = store.get(key);
 
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = (e) => reject(e);
+    req.onsuccess = () => {
+      const val = req.result;
+
+      if (!isMeaningful(val)) {
+        if (deleteIfEmpty && tx.mode === 'readwrite') {
+          try { store.delete(key); } catch (_) {}
+          console.warn(`🧹 Purged empty/meaningless "${storeName}/${key}" from IndexedDB.`);
+        }
+        resolve(null);
+        return;
+      }
+      resolve(val);
+    };
+
+    req.onerror = (e) => reject(e);
   });
 }
-
 // ----------------- Common Content -----------------
 
 export async function getInterfaceFromDB(languageCodeHL) {
@@ -225,4 +262,22 @@ export async function clearTable(tableName) {
     request.onsuccess = () => resolve();
     request.onerror = () => reject(request.error);
   });
+}
+
+// --- Meaningfulness helpers ---------------------------------
+function isPlainObject(v) {
+  return v != null &&
+         typeof v === 'object' &&
+         Object.getPrototypeOf(v) === Object.prototype;
+}
+
+function isMeaningful(v) {
+  if (v == null) return false;                     // null/undefined
+  if (typeof v === 'string') return v.trim().length > 0;
+  if (Array.isArray(v)) return v.length > 0;
+  if (isPlainObject(v)) {
+    if ('error' in v) return false;               // explicit error payloads
+    return Object.keys(v).length > 0;             // {} is not meaningful
+  }
+  return true; // numbers, booleans, Date, etc.
 }

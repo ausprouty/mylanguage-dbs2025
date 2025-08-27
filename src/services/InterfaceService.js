@@ -79,6 +79,8 @@ export async function getTranslatedInterface(
   languageCodeHL,
   hasRetried = false
 ) {
+
+  console.log ('[Interface Service] Line 83');
   const settingsStore = useSettingsStore();
 
   const hl = normId(languageCodeHL);
@@ -100,17 +102,28 @@ export async function getTranslatedInterface(
   try {
     // 1) IndexedDB first
     let messages = await getInterfaceFromDB(hl);
+    console.log ('[Interface Service] Messages Line 105');
+    console.log (messages)
+    // 1) Is it just a constructor label?
+    console.log(messages?.constructor?.name); // likely "i"
 
+    // 2) What are the real keys?
+    console.log(Object.keys(messages)); // the actual fields
+
+    // 3) Force a plain snapshot (no proxies/getters)
+    console.log(JSON.parse(JSON.stringify(messages)));
     // 2) fetch if not in DB
-    if (!messages) {
+    if (!messages || (isObj(messages) && Object.keys(messages).length === 0)) {
+      console.log ('[Interface Service] No Messages Line 109');
       const apiPath = `/translate/interface/${hl}/${app}`;
       // fetch as text so we can inspect the head on errors
       const res = await http.get(apiPath, { responseType: "text" });
-
+      console.log ('[Interface Service] Response Line 112');
+      console.log (res)
       const ctype = res?.headers?.["content-type"] || "";
       const body = res?.data ?? "";
       console.debug(
-        "[Interface] status=",
+        "[Interface Service] status=",
         res?.status,
         "ctype=",
         ctype,

@@ -3,63 +3,71 @@
 import { boot } from "quasar/wrappers";
 import { useSettingsStore } from "src/stores/SettingsStore";
 
+function readInlineSiteMeta() {
+  try {
+    if (typeof document === "undefined") return null;
+    const el = document.getElementById("__SITE_META__");
+    if (el?.textContent) return JSON.parse(el.textContent);
+  } catch (e) {
+    console.warn("[brand-hydrate] bad __SITE_META__ JSON", e);
+  }
+  return null;
+}
+
+function readGlobalSiteMeta() {
+  try {
+    if (typeof window !== "undefined" && "__SITE_META__" in window) {
+      return window.__SITE_META__;
+    }
+  } catch {}
+  return null;
+}
+
 export default boot(async () => {
   const store = useSettingsStore();
 
-  try {
-    // If already hydrated, skip
-    const current =
-      typeof store.brandTitle === "string" ? store.brandTitle.trim() : "";
-    if (current) {
-      console.log("[brand-hydrate] brandTitle already set →", current);
-      return;
-    }
+  // Skip if already set
+  const current = (store.brandTitle || "").trim();
+  if (current) {
+    console.log("[brand-hydrate] brandTitle already set →", current);
+    return;
+  }
 
-    // Gather candidates (env, then injected build-time meta)
-    const envTitle = String(import.meta.env.VITE_APP_TITLE || "").trim();
-    const injectedTitle = (() => {
-      try {
-        return typeof __SITE_META__ !== "undefined" &&
-          __SITE_META__?.env?.VITE_APP_TITLE
-          ? String(__SITE_META__.env.VITE_APP_TITLE).trim()
-          : "";
-      } catch {
-        return "";
-      }
-    })();
+  const envTitle = String(
+    import.meta.env.VITE_APP_TITLE || import.meta.env.VITE_TITLE || ""
+  ).trim();
 
-    const title = envTitle || injectedTitle;
+  // Prefer inline <script id="__SITE_META__">…</script>
+  const meta = readInlineSiteMeta() || readGlobalSiteMeta();
+  const injectedTitle = String(
+    meta?.title || meta?.env?.VITE_APP_TITLE || meta?.env?.VITE_TITLE || ""
+  ).trim();
 
-    console.log(
-      "[brand-hydrate] envTitle:", envTitle,
-      "| injectedTitle:", injectedTitle,
-      "| chosen:", title
-    );
+  const title = envTitle || injectedTitle || "App";
 
-    if (title) {
-      // Prefer an action if present; fall back to direct assignment
-      if (typeof store.setBrandTitle === "function") {
-        // If your action is async (e.g., persists), await it
-        await store.setBrandTitle(title);
-      } else {
-        store.brandTitle = title;
-      }
+  console.log(
+    "[brand-hydrate] envTitle:", envTitle,
+    "| injectedTitle:", injectedTitle,
+    "| chosen:", title
+  );
 
-      if (typeof document !== "undefined" && document.title !== title) {
-        document.title = title;
-      }
+  if (typeof store.setBrandTitle === "function") {
+    await store.setBrandTitle(title);
+  } else {
+    store.brandTitle = title;
+  }
 
-      console.log("[brand-hydrate] stored brandTitle →", store.brandTitle);
-    } else {
-      console.warn("[brand-hydrate] no title found in env or __SITE_META__");
-    }
-  } finally {
-    // Mark this hydrate complete if you have such an action/flag
-    if (typeof store.markHydrated === "function") {
-      store.markHydrated("brand");
-    } else {
-      // optional: add a simple flag to your store if you want
-      try { store.hydration = { ...(store.hydration || {}), brand: true }; } catch {}
-    }
+  if (typeof document !== "undefined" && document.title !== title) {
+    document.title = title;
+  }
+
+  if (!envTitle && !injectedTitle) {
+    console.warn("[brand-hydrate] no title found; used default");
+  }
+
+  if (typeof store.markHydrated === "function") {
+    store.markHydrated("brand");
+  } else {
+    try { store.hydration = { ...(store.hydration || {}), brand: true }; } catch {}
   }
 });
