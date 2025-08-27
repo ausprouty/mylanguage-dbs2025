@@ -10,6 +10,7 @@ export const useSettingsStore = defineStore("settingsStore", {
     brandTitle: "",
     currentPath: null,
     currentStudy: "",
+
     followingHimSegment: "1-0-0",
     jVideoSegments: { segments: [], currentId: 1 },
     languageSelected: {},
@@ -21,6 +22,7 @@ export const useSettingsStore = defineStore("settingsStore", {
     menuError: null,
     menuStatus: "idle",
     previousPage: "/index",
+    variantForStudy: {},
   }),
   getters: settingsGetters,
   actions: settingsActions,
@@ -47,6 +49,7 @@ export const useSettingsStore = defineStore("settingsStore", {
           "menuError",
           "menuStatus",
           "previousPage",
+          "variantForStudy",
         ],
         // 👇 these hooks run when the plugin restores persisted state
         beforeRestore: (ctx) => {

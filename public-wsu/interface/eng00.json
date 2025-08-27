@@ -8,6 +8,17 @@
     "translationComplete": "true",
     "lastUpdated": "2025-08-06T14:00:00Z"
   },
+  "ui": {
+    "share": "Share",
+    "copyLink": "Copy link",
+    "copied": "Link copied to clipboard!",
+    "copyFailed": "Failed to copy the link.",
+    "shareVia": "Share via",
+    "choosePlatform": "Choose a platform:",
+    "shareOk": "Shared successfully!",
+    "shareFail": "Sharing failed!",
+    "shareFallback": "Sharing not supported. Using fallback."
+  },
 
   "index": {
     "para": {
@@ -132,6 +143,7 @@
     "topic": "Topic",
     "changeLanguage": "Click the globe at the top of the page to choose a different language."
   },
+
   "lesson": {
     "completed": "Completed",
     "notCompleted": "Mark as completed"
@@ -141,16 +153,6 @@
     "lookUpNoteInstruction": "Write your notes for Look Up here",
     "lookForwardNoteInstruction": "Write your notes for Look Forward here",
     "videoNoteInstruction": "Write your notes for this video here"
-  },
-  "ui": {
-    "share": "Share",
-    "copyLink": "Copy link",
-    "copied": "Link copied to clipboard!",
-    "copyFailed": "Failed to copy the link.",
-    "shareVia": "Share via",
-    "choosePlatform": "Choose a platform:",
-    "shareOk": "Shared successfully!",
-    "shareFail": "Sharing failed!",
-    "shareFallback": "Sharing not supported. Using fallback."
   }
+
 }

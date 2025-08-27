@@ -28,12 +28,21 @@ const computedLanguageJF = computed(() => {
   const code = settingsStore.languageSelected.languageCodeJF;
   return code != null ? String(code) : "";
 });
+// Optional variant (e.g., /series/hope?variant=wsu)
+const computedVariant = computed(() => {
+  const raw = (route.query.variant ?? route.query.varient) as string | undefined;
+  if (!raw || typeof raw !== "string") return null;
+  const v = raw.trim().toLowerCase().replace(/[^a-z0-9-]/g, "");
+  return v || null;
+});
+
 
 console.log(unref(computedStudy), unref(computedLanguageHL));
 // ✅ Load content
 const { commonContent, topics, loadCommonContent } = useCommonContent(
   computedStudy,
-  computedLanguageHL
+  computedLanguageHL,
+  computedVariant
 );
 
 const {
@@ -54,7 +63,7 @@ onMounted(() => {
 });
 
 // Watch language or study changes
-watch([computedLanguageHL, computedLanguageJF, computedStudy], () => {
+watch([computedLanguageHL, computedLanguageJF, computedStudy,computedVariant], () => {
   loadCommonContent();
 });
 
@@ -119,6 +128,3 @@ const updateLesson = (nextLessonNumber) => {
     </q-page>
   </template>
 </template>
-
-
-

@@ -158,6 +158,13 @@ export const settingsActions = {
     }
     this.previousPage = newPage;
   },
+  setVariantForStudy(study, v) {
+    const s = study?.toLowerCase();
+    const clean = (typeof v === 'string')
+      ? v.trim().toLowerCase().replace(/[^a-z0-9-]/g, '')
+      : null;
+    this.variantByStudy[s] = clean || null;
+  },
 
   updateLanguageCodeHL(newCodeHL) {
     if (!this.languageSelected) {

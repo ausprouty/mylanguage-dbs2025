@@ -12,9 +12,11 @@ import {
   validatePositiveInteger,
 } from "./validators";
 
+
 export const useContentStore = defineStore("contentStore", {
   state: () => ({
     commonContent: {}, // e.g., { 'commonContent-${study}-${languageCodeHL}': 'common HTML' }
+
     lessonContent: {}, // e.g., { 'lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}': 'lesson HTML' }
     videoUrls: {}, // e.g., { 'videoUrls-${study}-${languageCodeJF}-lesson-${lesson}': ['url1', 'url2'] }
     translationComplete: {
@@ -36,8 +38,8 @@ export const useContentStore = defineStore("contentStore", {
         return state.lessonContent[key] || null;
       },
 
-    commonContentFor: (state) => (study, languageCodeHL) => {
-      const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
+    commonContentFor: (state) => (study, languageCodeHL, variant = null) => {
+      const key = ContentKeys.buildCommonContentKey(study, languageCodeHL, variant);
       return state.commonContent[key] || null;
     },
 
@@ -52,8 +54,8 @@ export const useContentStore = defineStore("contentStore", {
   },
 
   actions: {
-    setCommonContent(study, languageCodeHL, data) {
-      const key = ContentKeys.buildCommonContentKey(study, languageCodeHL);
+    setCommonContent(study, languageCodeHL, data, variant = null) {
+      const key = ContentKeys.buildCommonContentKey(study, languageCodeHL,variant);
       if (key) {
         console.log("I am setting commonContent for " + key);
         console.log(data);
@@ -88,9 +90,11 @@ export const useContentStore = defineStore("contentStore", {
       }
     },
 
-    async loadCommonContent(languageCodeHL, study) {
+    async loadCommonContent(languageCodeHL, study, variant = null) {
       console.log("I am in Content Store about to get CommonContent");
-      return await getCommonContent(languageCodeHL, study);
+      const data =  await getCommonContent(languageCodeHL, study, variant);
+      this.setCommonContent(study, languageCodeHL, data, variant)
+      return data
     },
 
     async loadLessonContent(languageCodeHL, languageCodeJF, study, lesson) {

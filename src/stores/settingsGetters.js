@@ -1,6 +1,27 @@
 import { DEFAULTS, MAX_LESSON_NUMBERS } from "src/constants/Defaults";
 
 export const settingsGetters = {
+  currentStudySelected: (state) =>
+    state.currentStudy || DEFAULTS.study,
+
+  isAtMaxLesson: (state) => {
+    const study = state.currentStudy;
+
+    const lesson = parseInt(state.lessonNumber?.[study], 10);
+    const max = parseInt(MAX_LESSON_NUMBERS?.[study], 10);
+
+    if (isNaN(lesson) || lesson < 1 || isNaN(max) || max < 1) {
+      console.warn(
+        `isAtMaxLesson: Invalid values for '${study}'. lesson=${lesson}, max=${max}`
+      );
+      return false;
+    }
+
+    return lesson >= max;
+  },
+
+  isStandardProfile: (s) => s.apiProfile === "standard",
+
   languageCodeHLSelected: (state) =>
     state.languageSelected?.languageCodeHL || DEFAULTS.languageCodeHL,
 
@@ -14,10 +35,6 @@ export const settingsGetters = {
       languageCodeHL: DEFAULTS.languageCodeHL,
       languageCodeJF: DEFAULTS.languageCodeJF,
     },
-
-  recentLanguages: (state) => state.languagesUsed || [],
-
-  currentStudySelected: (state) => state.currentStudy || DEFAULTS.study,
 
   lessonNumberForStudy: (state) => {
     const study = state.currentStudy;
@@ -58,20 +75,11 @@ export const settingsGetters = {
     return max;
   },
 
-  isAtMaxLesson: (state) => {
-    const study = state.currentStudy;
+  recentLanguages: (state) => state.languagesUsed || [],
 
-    const lesson = parseInt(state.lessonNumber?.[study], 10);
-    const max = parseInt(MAX_LESSON_NUMBERS?.[study], 10);
-
-    if (isNaN(lesson) || lesson < 1 || isNaN(max) || max < 1) {
-      console.warn(
-        `isAtMaxLesson: Invalid values for '${study}'. lesson=${lesson}, max=${max}`
-      );
-      return false;
-    }
-
-    return lesson >= max;
+  // current study's variant (null if none set)
+  variantForCurrentStudy(state) {
+    const s = String(state.currentStudy || "").toLowerCase();
+    return state.variantByStudy?.[s] || null;
   },
-  isStandardProfile: (s) => s.apiProfile === "standard",
 };

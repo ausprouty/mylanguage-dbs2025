@@ -53,8 +53,6 @@ const actionBtnColor = computed(() =>
   <q-layout view="lHh lpr lFf">
     <q-header
       :elevated="appbarStyle === 'surface' || scrolled"
-      :reveal="true"
-      :reveal-offset="50"
       class="appbar"
       :class="appbarClass"
     >
