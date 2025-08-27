@@ -134,7 +134,7 @@ export default configure((ctx) => {
       "menu-hydrate",
       "route-resume",
       "version-check",
-       ...(ctx.dev ? ['dev-expose-env'] : []),   
+       ...(ctx.dev ? ['dev-expose-env'] : []),
     ],
     extras: ["material-icons"],
 
@@ -163,10 +163,28 @@ export default configure((ctx) => {
         viteConf.publicDir = publicDir;
 
         // Ensure the client bundle sees the merged env values
-        viteConf.define = {
-          ...(viteConf.define || {}),
+        // Build up all defines in one object
+        const viteDefines = {
           "import.meta.env.MODE": JSON.stringify(baseMode),
           "import.meta.env.SITE": JSON.stringify(site),
+          // keep this if you compute apiBase dynamically
+          "import.meta.env.VITE_API": JSON.stringify(apiBase),
+        };
+
+        // Mirror every VITE_* from meta.env to import.meta.env.*
+        for (const [k, v] of Object.entries(envFromMeta || {})) {
+          if (k.startsWith("VITE_")) {
+            viteDefines[`import.meta.env.${k}`] = JSON.stringify(v);
+          }
+        }
+        // Ensure our dynamically resolved API wins
+        viteDefines["import.meta.env.VITE_API"] = JSON.stringify(apiBase);
+
+        // Final define block
+        viteConf.define = {
+          ...(viteConf.define || {}),
+          ...viteDefines,
+          __SITE_META__: JSON.stringify(meta), // optional but handy fallback
         };
 
         // Per-site SCSS variables (optional)

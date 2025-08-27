@@ -52,7 +52,7 @@ export default boot(async () => {
   );
 
   if (typeof store.setBrandTitle === "function") {
-    await store.setBrandTitle(title);
+    store.setBrandTitle(title);
   } else {
     store.brandTitle = title;
   }
