@@ -3,8 +3,8 @@ import { configure } from "quasar/wrappers";
 import { loadEnv } from "vite";
 import fs from "node:fs";
 import path from "node:path";
+  const ROOT = process.cwd();
 
-const ROOT = process.cwd();
 
 // ---------- small helpers ----------
 const exists = (p) => fs.existsSync(path.join(ROOT, p));
@@ -27,6 +27,7 @@ export default configure((ctx) => {
   // site key used by your project structure
   const site = process.env.SITE || process.env.VITE_APP || 'dbs'
 
+
   // Base mode = dev/prod; Site mode = uom/wsu/... (optional)
   const baseMode = ctx.dev ? "development" : "production";
   // You can pass V_MODE=uom in your scripts; fallback to SITE for convenience
@@ -47,6 +48,13 @@ export default configure((ctx) => {
   const envFromMeta = Object.fromEntries(
     Object.entries(meta?.env || {}).filter(([k]) => k.startsWith('VITE_'))
   )
+  const scssVarsPath = `src/sites/${site}/quasar.variables.scss`;
+  if (!fs.existsSync(path.resolve(ROOT, scssVarsPath))) {
+    throw new Error(
+      `Missing SCSS variables for site "${site}". Expected: ${scssVarsPath}`
+    );
+  }
+
 
   // ---- Resolve API once, expose everywhere ----
   const resolvedApiRaw =
@@ -77,7 +85,7 @@ export default configure((ctx) => {
   const publicDir = exists(`public-${site}`) ? `public-${site}` : "public";
 
   // Optional: per-site SCSS variables path
-  const scssVarsPath = `src/sites/${site}/quasar.variables.scss`;
+
   const hasScssVars = exists(scssVarsPath);
 
 
@@ -136,6 +144,7 @@ export default configure((ctx) => {
       "version-check",
        ...(ctx.dev ? ['dev-expose-env'] : []),
     ],
+    css: ["app.scss"],
     extras: ["material-icons"],
 
     framework: {
@@ -153,6 +162,7 @@ export default configure((ctx) => {
       },
       htmlVariables: { SITE_META: meta },
       vueRouterMode: "history",
+      scssVariables: scssVarsPath,
       publicPath: base, // keep consistent with your hosting path
       // begin debug
       sourcemap: debugProd, // show original source in prod
@@ -162,46 +172,53 @@ export default configure((ctx) => {
         // Public dir
         viteConf.publicDir = publicDir;
 
-        // Ensure the client bundle sees the merged env values
-        // Build up all defines in one object
+        // ---------- Define: expose env to client ----------
         const viteDefines = {
           "import.meta.env.MODE": JSON.stringify(baseMode),
           "import.meta.env.SITE": JSON.stringify(site),
-          // keep this if you compute apiBase dynamically
-          "import.meta.env.VITE_API": JSON.stringify(apiBase),
         };
 
-        // Mirror every VITE_* from meta.env to import.meta.env.*
+        // Mirror VITE_* from meta.env → import.meta.env.*, but let our computed VITE_API win
         for (const [k, v] of Object.entries(envFromMeta || {})) {
-          if (k.startsWith("VITE_")) {
+          if (k.startsWith("VITE_") && k !== "VITE_API") {
             viteDefines[`import.meta.env.${k}`] = JSON.stringify(v);
           }
         }
-        // Ensure our dynamically resolved API wins
+        // Ensure dynamically resolved API wins
         viteDefines["import.meta.env.VITE_API"] = JSON.stringify(apiBase);
 
-        // Final define block
+        // Final define block (+ optional site meta)
         viteConf.define = {
           ...(viteConf.define || {}),
           ...viteDefines,
-          __SITE_META__: JSON.stringify(meta), // optional but handy fallback
+          __SITE_META__: JSON.stringify(meta),
         };
 
-        // Per-site SCSS variables (optional)
+        // ---------- SCSS: inject per-site variables into all SFC <style lang="scss"> ----------
         if (hasScssVars) {
+          const injectLine = `@use "${scssVarsPath.replace(/\\/g, "/")}" as *;`;
+          const existing = viteConf.css?.preprocessorOptions?.scss?.additionalData;
+
+          // Merge politely with any existing additionalData (string or function)
+          let additionalData;
+          if (typeof existing === "function") {
+            additionalData = (content, loaderContext) =>
+              `${injectLine}\n${existing(content, loaderContext)}`;
+          } else if (typeof existing === "string") {
+            additionalData = `${injectLine}\n${existing}`;
+          } else {
+            additionalData = injectLine;
+          }
+
           viteConf.css = viteConf.css || {};
           viteConf.css.preprocessorOptions = {
             ...(viteConf.css.preprocessorOptions || {}),
             scss: {
               ...(viteConf.css.preprocessorOptions?.scss || {}),
-              additionalData: `@use "${scssVarsPath.replace(
-                /\\/g,
-                "/"
-              )}" as *;`,
+              additionalData,
             },
           };
         }
-
         // --- NEW: aliases so @site/meta.json resolves ---
         viteConf.resolve = {
           ...(viteConf.resolve || {}),
@@ -210,6 +227,7 @@ export default configure((ctx) => {
             "@": path.resolve(ROOT, "src"),
             "@site": path.resolve(ROOT, `src/sites/${site}`),
             "@sites": path.resolve(ROOT, "src/sites"),
+            "@brand": path.resolve(ROOT, scssVarsPath),
           },
         };
 
