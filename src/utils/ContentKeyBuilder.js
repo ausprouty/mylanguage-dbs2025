@@ -6,7 +6,7 @@ function ensure(part, label) {
   return part
 }
 
-export function buildCommonContentKey(study, languageCodeHLl, variant = null) {
+export function buildCommonContentKey(study, languageCodeHL, variant = null) {
   const s  = ensure(normId(study), 'study')
   const hl = ensure(normId(languageCodeHL), 'languageCodeHL')
   const v  = variant ? ensure(normId(variant), 'variant') : ''

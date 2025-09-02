@@ -15,7 +15,7 @@ export async function getCommonContent(languageCodeHL, study) {
   const studyId = normId(study)
   if (!studyId || !hl) throw new Error('study and languageCodeHL required')
 
-  const apiUrl = `/translate/commonContent/${hl}/${studyId}`
+  const apiUrl = `/v2/translate/text/common/${studyId}/${hl}`
 
   const key = buildCommonContentKey(studyId, hl)
   const contentStore = useContentStore()

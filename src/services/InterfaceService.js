@@ -54,7 +54,7 @@ export async function getTranslatedInterface(languageCodeHL, hasRetried = false)
 
     /* 2) If missing/empty, fetch from API ---------------------------------- */
     if (!messages) {
-      const apiPath = `/translate/interface/${hl}/${app}`;
+      const apiPath = `/v2/translate/text/interface/${app}/${hl}`;
       net("GET", apiPath);
 
       // fetch as text so we can inspect/log raw body & headers

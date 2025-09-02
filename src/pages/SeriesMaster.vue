@@ -30,10 +30,17 @@ const computedLanguageJF = computed(() => {
 });
 // Optional variant (e.g., /series/hope?variant=wsu)
 const computedVariant = computed(() => {
-  const raw = (route.query.variant ?? route.query.varient) as string | undefined;
-  if (!raw || typeof raw !== "string") return null;
-  const v = raw.trim().toLowerCase().replace(/[^a-z0-9-]/g, "");
-  return v || null;
+  const q = route.query;
+  const v = q.variant != null ? q.variant : q.varient; // accept both spellings
+
+  // Vue Router may give string[]; take the first item
+  const raw = Array.isArray(v) ? v[0] : v;
+
+  if (typeof raw !== 'string') return null;
+
+  const t = raw.trim().toLowerCase();
+  const clean = t.replace(/[^a-z0-9-]/g, '');
+  return clean || null;
 });
 
 
