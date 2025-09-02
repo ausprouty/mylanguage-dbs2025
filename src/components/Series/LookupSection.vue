@@ -29,14 +29,13 @@ const props = defineProps({
 
     <BibleText
         :passage="lessonContent.passage"
-        :menu="lessonContent.menu"
       />
 
       <VideoBar
         v-if="lessonContent.videoUrl"
         :videoUrl="lessonContent.videoUrl"
         :videoTitle = "lessonContent.passage.referenceLocalLanguage"
-        :menu="lessonContent.menu"
+
       />
 
     <ol class="ltr dbs">

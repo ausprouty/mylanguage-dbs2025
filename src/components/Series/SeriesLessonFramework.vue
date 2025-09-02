@@ -5,21 +5,12 @@ import { useI18n } from "vue-i18n";
 
 import DbsSection from "src/components/series/DbsSection.vue";
 import LookupSection from "src/components/series/LookupSection.vue";
-import SeriesReviewLastLesson from "src/components/series/SeriesReviewLastLesson.vue";
-
-import {
-  getStudyProgress,
-  saveStudyProgress,
-} from "src/services/IndexedDBService";
+import SeriesReviewLastLesson
+  from "src/components/series/SeriesReviewLastLesson.vue";
 
 export default {
   name: "SeriesLessonFramework",
-
-  components: {
-    DbsSection,
-    LookupSection,
-    SeriesReviewLastLesson,
-  },
+  components: { DbsSection, LookupSection, SeriesReviewLastLesson },
 
   props: {
     languageCodeHL: { type: String, required: true },
@@ -31,78 +22,81 @@ export default {
 
   setup(props) {
     const contentStore = useContentStore();
+    const { t } = useI18n({ useScope: "global" });
 
-    // 🎯 Use computed to get the latest lesson content reactively from the store
-    const lessonContent = computed(() =>
-      contentStore.lessonContentFor(
+    const lessonContent = computed(function () {
+      return contentStore.lessonContentFor(
         props.study,
         props.languageCodeHL,
         props.languageCodeJF,
         props.lesson
-      )
-    );
+      );
+    });
 
-    // 🌍 i18n helpers
-    const { t } = useI18n();
-    const m = (k) => t(`notes.${k}`);
-    const lookBackNoteInstruction = m("lookBackNoteInstruction");
-    const lookUpNoteInstruction = m("lookUpNoteInstruction");
-    const lookForwardNoteInstruction = m("lookForwardNoteInstruction");
+    // i18n-driven placeholders (reactive to locale)
+    const lookBackNoteInstruction = computed(function () {
+      return t("ui.lookBackNoteInstruction");
+    });
+    const lookUpNoteInstruction = computed(function () {
+      return t("ui.lookUpNoteInstruction");
+    });
+    const lookForwardNoteInstruction = computed(function () {
+      return t("ui.lookForwardNoteInstruction");
+    });
 
-    // 🔄 Loads lesson content into the store by calling the store action
-    const loadLessonContent = async () => {
-      try {
-        await contentStore.loadLessonContent(
-          props.languageCodeHL,
-          props.languageCodeJF,
-          props.study,
-          props.lesson
-        );
-        console.log("✅ Lesson content requested and loading into store.");
-      } catch (error) {
-        console.error("❌ Error loading lesson content:", error);
-      }
-    };
+    // Safe fallbacks for template (no optional chaining)
+    const ccLookBack = computed(function () {
+      return props.commonContent && props.commonContent.look_back
+        ? props.commonContent.look_back
+        : {};
+    });
+    const ccLookUp = computed(function () {
+      return props.commonContent && props.commonContent.look_up
+        ? props.commonContent.look_up
+        : {};
+    });
+    const ccLookForward = computed(function () {
+      return props.commonContent && props.commonContent.look_forward
+        ? props.commonContent.look_forward
+        : {};
+    });
+    const ccTiming = computed(function () {
+      return props.commonContent && props.commonContent.timing
+        ? props.commonContent.timing
+        : "";
+    });
 
-    // ✅ Called when user clicks "Mark as Complete"
-    const markLessonComplete = async () => {
-      const { study, lesson } = props;
-      try {
-        const completed = (await getStudyProgress(study)) || [];
-        if (!completed.includes(lesson)) {
-          completed.push(lesson);
-          await saveStudyProgress(study, completed);
-          console.log(`✅ Marked lesson ${lesson} as complete`);
-        } else {
-          console.log(`ℹ️ Lesson ${lesson} already marked as complete`);
-        }
-      } catch (error) {
-        console.error("❌ Failed to mark lesson complete:", error);
-      }
-    };
+    async function loadLessonContent() {
+      await contentStore.loadLessonContent(
+        props.languageCodeHL,
+        props.languageCodeJF,
+        props.study,
+        props.lesson
+      );
+    }
 
-    // 📡 Watch for changes in the lesson number or language and reload content
     watch(
-      () => [props.lesson, props.languageCodeHL],
-      async ([newLesson, newLang], [oldLesson, oldLang]) => {
-        console.log(
-          `🔄 Lesson changed (${oldLesson} → ${newLesson}) or language changed (${oldLang} → ${newLang}). Reloading content...`
-        );
+      function () {
+        return [props.lesson, props.languageCodeHL, props.languageCodeJF];
+      },
+      async function () {
         await loadLessonContent();
       }
     );
 
-    // 🚀 Initial content load on mount
-    onMounted(() => {
+    onMounted(function () {
       loadLessonContent();
     });
 
     return {
       lessonContent,
-      markLessonComplete,
       lookBackNoteInstruction,
       lookUpNoteInstruction,
       lookForwardNoteInstruction,
+      ccLookBack,
+      ccLookUp,
+      ccLookForward,
+      ccTiming,
     };
   },
 };
@@ -119,24 +113,24 @@ export default {
 
     <DbsSection
       section="look_back"
-      :content="commonContent?.look_back || {}"
+      :content="ccLookBack"
       :placeholder="lookBackNoteInstruction"
-      :timing="commonContent?.timing || ''"
+      :timing="ccTiming"
     />
 
     <LookupSection
       section="look_up"
-      :commonContent="commonContent?.look_up || {}"
+      :commonContent="ccLookUp"
       :lessonContent="lessonContent"
       :placeholder="lookUpNoteInstruction"
-      :timing="commonContent?.timing || ''"
+      :timing="ccTiming"
     />
 
     <DbsSection
       section="look_forward"
-      :content="commonContent?.look_forward || {}"
+      :content="ccLookForward"
       :placeholder="lookForwardNoteInstruction"
-      :timing="commonContent?.timing || ''"
+      :timing="ccTiming"
     />
   </div>
 </template>

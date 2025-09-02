@@ -10,42 +10,52 @@ import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
 import SeriesSegmentNavigator from "src/components/series/SeriesSegmentNavigator.vue";
 import SeriesLessonFramework from "src/components/series/SeriesLessonFramework.vue";
 
-// Access stores and route
 const route = useRoute();
-const i18n = useI18n();
-const { t } = i18n;
+const { t } = useI18n({ useScope: "global" });
 const settingsStore = useSettingsStore();
-console.log("i opened language store");
 
 useInitializeSettingsStore(route, settingsStore);
 
-const computedStudy = computed(() => settingsStore.currentStudySelected);
-const computedLessonNumber = computed(() => settingsStore.lessonNumberForStudy);
-const computedLanguageHL = computed(
-  () => settingsStore.languageSelected.languageCodeHL
-);
-const computedLanguageJF = computed(() => {
-  const code = settingsStore.languageSelected.languageCodeJF;
+const computedStudy = computed(function () {
+  return settingsStore.currentStudySelected || "dbs";
+});
+
+const computedLessonNumber = computed(function () {
+  const fn = settingsStore.lessonNumberForStudy;
+  if (typeof fn === "function") {
+    return fn(computedStudy.value);
+  }
+  // fallback if store exposes a simple number
+  return typeof settingsStore.lessonNumber === "number"
+    ? settingsStore.lessonNumber
+    : 1;
+});
+
+const computedLanguageHL = computed(function () {
+  const sel = settingsStore.languageSelected;
+  return sel && sel.languageCodeHL ? sel.languageCodeHL : "eng00";
+});
+
+const computedLanguageJF = computed(function () {
+  const sel = settingsStore.languageSelected;
+  const code = sel && sel.languageCodeJF ? sel.languageCodeJF : "";
   return code != null ? String(code) : "";
 });
-// Optional variant (e.g., /series/hope?variant=wsu)
-const computedVariant = computed(() => {
+
+// Optional variant (?variant=wsu). Accept "variant" or misspelled "varient".
+const computedVariant = computed(function () {
   const q = route.query;
-  const v = q.variant != null ? q.variant : q.varient; // accept both spellings
-
-  // Vue Router may give string[]; take the first item
+  const v = q && (q.variant != null ? q.variant : q.varient);
   const raw = Array.isArray(v) ? v[0] : v;
-
-  if (typeof raw !== 'string') return null;
-
-  const t = raw.trim().toLowerCase();
-  const clean = t.replace(/[^a-z0-9-]/g, '');
+  if (typeof raw !== "string") return null;
+  const lower = raw.trim().toLowerCase();
+  const clean = lower.replace(/[^a-z0-9-]/g, "");
   return clean || null;
 });
 
-
 console.log(unref(computedStudy), unref(computedLanguageHL));
-// ✅ Load content
+
+// Load common content + progress
 const { commonContent, topics, loadCommonContent } = useCommonContent(
   computedStudy,
   computedLanguageHL,
@@ -59,8 +69,7 @@ const {
   loadProgress,
 } = useProgressTracker(computedStudy);
 
-// Load on mount
-onMounted(() => {
+onMounted(function () {
   try {
     loadProgress();
     loadCommonContent();
@@ -69,20 +78,25 @@ onMounted(() => {
   }
 });
 
-// Watch language or study changes
-watch([computedLanguageHL, computedLanguageJF, computedStudy,computedVariant], () => {
-  loadCommonContent();
-});
+// Reload when study/languages/variant change
+watch(
+  [computedLanguageHL, computedLanguageJF, computedStudy, computedVariant],
+  function () {
+    loadCommonContent();
+  }
+);
 
-// Lesson update function
-const updateLesson = (nextLessonNumber) => {
+// Child -> parent lesson change
+function updateLesson(nextLessonNumber) {
   settingsStore.setLessonNumber(computedStudy.value, nextLessonNumber);
-};
+}
 </script>
+
 <template>
   <template v-if="commonContent">
     <q-page padding>
       <h1 class="dbs">{{ t(`${computedStudy}.title`) }}</h1>
+
       <p v-for="(para, index) in $tm(`${computedStudy}.para`)" :key="index">
         {{ para }}
       </p>
@@ -106,6 +120,7 @@ const updateLesson = (nextLessonNumber) => {
       />
 
       <hr />
+
       <SeriesLessonFramework
         :languageCodeHL="computedLanguageHL"
         :languageCodeJF="computedLanguageJF"
@@ -117,8 +132,8 @@ const updateLesson = (nextLessonNumber) => {
       <q-btn
         :label="
           isLessonCompleted(computedLessonNumber)
-            ? t('lesson.completed')
-            : t('lesson.notCompleted')
+            ? t('ui.completed')
+            : t('ui.notCompleted')
         "
         :disable="isLessonCompleted(computedLessonNumber)"
         class="mark-complete-btn"

@@ -4,19 +4,13 @@ import { ref, computed } from 'vue';
 const props = defineProps({
   videoUrl: { type: String, required: true },
   videoTitle: { type: String, required: true },
-  menu: {
-    type: Object,
-    default: () => ({
-      watch_online: 'Watch this video online',
-    })
-  }
 });
 const videoLabel = computed(() => {
   const rawTitle = String(props.videoTitle || '');
   const lines = rawTitle.split(/\r?\n|\r/).map(line => line.trim());
   const cleanTitle = lines.find(line => line.length > 0) || '';
 
-  return props.menu.watch_online?.replace(/\{\{XXX\}\}/g, cleanTitle);
+  return ui.watch_online?.replace(/\{\{XXX\}\}/g, cleanTitle);
 });
 
 

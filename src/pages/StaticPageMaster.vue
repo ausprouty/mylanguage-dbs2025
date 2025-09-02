@@ -54,11 +54,11 @@ async function loadPage() {
   }
 
   try {
-    console.log("enter try from StaticPageMaster");
+
     const m = await fetch(menuUrl.value, { cache: "no-store" });
     if (!m.ok) throw new Error(`menu.json (${m.status})`);
     const items = await m.json(); // [{ key, title, image, route, maxLessons }, ...]
-    console.log(items);
+
     const wanted = normRoute(`/page/${slug}`);
     const exists =
       Array.isArray(items) &&
@@ -69,11 +69,9 @@ async function loadPage() {
       loading.value = false;
       return;
     }
-    console.log(contentUrl.value);
     const c = await fetch(contentUrl.value, { cache: "no-store" });
     if (!c.ok) throw new Error(`${slug}.html (${c.status})`);
     html.value = await c.text();
-    console.log(html.value);
   } catch (e) {
     errorMsg.value = String(e && e.message ? e.message : e);
   } finally {

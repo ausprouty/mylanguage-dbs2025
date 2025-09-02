@@ -11,39 +11,47 @@ const props = defineProps({
   isLessonCompleted: Function,
   completedLessons: Array,
 });
-console.log("topics");
-console.log(props.topics);
-// Access the i18n instance
-const { t } = useI18n();
-const topicLabel = t("menu.topic");
 
 const emit = defineEmits(["updateLesson"]);
 const settingsStore = useSettingsStore();
+const { t } = useI18n({ useScope: "global" });
 
-// ✅ Computed list of topics with completion status
+// Label reacts to locale changes
+const topicLabel = computed(() => t("ui.topic"));
+
+// Localized “SELECT” placeholder with safe fallback
+const selectPlaceholder = computed(() => {
+  const s = t("ui.select");
+  return s === "ui.select" ? "SELECT" : s;
+});
+
+// Options with completion flag (safe if arrays are missing)
 const markedTopics = computed(() => {
-  return props.topics.map((topic) => ({
+  const topics = Array.isArray(props.topics) ? props.topics : [];
+  const completed = Array.isArray(props.completedLessons)
+    ? props.completedLessons
+    : [];
+  return topics.map((topic) => ({
     ...topic,
-    completed: props.completedLessons.includes(topic.value),
+    completed: completed.indexOf(topic.value) !== -1,
   }));
 });
 
-// ✅ v-model binding to currently selected lesson
+// v-model object: { label, value }
 const selectedLesson = computed({
   get() {
-    if (!Array.isArray(props.topics)) {
-      return { label: "SELECT", value: 0 };
-    }
-
-    const topic = props.topics.find((t) => t.value === props.lesson);
-    return topic
-      ? { label: topic.label, value: topic.value }
-      : { label: "SELECT", value: 0 };
+    const topics = Array.isArray(props.topics) ? props.topics : [];
+    const match = topics.find((t) => t.value === props.lesson);
+    return match
+      ? { label: match.label, value: match.value }
+      : { label: selectPlaceholder.value, value: 0 };
   },
   set(newValue) {
+    const value =
+      newValue && typeof newValue === "object" ? newValue.value : 0;
     const studyKey = props.study || "dbs";
-    settingsStore.setLessonNumber(studyKey, newValue.value);
-    emit("updateLesson", newValue.value);
+    settingsStore.setLessonNumber(studyKey, value);
+    emit("updateLesson", value);
   },
 });
 </script>
@@ -68,12 +76,7 @@ const selectedLesson = computed({
             <div class="row items-center no-wrap">
               <div class="text-body1">{{ scope.opt.label }}</div>
               <div v-if="scope.opt.completed">
-                <q-icon
-                  name="check_circle"
-                  color="green"
-                  size="sm"
-                  class="q-ml-xs"
-                />
+                <q-icon name="check_circle" color="green" size="sm" class="q-ml-xs" />
               </div>
             </div>
           </q-item-section>

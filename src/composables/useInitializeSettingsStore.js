@@ -14,8 +14,8 @@ export function useInitializeSettingsStore(route, settingsStore) {
     DEFAULTS.languageCodeHL;
   const initialLanguageJF =
     settingsStore.languageSelected.languageCodeJF || DEFAULTS.languageCodeJF;
-  settingsStore.setCurrentStudy(initialStudy);
-  settingsStore.setLessonNumber(initialStudy, initialLessonNumber);
-  settingsStore.updateLanguageCodeHL(initialLanguageHL);
-  settingsStore.updateLanguageCodeJF(initialLanguageJF);
+    settingsStore.setCurrentStudy(initialStudy);
+    settingsStore.setLessonNumber(initialStudy, initialLessonNumber);
+    settingsStore.updateLanguageCodeHL(initialLanguageHL);
+    settingsStore.updateLanguageCodeJF(initialLanguageJF);
 }

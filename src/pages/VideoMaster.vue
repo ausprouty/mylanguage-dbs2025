@@ -14,34 +14,47 @@ import VideoQuestions from "src/components/video/VideoQuestions.vue";
 
 // Route & i18n
 const route = useRoute();
-const { t, tm, locale } = useI18n({ useScope: "global" });
-const paras = computed(() => {
+const { t, tm } = useI18n({ useScope: "global" });
+
+// Intro paragraphs (array) for this study
+const paras = computed(function () {
   const v = typeof tm === "function" ? tm("jVideo.para") : [];
   return Array.isArray(v) ? v : [];
 });
-const localeKey = computed(() => locale.value);
 
 // Stores
 const settingsStore = useSettingsStore();
 const contentStore = useContentStore();
 
-// Study
+// Study key (constant for this page)
 const currentStudy = "jvideo";
 
-// Reactive language/lesson values
-const languageCodeHL = computed(() => settingsStore.languageCodeHLSelected);
-const languageCodeJF = computed(() => settingsStore.languageCodeJFSelected);
-
-// lessonNumber from store can be string - normalize to number
-const lessonNumber = computed(() => {
-  const n = Number(settingsStore.lessonNumberForStudy);
-  return Number.isFinite(n) && n > 0 ? n : 1; // or return undefined and v-if guard
+// Language codes (safe fallbacks)
+const languageCodeHL = computed(function () {
+  return settingsStore.languageCodeHLSelected || "eng00";
+});
+const languageCodeJF = computed(function () {
+  const code = settingsStore.languageCodeJFSelected;
+  return code != null ? String(code) : "";
 });
 
-const sectionKey = computed(() =>
-  lessonNumber.value ? `video-${lessonNumber.value}` : undefined
-);
-// Aliases expected by the template
+// Lesson number is per-study -> call the getter with the key
+const lessonNumber = computed(function () {
+  const fn = settingsStore.lessonNumberForStudy;
+  if (typeof fn === "function") {
+    const n = Number(fn(currentStudy));
+    return Number.isFinite(n) && n > 0 ? n : 1;
+  }
+  const n = Number(settingsStore.lessonNumber);
+  return Number.isFinite(n) && n > 0 ? n : 1;
+});
+
+// Section key for notes/questions block
+const sectionKey = computed(function () {
+  return lessonNumber.value > 0 ? "video-" + lessonNumber.value : "";
+});
+
+// Aliases expected by child components
 const computedLessonNumber = lessonNumber;
 const computedLanguageHL = languageCodeHL;
 const computedSectionKey = sectionKey;
@@ -62,7 +75,7 @@ const {
   loadProgress,
 } = useProgressTracker(currentStudy);
 
-const loadVideoUrls = async () => {
+async function loadVideoUrls() {
   try {
     videoUrls.value = await contentStore.loadVideoUrls(
       languageCodeJF.value,
@@ -71,55 +84,54 @@ const loadVideoUrls = async () => {
   } catch (err) {
     console.error("Error loading video URLs:", err);
   }
-};
+}
 
-const applyRouteParams = () => {
+function applyRouteParams() {
   settingsStore.setCurrentStudy(currentStudy);
 
-  // helper: parse >0 integer from a route param (string or array)
-  const toPositiveInt = (v) => {
+  // helper: >0 integer from route param
+  function toPositiveInt(v) {
     const raw = Array.isArray(v) ? v[0] : v;
-    const s = String(raw ?? "").trim();
+    const s = String(raw == null ? "" : raw).trim();
     if (!/^\d+$/.test(s)) return undefined;
     const n = Number(s);
     return n > 0 ? n : undefined;
-  };
-
-  const lessonNumber = toPositiveInt(route.params.lesson);
-  if (lessonNumber !== undefined) {
-    settingsStore.setLessonNumber(currentStudy, lessonNumber);
   }
 
-  // if you also support languageCodeJF via route:
+  const routeLesson = toPositiveInt(route.params.lesson);
+  if (routeLesson !== undefined) {
+    settingsStore.setLessonNumber(currentStudy, routeLesson);
+  }
+
+  // optional JF from route
   const rawJF = Array.isArray(route.params.languageCodeJF)
     ? route.params.languageCodeJF[0]
     : route.params.languageCodeJF;
-  const jf = String(rawJF ?? "").trim();
+  const jf = String(rawJF == null ? "" : rawJF).trim();
   if (jf && jf.toLowerCase() !== "undefined") {
     settingsStore.setLanguageCodeJF(jf);
   }
-};
+}
 
-onMounted(async () => {
+onMounted(async function () {
   applyRouteParams();
   await Promise.all([loadCommonContent(), loadVideoUrls(), loadProgress()]);
-  console.log("jVideo.title:", t("jVideo.title"));
 });
 
 watch(languageCodeJF, loadVideoUrls);
 watch(languageCodeHL, loadCommonContent);
 
-const updateLesson = (nextLessonNumber) => {
+function updateLesson(nextLessonNumber) {
   settingsStore.setLessonNumber(currentStudy, nextLessonNumber);
-};
+}
 </script>
 
 <template>
   <q-page padding>
-    <h2>{{ t("jVideo.title") }}</h2>
+    <h2>{{ t("jvideo.title") }}</h2>
     <p v-for="(p, i) in paras" :key="i">{{ p }}</p>
 
-    <p class="language-select">{{ $t("menu.changeLanguage") }}</p>
+    <p class="language-select">{{ $t("ui.changeLanguage") }}</p>
 
     <SeriesPassageSelect
       :study="currentStudy"
@@ -145,14 +157,13 @@ const updateLesson = (nextLessonNumber) => {
       :languageCodeHL="computedLanguageHL"
       :lesson="computedLessonNumber"
       :sectionKey="computedSectionKey"
-      section="video"
     />
 
     <q-btn
       :label="
         isLessonCompleted(computedLessonNumber)
-          ? t('lesson.completed')
-          : t('lesson.notCompleted')
+          ? t('ui.completed')
+          : t('ui.notCompleted')
       "
       :disable="isLessonCompleted(computedLessonNumber)"
       class="mark-complete-btn"

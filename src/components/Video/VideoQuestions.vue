@@ -1,42 +1,33 @@
-<script>
-import { computed, watch, toRefs } from "vue";
-import DbsQuestions from "src/components/series/DbsSection.vue";
+<script setup>
+import { computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import DbsSection from "src/components/series/DbsSection.vue";
 
-export default {
-  name: "VideoQuestions",
-  components: { DbsQuestions },
-  props: {
-    commonContent: { type: Object, required: true },
-    languageCodeHL: { type: String, required: true },
-    lesson: { type: Number, required: true },
-    sectionKey: { type: String, required: true },
-  },
-  setup(props) {
-    const { sectionKey } = toRefs(props); // Ensure reactivity
-    // Access the i18n instance
-    const { t } = useI18n();
-    const videoNoteInstruction = computed(() =>
-      t("notes.videoNoteInstruction")
-    );
+const props = defineProps({
+  commonContent: { type: Object, required: true },
+  languageCodeHL: { type: String, required: true },
+  lesson: { type: Number, required: true },
+  sectionKey: { type: String, required: true },
+});
 
-    // Watch for changes in sectionKey and log to console
-    watch(sectionKey, (newVal, oldVal) => {
-      console.log(`SectionKey changed from '${oldVal}' to '${newVal}'`);
-    });
+const { t } = useI18n({ useScope: "global" });
+const videoNoteInstruction = computed(() => t("ui.videoNoteInstruction"));
 
-    return { videoNoteInstruction };
-  },
-};
+watch(
+  () => props.sectionKey,
+  (newVal, oldVal) => {
+    console.log("SectionKey changed from '" + oldVal + "' to '" + newVal + "'");
+  }
+);
 </script>
+
 <template>
   <div>
-    <DbsQuestions
+    <DbsSection
       :content="commonContent"
-      :sectionKey="sectionKey"
-       section = 'video'
+      :section="sectionKey"
       :placeholder="videoNoteInstruction"
-      timing = ""
+      timing=""
     />
   </div>
 </template>
