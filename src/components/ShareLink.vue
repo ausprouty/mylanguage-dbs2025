@@ -4,15 +4,14 @@ import { useQuasar } from "quasar";
 import { useSettingsStore } from "src/stores/SettingsStore";
 import { normId, normKey, fromObjId, normPathSeg } from "src/utils/normalize";
 import { getAllowedStudyKeys } from "src/utils/allowedStudies";
-import { useI18n } from 'vue-i18n';
+import { useI18n } from "vue-i18n";
 
 export default {
   name: "ShareLink",
   setup() {
-    const { t } = useI18n({ useScope: 'global' })
-    const $q = useQuasar()
-    const store = useSettingsStore()
-
+    const { t } = useI18n({ useScope: "global" });
+    const $q = useQuasar();
+    const store = useSettingsStore();
 
     const allowed = ref(new Set());
     onMounted(async () => {
@@ -33,7 +32,7 @@ export default {
 
       const wanted = normKey(seriesLike);
       for (const k of Object.keys(ln)) {
-        if (normKey(k) === wanted) return normId(ln[k])
+        if (normKey(k) === wanted) return normId(ln[k]);
       }
 
       // default-ish keys can be configured in the store
@@ -164,13 +163,23 @@ export default {
 
 <template>
   <div class="row items-center no-wrap q-gutter-xs">
-    <q-btn flat dense round icon="share"
-           :aria-label="t('ui.share')" @click="shareUrl" />
-    <q-btn flat dense round icon="content_copy"
-           :aria-label="t('ui.copyLink')"
-           @click="copyToClipboard(getUrlLink)">
-      <q-tooltip>{{ t('ui.copyLink') }}</q-tooltip>
+    <q-btn
+      flat
+      dense
+      round
+      icon="share"
+      :aria-label="t('interface.share')"
+      @click="shareUrl"
+    />
+    <q-btn
+      flat
+      dense
+      round
+      icon="content_copy"
+      :aria-label="t('interface.copyLink')"
+      @click="copyToClipboard(getUrlLink)"
+    >
+      <q-tooltip>{{ t("interface.copyLink") }}</q-tooltip>
     </q-btn>
   </div>
 </template>
-

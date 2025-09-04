@@ -1,28 +1,28 @@
 <script setup>
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useBibleReference } from 'src/composables/useBibleReference'
+import { computed } from "vue";
+import { useI18n } from "vue-i18n";
+import { useBibleReference } from "src/composables/useBibleReference";
 
 const props = defineProps({
-  passageReference: { type: String, default: 'No reference found' },
+  passageReference: { type: String, default: "No reference found" },
   biblePassage: { type: Object, required: true },
-})
+});
 
-const { t } = useI18n({ useScope: 'global' })
-const { cleanReference } = useBibleReference()
+const { t } = useI18n({ useScope: "global" });
+const { cleanReference } = useBibleReference();
 
 const displayReference = computed(function () {
-  return cleanReference(props.passageReference)
-})
+  return cleanReference(props.passageReference);
+});
 
 const readMoreLabel = computed(function () {
-  return t('ui.readMore')
-})
+  return t("interface.readMore");
+});
 
 // If you want a "Read {title}" heading instead of raw reference:
 // const readLabel = computed(function () {
 //   var title = displayReference.value
-//   return title ? t('ui.read', { title: title }).trim() : t('ui.readPlain')
+//   return title ? t('interface.read', { title: title }).trim() : t('interface.readPlain')
 // })
 </script>
 

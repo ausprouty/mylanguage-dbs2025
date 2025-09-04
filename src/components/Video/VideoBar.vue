@@ -10,7 +10,7 @@ const videoLabel = computed(() => {
   const lines = rawTitle.split(/\r?\n|\r/).map(line => line.trim());
   const cleanTitle = lines.find(line => line.length > 0) || '';
 
-  return ui.watch_online?.replace(/\{\{XXX\}\}/g, cleanTitle);
+  return interface.watchOnline?.replace(/\{title\}/g, cleanTitle);
 });
 
 

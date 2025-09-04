@@ -101,7 +101,7 @@ function updateLesson(nextLessonNumber) {
         {{ para }}
       </p>
 
-      <p class="language-select">{{ $t("menu.changeLanguage") }}</p>
+      <p class="language-select">{{ $t("interface.changeLanguage") }}</p>
 
       <SeriesPassageSelect
         :study="computedStudy"
@@ -132,8 +132,8 @@ function updateLesson(nextLessonNumber) {
       <q-btn
         :label="
           isLessonCompleted(computedLessonNumber)
-            ? t('ui.completed')
-            : t('ui.notCompleted')
+            ? t('interface.completed')
+            : t('interface.notCompleted')
         "
         :disable="isLessonCompleted(computedLessonNumber)"
         class="mark-complete-btn"

@@ -17,11 +17,11 @@ const settingsStore = useSettingsStore();
 const { t } = useI18n({ useScope: "global" });
 
 // Label reacts to locale changes
-const topicLabel = computed(() => t("ui.topic"));
+const topicLabel = computed(() => t("interface.topic"));
 
 // Localized “SELECT” placeholder with safe fallback
 const selectPlaceholder = computed(() => {
-  const s = t("ui.select");
+  const s = t("interface.select");
   return s === "ui.select" ? "SELECT" : s;
 });
 
@@ -47,8 +47,7 @@ const selectedLesson = computed({
       : { label: selectPlaceholder.value, value: 0 };
   },
   set(newValue) {
-    const value =
-      newValue && typeof newValue === "object" ? newValue.value : 0;
+    const value = newValue && typeof newValue === "object" ? newValue.value : 0;
     const studyKey = props.study || "dbs";
     settingsStore.setLessonNumber(studyKey, value);
     emit("updateLesson", value);
@@ -76,7 +75,12 @@ const selectedLesson = computed({
             <div class="row items-center no-wrap">
               <div class="text-body1">{{ scope.opt.label }}</div>
               <div v-if="scope.opt.completed">
-                <q-icon name="check_circle" color="green" size="sm" class="q-ml-xs" />
+                <q-icon
+                  name="check_circle"
+                  color="green"
+                  size="sm"
+                  class="q-ml-xs"
+                />
               </div>
             </div>
           </q-item-section>

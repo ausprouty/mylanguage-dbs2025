@@ -11,7 +11,9 @@ const props = defineProps({
 });
 
 const { t } = useI18n({ useScope: "global" });
-const videoNoteInstruction = computed(() => t("ui.videoNoteInstruction"));
+const videoNoteInstruction = computed(() =>
+  t("interface.videoNoteInstruction")
+);
 
 watch(
   () => props.sectionKey,

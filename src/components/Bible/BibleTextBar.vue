@@ -19,7 +19,9 @@ const readLabel = computed(function () {
     full = props.passage.referenceLocalLanguage;
   }
   var title = cleanReference(full);
-  return title ? t("ui.read", { title: title }).trim() : t("ui.readPlain");
+  return title
+    ? t("interface.read", { title: title }).trim()
+    : t("interface.readPlain");
 });
 </script>
 
@@ -43,7 +45,7 @@ const readLabel = computed(function () {
         target="_blank"
         rel="noopener"
       >
-        {{ t("ui.readMore") }}
+        {{ t("interface.readMore") }}
       </a>
     </div>
   </div>

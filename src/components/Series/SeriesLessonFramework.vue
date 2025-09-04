@@ -5,8 +5,7 @@ import { useI18n } from "vue-i18n";
 
 import DbsSection from "src/components/series/DbsSection.vue";
 import LookupSection from "src/components/series/LookupSection.vue";
-import SeriesReviewLastLesson
-  from "src/components/series/SeriesReviewLastLesson.vue";
+import SeriesReviewLastLesson from "src/components/series/SeriesReviewLastLesson.vue";
 
 export default {
   name: "SeriesLessonFramework",
@@ -35,13 +34,13 @@ export default {
 
     // i18n-driven placeholders (reactive to locale)
     const lookBackNoteInstruction = computed(function () {
-      return t("ui.lookBackNoteInstruction");
+      return t("interface.lookBackNoteInstruction");
     });
     const lookUpNoteInstruction = computed(function () {
-      return t("ui.lookUpNoteInstruction");
+      return t("interface.lookUpNoteInstruction");
     });
     const lookForwardNoteInstruction = computed(function () {
-      return t("ui.lookForwardNoteInstruction");
+      return t("interface.lookForwardNoteInstruction");
     });
 
     // Safe fallbacks for template (no optional chaining)

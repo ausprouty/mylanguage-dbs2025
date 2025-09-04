@@ -131,7 +131,7 @@ function updateLesson(nextLessonNumber) {
     <h2>{{ t("jvideo.title") }}</h2>
     <p v-for="(p, i) in paras" :key="i">{{ p }}</p>
 
-    <p class="language-select">{{ $t("ui.changeLanguage") }}</p>
+    <p class="language-select">{{ $t("interface.changeLanguage") }}</p>
 
     <SeriesPassageSelect
       :study="currentStudy"
@@ -162,8 +162,8 @@ function updateLesson(nextLessonNumber) {
     <q-btn
       :label="
         isLessonCompleted(computedLessonNumber)
-          ? t('ui.completed')
-          : t('ui.notCompleted')
+          ? t('interface.completed')
+          : t('interface.notCompleted')
       "
       :disable="isLessonCompleted(computedLessonNumber)"
       class="mark-complete-btn"
