@@ -7,7 +7,7 @@ import { useCommonContent } from "src/composables/useCommonContent";
 import { useProgressTracker } from "src/composables/useProgressTracker.js";
 import { useInitializeSettingsStore } from "src/composables/useInitializeSettingsStore.js";
 import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
-import SeriesSegmentNavigator from "src/components/series/SeriesSegmentNavigator.vue";
+//import SeriesSegmentNavigator from "src/components/series/xSeriesSegmentNavigator.vue";
 import SeriesLessonFramework from "src/components/series/SeriesLessonFramework.vue";
 
 const route = useRoute();
@@ -20,16 +20,15 @@ const computedStudy = computed(function () {
   return settingsStore.currentStudySelected || "dbs";
 });
 
-const computedLessonNumber = computed(function () {
-  const fn = settingsStore.lessonNumberForStudy;
-  if (typeof fn === "function") {
-    return fn(computedStudy.value);
+const computedLessonNumber = computed(() => {
+  if (typeof settingsStore.lessonNumberForStudy === 'function') {
+    return settingsStore.lessonNumberForStudy(computedStudy.value);
   }
-  // fallback if store exposes a simple number
-  return typeof settingsStore.lessonNumber === "number"
+  return typeof settingsStore.lessonNumber === 'number'
     ? settingsStore.lessonNumber
     : 1;
 });
+
 
 const computedLanguageHL = computed(function () {
   const sel = settingsStore.languageSelected;
@@ -112,16 +111,10 @@ function updateLesson(nextLessonNumber) {
         :completedLessons="completedLessons"
         @updateLesson="updateLesson"
       />
-
-      <SeriesSegmentNavigator
-        :study="computedStudy"
-        :lesson="computedLessonNumber"
-        @updateLesson="updateLesson"
-      />
-
       <hr />
 
       <SeriesLessonFramework
+        :key="`${computedStudy}-${computedVariant || ''}-${computedLessonNumber}`"
         :languageCodeHL="computedLanguageHL"
         :languageCodeJF="computedLanguageJF"
         :study="computedStudy"

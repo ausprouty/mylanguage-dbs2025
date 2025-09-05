@@ -36,25 +36,45 @@ export const settingsGetters = {
       languageCodeJF: DEFAULTS.languageCodeJF,
     },
 
-  lessonNumberForStudy: (state) => {
-    const study = state.currentStudy;
-    if (!state.lessonNumber.hasOwnProperty(study)) {
-      console.warn(
-        `lessonNumber: '${study}' not found. Returning default lesson 1.`
-      );
+  // Pinia getter
+  lessonNumberForStudy: (state) => (studyArg) => {
+    const study = studyArg ?? state.currentStudy ?? 'dbs';
+
+    console.groupCollapsed(`[store] lessonNumberForStudy("${study}")`);
+    console.debug('state.currentStudy =', state.currentStudy);
+    console.debug('state.lessonNumber =', state.lessonNumber);
+
+    const dict = state.lessonNumber || {};
+    const has =
+      dict instanceof Map
+        ? dict.has(study)
+        : Object.prototype.hasOwnProperty.call(dict, study);
+
+    if (!has) {
+      console.warn(`[store] "${study}" not found. Returning default 1.`);
+      console.groupEnd();
       return 1;
     }
 
-    const lesson = parseInt(state.lessonNumber[study], 10);
-    if (isNaN(lesson) || lesson < 1) {
+    const raw =
+      dict instanceof Map ? dict.get(study) : dict[study];
+
+    console.debug('raw value =', raw, `(type: ${typeof raw})`);
+
+    const lesson = Number(raw);
+    if (!Number.isFinite(lesson) || lesson < 1) {
       console.warn(
-        `lessonNumber: '${study}' had invalid lesson '${lesson}'. Returning default 1.`
+        `[store] "${study}" had invalid lesson "${raw}". Returning default 1.`
       );
+      console.groupEnd();
       return 1;
     }
 
+    console.debug(`[store] returning lesson = ${lesson}`);
+    console.groupEnd();
     return lesson;
   },
+
 
   maxLesson: (state) => {
     const study = state.currentStudy;

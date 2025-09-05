@@ -12,6 +12,7 @@ export default {
   components: { DbsSection, LookupSection, SeriesReviewLastLesson },
 
   props: {
+
     languageCodeHL: { type: String, required: true },
     languageCodeJF: { type: String, required: true },
     study: { type: String, required: true },
@@ -107,9 +108,7 @@ export default {
   </div>
   <div v-else>
     <h1 class="title dbs">{{ lessonContent.title }}</h1>
-
     <SeriesReviewLastLesson />
-
     <DbsSection
       section="look_back"
       :content="ccLookBack"

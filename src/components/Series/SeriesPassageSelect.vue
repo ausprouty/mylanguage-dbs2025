@@ -5,11 +5,11 @@ import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   study: String,
-  topics: Array,
-  lesson: Number,
+  topics: { type: Array, default: () => [] },
+  lesson: { type: [Number, String], default: 1 },
   markLessonComplete: Function,
   isLessonCompleted: Function,
-  completedLessons: Array,
+  completedLessons: { type: Array, default: () => [] },
 });
 
 const emit = defineEmits(["updateLesson"]);
@@ -19,38 +19,35 @@ const { t } = useI18n({ useScope: "global" });
 // Label reacts to locale changes
 const topicLabel = computed(() => t("interface.topic"));
 
-// Localized “SELECT” placeholder with safe fallback
-const selectPlaceholder = computed(() => {
-  const s = t("interface.select");
-  return s === "ui.select" ? "SELECT" : s;
-});
+// Normalize completed lessons once
+const completedSet = computed(
+  () => new Set((props.completedLessons || []).map(n => Number(n)))
+);
 
-// Options with completion flag (safe if arrays are missing)
+// Options with completion flag (and numeric value)
 const markedTopics = computed(() => {
   const topics = Array.isArray(props.topics) ? props.topics : [];
-  const completed = Array.isArray(props.completedLessons)
-    ? props.completedLessons
-    : [];
-  return topics.map((topic) => ({
-    ...topic,
-    completed: completed.indexOf(topic.value) !== -1,
-  }));
+  return topics.map(topic => {
+    const valueNum = Number(topic.value);
+    return {
+      ...topic,
+      value: valueNum,
+      completed: completedSet.value.has(valueNum),
+    };
+  });
 });
 
-// v-model object: { label, value }
+// v-model is just a Number; default to 1
 const selectedLesson = computed({
   get() {
-    const topics = Array.isArray(props.topics) ? props.topics : [];
-    const match = topics.find((t) => t.value === props.lesson);
-    return match
-      ? { label: match.label, value: match.value }
-      : { label: selectPlaceholder.value, value: 0 };
+    const n = Number(props.lesson);
+    return Number.isFinite(n) && n > 0 ? n : 1;
   },
-  set(newValue) {
-    const value = newValue && typeof newValue === "object" ? newValue.value : 0;
+  set(value) {
+    const v = Number(value) || 1;
     const studyKey = props.study || "dbs";
-    settingsStore.setLessonNumber(studyKey, value);
-    emit("updateLesson", value);
+    settingsStore.setLessonNumber(studyKey, v);
+    emit("updateLesson", v);
   },
 });
 </script>
@@ -63,10 +60,12 @@ const selectedLesson = computed({
       :options="markedTopics"
       option-label="label"
       option-value="value"
+      emit-value
+      map-options
       :label="topicLabel"
       class="select"
     >
-      <template v-slot:option="scope">
+      <template #option="scope">
         <q-item
           v-bind="scope.itemProps"
           :class="{ 'completed-option': scope.opt.completed }"
@@ -75,12 +74,7 @@ const selectedLesson = computed({
             <div class="row items-center no-wrap">
               <div class="text-body1">{{ scope.opt.label }}</div>
               <div v-if="scope.opt.completed">
-                <q-icon
-                  name="check_circle"
-                  color="green"
-                  size="sm"
-                  class="q-ml-xs"
-                />
+                <q-icon name="check_circle" color="green" size="sm" class="q-ml-xs" />
               </div>
             </div>
           </q-item-section>
