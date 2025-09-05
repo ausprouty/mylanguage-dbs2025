@@ -13,15 +13,18 @@ const { cleanReference } = useBibleReference();
 
 const isVisible = ref(false);
 
-const readLabel = computed(function () {
-  var full = "";
-  if (props && props.passage && props.passage.referenceLocalLanguage) {
-    full = props.passage.referenceLocalLanguage;
-  }
-  var title = cleanReference(full);
+const readLabel = computed(() => {
+  // grab the first non-empty line
+  const raw = String(props.passage?.referenceLocalLanguage || '');
+  const firstLine = raw.split(/\r?\n|\r/).map(s => s.trim()).find(Boolean) || '';
+
+  // strip bible version / extra bits (your helper already does this)
+  const title = cleanReference(firstLine);
+
+  // list-style interpolation for "Read {0}"
   return title
-    ? t("interface.read", { title: title }).trim()
-    : t("interface.readPlain");
+    ? t('interface.read', [title])
+    : (t('interface.readPlain') || 'Read');
 });
 </script>
 

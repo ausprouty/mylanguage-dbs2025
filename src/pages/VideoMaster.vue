@@ -9,7 +9,7 @@ import { useProgressTracker } from "src/composables/useProgressTracker";
 
 import VideoPlayer from "src/components/video/VideoPlayer.vue";
 import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
-import SeriesSegmentNavigator from "src/components/series/xSeriesSegmentNavigator.vue";
+//import SeriesSegmentNavigator from "src/components/series/xSeriesSegmentNavigator.vue";
 import VideoQuestions from "src/components/video/VideoQuestions.vue";
 
 // Route & i18n
@@ -143,11 +143,7 @@ function updateLesson(nextLessonNumber) {
       @updateLesson="updateLesson"
     />
 
-    <SeriesSegmentNavigator
-      :study="currentStudy"
-      :lesson="computedLessonNumber"
-      @updateLesson="updateLesson"
-    />
+    
 
     <VideoPlayer :videoUrls="videoUrls" :lesson="computedLessonNumber" />
 
