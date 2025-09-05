@@ -43,6 +43,7 @@ export async function getLessonContent(
     dbGetter: () => getLessonContentFromDB(studyId, hl, jf, lessonId),
     dbSetter: (data) => saveLessonContentToDB(studyId, hl, jf, lessonId, data),
     apiUrl: url,
+    languageCodeHL: hl,
     translationType: 'lessonContent'
   })
 

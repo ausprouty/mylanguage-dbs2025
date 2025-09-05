@@ -6,10 +6,12 @@ import { normId, normKey, fromObjId, normPathSeg } from "src/utils/normalize";
 import { getAllowedStudyKeys } from "src/utils/allowedStudies";
 import { useI18n } from "vue-i18n";
 
+
 export default {
   name: "ShareLink",
   setup() {
-    const { t } = useI18n({ useScope: "global" });
+    const { t, te} = useI18n({ useScope: 'global' });
+
     const $q = useQuasar();
     const store = useSettingsStore();
 
@@ -76,7 +78,7 @@ export default {
         normPathSeg(codeJF)
       );
     };
-
+    const ready = computed(() => te('interface.share') && te('interface.copyLink'))
     const seriesUrlLink = (root) => {
       const codeHL = normId(store.languageCodeHLSelected);
       const series = fromObjId(store.currentStudySelected);
@@ -168,7 +170,7 @@ export default {
       dense
       round
       icon="share"
-      :aria-label="t('interface.share')"
+       :aria-label="ready ? t('interface.share') : 'Share'"
       @click="shareUrl"
     />
     <q-btn
@@ -176,7 +178,7 @@ export default {
       dense
       round
       icon="content_copy"
-      :aria-label="t('interface.copyLink')"
+        :aria-label="ready ? t('interface.copyLink') : 'Copy link'"
       @click="copyToClipboard(getUrlLink)"
     >
       <q-tooltip>{{ t("interface.copyLink") }}</q-tooltip>

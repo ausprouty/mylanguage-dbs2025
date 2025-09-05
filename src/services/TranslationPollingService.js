@@ -18,7 +18,11 @@ export async function pollTranslationUntilComplete({
 }) {
   // ---- input validation ----
   const hl = normId ? normId(languageCodeHL) : String(languageCodeHL ?? '').trim()
-  if (!hl) throw new Error("[poll] 'languageCodeHL' is required")
+  if (!hl) {
+    throw new Error(
+      `[poll] 'languageCodeHL' is required for translationType "${translationType}" and apiUrl "${apiUrl}"`
+    );
+  }
 
   if (!ALLOWED_TYPES.has(translationType)) {
     throw new TypeError(`[poll] Invalid translationType: ${translationType}`)
@@ -58,6 +62,7 @@ export async function pollTranslationUntilComplete({
 
       // ---- i18n updates (only for interface bundles) ----
       if (translationType === 'interface' && translation) {
+        console.log (translation)
         // don’t merge meta into i18n messages
         const { meta, ...messages } = translation
 
@@ -79,7 +84,7 @@ export async function pollTranslationUntilComplete({
 
       // support new shape (meta) and old shape (language) for completion flag
       const isComplete =
-        (translation && translation.meta && translation.meta.translationComplete === true) ||
+        (translation && translation.meta && translation.meta.complete === true) ||
         (translation && translation.language && translation.language.translationComplete === true)
 
       console.log('translationComplete:', !!isComplete)

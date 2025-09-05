@@ -1,3 +1,9 @@
+// src/services/InterfaceService.js
+// Loads, validates, caches, and installs interface translations for a given HL.
+// - Saves full payload (with meta) to IndexedDB
+// - Installs only content (everything EXCEPT 'meta') into Vue I18n
+// - Sets <html lang> and dir from meta
+
 import { i18n } from "src/lib/i18n";
 import { http } from "src/lib/http";
 import { pollTranslationUntilComplete } from "src/services/TranslationPollingService";
@@ -6,170 +12,22 @@ import {
   saveInterfaceToDB,
 } from "src/services/IndexedDBService";
 import { normId } from "src/utils/normalize";
+
 // debug setup
 import { debug } from "src/lib/debug";
 const log = debug("InterfaceService");
 const net = debug("InterfaceService:net");
 
+// Fallback language
 const FALLBACK_HL = "eng00";
 
-/* ---------- tiny guards used below ---------- */
+// Allow all top-level namespaces EXCEPT these
+const BLOCK_NS = new Set(["meta"]);
+
+/* ---------------------------- guards & helpers ---------------------------- */
+
 const isObj = (v) => v && typeof v === "object" && !Array.isArray(v);
-const safeKeys = (o) => (isObj(o) ? Object.keys(o) : []);
 
-/* ---------- main ---------- */
-
-/**
- * Load and install the translated interface for a given HL.
- *
- * @param {string} languageCodeHL - e.g., "eng00"
- * @param {boolean} [hasRetried=false] - internal guard to avoid infinite loops
- * @returns {Promise<object|undefined>} The validated message tree that was installed (okTree), or undefined on failure.
- * - Checks IndexedDB first
- * - Falls back to API
- * - Uses eng00 once if needed
- * - Validates i18n strings to avoid runtime compile errors
- */
-export async function getTranslatedInterface(languageCodeHL, hasRetried = false) {
-  const hl = normId(languageCodeHL);
-  const app = normId(import.meta.env.VITE_APP) || "default";
-  const cronKey = normId(import.meta.env.VITE_CRON_KEY);
-
-  if (!hl) {
-    console.error("[InterfaceService] Missing languageCodeHL", { languageCodeHL });
-    if (!hasRetried && FALLBACK_HL !== languageCodeHL) {
-      return getTranslatedInterface(FALLBACK_HL, true);
-    }
-    return;
-  }
-
-  log("load", { app, hl });
-
-  try {
-    /* 1) Try IndexedDB first ------------------------------------------------ */
-    let messages = await getInterfaceFromDB(hl);
-    const hasIDB = isObj(messages) && safeKeys(messages).length > 0;
-    messages = hasIDB ? messages : null;
-    log("from IDB", { has: hasIDB, keys: hasIDB ? safeKeys(messages).length : 0 });
-
-    /* 2) If missing/empty, fetch from API ---------------------------------- */
-    if (!messages) {
-      const apiPath = `/v2/translate/text/interface/${app}/${hl}`;
-      net("GET", apiPath);
-
-      // fetch as text so we can inspect/log raw body & headers
-      const { status, headers, data } = await http.get(apiPath, {
-        responseType: "text",
-        transformResponse: (v) => v,     // prevent auto-parse
-        validateStatus: () => true,      // let us inspect non-2xx
-      });
-
-      const h = Object.fromEntries(
-        Object.entries(headers || {}).map(([k, v]) => [k.toLowerCase(), v])
-      );
-      const ctype = String(h["content-type"] || "");
-      const body = String(data ?? "");
-
-      net.groupCollapsed("response", status, ctype);
-      net.log(h);
-      net.log(body.slice(0, 180));
-      net.groupEnd();
-
-      if (status < 200 || status >= 300) {
-        throw new Error(`HTTP ${status} from ${apiPath}`);
-      }
-      if (!ctype.includes("application/json")) {
-        throw new Error(
-          `[interface] non-JSON from API. CT=${ctype} HEAD=${body.slice(0, 120)}`
-        );
-      }
-
-      const parsed = safeParseJson(body);
-      // support either {data:{...}} or {...}
-      messages = parsed?.data ?? parsed ?? null;
-
-      if (messages?.language?.translationComplete) {
-        await saveInterfaceToDB(hl, messages);
-      } else {
-        // nudge queue using path param (server expects /cron/{token})
-        if (cronKey) {
-          http.get(`/translate/cron/${encodeURIComponent(cronKey)}`).catch(() => {});
-        }
-        // begin polling until complete, persisting to IDB as it updates
-        pollTranslationUntilComplete({
-          languageCodeHL: hl,
-          translationType: "interface",
-          apiUrl: apiPath,
-          dbSetter: (hlCode, data) => saveInterfaceToDB(hlCode, data),
-          maxAttempts: 5,
-          interval: 300,
-        });
-      }
-    }
-
-    /* 3) apply to i18n with validation */
-    if (isObj(messages)) {
-      const { okTree, bad } = validateMessages(hl, messages);
-
-      // Debug/visibility
-      log("validated", {
-        goodTopKeys: Object.keys(okTree || {}),
-        badCount: bad.length,
-      });
-      if (bad.length) {
-        console.error(
-          "[i18n] Bad message strings (showing up to 20):",
-          bad.slice(0, 20)
-        );
-        console.error(`[i18n] Total bad keys: ${bad.length}`);
-      }
-
-      // If nothing validated, try the fallback once
-      if (!Object.keys(okTree || {}).length) {
-        console.warn("[i18n] No valid keys after validation for", hl);
-        if (!hasRetried && hl !== FALLBACK_HL) {
-          return getTranslatedInterface(FALLBACK_HL, true);
-        }
-        return; // give up quietly if already retried
-      }
-
-      // Replace locale entirely with only the valid keys
-      i18n.global.setLocaleMessage(hl, {});
-      i18n.global.mergeLocaleMessage(hl, okTree);
-      i18n.global.locale.value = hl;
-
-      // Accessibility / layout hints
-      const htmlLang =
-        messages?.language?.html || messages?.language?.google || hl;
-      document.documentElement.setAttribute("lang", htmlLang);
-
-      const dir = (
-        messages?.language?.dir || messages?.language?.direction || ""
-      ).toLowerCase();
-      if (dir === "rtl" || dir === "ltr") {
-        document.documentElement.setAttribute("dir", dir);
-      }
-
-      return okTree; // optionally return what we installed
-    }
-
-    // 4) fallback once if nothing came back
-    if (!hasRetried && hl !== FALLBACK_HL) {
-      return getTranslatedInterface(FALLBACK_HL, true);
-    }
-  } catch (error) {
-    console.error(`[InterfaceService] Load failed for ${hl}`, error);
-    if (!hasRetried && hl !== FALLBACK_HL) {
-      return getTranslatedInterface(FALLBACK_HL, true);
-    }
-  }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Helpers                                                                    */
-/* -------------------------------------------------------------------------- */
-
-/** parse JSON with a helpful head preview on error */
 function safeParseJson(text) {
   try {
     return JSON.parse(text);
@@ -179,7 +37,6 @@ function safeParseJson(text) {
   }
 }
 
-/** set nested value given a path array, creating objects as needed */
 function setByPath(root, path, value) {
   let obj = root;
   for (let i = 0; i < path.length - 1; i++) {
@@ -191,32 +48,218 @@ function setByPath(root, path, value) {
 }
 
 /**
- * Validate messages by compiling each string via i18n.
- * Returns { okTree, bad[] } where bad has { key, err }.
+ * Return a shallow copy of the payload with any BLOCK_NS removed.
+ * (i.e., keep everything except 'meta')
  */
-function validateMessages(lang, bundle) {
+function stripBlockedTopLevel(payload) {
+  if (!isObj(payload)) return null;
+  const out = {};
+  for (const [k, v] of Object.entries(payload)) {
+    if (!BLOCK_NS.has(k)) out[k] = v;
+  }
+  return out;
+}
+
+function htmlLangFromMeta(meta, hl) {
+  return meta?.languageCodeISO || meta?.languageCodeHL || hl;
+}
+
+function dirFromMeta(meta) {
+  const d = String(meta?.direction || "").toLowerCase();
+  return d === "rtl" || d === "ltr" ? d : "";
+}
+
+/**
+ * Walk a nested tree and keep only string leaves.
+ * (Light validation: ensures values are strings; no destructive writes to i18n.)
+ */
+function validateMessagesTree(bundle) {
   const bad = [];
   const okTree = {};
 
   function walk(path, val) {
     if (typeof val === "string") {
-      const flat = path.join(".");
-      try {
-        // Compile-check just this key
-        const tmp = {};
-        tmp[flat] = val;
-        i18n.global.mergeLocaleMessage(lang, tmp);
-        setByPath(okTree, path, val);
-      } catch (e) {
-        bad.push({ key: flat, err: String(e && e.message) });
-      }
+      setByPath(okTree, path, val);
       return;
     }
     if (isObj(val)) {
-      for (const k of Object.keys(val)) walk(path.concat(k), val[k]);
+      for (const key of Object.keys(val)) {
+        walk(path.concat(key), val[key]);
+      }
+      return;
     }
+    // non-string/obj values are considered invalid message entries
+    bad.push({ key: path.join("."), reason: `non-string (${typeof val})` });
   }
 
-  walk([], bundle);
+  if (isObj(bundle)) walk([], bundle);
+
   return { okTree, bad };
+}
+
+/* ---------------------------------- main --------------------------------- */
+
+/**
+ * Load and install the translated interface for a given HL.
+ *
+ * @param {string} languageCodeHL - e.g., "eng00"
+ * @param {boolean} [hasRetried=false] - internal guard to avoid infinite loops
+ * @returns {Promise<object|undefined>} The validated message tree that was
+ *   installed (okTree), or undefined on failure.
+ */
+export async function getTranslatedInterface(
+  languageCodeHL,
+  hasRetried = false
+) {
+  const hl = normId(languageCodeHL);
+  const app = normId(import.meta.env.VITE_APP) || "default";
+  const cronKey = normId(import.meta.env.VITE_CRON_KEY);
+
+  if (!hl) {
+    console.error("[InterfaceService] Missing languageCodeHL", {
+      languageCodeHL,
+    });
+    if (!hasRetried && FALLBACK_HL !== languageCodeHL) {
+      return getTranslatedInterface(FALLBACK_HL, true);
+    }
+    return;
+  }
+
+  log(`load start`, { app, hl });
+
+  try {
+    /* 1) Try IndexedDB first ------------------------------------------------ */
+    let payload = await getInterfaceFromDB(hl);
+    const hasIDB = isObj(payload) && Object.keys(payload).length > 0;
+    payload = hasIDB ? payload : null;
+
+    log("from IDB", {
+      has: hasIDB,
+      keys: hasIDB ? Object.keys(payload).length : 0,
+    });
+
+    /* 2) If missing/empty, fetch from API ---------------------------------- */
+    if (!payload) {
+      const apiPath = `/v2/translate/text/interface/${app}/${hl}`;
+      net("GET", apiPath);
+
+      const { status, headers, data } = await http.get(apiPath, {
+        responseType: "text",
+        transformResponse: (v) => v,
+        validateStatus: () => true,
+      });
+
+      const h = Object.fromEntries(
+        Object.entries(headers || {}).map(([k, v]) => [k.toLowerCase(), v])
+      );
+      const ctype = String(h["content-type"] || "");
+      const body = String(data ?? "");
+
+      try {
+        console.groupCollapsed("[InterfaceService] response", status, ctype);
+        console.log(h);
+        console.log(body.slice(0, 180));
+        console.groupEnd();
+      } catch {}
+
+      if (status < 200 || status >= 300) {
+        throw new Error(`HTTP ${status} from ${apiPath}`);
+      }
+      if (!ctype.includes("application/json")) {
+        throw new Error(
+          `[interface] non-JSON from API. CT=${ctype} HEAD=${body.slice(
+            0,
+            120
+          )}`
+        );
+      }
+
+      const parsed = safeParseJson(body);
+      payload = parsed?.data ?? parsed ?? null;
+
+      const meta = payload?.meta ?? {};
+      if (meta?.translationComplete) {
+        await saveInterfaceToDB(hl, payload); // persist full payload (incl. meta)
+      } else {
+        if (cronKey) {
+          http
+            .get(`/translate/cron/${encodeURIComponent(cronKey)}`)
+            .catch(() => {});
+        }
+        // Begin polling; it will persist to IDB as progress is made
+        pollTranslationUntilComplete({
+          languageCodeHL: hl,
+          translationType: "interface",
+          apiUrl: apiPath,
+          dbSetter: (hlCode, data) => saveInterfaceToDB(hlCode, data),
+          maxAttempts: 5,
+          interval: 300,
+        });
+      }
+    }
+
+    /* 3) Install into i18n (merge-only, exclude 'meta') -------------------- */
+    if (isObj(payload)) {
+      const meta = payload.meta ?? {};
+      const content = stripBlockedTopLevel(payload); // everything except 'meta'
+
+      if (import.meta.env.DEV) {
+        const beforeKeys = Object.keys(i18n.global.getLocaleMessage(hl) || {});
+        const incomingKeys = Object.keys(content || {});
+        const dropped = Object.keys(payload || {}).filter((k) =>
+          BLOCK_NS.has(k)
+        );
+        console.log("[i18n] incoming top-level keys:", incomingKeys);
+        if (dropped.length) console.warn("[i18n] dropped namespaces:", dropped);
+        console.log("[i18n] before-merge keys:", beforeKeys);
+      }
+
+      // Validate values are strings and shape is sane (non-destructive)
+      const { okTree, bad } = validateMessagesTree(content);
+
+      if (bad.length) {
+        console.warn(
+          "[i18n] Non-string entries dropped (showing up to 20):",
+          bad.slice(0, 20)
+        );
+        console.warn(`[i18n] Total non-string entries: ${bad.length}`);
+      }
+
+      if (!okTree || !Object.keys(okTree).length) {
+        console.warn("[i18n] No valid keys after validation for", hl);
+        if (!hasRetried && hl !== FALLBACK_HL) {
+          return getTranslatedInterface(FALLBACK_HL, true);
+        }
+        return; // nothing to merge
+      }
+
+      // *** MERGE ONLY (non-destructive). Keep anything already present. ***
+      i18n.global.mergeLocaleMessage(hl, okTree);
+      i18n.global.locale.value = hl;
+
+      if (import.meta.env.DEV) {
+        const afterKeys = Object.keys(i18n.global.getLocaleMessage(hl) || {});
+        console.log("[i18n] after-merge keys:", afterKeys);
+      }
+
+      // Accessibility / layout hints from meta
+      const htmlLang = htmlLangFromMeta(meta, hl);
+      document.documentElement.setAttribute("lang", htmlLang);
+
+      const dir = dirFromMeta(meta);
+      if (dir) document.documentElement.setAttribute("dir", dir);
+
+      return okTree;
+    }
+
+    // 4) Fallback once if nothing came back
+    if (!hasRetried && hl !== FALLBACK_HL) {
+      return getTranslatedInterface(FALLBACK_HL, true);
+    }
+  } catch (error) {
+    console.error(`[InterfaceService] Load failed for ${hl}`, error);
+    if (!hasRetried && hl !== FALLBACK_HL) {
+      return getTranslatedInterface(FALLBACK_HL, true);
+    }
+  }
 }

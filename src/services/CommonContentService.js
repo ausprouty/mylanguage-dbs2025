@@ -28,6 +28,7 @@ export async function getCommonContent(languageCodeHL, study) {
     dbGetter: () => getCommonContentFromDB(studyId, hl),
     dbSetter: (data) => saveCommonContentToDB(studyId, hl, data),
     apiUrl,
+    languageCodeHL:hl,
     translationType: 'commonContent'
   })
 }

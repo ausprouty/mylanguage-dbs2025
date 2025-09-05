@@ -1,21 +1,23 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
   videoUrl: { type: String, required: true },
   videoTitle: { type: String, required: true },
-});
+})
+
 const videoLabel = computed(() => {
-  const rawTitle = String(props.videoTitle || '');
-  const lines = rawTitle.split(/\r?\n|\r/).map(line => line.trim());
-  const cleanTitle = lines.find(line => line.length > 0) || '';
+  const clean = String(props.videoTitle || '')
+    .split(/\r?\n|\r/).map(s => s.trim()).find(Boolean) || ''
+  return t('interface.watchOnline', [clean])   // uses {0} in messages
+})
 
-  return interface.watchOnline?.replace(/\{title\}/g, cleanTitle);
-});
-
-
-const isVisible = ref(false);
+const isVisible = ref(false)
 </script>
+
 
 <template>
   <div class="video-container">

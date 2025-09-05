@@ -33,14 +33,15 @@ export async function getContentWithFallback({
 
   const isTrueFlag = (v) => v === true || v === 1 || v === '1' || String(v).toLowerCase() === 'true'
   const isCompleteFlag = (obj) =>
-    isTrueFlag(obj && obj.meta && obj.meta.translationComplete) ||
-    isTrueFlag(obj && obj.language && obj.language.translationComplete) // legacy fallback
+    isTrueFlag(obj && obj.meta && obj.meta.complete) ||
+    isTrueFlag(obj && obj.meta && obj.meta.translationComplete) // legacy fallback
 
   // 1) Try Pinia store
   try {
     const storeValue = storeGetter(store)
     if (storeValue) {
       console.log(`✅ Loaded ${key} from ContentStore`)
+      console.log (storeValue)
       if (isCompleteFlag(storeValue)) {
         if (typeof store.setTranslationComplete === 'function') {
           store.setTranslationComplete(translationType, true)
@@ -63,12 +64,14 @@ export async function getContentWithFallback({
         if (typeof store.setTranslationComplete === 'function') {
           store.setTranslationComplete(translationType, true)
         }
+        console.log (dbValue)
         return dbValue
       }
       console.log('translation in DB not complete')
     }
   } catch (err) {
     console.warn(`⚠️ DB getter failed for ${key}:`, err)
+    console.log (dbValue)
   }
 
   // 3) Fetch from API
@@ -78,7 +81,7 @@ export async function getContentWithFallback({
 
     // tolerate both {data:{...}} and {...}
     let data = response && response.data ? (response.data.data ?? response.data) : null
-
+    console.log(data)
     // accept stringified JSON
     if (typeof data === 'string') {
       try { data = JSON.parse(data) } catch (parseError) {
