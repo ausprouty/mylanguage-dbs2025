@@ -1,6 +1,3 @@
-// this file is not used.  The interface is imported from api_mylanguage
-
-
 {
   "language": {
     "EnglishName": "English",
@@ -11,7 +8,6 @@
     "translationComplete": "true",
     "lastUpdated": "2025-08-06T14:00:00Z"
   },
-
   "index": {
     "para": {
        "1": "In order to make any real progress in our spiritual life we know we need a reliable source of wisdom.",
@@ -46,7 +42,7 @@
 
   "question": {
     "title": "Do you have a question?",
-    "summary": "We welcome your comments or questions about God. ",
+    "summary": "We welcome your comments or questions about God. "
 
   },
 

@@ -120,6 +120,13 @@ async function getItem(storeName, key, opts = {}) {
       const val = req.result;
 
       if (!isMeaningful(val)) {
+        // debug
+        console.warn('[IDB] meaningless value at', `${storeName}/${key}`, '→', val);
+        console.log('type:', Object.prototype.toString.call(val), 'ctor:', val?.constructor?.name);
+        console.groupCollapsed(`🧹 Purge candidate ${storeName}/${key}`);
+        console.log('preview:', previewVal(val));
+        console.dir(val);
+        console.groupEnd();
         if (deleteIfEmpty && tx.mode === 'readwrite') {
           try { store.delete(key); } catch (_) {}
           console.warn(`🧹 Purged empty/meaningless "${storeName}/${key}" from IndexedDB.`);
@@ -132,6 +139,16 @@ async function getItem(storeName, key, opts = {}) {
 
     req.onerror = (e) => reject(e);
   });
+}
+
+function previewVal(v) {
+  if (v == null) return String(v);
+  if (typeof v === 'string') return `"${v.slice(0,120)}"${v.length>120?`…(${v.length})`:''}`;
+  if (Array.isArray(v)) return `Array(${v.length}) [${v.slice(0,5).map(x => typeof x==='string'? `"${x.slice(0,20)}"` : String(x)).join(', ')}${v.length>5?', …':''}]`;
+  if (v instanceof Blob) return `Blob ${v.type} ${v.size}B`;
+  if (v instanceof ArrayBuffer) return `ArrayBuffer ${v.byteLength}B`;
+  if (v && typeof v === 'object') return `Object keys=${Object.keys(v).length}`;
+  return String(v);
 }
 // ----------------- Common Content -----------------
 

@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useBibleReference } from "src/composables/useBibleReference";
 
-const { t } = useI18n({ useScope: "global" });
+const { t, te, locale } = useI18n({ useScope: "global" });
 
 const props = defineProps({
   passage: { type: Object, required: true },
@@ -14,17 +14,25 @@ const { cleanReference } = useBibleReference();
 const isVisible = ref(false);
 
 const readLabel = computed(() => {
-  // grab the first non-empty line
-  const raw = String(props.passage?.referenceLocalLanguage || '');
-  const firstLine = raw.split(/\r?\n|\r/).map(s => s.trim()).find(Boolean) || '';
+  // keep reactive to locale changes
+  // eslint-disable-next-line no-unused-expressions
+  locale.value;
 
-  // strip bible version / extra bits (your helper already does this)
+  const raw = String(props.passage?.referenceLocalLanguage || "");
+  const firstLine =
+    raw
+      .split(/\r?\n|\r/)
+      .map((s) => s.trim())
+      .find(Boolean) || "";
   const title = cleanReference(firstLine);
 
-  // list-style interpolation for "Read {0}"
-  return title
-    ? t('interface.read', [title])
-    : (t('interface.readPlain') || 'Read');
+  if (title && te("interface.read")) {
+    return t("interface.read", [title]); // "Read {0}"
+  }
+  if (te("interface.readPlain")) {
+    return t("interface.readPlain");
+  }
+  return "Read from the Bible"; // final hard fallback
 });
 </script>
 

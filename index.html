@@ -19,7 +19,8 @@
     /* --- Generic PWA Splash (multi-site) --- */
 :root {
   --splash-bg: none;
-  --splash-pos: 50% 42%;
+  --splash-pos: center center;      /* center by default */
+  --splash-fill: var(--color-primary);   /* set your brand fill color */
 }
 
 /* Show until JS adds .splash-done to <html> */
@@ -30,31 +31,15 @@ html:not(.splash-done)::before {
   z-index: 9999;
   display: block;
   background:
-    var(--splash-bg) no-repeat,
-    #111; /* fallback color behind image */
+   var(--splash-bg) no-repeat,
+   var(--splash-fill);          /* fill edges (letterbox/pillarbox) */
   background-position: var(--splash-pos);
-  background-size: cover;
+  background-size: contain;     /* <-- show entire image, no crop */
   transition: opacity 420ms ease;
   will-change: opacity;
 }
 
-/* Ultra-wide screens: avoid cropping */
-@media (min-aspect-ratio: 21/9) {
-  html:not(.splash-done)::before {
-    background-size: contain;   /* show whole image */
-    background-color: #111;     /* letterbox bars color */
-    background-position: center;
-  }
-}
 
-/* Very tall windows: avoid cropping */
-@media (max-aspect-ratio: 9/21) {
-  html:not(.splash-done)::before {
-    background-size: contain;
-    background-color: #111;
-    background-position: center;
-  }
-}
 
 /* Fade out when ready */
 html.splash-done::before {

@@ -1,106 +1,49 @@
 <script setup>
-import { ref, computed } from "vue";
-import { useSettingsStore } from "src/stores/SettingsStore";
-import languageList from "@/i18n/metadata/consolidated_languages.json";
+import { computed, defineAsyncComponent } from 'vue';
+import { useSettingsStore } from 'src/stores/SettingsStore';
 
-const settingsStore = useSettingsStore();
+const store = useSettingsStore();
 
-// 1) Computed v-model proxy → Pinia store
-const selectedLanguage = computed({
-  get() {
-    return settingsStore.languageObjectSelected;
-  },
-  set(langObj) {
-    settingsStore.setLanguageObjectSelected(langObj);
-    // reset filter input & options after selection
-    searchInput.value = "";
-    filteredOptions.value = languageOptions.value;
-  },
-});
-
-// 2) Your search input & filtered list
-const searchInput = ref("");
-const filteredOptions = ref([]);
-
-// 3) Build master list once
-const languageOptions = computed(() =>
-  languageList.map((lang) => ({
-    label: `${lang.name} (${lang.ethnicName})`,
-    value: lang,
-  }))
-);
-
-// init full list
-filteredOptions.value = languageOptions.value;
-
-// 4) Custom filter handler
-function onFilter(val, update) {
-  searchInput.value = val;
-  const needle = val.toLowerCase();
-
-  update(() => {
-    if (!needle) {
-      filteredOptions.value = languageOptions.value;
-    } else {
-      filteredOptions.value = languageOptions.value.filter((option) =>
-        option.label.toLowerCase().includes(needle)
-      );
-    }
-  });
+function readMode() {
+  if (store && store.languageSelectorMode) return store.languageSelectorMode;
+  const meta = globalThis.__SITE_META__;
+  if (meta && meta.language && meta.language.selector) {
+    return String(meta.language.selector).toLowerCase();
+  }
+  const envMode = (import.meta.env.VITE_LANG_SELECTOR || '').toLowerCase();
+  if (envMode) return envMode;
+  return 'select';
 }
 
-// 5) Computed for the “Current Language” display
-const currentLanguageLabel = computed(() => {
-  const lang = settingsStore.languageObjectSelected;
-  return lang ? `${lang.name} (${lang.ethnicName})` : "None";
+const mode = computed(() => readMode());
+
+const Impl = computed(() => {
+  if (mode.value === 'radio') {
+    return defineAsyncComponent(() =>
+      import('./LanguageRadioButtons.vue')
+    );
+  }
+  return defineAsyncComponent(() =>
+    import('./LanguageSelect.vue')
+  );
 });
 
-// 6) Handler for “Frequently Used” chips
-function pickChip(lang) {
-  selectedLanguage.value = lang;
+function readFixedList() {
+  const meta = globalThis.__SITE_META__;
+  if (meta && meta.language && Array.isArray(meta.language.fixed)) {
+    return meta.language.fixed;
+  }
+  if (Array.isArray(store.fixedLanguages) && store.fixedLanguages.length > 0) {
+    return store.fixedLanguages;
+  }
+  const env = import.meta.env.VITE_LANG_FIXED || '';
+  if (env) return env.split(',').map(s => s.trim()).filter(Boolean);
+  return [];
 }
+
+const fixedLanguages = computed(() => readFixedList());
 </script>
 
 <template>
-  <div class="q-pa-md">
-    <!-- Current Language -->
-    <div class="q-mb-md">
-      <p><strong>Current Language:</strong> {{ currentLanguageLabel }}</p>
-    </div>
-
-    <!-- Searchable Select -->
-    <q-select
-      filled
-      v-model="selectedLanguage"
-      :options="filteredOptions"
-      label="Search Language"
-      use-input
-      input-debounce="200"
-      option-label="label"
-      option-value="value"
-      @filter="onFilter"
-    />
-
-    <!-- Frequently Used -->
-    <div v-if="settingsStore.languagesUsed.length" class="q-mt-md">
-      <p><strong>Frequently Used:</strong></p>
-      <q-chip
-        v-for="lang in settingsStore.languagesUsed.slice(0, 4)"
-        :key="lang.languageCodeHL"
-        clickable
-        @click="pickChip(lang)"
-        color="primary"
-        text-color="white"
-        class="q-mr-sm q-mb-sm"
-      >
-        {{ `${lang.name} (${lang.ethnicName})` }}
-      </q-chip>
-    </div>
-
-    <!-- Debug display -->
-    <div class="q-mt-lg">
-      <p><strong>Selected Object:</strong></p>
-      <pre>{{ selectedLanguage }}</pre>
-    </div>
-  </div>
+  <component :is="Impl" :fixed-languages="fixedLanguages" />
 </template>

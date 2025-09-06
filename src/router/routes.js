@@ -36,7 +36,8 @@ const routes = [
       {
         name: "AskHisFollowers",
         path: "/questions",
-        component: () => import("pages/RestorePage.vue"),
+        component: () => import("pages/QuestionPage.vue"),
+        meta: { appbar: 'primary' }
       },
       {
         name: "reset",

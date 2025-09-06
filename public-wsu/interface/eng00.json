@@ -127,6 +127,22 @@
       "2": "The journey of trust begins as we turn from earning God's favor to receiving His mercy through Jesus. His life, death, and resurrection offer us a new beginning—not just life after death, but life with God now. Will you take the step from striving to trusting?"
     }
   },
+  "tips": {
+    "title": "Facilitator's Tips",
+    "summary": "Here are some ideas to help you effectively lead a Discovery Bible Study",
+    "para": {
+      "1": "Many people have found these guildelines helpful in facilitating discussion",
+      "2": "We know this is different from how a typical Bible study group works, and we have found that this method helps people hear directly from God."
+    }
+  },
+  "outline": {
+    "title": "DBS Outline",
+    "summary": "An outline you can use to lead a Discovery Bible Study with any passage",
+    "para": {
+      "1": "What will you discover about God today?",
+      "2": "Who can you share your discoveries with?"
+    }
+  },
 
   "review": {
     "p1": "Before we begin, let’s take a moment to review what you committed to last time.",
@@ -154,5 +170,4 @@
     "lookForwardNoteInstruction": "Write your notes for Look Forward here",
     "videoNoteInstruction": "Write your notes for this video here"
   }
-
 }
