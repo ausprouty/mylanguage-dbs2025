@@ -1,85 +1,73 @@
 // src/boot/language-init.ts
+console.log('[boot] language-init loaded');
 import { boot } from "quasar/wrappers";
+import { useSettingsStore } from "src/stores/SettingsStore";
+import {
+  loadLanguageCatalogOnce,
+  getLanguageCatalog,
+  findLanguageByHL,
+} from "src/i18n/languageCatalog";
 import { getBrowserLanguageObject } from "src/i18n/detectLanguage";
 import { loadInterfaceTranslation } from "src/i18n/loadInterfaceTranslation";
-import { useSettingsStore } from "src/stores/SettingsStore";
+
+let ran = false;
 
 export default boot(async () => {
+
+  if (ran) return;
+  ran = true;
+
   const settings = useSettingsStore();
 
-  // Prevent double-runs if Quasar hot-reloads or multiple boots touch language
-  if (settings?.hydration?.languageInFlight) return;
-  settings.hydration = {
-    ...(settings.hydration || {}),
-    languageInFlight: true,
-  };
+  await loadLanguageCatalogOnce();
+  const catalog = getLanguageCatalog();
 
+  // Push into store so UI is reactive
+  if (typeof settings.setLanguages === "function") {
+    settings.setLanguages(catalog);
+  } else {
+    settings.languages = catalog;
+    settings.languagesLoaded = true;
+  }
+
+  // Decide selected language
+  let lang = settings.languageSelected || null;
+
+  if (!lang) {
+    const wantHL = (import.meta.env.VITE_LANGUAGE_CODE_HL || "").toLowerCase();
+    if (wantHL) lang = findLanguageByHL(wantHL);
+  }
+
+  if (!lang) {
+    lang =
+      catalog.find((l) => l.languageCodeHL === "eng00") ||
+      catalog[0] || { languageCodeHL: "eng00", name: "English" };
+  }
+
+  if (typeof settings.setLanguageObjectSelected === "function") {
+    settings.setLanguageObjectSelected(lang);
+  } else {
+    settings.languageSelected = lang;
+  }
+
+  // Load UI strings
+  const code = String(lang.languageCodeHL || "eng00");
   try {
-    // Decide which language to use
-    let langObj = settings.languageSelected;
-
-    if (!langObj || !langObj.languageCodeHL) {
-      const detected = getBrowserLanguageObject();
-      if (detected && detected.languageCodeHL) {
-        // Only set if actually different to avoid unnecessary writes
-        const same =
-          settings.languageSelected?.languageCodeHL === detected.languageCodeHL;
-        if (!same && typeof settings.setLanguageObjectSelected === "function") {
-          settings.setLanguageObjectSelected(detected);
-        } else {
-          settings.languageSelected = detected;
-        }
-        langObj = detected;
-        console.log("[language-init] from browser:", detected);
-      } else {
-        console.warn(
-          "[language-init] no valid browser language detected; falling back to 'eng00'"
-        );
-        langObj = { languageCodeHL: "eng00" };
-        if (typeof settings.setLanguageObjectSelected === "function") {
-          settings.setLanguageObjectSelected(langObj);
-        } else {
-          settings.languageSelected = langObj;
-        }
+    await loadInterfaceTranslation(code);
+  } catch (e) {
+    console.error("[language-init] UI load failed for", code, e);
+    if (code !== "eng00") {
+      try {
+        await loadInterfaceTranslation("eng00");
+        console.warn("[language-init] fell back to English UI");
+      } catch (e2) {
+        console.error("[language-init] English fallback failed", e2);
       }
     }
-
-    // Load interface strings for the chosen language
-    const code = String(langObj.languageCodeHL || "eng00");
-    const site = import.meta.env.VITE_APP || "dbs";
-    console.log("[language-init] loading interface:", { code, site });
-
-    try {
-      await loadInterfaceTranslation(code);
-    } catch (e) {
-      console.error(
-        "[language-init] loadInterfaceTranslation failed for",
-        code,
-        e
-      );
-      // Fallback to English once, if not already tried
-      if (code !== "eng00") {
-        try {
-          await loadInterfaceTranslation("en");
-          console.warn("[language-init] fell back to English UI");
-        } catch (e2) {
-          console.error(
-            "[language-init] English fallback also failed",
-            e2
-          );
-        }
-      }
-    }
-  } finally {
-    // Mark hydrated
-    if (typeof settings.markHydrated === "function") {
-      settings.markHydrated("language");
-    } else {
-      settings.hydration = {
-        ...(settings.hydration || {}),
-        language: true,
-      };
-    }
-    settings.hydration.languageInFlight = false;
+  }
+  if (typeof settings.markHydrated === "function") {
+    settings.markHydrated("language");
+  } else {
+    settings.hydration = { ...(settings.hydration || {}), language: true };
   }
 });

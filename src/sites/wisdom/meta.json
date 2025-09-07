@@ -14,7 +14,7 @@
     "VITE_LANGUAGE_CODE_HL": "eng00",
     "VITE_LANGUAGE_CODE_JF": "529",
     "VITE_LANGUAGE_PICKER_TYPE": "radio",
-    "VITE_LANGUAGE_DATA": "wisdom_languages.json"
+    "VITE_LANGUAGE_DATA": "config/languages.json"
   },
   "dev": {
     "host": "localhost",

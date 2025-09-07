@@ -1,4 +1,4 @@
-import languages from 'src/i18n/metadata/consolidated_languages.json';
+import languages from 'src/i18n/metadata/languages.json';
 
 /**
  * Returns the full language object based on the browser's language.
