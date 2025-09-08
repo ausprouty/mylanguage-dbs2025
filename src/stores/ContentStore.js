@@ -1,24 +1,19 @@
+// src/stores/content.js
 import { defineStore } from "pinia";
 import * as ContentKeys from "src/utils/ContentKeyBuilder";
 import { getCommonContent } from "../services/CommonContentService.js";
 import { getLessonContent } from "../services/LessonContentService.js";
-import { getJesusVideoUrls } from "../services/VideoContentService.js";
+import { buildVideoSource } from "@/utilities/videoSource";
 import { unref } from "vue";
-
-import {
-  validateLessonNumber,
-  validateSegmentFormat,
-  validateNonEmptyString,
-  validatePositiveInteger,
-} from "./validators";
-
+import { validateLessonNumber } from "./validators";
 
 export const useContentStore = defineStore("contentStore", {
   state: () => ({
-    commonContent: {}, // e.g., { 'commonContent-${study}-${languageCodeHL}': 'common HTML' }
-
-    lessonContent: {}, // e.g., { 'lessonContent-${study}-${languageCodeHL}-${languageCodeJF}-lesson-${lesson}': 'lesson HTML' }
-    videoUrls: {}, // e.g., { 'videoUrls-${study}-${languageCodeJF}-lesson-${lesson}': ['url1', 'url2'] }
+    commonContent: {},     // {'commonContent-${study}-${hl}': html}
+    lessonContent: {},     // {'lessonContent-${study}-${hl}-${jf}-lesson-${n}': html}
+    videoUrls: {},         // {'videoUrls-${study}-${jf}': [url1, url2]}
+    // NEW: cache for video meta per study
+    _videoMetaByStudy: {}, // { [study]: { provider, segments, meta } }
     translationComplete: {
       interface: false,
       commonContent: false,
@@ -27,62 +22,63 @@ export const useContentStore = defineStore("contentStore", {
   }),
 
   getters: {
-    lessonContentFor:
-      (state) => (study, languageCodeHL, languageCodeJF, lesson) => {
-        const key = ContentKeys.buildLessonContentKey(
-          study,
-          languageCodeHL,
-          languageCodeJF,
-          lesson
-        );
-        return state.lessonContent[key] || null;
-      },
+    lessonContentFor: (state) => (study, hl, jf, lesson) => {
+      const key = ContentKeys.buildLessonContentKey(study, hl, jf, lesson);
+      return state.lessonContent[key] || null;
+    },
 
-    commonContentFor: (state) => (study, languageCodeHL, variant = null) => {
-      const key = ContentKeys.buildCommonContentKey(study, languageCodeHL, variant);
+    commonContentFor: (state) => (study, hl, variant = null) => {
+      const key = ContentKeys.buildCommonContentKey(study, hl, variant);
       return state.commonContent[key] || null;
     },
 
-    videoUrlsFor: (state) => (study, languageCodeJF) => {
-      const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
+    videoUrlsFor: (state) => (study, jf) => {
+      const key = ContentKeys.buildVideoUrlsKey(study, jf);
       return state.videoUrls[key] || [];
     },
 
     isFullyTranslated: (state) => {
       return Object.values(state.translationComplete).every(Boolean);
     },
+
+    // Optional convenience
+    videoMetaFor: (state) => (study) => state._videoMetaByStudy[study] || null,
   },
 
   actions: {
-    setCommonContent(study, languageCodeHL, data, variant = null) {
-      const key = ContentKeys.buildCommonContentKey(study, languageCodeHL,variant);
+
+    async getVideoSourceFor(study, languageHL, languageJF, lesson) {
+      const meta = await this.getStudyVideoMeta(study); // { provider, segments, meta }
+      const result = buildVideoSource({
+        provider: meta.provider,
+        study,
+        lesson,
+        languageHL,
+        languageJF,
+        meta: meta.meta, // contains autoJF61: true
+      });
+      return result; // { kind: "iframe", src: "...", poster?, title? }
+    },
+    setCommonContent(study, hl, data, variant = null) {
+      const key = ContentKeys.buildCommonContentKey(study, hl, variant);
       if (key) {
-        console.log("I am setting commonContent for " + key);
-        console.log(data);
         this.commonContent[key] = data;
       } else {
         console.warn("commonContent key is null — skipping set.");
       }
     },
 
-    setLessonContent(study, languageCodeHL, languageCodeJF, lesson, data) {
-      const key = ContentKeys.buildLessonContentKey(
-        study,
-        languageCodeHL,
-        languageCodeJF,
-        lesson
-      );
+    setLessonContent(study, hl, jf, lesson, data) {
+      const key = ContentKeys.buildLessonContentKey(study, hl, jf, lesson);
       if (key) {
-        console.log("I am setting lessonContent for " + key);
-        console.log(data);
         this.lessonContent[key] = data;
       } else {
         console.warn("lessonContent key is null — skipping set.");
       }
     },
 
-    setVideoUrls(study, languageCodeJF, data) {
-      const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
+    setVideoUrls(study, jf, data) {
+      const key = ContentKeys.buildVideoUrlsKey(study, jf);
       if (key) {
         this.videoUrls[key] = data;
       } else {
@@ -90,49 +86,93 @@ export const useContentStore = defineStore("contentStore", {
       }
     },
 
-    async loadCommonContent(languageCodeHL, study, variant = null) {
-      console.log("I am in Content Store about to get CommonContent");
-      const data =  await getCommonContent(languageCodeHL, study, variant);
-      this.setCommonContent(study, languageCodeHL, data, variant)
-      return data
+    async loadCommonContent(hl, study, variant = null) {
+      const data = await getCommonContent(hl, study, variant);
+      this.setCommonContent(study, hl, data, variant);
+      return data;
     },
 
-    async loadLessonContent(languageCodeHL, languageCodeJF, study, lesson) {
-      const validatedLesson = validateLessonNumber(unref(lesson));
-      if (validatedLesson === null) {
+    async loadLessonContent(hl, jf, study, lesson) {
+      const validated = validateLessonNumber(unref(lesson));
+      if (validated === null) {
         console.warn(`Invalid lesson '${unref(lesson)}'`);
         return null;
       }
-      return await getLessonContent(
-        study,
-        languageCodeHL,
-        languageCodeJF,
-        validatedLesson
-      );
+      return await getLessonContent(study, hl, jf, validated);
     },
 
-    async loadVideoUrls(languageCodeJF, study) {
-      return await getJesusVideoUrls(languageCodeJF, study);
+    async loadVideoUrls(jf, study) {
+      return await getJesusVideoUrls(jf, study);
     },
 
     clearAllContent() {
       this.commonContent = {};
       this.lessonContent = {};
       this.videoUrls = {};
+      this._videoMetaByStudy = {};
     },
 
     setTranslationComplete(section, value) {
-      if (this.translationComplete.hasOwnProperty(section)) {
+      if (Object.prototype.hasOwnProperty.call(this.translationComplete, section)) {
         this.translationComplete[section] = value;
       }
     },
 
     clearTranslationComplete() {
-      for (const key in this.translationComplete) {
-        this.translationComplete[key] = false;
+      for (const k in this.translationComplete) {
+        this.translationComplete[k] = false;
       }
+    },
+
+    // ---------- NEW: Video meta API (belongs inside actions) ----------
+
+    /**
+     * Return { provider, segments, meta } for a study.
+     * Caches per study in state._videoMetaByStudy.
+     * JESUS film (“jvideo”) is 61 segments and uses auto jf61 refs.
+     */
+    async getStudyVideoMeta(study) {
+      if (this._videoMetaByStudy[study]) {
+        return this._videoMetaByStudy[study];
+      }
+
+      let meta;
+      switch (study) {
+        case "jvideo":
+          meta = {
+            provider: "arclight",
+            segments: 61,
+            meta: {
+              // tells the util to build refs like 1_<JF>-jf61LL-0-0
+              autoJF61: true,
+            },
+          };
+          break;
+
+        default:
+          // Example default: simple single-lesson vimeo
+          meta = {
+            provider: "vimeo",
+            segments: 1,
+            meta: {
+              // vimeoId: "123456789",
+              // or: lessons: { "1": { vimeoId: "..." } }
+            },
+          };
+          break;
+      }
+
+      this._videoMetaByStudy[study] = meta;
+      return meta;
+    },
+
+    /**
+     * Manually override meta for a study (e.g., from config/API).
+     */
+    setStudyVideoMeta(study, value) {
+      this._videoMetaByStudy[study] = value;
     },
   },
 
-  persist: false, // explicitly disable persistence
+  persist: false,
 });

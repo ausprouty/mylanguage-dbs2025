@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
-import languageList from '@/i18n/metadata/consolidated_languages.json';
+import languageList from '@/i18n/metadata/languages.json';
 
 const selectedLanguage = ref(null);
 const recentLanguagesToShow=5;

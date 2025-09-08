@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch } from "vue";
-import languageList from "@/i18n/metadata/dbs_languages.json";
+import languageList from "@/i18n/metadata/languages.json";
 import { useSettingsStore } from "src/stores/SettingsStore";
 
 const selectedLanguage = ref(null);

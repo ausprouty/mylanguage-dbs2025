@@ -1,5 +1,12 @@
 [
   {
+    "key": "jvideo",
+    "title": "Jesus Video",
+    "image": "/images/jesus.png",
+    "route": "/jvideo",
+    "maxLessons": 61
+  },
+  {
     "key": "hope",
     "title": "Seven Stories of Hope",
     "image": "/images/hope.png",

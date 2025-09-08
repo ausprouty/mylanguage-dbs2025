@@ -38,8 +38,6 @@ export function openDatabase() {
       if (!db.objectStoreNames.contains("interface"))
         db.createObjectStore("interface");
 
-      if (!db.objectStoreNames.contains("videoUrls"))
-        db.createObjectStore("videoUrls");
 
       if (!db.objectStoreNames.contains("notes")) db.createObjectStore("notes");
 
@@ -209,17 +207,7 @@ export async function saveLessonContentToDB(
   return saveItem("lessonContent", key, content);
 }
 
-// ----------------- Video URLs -----------------
 
-export async function getVideoUrlsFromDB(study, languageCodeJF) {
-  const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
-  return getItem("videoUrls", key);
-}
-
-export async function saveVideoUrlsToDB(study, languageCodeJF, urls) {
-  const key = ContentKeys.buildVideoUrlsKey(study, languageCodeJF);
-  return saveItem("videoUrls", key, urls);
-}
 
 // ----------------- Study Progress and Last Completed Lesson per Study ---------
 export async function getStudyProgress(study) {

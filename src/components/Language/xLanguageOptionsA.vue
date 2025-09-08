@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted } from "vue";
 import { useSettingsStore } from "src/stores/SettingsStore";
-import languageList from "@/i18n/metadata/consolidated_languages.json";
+import languageList from "@/i18n/metadata/languages.json";
 
 const settingsStore = useSettingsStore();
 

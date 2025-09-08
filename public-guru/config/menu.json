@@ -1,16 +1,5 @@
 [
-  {
-    "key": "deepavli",
-    "title": "Deepavali",
-    "image": "/images/deepavali.png",
-    "route": "/content/deepavali"
-  },
-  {
-    "key": "karma",
-    "title": "Karma",
-    "image": "/images/karma.png",
-    "route": "/content/karma"
-  },
+
   {
     "key": "mountain",
     "title": "Mountain of God",
@@ -35,7 +24,7 @@
   {
     "key": "life",
     "title": "His Teachings",
-    "image": "/images/life.png",
+    "image": "/images/community.png",
     "route": "/series/life",
     "maxLessons": 23
   },
@@ -52,6 +41,18 @@
     "image": "/images/follow.png",
     "route": "/video/follow",
     "maxLessons": 5
+  },
+  {
+    "key": "deepavli",
+    "title": "Deepavali",
+    "image": "/images/deepavali.png",
+    "route": "/content/deepavali"
+  },
+  {
+    "key": "karma",
+    "title": "Karma",
+    "image": "/images/karma.png",
+    "route": "/content/karma"
   },
 
   {

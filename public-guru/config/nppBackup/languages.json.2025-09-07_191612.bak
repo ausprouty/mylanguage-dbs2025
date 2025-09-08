@@ -87,18 +87,17 @@
     "font": "akaash",
     "fontData": "{\"akaash\": {\"B\": \"akaash_bold.ttf\", \"R\": \"akaash.ttf\", \"useOTL\": 255, \"useKashida\": 75}}"
   },
-{
-	  "id": 9,
-	  "name": "Marathi",
-	  "ethnicName": "मराठी",
-	  "languageCodeHL": "mrt00",
-	  "languageCodeJF": 6174,
-	  "languageCodeBrowser": "mr",
-	  "direction": "",
-	  "font": "arialuni",
-	 "fontData": "{\"arialuni\": {\"R\": \"arialuni.ttf\", \"useOTL\": 255, \"useKashida\": 75}}"
-	},
-  
+  {
+    "id": 9,
+    "name": "Sinhala",
+    "ethnicName": "සිංහල",
+    "languageCodeHL": "sin99",
+    "languageCodeJF": "13172",
+    "languageCodeBrowser": "si",
+    "direction": "",
+    "font": "abhaya_libre_regular",
+    "fontData": "{\"abhaya_libre_regular\": {\"R\": \"abhaya_libre_regular.ttf\", \"useOTL\": 255, \"useKashida\": 75}}"
+  },
   {
     "id": 10,
     "name": "Tamil",

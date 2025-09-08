@@ -22,9 +22,9 @@ const routes = [
         component: () => import("pages/StaticPageMaster.vue"),
       },
       {
-        name: "JesusVideoMaster",
+        name: "VideoMaster",
         path: "/jvideo/:lesson?/:languageCodeHL?/:languageCodeJF?",
-        component: () => import("pages/VideoMaster.vue"),
+        component: () => import("src/pages/VideoMaster.vue"),
       },
 
       {
