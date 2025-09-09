@@ -31,8 +31,8 @@ export function useVideoParams(options) {
 
   // ---- Route candidates -----------------------------------------------------
   const routeLesson = computed(() => normPositiveInt(route.params.lesson));
-  const routeHL     = computed(() => normParamStr(route.params.languageCodeHL));
-  const routeJF     = computed(() => normParamStr(route.params.languageCodeJF));
+  const routeHL = computed(() => normParamStr(route.params.languageCodeHL));
+  const routeJF = computed(() => normParamStr(route.params.languageCodeJF));
 
   // ---- Store candidates -----------------------------------------------------
   const storeLesson = computed(() => {
@@ -58,12 +58,12 @@ export function useVideoParams(options) {
   });
 
   // ---- Resolved values ------------------------------------------------------
-  const lesson = computed(() =>
-    routeLesson.value || storeLesson.value || Number(defaults.lesson || 1)
+  const lesson = computed(
+    () => routeLesson.value || storeLesson.value || Number(defaults.lesson || 1)
   );
 
-  const languageCodeHL = computed(() =>
-    routeHL.value || storeHL.value || String(defaults.languageCodeHL)
+  const languageCodeHL = computed(
+    () => routeHL.value || storeHL.value || String(defaults.languageCodeHL)
   );
 
   const languageCodeJF = computed(() => {
@@ -76,7 +76,7 @@ export function useVideoParams(options) {
   );
 
   // ---- Apply to store / router ---------------------------------------------
-// not sure we need this
+  // not sure we need this
   function applyToStore() {
     const key = resolvedStudyKey.value;
     settingsStore.setCurrentStudy(key);
@@ -88,19 +88,20 @@ export function useVideoParams(options) {
   function applyToRouteIfEnabled() {
     if (!syncToRoute) return;
 
+    const resolvedStudy = String(unref(studyKey));
     const next = {
-      study: resolvedStudyKey.value || route.params.study, // keep study stable
+      study: resolvedStudy,
       lesson: String(lesson.value),
       languageCodeHL: languageCodeHL.value,
-      languageCodeJF: languageCodeJF.value || undefined, // drop empty
+      languageCodeJF: languageCodeJF.value || undefined, // drop if empty
     };
 
-    const p = route.params || {};
+    const cur = route.params;
     const changed =
-      p.study !== next.study ||
-      p.lesson !== next.lesson ||
-      p.languageCodeHL !== next.languageCodeHL ||
-      p.languageCodeJF !== next.languageCodeJF;
+      cur.study !== next.study ||
+      cur.lesson !== next.lesson ||
+      cur.languageCodeHL !== next.languageCodeHL ||
+      cur.languageCodeJF !== next.languageCodeJF;
 
     if (changed) {
       router
@@ -114,27 +115,35 @@ export function useVideoParams(options) {
     }
   }
 
-  // Route changes → update store (and maybe URL normalisation)
-  watch(
-    () => [routeLesson.value, routeHL.value, routeJF.value, resolvedStudyKey.value],
-    () => {
-      applyToStore();
-      applyToRouteIfEnabled();
-    }
-  );
-
-  // Store changes (e.g., language picker) → keep URL in sync (optional)
+  // 1) Route -> Store (when URL changes)
   watch(
     () => [
-      settingsStore.languageCodeHLSelected,
-      settingsStore.languageCodeJFSelected,
-      settingsStore.lessonNumberForStudy
-        ? settingsStore.lessonNumberForStudy(resolvedStudyKey.value)
-        : settingsStore.lessonNumber,
-      resolvedStudyKey.value, // if study key itself changes
+      route.params.lesson,
+      route.params.languageCodeHL,
+      route.params.languageCodeJF,
+      String(unref(studyKey)),
     ],
     () => {
-      applyToRouteIfEnabled();
+      applyToStore(); // keep store aligned with the URL
+      applyToRouteIfEnabled(); // normalize URL if needed
+    },
+    { immediate: true }
+  );
+  // 2) Store -> Route (when user changes dropdowns etc.)
+  watch(
+    () => {
+      const resolvedStudy = String(unref(studyKey));
+      // watch the exact per-study lesson cell so reactivity triggers
+      const lessonByStudy = (settingsStore.lessonNumber || {})[resolvedStudy];
+      return [
+        settingsStore.languageCodeHLSelected,
+        settingsStore.languageCodeJFSelected,
+        lessonByStudy,
+        resolvedStudy,
+      ];
+    },
+    () => {
+      applyToRouteIfEnabled(); // this is what updates /video/jvideo/2/...
     }
   );
 
