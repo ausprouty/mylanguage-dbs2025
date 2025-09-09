@@ -1,63 +1,56 @@
+// src/composables/useCommonContent.js
+import { computed, watch, unref, onMounted } from "vue";
 import { useContentStore } from "stores/ContentStore";
-import { computed, watch, unref } from "vue";
+import { DEFAULTS } from "src/constants/Defaults.js";
+import { normStudyKey, normHL, normVariant } from "src/utils/normalize.js";
 
-export function useCommonContent(study, languageCodeHLRef, variantRef = null) {
+export function useCommonContent(studyRef, languageCodeHLRef, variantRef = null) {
   const contentStore = useContentStore();
-  // Normalise optional variant from query/store (e.g., "wsu")
-  const normalizedVariant = computed(() => {
-    const raw = variantRef ? unref(variantRef) : null;
-    if (!raw || typeof raw !== "string") return null;
-    const v = raw.trim().toLowerCase().replace(/[^a-z0-9-]/g, "");
-    return v || null;
-  });
 
+  // ——— Normalised inputs (single source of truth) ———
+  const study = computed(() => normStudyKey(studyRef) || DEFAULTS.study);
+  const languageCodeHL = computed(() => normHL(languageCodeHLRef) || DEFAULTS.languageCodeHL);
+  const variant = computed(() => normVariant(variantRef)); // string or null
+
+  // ——— Read from store (sync). NOTE: order = (hl, study, variant) ———
   const commonContent = computed(() => {
-    const lang = unref(languageCodeHLRef);
-    return (
-      contentStore.commonContentFor(
-        study,
-        lang,
-        normalizedVariant.value
-      ) || {}
-    );
+    const resolvedHL = unref(languageCodeHL);
+    const resolvedStudy = unref(study);
+    const resolvedVariant = unref(variant);
+    const cc = contentStore.commonContentFor(resolvedHL, resolvedStudy, resolvedVariant);
+    return cc || {};
   });
 
-  const topics = computed(() => {
-    const topicEntries = commonContent.value?.topic;
-    if (!topicEntries || typeof topicEntries !== 'object') return [];
-
-    return Object.entries(topicEntries)
-      .map(([key, value]) => {
-        const index = parseInt(key, 10);
-        return {
-          label: `${index}. ${value}`,
-          value: index,
-        };
-      })
-      .filter(({ value }) => !isNaN(value));
-  });
-
-
-  const loadCommonContent = async (lang = unref(languageCodeHLRef)) => {
+  // ——— Populate store (async) when needed ———
+  async function loadCommonContent() {
+    const resolvedHL = unref(languageCodeHL);
+    const resolvedStudy = unref(study);
+    const resolvedVariant = unref(variant);
     try {
-      console.log('I am going to content store to load common content')
-      await contentStore.loadCommonContent(lang, study, normalizedVariant.value);
-       console.log('I returned from  content store to load common content')
-    } catch (error) {
-      console.error("Failed to load common content:", error);
+      await contentStore.loadCommonContent(resolvedHL, resolvedStudy, resolvedVariant);
+    } catch (err) {
+      console.warn("[commonContent] load failed:", err);
     }
-  };
-  watch(commonContent, (val) => {
-    console.log("commonContent changed:", val);
+  }
+
+  // Optional helper: flatten a simple { "1": "Title", ... } → [{label, value}]
+  const topics = computed(() => {
+    const cc = commonContent.value;
+    const topicObject = cc && typeof cc === "object" ? cc.topic : null;
+    if (!topicObject || typeof topicObject !== "object") return [];
+    const result = [];
+    const keys = Object.keys(topicObject);
+    for (let i = 0; i < keys.length; i++) {
+      const k = keys[i];
+      const index = parseInt(k, 10);
+      if (!Number.isFinite(index)) continue;
+      result.push({ label: index + ". " + String(topicObject[k]), value: index });
+    }
+    return result;
   });
 
-  watch(topics, (val) => {
-    console.log("topics changed:", val);
-  });
+  onMounted(loadCommonContent);
+  watch([study, languageCodeHL, variant], loadCommonContent);
 
-  return {
-    commonContent,
-    topics,
-    loadCommonContent,
-  };
+  return { commonContent, topics, loadCommonContent };
 }

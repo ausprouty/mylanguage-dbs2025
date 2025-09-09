@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from "vue"
-import { buildVideoSource } from "src/utilities/videoSource"
+import { buildVideoSource } from "src/utils/videoSource"
 
 const props = defineProps({
   // NEW: preferred — a single, ready-to-play source object
@@ -34,8 +34,10 @@ const effective = computed(function () {
     languageJF: String(props.languageCodeJF || "529"),
     meta: v, // pass full spec; videoSource.js knows how to interpret
   }
+  console.log (input)
   return buildVideoSource(input) || { kind: "video", src: "" }
 })
+console.log (effective)
 </script>
 
 <template>

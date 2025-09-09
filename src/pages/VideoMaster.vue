@@ -58,7 +58,7 @@ const video = computed(() => (commonContent.value || {}).video || {});
 
 // topic title from i18n: topic.{lesson}; render nothing if missing
 const topicTitle = computed(() => {
-  const key = "topic." + String(lesson.value);
+  const key = "commonContent.topic." + String(lesson.value);
   const val = t(key);
   return val === key ? null : val;
 });
@@ -78,7 +78,6 @@ const { source } = useVideoSourceFromSpec({
 });
 
 onMounted(async () => {
-  applyToStore();
   await Promise.all([loadCommonContent(), loadProgress()]);
 });
 
@@ -112,7 +111,7 @@ function updateLesson(nextLessonNumber) {
     />
 
     <!-- Player gets the whole video spec; it stays dumb -->
-    <VideoPlayer :video="source" />
+    <VideoPlayer :source="source" />
 
     <VideoQuestions
       v-if="sectionKey && lesson"

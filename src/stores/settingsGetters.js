@@ -1,105 +1,117 @@
-import { DEFAULTS, MAX_LESSON_NUMBERS } from "src/constants/Defaults";
+// src/stores/settingsGetters.js
+import { DEFAULTS, MAX_LESSON_NUMBERS } from "src/constants/Defaults.js";
+import { normHL, normJF } from "src/utils/normalize.js";
 
 export const settingsGetters = {
-  currentStudySelected: (state) =>
-    state.currentStudy || DEFAULTS.study,
+  currentStudySelected(state) {
+    var s = state.currentStudy;
+    return s && String(s).trim() ? s : DEFAULTS.study;
+  },
 
-  isAtMaxLesson: (state) => {
-    const study = state.currentStudy;
+  isAtMaxLesson(state) {
+    var study = state.currentStudy || DEFAULTS.study;
 
-    const lesson = parseInt(state.lessonNumber?.[study], 10);
-    const max = parseInt(MAX_LESSON_NUMBERS?.[study], 10);
+    var dict = state.lessonNumber || {};
+    var raw = dict instanceof Map ? dict.get(study) : dict[study];
+    var lesson = Number(raw);
 
-    if (isNaN(lesson) || lesson < 1 || isNaN(max) || max < 1) {
+    var maxRaw = (MAX_LESSON_NUMBERS &&
+      Object.prototype.hasOwnProperty.call(MAX_LESSON_NUMBERS, study))
+      ? MAX_LESSON_NUMBERS[study]
+      : undefined;
+    var max = Number(maxRaw);
+
+    if (!Number.isFinite(lesson) || lesson < 1 ||
+        !Number.isFinite(max) || max < 1) {
       console.warn(
-        `isAtMaxLesson: Invalid values for '${study}'. lesson=${lesson}, max=${max}`
+        "isAtMaxLesson: Invalid values for '" + study +
+        "'. lesson=" + lesson + ", max=" + max
       );
       return false;
     }
-
     return lesson >= max;
   },
 
-  isStandardProfile: (s) => s.apiProfile === "standard",
+  isStandardProfile(state) {
+    return state.apiProfile === "standard";
+  },
 
-  languageCodeHLSelected: (state) =>
-    state.languageSelected?.languageCodeHL || DEFAULTS.languageCodeHL,
+  languageCodeHLSelected(state) {
+    var ls = state.languageSelected || {};
+    var raw = ls.languageCodeHL != null ? String(ls.languageCodeHL) : "";
+    var c = normHL(raw); // 3 letters + 2 digits; preserves case
+    return c || DEFAULTS.languageCodeHL; // e.g., "eng00"
+  },
 
-  languageCodeJFSelected: (state) =>
-    state.languageSelected?.languageCodeJF || DEFAULTS.languageCodeJF,
+  languageCodeJFSelected(state) {
+    var ls = state.languageSelected || {};
+    var raw = ls.languageCodeJF != null ? String(ls.languageCodeJF) : "";
+    var c = normJF(raw); // digits only
+    return c || DEFAULTS.languageCodeJF; // e.g., "529"
+  },
 
-  languageIdSelected: (state) => state.languageSelected?.languageId ?? null,
+  languageIdSelected(state) {
+    var ls = state.languageSelected || {};
+    var v = ls.languageId;
+    return v == null ? null : v;
+  },
 
-  languageObjectSelected: (state) =>
-    state.languageSelected || {
+  languageObjectSelected(state) {
+    var ls = state.languageSelected;
+    if (ls && (ls.languageCodeHL || ls.languageCodeJF)) return ls;
+    return {
       languageCodeHL: DEFAULTS.languageCodeHL,
       languageCodeJF: DEFAULTS.languageCodeJF,
-    },
+    };
+  },
 
-  // Pinia getter
-  lessonNumberForStudy: (state) => (studyArg) => {
-    const study = studyArg ?? state.currentStudy ?? 'dbs';
+  // Getter that returns a function
+  lessonNumberForStudy(state) {
+    return function (studyArg) {
+      var study = studyArg || state.currentStudy || "dbs";
 
-    console.groupCollapsed(`[store] lessonNumberForStudy("${study}")`);
-    console.debug('state.currentStudy =', state.currentStudy);
-    console.debug('state.lessonNumber =', state.lessonNumber);
-
-    const dict = state.lessonNumber || {};
-    const has =
-      dict instanceof Map
+      var dict = state.lessonNumber || {};
+      var has = dict instanceof Map
         ? dict.has(study)
         : Object.prototype.hasOwnProperty.call(dict, study);
 
-    if (!has) {
-      console.warn(`[store] "${study}" not found. Returning default 1.`);
-      console.groupEnd();
-      return 1;
-    }
+      if (!has) {
+        console.warn('[store] "' + study + '" not found. Returning 1.');
+        return 1;
+      }
 
-    const raw =
-      dict instanceof Map ? dict.get(study) : dict[study];
-
-    console.debug('raw value =', raw, `(type: ${typeof raw})`);
-
-    const lesson = Number(raw);
-    if (!Number.isFinite(lesson) || lesson < 1) {
-      console.warn(
-        `[store] "${study}" had invalid lesson "${raw}". Returning default 1.`
-      );
-      console.groupEnd();
-      return 1;
-    }
-
-    console.debug(`[store] returning lesson = ${lesson}`);
-    console.groupEnd();
-    return lesson;
+      var raw = dict instanceof Map ? dict.get(study) : dict[study];
+      var lesson = Number(raw);
+      if (!Number.isFinite(lesson) || lesson < 1) {
+        console.warn('[store] "' + study + '" invalid lesson "' + raw + '". Returning 1.');
+        return 1;
+      }
+      return lesson;
+    };
   },
 
-
-  maxLesson: (state) => {
-    const study = state.currentStudy;
-
-    if (!MAX_LESSON_NUMBERS.hasOwnProperty(study)) {
-      console.warn(`maxLesson: '${study}' not found. Returning default max 1.`);
+  maxLesson(state) {
+    var study = state.currentStudy || DEFAULTS.study;
+    if (!MAX_LESSON_NUMBERS ||
+        !Object.prototype.hasOwnProperty.call(MAX_LESSON_NUMBERS, study)) {
+      console.warn("maxLesson: '" + study + "' not found. Returning 1.");
       return 1;
     }
-
-    const max = parseInt(MAX_LESSON_NUMBERS[study], 10);
-    if (isNaN(max) || max < 1) {
-      console.warn(
-        `maxLesson: '${study}' had invalid max '${max}'. Returning default 1.`
-      );
+    var max = Number(MAX_LESSON_NUMBERS[study]);
+    if (!Number.isFinite(max) || max < 1) {
+      console.warn("maxLesson: '" + study + "' invalid max '" + max + "'. Returning 1.");
       return 1;
     }
-
     return max;
   },
 
-  recentLanguages: (state) => state.languagesUsed || [],
+  recentLanguages(state) {
+    return state.languagesUsed || [];
+  },
 
-  // current study's variant (null if none set)
   variantForCurrentStudy(state) {
-    const s = String(state.currentStudy || "").toLowerCase();
-    return state.variantByStudy?.[s] || null;
+    var s = state.currentStudy ? String(state.currentStudy).toLowerCase() : "";
+    var map = state.variantByStudy || {};
+    return map[s] || null;
   },
 };

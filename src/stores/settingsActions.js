@@ -1,4 +1,5 @@
-import { loadInterfaceTranslation } from "../i18n/loadInterfaceTranslation.js";
+
+import { normParamStr, normJF, normHL ,isHLCode} from 'src/utils/normalize'
 import { getTranslatedInterface } from "src/services/InterfaceService";
 import { MAX_LESSON_NUMBERS } from "src/constants/Defaults";
 import {
@@ -105,6 +106,28 @@ export const settingsActions = {
       currentId,
     };
   },
+  // HL like "eng00", "mrt00" (3 letters + 2 digits, case-insensitive)
+  setLanguageCodeHL(code) {
+    const c = normHL(code);
+    if (!c) {
+      console.warn(`setLanguageCodeHL: invalid HL '${code}'.`);
+      return false;
+    }
+    if (!this.languageSelected) this.languageSelected = {};
+    this.languageSelected.languageCodeHL = c; // ✅ write state only
+    return true;
+  },
+
+  setLanguageCodeJF(code) {
+    const c = normJF(code);
+    if (!c) {
+      console.warn(`setLanguageCodeJF: invalid JF '${code}'.`);
+      return false;
+    }
+    if (!this.languageSelected) this.languageSelected = {};
+    this.languageSelected.languageCodeJF = c; // ✅ write state only
+    return true;
+  },
 
   async setLanguageObjectSelected(languageObject) {
     if (!languageObject) {
@@ -198,3 +221,6 @@ export const settingsActions = {
     };
   },
 };
+
+
+

@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import * as ContentKeys from "src/utils/ContentKeyBuilder";
 import { getCommonContent } from "../services/CommonContentService.js";
 import { getLessonContent } from "../services/LessonContentService.js";
-import { buildVideoSource } from "@/utilities/videoSource";
+import { buildVideoSource } from "@/utils/videoSource";
 import { unref } from "vue";
 import { validateLessonNumber } from "./validators";
 
@@ -27,7 +27,7 @@ export const useContentStore = defineStore("contentStore", {
       return state.lessonContent[key] || null;
     },
 
-    commonContentFor: (state) => (study, hl, variant = null) => {
+    commonContentFor: (state) => ( hl, study, variant = null) => {
       const key = ContentKeys.buildCommonContentKey(study, hl, variant);
       return state.commonContent[key] || null;
     },
@@ -59,6 +59,7 @@ export const useContentStore = defineStore("contentStore", {
       });
       return result; // { kind: "iframe", src: "...", poster?, title? }
     },
+    // moves retreived common content into Content Store
     setCommonContent(study, hl, data, variant = null) {
       const key = ContentKeys.buildCommonContentKey(study, hl, variant);
       if (key) {
@@ -67,7 +68,7 @@ export const useContentStore = defineStore("contentStore", {
         console.warn("commonContent key is null — skipping set.");
       }
     },
-
+    // moves retreived lesson content into Content Store
     setLessonContent(study, hl, jf, lesson, data) {
       const key = ContentKeys.buildLessonContentKey(study, hl, jf, lesson);
       if (key) {
@@ -76,7 +77,7 @@ export const useContentStore = defineStore("contentStore", {
         console.warn("lessonContent key is null — skipping set.");
       }
     },
-
+     // moves retreived videoURLs  into Content Store which I plan to remove
     setVideoUrls(study, jf, data) {
       const key = ContentKeys.buildVideoUrlsKey(study, jf);
       if (key) {
@@ -85,13 +86,15 @@ export const useContentStore = defineStore("contentStore", {
         console.warn("videoUrls key is null — skipping set.");
       }
     },
-
+    // this is the good stuff.  We get the common content from
+    // either the database (if we can), or go to the API
     async loadCommonContent(hl, study, variant = null) {
       const data = await getCommonContent(hl, study, variant);
       this.setCommonContent(study, hl, data, variant);
       return data;
     },
-
+    // this is the good stuff.  We get the lesson content from
+    // either the database (if we can), or go to the API
     async loadLessonContent(hl, jf, study, lesson) {
       const validated = validateLessonNumber(unref(lesson));
       if (validated === null) {
@@ -100,11 +103,11 @@ export const useContentStore = defineStore("contentStore", {
       }
       return await getLessonContent(study, hl, jf, validated);
     },
-
+    // I want to get rid of this
     async loadVideoUrls(jf, study) {
       return await getJesusVideoUrls(jf, study);
     },
-
+    // used in resetting
     clearAllContent() {
       this.commonContent = {};
       this.lessonContent = {};

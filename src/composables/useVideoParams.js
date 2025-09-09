@@ -76,6 +76,7 @@ export function useVideoParams(options) {
   );
 
   // ---- Apply to store / router ---------------------------------------------
+// not sure we need this
   function applyToStore() {
     const key = resolvedStudyKey.value;
     settingsStore.setCurrentStudy(key);
