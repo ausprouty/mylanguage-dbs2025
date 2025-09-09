@@ -1,82 +1,74 @@
 <script setup>
-import { computed, toRefs } from 'vue'
-
-const ARC_BASE = 'https://api.arclight.org/videoPlayerUrl'
+import { computed } from "vue"
+import { buildVideoSource } from "src/utilities/videoSource"
 
 const props = defineProps({
-  // Accepts [{ index: 1, url: '...' }] or a map {1: '...'}
-  videoUrls: { type: [Array, Object], default: () => [] },
-  lesson: { type: Number, required: true },
-  // Layout controls
-  ratio: { type: Number, default: 16 / 9 },
-  maxWidth: { type: Number, default: 960 },
-  // Fallbacks if no matching lesson URL is found
-  fallbackRefId: { type: String, default: '1_529-jf6102-0-0' },
-  playerStyle: { type: String, default: 'default' },
+  // NEW: preferred — a single, ready-to-play source object
+  // { provider, kind: "iframe"|"video", src, poster?, title?, tracks? }
+  source: { type: Object, default: null },
+
+  // LEGACY / fallback inputs (player will build the source)
+  video: { type: Object, default: null },          // commonContent.video
+  study: { type: [String], default: "jvideo" },
+  lesson: { type: [Number, String], default: 1 },
+  languageCodeJF: { type: String, default: "529" },
+  languageCodeHL: { type: String, default: "eng00" },
 })
 
-const { videoUrls, lesson } = toRefs(props)
-
-function findLessonUrl() {
-  const list = Array.isArray(videoUrls.value)
-    ? videoUrls.value
-    : Object.entries(videoUrls.value || {}).map(([index, url]) => ({
-        index: Number(index),
-        url,
-      }))
-
-  const item = list.find(v => v.index === lesson.value)
-  return item?.url || null
+function coerceNum(n) {
+  const x = Number(n)
+  return Number.isFinite(x) ? x : 1
 }
 
-const src = computed(() => {
-  const direct = findLessonUrl()
-  if (direct) return direct
+const effective = computed(function () {
+  // If caller supplied a built source, use it directly.
+  if (props.source && props.source.src) return props.source
 
-  const q = new URLSearchParams({
-    refId: props.fallbackRefId,
-    playerStyle: props.playerStyle,
-  })
-  return `${ARC_BASE}?${q.toString()}`
+  // Otherwise, build from the legacy inputs using your adapter.
+  const v = props.video || {}
+  const input = {
+    provider: String(v.provider || "").toLowerCase(), // "arclight"|"vimeo"|"file"
+    study: String(props.study || "jvideo"),
+    lesson: coerceNum(props.lesson),
+    languageHL: String(props.languageCodeHL || "eng00"),
+    languageJF: String(props.languageCodeJF || "529"),
+    meta: v, // pass full spec; videoSource.js knows how to interpret
+  }
+  return buildVideoSource(input) || { kind: "video", src: "" }
 })
-
-const paddingTop = computed(() => `${(1 / props.ratio) * 100}%`)
-const shellStyle = computed(() => ({ maxWidth: `${props.maxWidth}px` }))
 </script>
 
 <template>
-  <div class="video-shell" :style="shellStyle">
-    <div class="video-box" :style="{ paddingTop }">
-      <iframe
-        id="jplayer"
-        :src="src"
-        allowfullscreen
-        webkitallowfullscreen
-        mozallowfullscreen
-        loading="lazy"
-        referrerpolicy="origin-when-cross-origin"
+  <div v-if="effective && effective.src" class="video-wrap">
+    <iframe
+      v-if="effective.kind === 'iframe'"
+      :src="effective.src"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+      frameborder="0"
+      style="width:100%;aspect-ratio:16/9"
+      :title="effective.title || 'Video'"
+    />
+    <video
+      v-else
+      controls
+      playsinline
+      style="width:100%;aspect-ratio:16/9"
+      :poster="effective.poster || undefined"
+    >
+      <source :src="effective.src" />
+      <track
+        v-for="(t,i) in (effective.tracks || [])"
+        :key="i"
+        :src="t.src"
+        :srclang="t.srclang"
+        :label="t.label"
+        :kind="t.kind || 'subtitles'"
       />
-    </div>
+    </video>
   </div>
 </template>
 
 <style scoped>
-.video-shell {
-  width: 100%;
-  margin: 0 auto;
-}
-.video-box {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: #000;
-  border-radius: 8px;
-}
-.video-box > iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
+.video-wrap { width: 100%; }
 </style>

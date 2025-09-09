@@ -124,7 +124,7 @@ export const useContentStore = defineStore("contentStore", {
       }
     },
 
-    // ---------- NEW: Video meta API (belongs inside actions) ----------
+    // ---------- Video meta API  ----------
 
     /**
      * Return { provider, segments, meta } for a study.
