@@ -1,7 +1,7 @@
 // src/composables/useVideoSourceFromSpec.js
 import { ref, watchEffect, unref } from "vue";
 import { safeObj } from "src/utils/normalize.js";
-import { buildVideoSource } from "src/utils/videoSource.js";
+import { buildVideoSource } from "src/utils/videoSource";
 
 export function useVideoSourceFromSpec(options) {
   options = options || {};

@@ -11,8 +11,12 @@ const SKIP_IN_DEV = false;
 
 // Very small semver comparator: returns -1 / 0 / 1
 function semverCmp(a = "", b = "") {
-  const pa = String(a).split(".").map((n) => parseInt(n, 10) || 0);
-  const pb = String(b).split(".").map((n) => parseInt(n, 10) || 0);
+  const pa = String(a)
+    .split(".")
+    .map((n) => parseInt(n, 10) || 0);
+  const pb = String(b)
+    .split(".")
+    .map((n) => parseInt(n, 10) || 0);
   const len = Math.max(pa.length, pb.length);
   for (let i = 0; i < len; i++) {
     const da = pa[i] || 0;
@@ -84,7 +88,10 @@ export default boot(async () => {
       sessionStorage.setItem(SKIP_RESUME, "1");
     } catch {}
   } catch (err) {
-    console.warn("[version-check] clearOrUpdateData failed; falling back:", err);
+    console.warn(
+      "[version-check] clearOrUpdateData failed; falling back:",
+      err
+    );
     // Fallback: minimally ensure we don't resume into bad state
     try {
       // Prefer your util to do targeted clears; this is last-resort.

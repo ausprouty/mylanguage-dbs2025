@@ -1,5 +1,5 @@
 
-import { normParamStr, normJF, normHL ,isHLCode} from 'src/utils/normalize'
+import {  normJF, normHL ,isHLCode} from 'src/utils/normalize'
 import { getTranslatedInterface } from "src/services/InterfaceService";
 import { MAX_LESSON_NUMBERS } from "src/constants/Defaults";
 import {
@@ -49,13 +49,6 @@ export const settingsActions = {
     this.brandTitle = typeof title === "string" ? title.trim() : "";
   },
 
-  setCurrentPath(url) {
-    if (!validateNonEmptyString(url)) {
-      console.warn(`setCurrentUrl: Invalid URL '${url}'.`);
-      return;
-    }
-    this.currentPath = url;
-  },
 
   setCurrentStudy(study) {
     if (!validateNonEmptyString(study)) {
@@ -174,13 +167,7 @@ export const settingsActions = {
     this.lessonNumber[study] = clampedLesson;
   },
 
-  setPreviousPage(newPage) {
-    if (!validateNonEmptyString(newPage)) {
-      console.warn(`setPreviousPage: Invalid page '${newPage}'.`);
-      return;
-    }
-    this.previousPage = newPage;
-  },
+
   setVariantForStudy(study, v) {
     const s = study?.toLowerCase();
     const clean = (typeof v === 'string')
