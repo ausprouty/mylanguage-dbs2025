@@ -158,34 +158,37 @@ li.dbs {
    Headers
 ----------------------- */
 
-h1.dbs,
-h2.dbs,
-h3.dbs,
-h4.dbs {
+h1,
+h2,
+h3,
+h4 {
   font-family: "Arial", sans-serif;
   color: var(--color-primary);
 }
 
 h1.dbs {
-  font-size: 3rem;
-  line-height: 3rem;
+  font-size: 2rem;
+  line-height: 2.5rem;
   font-weight: bold;
 }
 
 h2.dbs {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  line-height: 1.7rem;
   font-weight: bold;
 }
 
 h3.dbs {
   margin-block-end: 0.3em;
-  font-size: 1.17em;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
   font-weight: bold;
 }
 
 h4.dbs {
   margin-block: 0;
-  font-size: 1em;
+  font-size: 1rem;
+  line-height: 1.2rem;
 }
 
 /* ----------------------

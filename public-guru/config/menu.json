@@ -36,23 +36,23 @@
     "maxLessons": 23
   },
   {
-    "key": "follow",
+    "key": "following",
     "title": "Following Him",
     "image": "/images/follow.png",
-    "route": "/video/follow",
+    "route": "/video/following",
     "maxLessons": 5
   },
   {
     "key": "deepavli",
     "title": "Deepavali",
     "image": "/images/deepavali.png",
-    "route": "/content/deepavali"
+    "route": "/page/deepavali"
   },
   {
     "key": "karma",
     "title": "Karma",
     "image": "/images/karma.png",
-    "route": "/content/karma"
+    "route": "/page/karma"
   },
 
   {
