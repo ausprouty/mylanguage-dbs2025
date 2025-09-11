@@ -3,6 +3,9 @@ import { computed, onMounted, watch, unref } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useSettingsStore } from "src/stores/SettingsStore";
+import { DEFAULTS } from "src/constants/Defaults";
+import { storeToRefs } from "pinia";
+
 import { useCommonContent } from "src/composables/useCommonContent";
 import { useProgressTracker } from "src/composables/useProgressTracker.js";
 import { useInitializeSettingsStore } from "src/composables/useInitializeSettingsStore.js";
@@ -29,17 +32,9 @@ const computedLessonNumber = computed(() => {
     : 1;
 });
 
-
-const computedLanguageHL = computed(function () {
-  const sel = settingsStore.languageSelected;
-  return sel && sel.languageCodeHL ? sel.languageCodeHL : "eng00";
-});
-
-const computedLanguageJF = computed(function () {
-  const sel = settingsStore.languageSelected;
-  const code = sel && sel.languageCodeJF ? sel.languageCodeJF : "";
-  return code != null ? String(code) : "";
-});
+const { languageCodeHLSelected, languageCodeJFSelected } = storeToRefs(settingsStore);
+const computedLanguageHL = languageCodeHLSelected;
+const computedLanguageJF = languageCodeJFSelected;
 
 // Optional variant (?variant=wsu). Accept "variant" or misspelled "varient".
 const computedVariant = computed(function () {

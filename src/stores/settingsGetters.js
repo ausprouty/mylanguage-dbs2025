@@ -3,6 +3,12 @@ import { DEFAULTS, MAX_LESSON_NUMBERS } from "src/constants/Defaults.js";
 import { normHL, normJF } from "src/utils/normalize.js";
 
 export const settingsGetters = {
+
+  currentLanguage(state) {
+      // If you like this alias, keep it—but it’s redundant with languageSelected
+      return state.languageObjectSelected;
+    },
+
   currentStudySelected(state) {
     var s = state.currentStudy;
     return s && String(s).trim() ? s : DEFAULTS.study;
@@ -37,34 +43,35 @@ export const settingsGetters = {
   },
 
   languageCodeHLSelected(state) {
-    var ls = state.languageSelected || {};
+    var ls = state.languageObjectSelected || {};
     var raw = ls.languageCodeHL != null ? String(ls.languageCodeHL) : "";
     var c = normHL(raw); // 3 letters + 2 digits; preserves case
     return c || DEFAULTS.languageCodeHL; // e.g., "eng00"
   },
+  
 
   languageCodeJFSelected(state) {
-    var ls = state.languageSelected || {};
+    var ls = state.languageObjectSelected || {};
     var raw = ls.languageCodeJF != null ? String(ls.languageCodeJF) : "";
     var c = normJF(raw); // digits only
     return c || DEFAULTS.languageCodeJF; // e.g., "529"
   },
 
   languageIdSelected(state) {
-    var ls = state.languageSelected || {};
+    var ls = state.languageObjectSelected || {};
     var v = ls.languageId;
     return v == null ? null : v;
   },
 
-  languageSelected(state) {
-    // must not be names languageObjectSelected because that is what the variable is called
-    var ls = state.languageSelected;
-    if (ls && (ls.languageCodeHL || ls.languageCodeJF)) return ls;
-    return {
-      languageCodeHL: DEFAULTS.languageCodeHL,
-      languageCodeJF: DEFAULTS.languageCodeJF,
-    };
-  },
+  // Always safe to read: returns selected object or a fallback stub
+    languageSelected(state) {
+      const ls = state.languageObjectSelected || {};
+      if (ls.languageCodeHL || ls.languageCodeJF) return ls;
+      return {
+        languageCodeHL: DEFAULTS.languageCodeHL,
+        languageCodeJF: DEFAULTS.languageCodeJF,
+      };
+    },
 
   // Getter that returns a function
   lessonNumberForStudy(state) {

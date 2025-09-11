@@ -20,12 +20,9 @@ const routes = [
         name: "StaticPageMaster",
         path: '/page/:page([a-z0-9-]+)',
         component: () => import("pages/StaticPageMaster.vue"),
+        alias: ['/content/:page([a-z0-9-]+)']
       },
-      {
-        name: "StaticPageMaster2",
-        path: '/content/:page([a-z0-9-]+)',
-        component: () => import("pages/StaticPageMaster.vue"),
-      },
+
       {
         name: "VideoMaster",
         path: "/video/:study/:lesson?/:languageCodeHL?/:languageCodeJF?",
@@ -52,14 +49,12 @@ const routes = [
         path: "/series/:study?/:lesson?/:languageCodeHL?",
         component: () => import("pages/SeriesMaster.vue"),
       },
-
-
       {
-        name: "AskHisFollowers",
-        path: "/ask/:raw(.*)*",
-        component: () => import("pages/QuestionPage.vue"),
+        name: "ExternalPage",
+        path: "/external/:raw(.*)*",
+        component: () => import("src/pages/ExternalPage.vue"),
         meta: { appbar: 'primary' },
-        alias: ["/questions/:raw(.*)*"]
+        alias: ["/questions/:raw(.*)*", "/ask/:raw(.*)*" ]
       },
       {
         name: "reset",

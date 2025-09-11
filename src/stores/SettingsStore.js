@@ -10,10 +10,9 @@ export const useSettingsStore = defineStore("settingsStore", {
     brandTitle: "",
     currentPath: null,
     currentStudy: "",
-
     followingHimSegment: "1-0-0",
     jVideoSegments: { segments: [], currentId: 1 },
-    languageObjectSelected: {},
+    languageObjectSelected: null,
     languageSelectorMode:null,
     languages: [],
     languagesLoaded:false,

@@ -43,14 +43,14 @@
     "maxLessons": 5
   },
   {
-    "key": "deepavli",
-    "title": "Deepavali",
+    "key": "deepavali",
+    "title": "Light for the Soul",
     "image": "/images/deepavali.png",
     "route": "/page/deepavali"
   },
   {
     "key": "karma",
-    "title": "Karma",
+    "title": "Escaping Karma",
     "image": "/images/karma.png",
     "route": "/page/karma"
   },

@@ -6,7 +6,7 @@ import { useSettingsStore } from "src/stores/SettingsStore";
 
 const router = useRouter();
 
-const { t } = useI18n({ useScope: 'global' })
+const { t } = useI18n({ useScope: "global" });
 const settingsStore = useSettingsStore();
 
 const loading = computed(
@@ -20,7 +20,6 @@ const menuItems = computed(() => settingsStore.menu || []);
 const handleImageClick = (to) => {
   if (to) router.push(to);
 };
-
 </script>
 
 <template>
@@ -43,7 +42,9 @@ const handleImageClick = (to) => {
             <img :src="item.image" class="menu-picture" />
             <div class="menu-label">
               <h6>{{ t(item.key + ".title", item.title || item.key) }}</h6>
-              <p>{{ t(item.key + ".summary", item.summary || "") }}</p>
+              <p class="menu-explanation">
+                {{ t(item.key + ".summary", item.summary || "") }}
+              </p>
             </div>
           </div>
         </div>
@@ -107,6 +108,9 @@ const handleImageClick = (to) => {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   height: 100%;
   cursor: pointer;
+}
+p.menu-explanation {
+  text-align: left;
 }
 
 .menu-card:hover {
