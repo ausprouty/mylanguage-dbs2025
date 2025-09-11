@@ -56,7 +56,8 @@ export const settingsGetters = {
     return v == null ? null : v;
   },
 
-  languageObjectSelected(state) {
+  languageSelected(state) {
+    // must not be names languageObjectSelected because that is what the variable is called
     var ls = state.languageSelected;
     if (ls && (ls.languageCodeHL || ls.languageCodeJF)) return ls;
     return {

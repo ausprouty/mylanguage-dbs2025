@@ -13,29 +13,34 @@ const allowList = [
   'docs.google.com',
 ];
 
-const rawUrl = computed(() => String(route.query.url || ''));
-
 function isHttps(u) {
-  try {
-    const parsed = new URL(u);
-    return parsed.protocol === 'https:';
-  } catch {
-    return false;
-  }
+  try { return new URL(u).protocol === 'https:'; } catch { return false; }
 }
-
 function isAllowed(u) {
   try {
-    const parsed = new URL(u);
-    const host = parsed.hostname.toLowerCase();
-    return allowList.some((d) => host === d || host.endsWith('.' + d));
-  } catch {
-    return false;
-  }
+    const host = new URL(u).hostname.toLowerCase();
+    return allowList.some(d => host === d || host.endsWith('.' + d));
+  } catch { return false; }
 }
 
+// Pull from ?url=… first; else from /ask/:raw(.*) and add https:// if missing
+const rawFromQuery = computed(() => String(route.query.url || '').trim());
+const rawFromPath  = computed(() => String(route.params.raw || '').trim());
+
+function normalizeToHttps(u) {
+  if (!u) return '';
+  return /^https?:\/\//i.test(u) ? u : `https://${u}`;
+}
+
+const rawUrl = computed(() => {
+  // Prefer query if present; otherwise use path
+  return rawFromQuery.value
+    ? normalizeToHttps(rawFromQuery.value)
+    : normalizeToHttps(rawFromPath.value);
+});
+
 const safeUrl = computed(() => {
-  const u = rawUrl.value.trim();
+  const u = rawUrl.value;
   if (!u) return '';
   if (!isHttps(u)) return '';
   if (!isAllowed(u)) return '';
@@ -43,37 +48,31 @@ const safeUrl = computed(() => {
 });
 
 const hostLabel = computed(() => {
-  try {
-    return safeUrl.value ? new URL(safeUrl.value).hostname : '';
-  } catch {
-    return '';
-  }
+  try { return safeUrl.value ? new URL(safeUrl.value).hostname : ''; }
+  catch { return ''; }
 });
 
 const opened = ref(false);
-
 function openForm() {
   if (!safeUrl.value) return;
   window.open(safeUrl.value, '_blank', 'noopener');
   opened.value = true;
 }
-
-function goBack() {
-  router.back();
-}
+function goBack() { router.back(); }
 </script>
+
 
 <template>
   <q-page class="q-pa-md">
     <div class="page-width">
       <div v-if="safeUrl">
-        <div class="text-h5 q-mb-xs">
+        <h2>
           You will find this resource at {{ hostLabel }}
-        </div>
-        <div class="text-body2 q-mb-md">
+        </h2>
+        <p>
           We’ll open the page in a new browser tab so your place here is
           preserved. When you’re done, just return to this tab.
-        </div>
+        </p>
 
         <div class="row items-center q-gutter-sm q-mt-sm">
           <q-btn

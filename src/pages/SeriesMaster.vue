@@ -100,7 +100,14 @@ function updateLesson(nextLessonNumber) {
         {{ para }}
       </p>
 
-      <p class="language-select">{{ $t("interface.changeLanguage") }}</p>
+      <q-btn
+        v-if="showLanguageSelect"
+        :label="$t('interface.changeLanguage')"
+        icon="language"
+        no-caps
+        class="mark-complete-btn q-mb-md"
+        @click="toggleRightDrawer()"
+      />
 
       <SeriesPassageSelect
         :study="computedStudy"
@@ -110,6 +117,7 @@ function updateLesson(nextLessonNumber) {
         :isLessonCompleted="isLessonCompleted"
         :completedLessons="completedLessons"
         @updateLesson="updateLesson"
+        class="q-mb-md"
       />
       <hr />
 

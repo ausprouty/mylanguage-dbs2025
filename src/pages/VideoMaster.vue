@@ -1,9 +1,11 @@
 <script setup>
+import { inject } from "vue";
 import { useVideoMasterVM } from "src/composables/useVideoMasterVM";
 import VideoPlayer from "src/components/video/VideoPlayer.vue";
 import SeriesPassageSelect from "src/components/series/SeriesPassageSelect.vue";
 import VideoQuestions from "src/components/video/VideoQuestions.vue";
 
+const toggleRightDrawer = inject("toggleRightDrawer", () => {});
 const {
   heading,
   paras,
@@ -32,9 +34,15 @@ const {
     <h2 v-if="heading">{{ heading }}</h2>
     <p v-for="(p, i) in paras" :key="i">{{ p }}</p>
 
-    <p v-if="showLanguageSelect" class="language-select">
-      {{ $t("interface.changeLanguage") }}
-    </p>
+    <q-btn
+      v-if="showLanguageSelect"
+      :label="$t('interface.changeLanguage')"
+      icon="language"
+      no-caps
+      class="mark-complete-btn q-mb-md"
+      @click="toggleRightDrawer()"
+    />
+
 
     <SeriesPassageSelect
       v-if="showSeriesPassage"
@@ -44,6 +52,7 @@ const {
       :completedLessons="completedLessons"
       :isLessonCompleted="isLessonCompleted"
       :markLessonComplete="markLessonComplete"
+      class="q-mb-md"
       @updateLesson="updateLesson"
     />
 

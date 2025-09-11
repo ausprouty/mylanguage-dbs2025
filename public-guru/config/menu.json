@@ -59,6 +59,6 @@
     "key": "ask",
     "title": "Questions",
     "image": "/images/ask.png",
-    "route": "/ask"
+    "route": "/ask?url=everyperson.com/contact.php"
   }
 ]

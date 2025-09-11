@@ -136,6 +136,7 @@ export default configure((ctx) => {
     boot: [
       "i18n",
       "axios",
+      "languages-catalog",
       "language-init",
       "brand-hydrate",
       "profile-hydrate",

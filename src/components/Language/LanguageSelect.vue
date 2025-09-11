@@ -1,74 +1,112 @@
 <script setup>
-import { ref, computed, watch } from "vue";
-import languageList from "@/i18n/metadata/languages.json";
+import { ref, computed, watch, onMounted, inject } from "vue";
 import { useSettingsStore } from "src/stores/SettingsStore";
 
-const selectedLanguage = ref(null);
-const recentLanguagesToShow = 5;
 const settingsStore = useSettingsStore();
-const searchInput = ref("");
-const filteredOptions = ref([]);
-const recentLanguages = ref([]); // Max of recentLanguagesToShow frequent languages
+const emit = defineEmits(["select"]);
 
-// Reactive label for currently selected language
-const currentLanguageLabel = computed(() => {
-  const lang = settingsStore.languageObjectSelected;
-  return lang ? `${lang.name} (${lang.ethnicName})` : "None";
-});
-// Generate list with labels
-const languageOptions = computed(() =>
-  languageList.map((lang) => ({
-    label: `${lang.name} (${lang.ethnicName})`,
-    ...lang,
-  }))
+// If MainLayout provides a centralized handler, use it.
+const handleLanguageSelectInjected = inject("handleLanguageSelect", null);
+
+// Local model mirrors the store's selected language
+const selectedLanguage = ref(settingsStore.languageObjectSelected || null);
+
+// Keep model synced with store selection
+watch(
+  () => settingsStore.languageObjectSelected,
+  (val) => { selectedLanguage.value = val || null; },
+  { immediate: true }
 );
+
+// Build labeled options from the live catalog
+const languageOptions = computed(() => {
+  const list = Array.isArray(settingsStore.languages) ? settingsStore.languages : [];
+  return list.map((lang) => {
+    const name = String(lang.name || "").trim();
+    const ethnic = String(lang.ethnicName || "").trim();
+    const label = ethnic ? `${name} (${ethnic})` : name || "Unknown";
+    return { label, ...lang };
+  });
+});
+
+const filteredOptions = ref([]);
+onMounted(() => { filteredOptions.value = languageOptions.value; });
+watch(languageOptions, (opts) => { filteredOptions.value = opts; });
 
 // Filter user input
 function onFilter(val, update) {
-  const needle = val.toLowerCase();
-
+  const needle = String(val || "").toLowerCase();
   update(() => {
-    if (!needle) {
-      filteredOptions.value = languageOptions.value;
-    } else {
-      filteredOptions.value = languageOptions.value.filter((option) =>
-        option.label.toLowerCase().includes(needle)
-      );
-    }
+    const opts = languageOptions.value;
+    filteredOptions.value = needle
+      ? opts.filter((o) => o.label.toLowerCase().includes(needle))
+      : opts;
   });
 }
 
-// Update selection and recents
+// Exactly two MRU from the store
+const recents = computed(() =>
+  Array.isArray(settingsStore.languagesUsed)
+    ? settingsStore.languagesUsed.slice(0, 2)
+    : []
+);
+
+// Normalize selection to a full language object
+function normalize(value) {
+  if (value && typeof value === "object") return value;
+  const hl = String(value || "");
+  return languageOptions.value.find(
+    (o) => String(o.languageCodeHL || "") === hl
+  ) || null;
+}
+
+// On selection: emit, then use centralized handler if provided,
+// else update the store as a fallback.
 function handleChange(value) {
-  console.log("Selected language:", value);
-  selectedLanguage.value = value;
-  updateRecentLanguages(value);
-  settingsStore.setLanguageObjectSelected(value);
-}
+  const lang = normalize(value);
+  if (!lang) return;
 
-// Maintain list of 2 most recent languages
-function updateRecentLanguages(lang) {
-  const existingIndex = recentLanguages.value.findIndex(
-    (item) => item.languageCodeHL === lang.languageCodeHL
-  );
-  if (existingIndex !== -1) {
-    recentLanguages.value.splice(existingIndex, 1);
+  selectedLanguage.value = lang;
+  emit("select", lang);
+
+  if (typeof handleLanguageSelectInjected === "function") {
+    handleLanguageSelectInjected(lang); // parent will update route + MRU + close drawer
+    return;
   }
-  recentLanguages.value.unshift(lang);
-  if (recentLanguages.value.length > recentLanguagesToShow) {
-    recentLanguages.value.length = recentLanguagesToShow;
+
+  // Fallback: update store/MRU locally
+  if (typeof settingsStore.setLanguageObjectSelected === "function") {
+    settingsStore.setLanguageObjectSelected(lang);
+  } else {
+    settingsStore.languageObjectSelected = lang;
+  }
+  if (typeof settingsStore.addRecentLanguage === "function") {
+    settingsStore.addRecentLanguage(lang); // keeps MRU(2) + persists
+  } else {
+    // Minimal local MRU(2) fallback
+    const list = (settingsStore.languagesUsed || []).filter(
+      (x) => x.languageCodeHL !== lang.languageCodeHL
+    );
+    list.unshift(lang);
+    settingsStore.languagesUsed = list.slice(0, 2);
+    try {
+      localStorage.setItem("lang:recents", JSON.stringify(settingsStore.languagesUsed));
+      localStorage.setItem("lang:selected", JSON.stringify(lang));
+    } catch {}
   }
 }
-
-// Initialize filtered options
-filteredOptions.value = languageOptions.value;
 </script>
+
 <template>
   <div class="q-pa-md">
     <div class="q-mb-md">
       <p>
         <strong>Current Language:</strong>
-        {{ currentLanguageLabel }}
+        {{
+          settingsStore.languageObjectSelected
+            ? `${settingsStore.languageObjectSelected.name} (${settingsStore.languageObjectSelected.ethnicName || ''})`.replace(/\(\s*\)$/, '')
+            : "None"
+        }}
       </p>
     </div>
 
@@ -76,26 +114,28 @@ filteredOptions.value = languageOptions.value;
       filled
       v-model="selectedLanguage"
       :options="filteredOptions"
-      label="Change Language"
+      :label="$t ? $t('interface.changeLanguage') : 'Change Language'"
       use-input
       input-debounce="200"
       option-label="label"
+      :emit-value="false"
+      map-options
       @filter="onFilter"
       @update:model-value="handleChange"
     />
 
-    <div v-if="recentLanguages.length" class="q-mt-md">
-      <p><strong>Frequently Used:</strong></p>
+    <div v-if="recents.length" class="q-mt-md">
+      <p class="q-mb-xs"><strong>Frequently Used:</strong></p>
       <q-chip
-        v-for="lang in recentLanguages"
+        v-for="lang in recents"
         :key="lang.languageCodeHL"
         clickable
-        @click="handleChange(lang)"
         color="primary"
         text-color="white"
-        class="q-mr-sm"
+        class="q-mr-sm q-mb-sm"
+        @click="handleChange(lang)"
       >
-        {{ lang.label }}
+        {{ `${lang.name} (${lang.ethnicName || ''})`.replace(/\(\s*\)$/, '') }}
       </q-chip>
     </div>
   </div>

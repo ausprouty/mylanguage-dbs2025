@@ -1,28 +1,71 @@
-
-import {  normJF, normHL ,isHLCode} from 'src/utils/normalize'
-import { getTranslatedInterface } from "src/services/InterfaceService";
+import { normJF, normHL, isHLCode } from "src/utils/normalize";
+import { detectDirection, applyDirection } from 'src/utils/i18nDirection';
 import { MAX_LESSON_NUMBERS } from "src/constants/Defaults";
 import {
   validateLessonNumber,
-  validateSegmentFormat,
   validateNonEmptyString,
-  validatePositiveInteger,
 } from "./validators";
 
 export const settingsActions = {
-  _updateRecentLanguages(lang) {
-    const index = this.languagesUsed.findIndex(
-      (item) => item.languageCodeHL === lang.languageCodeHL
-    );
-    if (index !== -1) {
-      this.languagesUsed.splice(index, 1);
+  addRecentLanguage(lang) {
+    if (!lang || !lang.languageCodeHL) return;
+    var key = String(lang.languageCodeHL);
+    var list = Array.isArray(this.languagesUsed) ? this.languagesUsed : [];
+    var out = [];
+    for (var i = 0; i < list.length; i++) {
+      if (String(list[i].languageCodeHL || "") !== key) out.push(list[i]);
     }
-    this.languagesUsed.unshift(lang);
-    if (this.languagesUsed.length > 5) {
-      this.languagesUsed.length = 5;
+    out.unshift(lang);
+    this.languagesUsed = out.slice(0, 2);
+    try {
+      localStorage.setItem("lang:recents", JSON.stringify(this.languagesUsed));
+    } catch {}
+  },
+  clearLanguagePrefs() {
+    this.languageObjectSelected = null;
+    this.languagesUsed = [];
+    try {
+      localStorage.removeItem("lang:selected");
+      localStorage.removeItem("lang:recents");
+    } catch {}
+    applyDirection("ltr");
+  },
+  loadLanguagePrefs() {
+    try {
+      var rawR = localStorage.getItem("lang:recents");
+      this.languagesUsed = rawR ? JSON.parse(rawR) : [];
+    } catch {
+      this.languagesUsed = [];
+    }
+    try {
+      var rawS = localStorage.getItem("lang:selected");
+      this.languageObjectSelected = rawS ? JSON.parse(rawS) : null;
+    } catch {
+      this.languageObjectSelected = null;
     }
   },
+  findByHL(hl) {
+    var key = String(hl || "");
+    var list = Array.isArray(this.languages) ? this.languages : [];
+    for (var i = 0; i < list.length; i++) {
+      if (String(list[i].languageCodeHL || "") === key) return list[i];
+    }
+    return null;
+  },
 
+  loadLanguagePrefs() {
+    try {
+      var r = localStorage.getItem("lang:recents");
+      this.languagesUsed = r ? JSON.parse(r) : [];
+    } catch {
+      this.languagesUsed = [];
+    }
+    try {
+      var s = localStorage.getItem("lang:selected");
+      var sel = s ? JSON.parse(s) : null;
+      if (sel) this.setLanguageObjectSelected(sel);
+    } catch {}
+  },
   normalizeShapes() {
     if (
       !this.lessonNumber ||
@@ -44,12 +87,9 @@ export const settingsActions = {
     this.apiProfile =
       typeof val === "string" && val.trim() ? val.trim() : "standard";
   },
-
   setBrandTitle(title) {
     this.brandTitle = typeof title === "string" ? title.trim() : "";
   },
-
-
   setCurrentStudy(study) {
     if (!validateNonEmptyString(study)) {
       console.warn(`setCurrentStudy: Invalid study '${study}'.`);
@@ -57,84 +97,68 @@ export const settingsActions = {
     }
     this.currentStudy = study;
   },
+  setLanguageObjectSelected(lang) {
+    // Keep this for API stability (also updates MRU + direction)
+    if (!lang) return;
+    this.languageObjectSelected = lang;
+    this.addRecentLanguage(lang);
+    try {
+      localStorage.setItem("lang:selected", JSON.stringify(lang));
+    } catch {}
+    applyDirection(detectDirection(lang));
+  },
+  setLanguageCodes(payload) {
+    // payload: { hl, jf }  (either may be provided)
+    var hl = normHL(payload && payload.hl);
+    var jf = normJF(payload && payload.jf);
 
-  setFollowingHimSegment(newValue) {
-    if (!validateSegmentFormat(newValue)) {
-      console.warn(
-        `setFollowingHimSegment: Invalid newValue '${newValue}'. ` +
-          `Expected format '1-0-0'. No change made.`
-      );
-      return;
-    }
-    this.followingHimSegment = newValue;
+    // Build/merge a selected object
+    var base =
+      (hl && this.findByHL(hl)) ||
+      (this.languageObjectSelected
+        ? { ...this.languageObjectSelected }
+        : null) ||
+      {};
+    if (hl) base.languageCodeHL = hl;
+    if (jf) base.languageCodeJF = jf;
+
+    // Reasonable fallbacks for display
+    if (!base.name) base.name = hl || base.languageCodeHL || "";
+    if (!base.ethnicName) base.ethnicName = base.ethnicName || "";
+
+    // Apply selection (handles MRU + direction + persist)
+    this.setLanguageObjectSelected(base);
+    return true;
   },
 
-  setJVideoSegments(languageCodeHL, languageCodeJF, segments, currentId = 1) {
-    if (
-      !validateNonEmptyString(languageCodeHL) ||
-      !validateNonEmptyString(languageCodeJF)
-    ) {
-      console.warn(
-        `setJVideoSegments: Invalid language codes '${languageCodeHL}', ` +
-          `'${languageCodeJF}'.`
-      );
-      return;
-    }
-    if (!Array.isArray(segments)) {
-      console.warn(`setJVideoSegments: Segments should be an array.`);
-      return;
-    }
-    if (!validatePositiveInteger(currentId)) {
-      console.warn(
-        `setJVideoSegments: Invalid currentId '${currentId}'. ` +
-          `Defaulting to 1.`
-      );
-      currentId = 1;
-    }
-
-    this.jVideoSegments = {
-      languageCodeHL,
-      languageCodeJF,
-      segments,
-      currentId,
-    };
-  },
-  // HL like "eng00", "mrt00" (3 letters + 2 digits, case-insensitive)
+  // ------- Wrappers (backward compatible) -------
   setLanguageCodeHL(code) {
-    const c = normHL(code);
-    if (!c) {
-      console.warn(`setLanguageCodeHL: invalid HL '${code}'.`);
+    var hl = normHL(code);
+    if (!hl) {
+      console.warn("setLanguageCodeHL: invalid HL '" + code + "'.");
       return false;
     }
-    if (!this.languageSelected) this.languageSelected = {};
-    this.languageSelected.languageCodeHL = c; // ✅ write state only
+    // Keep current JF if any
+    var curJF =
+      (this.languageObjectSelected &&
+        this.languageObjectSelected.languageCodeJF) ||
+      "";
+    this.setLanguageCodes({ hl: hl, jf: curJF });
     return true;
   },
 
   setLanguageCodeJF(code) {
-    const c = normJF(code);
-    if (!c) {
-      console.warn(`setLanguageCodeJF: invalid JF '${code}'.`);
+    var jf = normJF(code);
+    if (!jf) {
+      console.warn("setLanguageCodeJF: invalid JF '" + code + "'.");
       return false;
     }
-    if (!this.languageSelected) this.languageSelected = {};
-    this.languageSelected.languageCodeJF = c; // ✅ write state only
+    var curHL =
+      (this.languageObjectSelected &&
+        this.languageObjectSelected.languageCodeHL) ||
+      "";
+    this.setLanguageCodes({ hl: curHL, jf: jf });
     return true;
-  },
-
-  async setLanguageObjectSelected(languageObject) {
-    if (!languageObject) {
-      console.warn("setLanguageObjectSelected: Invalid languageObject input.");
-      return;
-    }
-    this.languageSelected = languageObject;
-    console.log(
-      `setLanguageObjectSelected: Setting i18n locale to ` +
-        `${languageObject.languageCodeHL}`
-    );
-    console.log("setLanguageObjectSelected -104");
-    await getTranslatedInterface(languageObject.languageCodeHL);
-    this._updateRecentLanguages(languageObject);
   },
 
   setLanguages(newLanguages) {
@@ -167,12 +191,15 @@ export const settingsActions = {
     this.lessonNumber[study] = clampedLesson;
   },
 
-
   setVariantForStudy(study, v) {
     const s = study?.toLowerCase();
-    const clean = (typeof v === 'string')
-      ? v.trim().toLowerCase().replace(/[^a-z0-9-]/g, '')
-      : null;
+    const clean =
+      typeof v === "string"
+        ? v
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9-]/g, "")
+        : null;
     this.variantByStudy[s] = clean || null;
   },
 
@@ -208,6 +235,3 @@ export const settingsActions = {
     };
   },
 };
-
-
-

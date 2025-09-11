@@ -1,89 +1,98 @@
 <script setup>
-import { computed, ref, watch, onMounted } from 'vue';
-import { useSettingsStore } from 'src/stores/SettingsStore';
+import { ref, computed, watch } from 'vue';
 
 const props = defineProps({
-  languages: { type: Array, default: () => [] },
+  languages:   { type: Array,  default: () => [] }, // full catalog
+  recents:     { type: Array,  default: () => [] }, // MRU(2) [{...}]
+  selectedHL:  { type: String, default: '' },       // currently selected HL
+  labelMode:   { type: String, default: 'ethnicName (name)' },
+  recentLabel: { type: String, default: 'Frequently Used' },
+});
+const emit = defineEmits(['select']);
 
-  // Quick toggles for how labels look; pick one default and edit later
-  labelMode: {
-    type: String,
-    default: 'ethnicName', // 'ethnicName' | 'name' | 'iso' | 'hl' | 'ethnicName (name)' | 'name [ISO]'
-  },
-
-  // Which field to use as the value (stored in v-model) — we still send the full object to the store
-  valueField: {
-    type: String,
-    default: 'languageCodeHL' // 'languageCodeHL' | 'languageCodeIso'
+// --- helpers ---
+function labelFor(lang) {
+  const ethnic = String(lang?.ethnicName || '').trim();
+  const name   = String(lang?.name || '').trim();
+  if (props.labelMode === 'ethnicName (name)' && ethnic) return `${ethnic} (${name})`;
+  return name || ethnic || 'Unknown';
+}
+function findByHL(hl) {
+  const list = Array.isArray(props.languages) ? props.languages : [];
+  const key = String(hl || '');
+  for (let i = 0; i < list.length; i++) {
+    if (String(list[i].languageCodeHL || '') === key) return list[i];
   }
+  return null;
+}
+
+// --- radios use HL string as the value ---
+const model = ref(props.selectedHL || '');
+
+// keep in sync if parent changes selectedHL
+watch(() => props.selectedHL, (hl) => { model.value = String(hl || ''); });
+
+// build full options for catalog
+const options = computed(() => {
+  const list = Array.isArray(props.languages) ? props.languages : [];
+  return list.map((x) => ({
+    label: labelFor(x),
+    value: String(x.languageCodeHL || ''),
+  }));
 });
 
-const store = useSettingsStore();
-const model = ref(null); // holds the "value" (e.g., languageCodeHL)
-
-function makeLabel(lang) {
-  const iso = lang.languageCodeIso || '';
-  const hl  = lang.languageCodeHL  || '';
-  const nm  = lang.name            || '';
-  const eth = lang.ethnicName      || '';
-
-  switch (props.labelMode) {
-    case 'name': return nm || eth || iso || hl;
-    case 'iso':  return iso || nm || eth || hl;
-    case 'hl':   return hl  || nm || eth || iso;
-    case 'ethnicName (name)': return eth && nm ? `${eth} (${nm})` : (eth || nm || iso || hl);
-    case 'name [ISO]': return nm && iso ? `${nm} [${iso}]` : (nm || eth || iso || hl);
-    case 'ethnicName':
-    default:     return eth || nm || iso || hl;
+// normalized MRU(2) for chips (dedup by HL)
+const recentChips = computed(() => {
+  const seen = new Set();
+  const src = Array.isArray(props.recents) ? props.recents : [];
+  const out = [];
+  for (let i = 0; i < src.length && out.length < 2; i++) {
+    const hl = String(src[i]?.languageCodeHL || '');
+    if (!hl || seen.has(hl)) continue;
+    seen.add(hl);
+    out.push(src[i]);
   }
-}
-
-const options = computed(() => (props.languages || []).map(l => ({
-  label: makeLabel(l),
-  value: String(l[props.valueField] || l.languageCodeIso || ''),
-  _obj: l // keep the full object for store updates
-})));
-
-// helpers to match current selection to options
-function sameLang(a, b) {
-  if (!a || !b) return false;
-  const aHL = String(a.languageCodeHL || '');
-  const bHL = String(b.languageCodeHL || '');
-  const aIso = String(a.languageCodeIso || '');
-  const bIso = String(b.languageCodeIso || '');
-  return (aHL && aHL === bHL) || (aIso && aIso === bIso);
-}
-function findOptionByLang(lang) {
-  return options.value.find(o => sameLang(o._obj, lang)) || null;
-}
-function findOptionByValue(val) {
-  return options.value.find(o => o.value === val) || null;
-}
-
-function commitToStore(val) {
-  const hit = findOptionByValue(val);
-  store.setLanguageObjectSelected(hit ? hit._obj : null);
-}
-
-onMounted(() => {
-  const current = store.languageSelected || null;
-  const opt = findOptionByLang(current);
-  model.value = opt ? opt.value : null;
-  if (!opt && current) store.setLanguageObjectSelected(null);
+  return out;
 });
 
-watch(model, (val) => commitToStore(val));
+function pickHL(hl) {
+  const lang = findByHL(hl);
+  if (!lang) return;
+  // update the radio selection to reflect chip click
+  model.value = String(lang.languageCodeHL || '');
+  emit('select', lang);
+}
+
+function onRadioChange(hl) {
+  pickHL(hl);
+}
 </script>
 
 <template>
-  <div class="column q-gutter-sm">
+  <div class="q-pa-md">
+    <!-- MRU chips -->
+    <div v-if="recentChips.length" class="q-mb-sm">
+      <div class="text-caption q-mb-xs"><strong>{{ recentLabel }}</strong></div>
+      <q-chip
+        v-for="lang in recentChips"
+        :key="lang.languageCodeHL"
+        clickable
+        color="primary"
+        text-color="white"
+        class="q-mr-sm q-mb-sm"
+        @click="pickHL(lang.languageCodeHL)"
+      >
+        {{ labelFor(lang) }}
+      </q-chip>
+    </div>
+
+    <!-- All languages as radios -->
     <q-option-group
-      v-if="options.length"
       v-model="model"
-      type="radio"
       :options="options"
-      color="primary"
+      type="radio"
+      @update:model-value="onRadioChange"
+      class="q-mt-sm"
     />
-    <div v-else class="text-negative">No languages available.</div>
   </div>
 </template>

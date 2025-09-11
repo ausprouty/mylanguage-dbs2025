@@ -81,7 +81,7 @@
     "name": "Punjabi",
     "ethnicName": "Punjabi",
     "languageCodeHL": "pan19",
-    "languageCodeJF": false,
+    "languageCodeJF": "46771",
     "languageCodeBrowser": "pa",
     "direction": null,
     "font": "akaash",
@@ -92,13 +92,13 @@
 	  "name": "Marathi",
 	  "ethnicName": "मराठी",
 	  "languageCodeHL": "mrt00",
-	  "languageCodeJF": 6174,
+	  "languageCodeJF": "6174",
 	  "languageCodeBrowser": "mr",
 	  "direction": "",
 	  "font": "arialuni",
 	 "fontData": "{\"arialuni\": {\"R\": \"arialuni.ttf\", \"useOTL\": 255, \"useKashida\": 75}}"
 	},
-  
+
   {
     "id": 10,
     "name": "Tamil",

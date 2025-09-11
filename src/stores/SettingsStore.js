@@ -13,7 +13,7 @@ export const useSettingsStore = defineStore("settingsStore", {
 
     followingHimSegment: "1-0-0",
     jVideoSegments: { segments: [], currentId: 1 },
-    languageSelected: {},
+    languageObjectSelected: {},
     languageSelectorMode:null,
     languages: [],
     languagesLoaded:false,

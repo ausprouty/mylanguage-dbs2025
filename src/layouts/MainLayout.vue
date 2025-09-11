@@ -1,30 +1,43 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue";
-import { useRoute } from "vue-router";
+import { ref, provide, computed, onMounted, onBeforeUnmount, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useSettingsStore } from "src/stores/SettingsStore";
+import { useLanguageRouting } from "src/composables/useLanguageRouting";
 import LanguageOptions from "src/components/language/LanguageOptions.vue";
 import ShareLink from "src/components/ShareLink.vue";
 
+const router = useRouter();
 const route = useRoute();
-const store = useSettingsStore();
+const s = useSettingsStore();
+
+const brandTitle = computed(() => s.brandTitle || "Not Set");
 
 const rightDrawerOpen = ref(false);
-const brandTitle = computed(() => store.brandTitle || "Not Set");
+function toggleRightDrawer() { rightDrawerOpen.value = !rightDrawerOpen.value; }
+function closeRightDrawer()  { rightDrawerOpen.value = false; }
 
-function toggleRightDrawer() {
-  rightDrawerOpen.value = !rightDrawerOpen.value;
+// make toggler available to pages/components
+provide("toggleRightDrawer", toggleRightDrawer);
+
+const { changeLanguage } = useLanguageRouting(); // CHANGED: use composable
+
+// CHANGED: single, centralized handler
+function handleLanguageSelect(lang) {
+  if (!lang || !lang.languageCodeHL || !lang.languageCodeJF) return;
+
+  // Update store (persists + MRU(2) + RTL/LTR)
+  s.setLanguageObjectSelected(lang);
+
+  // Update route (params or ?hl/&jf), then close drawer
+  changeLanguage(lang.languageCodeHL, lang.languageCodeJF, closeRightDrawer);
 }
+provide("handleLanguageSelect", handleLanguageSelect); // expose for inject-usage
 
-watch(
-  () => route.fullPath,
-  () => {
-    rightDrawerOpen.value = false;
-  }
-);
+// Close drawer on any route change (safety)
+watch(() => route.fullPath, () => { rightDrawerOpen.value = false; });
 
 const appbarStyle = computed(
-  () =>
-    route.meta?.appbar ?? globalThis.__SITE_META__?.appbar?.style ?? "surface"
+  () => route.meta?.appbar ?? globalThis.__SITE_META__?.appbar?.style ?? "surface"
 );
 
 const appbarClass = computed(() => ({
@@ -34,15 +47,9 @@ const appbarClass = computed(() => ({
 }));
 
 const scrolled = ref(false);
-function onScroll() {
-  scrolled.value = window.scrollY > 2;
-}
-onMounted(() => {
-  window.addEventListener("scroll", onScroll, { passive: true });
-});
-onBeforeUnmount(() => {
-  window.removeEventListener("scroll", onScroll);
-});
+function onScroll() { scrolled.value = window.scrollY > 2; }
+onMounted(() => { window.addEventListener("scroll", onScroll, { passive: true }); });
+onBeforeUnmount(() => { window.removeEventListener("scroll", onScroll); });
 
 const actionBtnColor = computed(() =>
   appbarStyle.value === "primary" ? "white" : "primary"
@@ -70,9 +77,7 @@ const actionBtnColor = computed(() =>
         <ShareLink />
 
         <q-btn
-          flat
-          dense
-          round
+          flat dense round
           icon="language"
           :color="actionBtnColor"
           aria-label="Language selector"
@@ -88,7 +93,8 @@ const actionBtnColor = computed(() =>
       elevated
       :width="320"
     >
-      <LanguageOptions />
+      <!-- CHANGED: listen for select; the component will emit a full lang object -->
+      <LanguageOptions @select="handleLanguageSelect" />
     </q-drawer>
 
     <q-page-container>
@@ -103,58 +109,24 @@ const actionBtnColor = computed(() =>
   color: var(--appbar-fg);
   transition: background 120ms ease, color 120ms ease, box-shadow 120ms ease;
 }
-
 .appbar--surface {
   --appbar-bg: var(--color-surface);
   --appbar-fg: var(--color-text);
   border-bottom: 1px solid var(--color-border);
 }
-
 .appbar--primary {
   --appbar-bg: var(--color-primary);
   --appbar-fg: var(--color-on-primary);
 }
-
 .appbar--transparent {
   --appbar-bg: color-mix(in srgb, var(--color-surface) 75%, transparent);
   --appbar-fg: var(--color-text);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--color-border) 50%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
 }
-
-.toolbar-title {
-  color: inherit;
-  text-decoration: none;
-  font-size: 1.5rem;
-}
-
-.footer {
-  background-color: darkgrey;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-  margin: 0 auto;
-}
-
-h2 {
-  font-size: 2rem;
-}
-
-.q-toolbar__title {
-  font-size: 16px;
-}
-
-.toolbar-width {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.page-width {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
+.toolbar-title { color: inherit; text-decoration: none; font-size: 1.5rem; }
+.footer { background-color: darkgrey; color: white; padding: 10px; text-align: center; width: 100%; margin: 0 auto; }
+h2 { font-size: 2rem; }
+.q-toolbar__title { font-size: 16px; }
+.toolbar-width, .page-width { width: 100%; max-width: 1000px; margin: 0 auto; }
 </style>

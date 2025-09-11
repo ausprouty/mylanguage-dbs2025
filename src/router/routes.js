@@ -53,11 +53,13 @@ const routes = [
         component: () => import("pages/SeriesMaster.vue"),
       },
 
+
       {
         name: "AskHisFollowers",
-        path: "/questions",
+        path: "/ask/:raw(.*)*",
         component: () => import("pages/QuestionPage.vue"),
-        meta: { appbar: 'primary' }
+        meta: { appbar: 'primary' },
+        alias: ["/questions/:raw(.*)*"]
       },
       {
         name: "reset",
@@ -67,11 +69,10 @@ const routes = [
     ],
   },
   // Always leave this as last one,
-  {
-    path: "/:catchAll(.*)*",
-    component: () => import("pages/IndexPage.vue"),
-        meta: { appbar: 'primary' }
-  },
+ {
+  path: "/:catchAll(.*)*",
+  redirect: { name: "Index" }   // Index is a child of MainLayout
+}
 ];
 
 export default routes;
