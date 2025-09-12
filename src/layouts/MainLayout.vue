@@ -3,12 +3,15 @@ import { ref, provide, computed, onMounted, onBeforeUnmount, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useSettingsStore } from "src/stores/SettingsStore";
 import { useLanguageRouting } from "src/composables/useLanguageRouting";
+import { useInterfaceLocale } from "src/composables/useInterfaceLocale";
 import LanguageOptions from "src/components/language/LanguageOptions.vue";
 import ShareLink from "src/components/ShareLink.vue";
+import { attachDebug } from "src/utils/debugHooks"; // tiny helper below
 
 const router = useRouter();
 const route = useRoute();
 const s = useSettingsStore();
+const { applyInterfaceLanguage } = useInterfaceLocale();
 
 const brandTitle = computed(() => s.brandTitle || "Not Set");
 
@@ -20,16 +23,23 @@ function closeRightDrawer()  { rightDrawerOpen.value = false; }
 provide("toggleRightDrawer", toggleRightDrawer);
 
 const { changeLanguage } = useLanguageRouting(); // CHANGED: use composable
+attachDebug("changeLanguage", changeLanguage);
+attachDebug("router", router);
 
-// CHANGED: single, centralized handler
-function handleLanguageSelect(lang) {
+async function handleLanguageSelect(lang) {
   if (!lang || !lang.languageCodeHL || !lang.languageCodeJF) return;
 
-  // Update store (persists + MRU(2) + RTL/LTR)
-  s.setLanguageObjectSelected(lang);
+  s.setLanguageObjectSelected(lang);          // store + MRU
+  await applyInterfaceLanguage(lang);         // flip i18n + html[lang|dir]
+  console.debug("[lang] about to call changeLanguage",
+    lang.languageCodeHL, lang.languageCodeJF,
+    "fn:", typeof changeLanguage);
 
-  // Update route (params or ?hl/&jf), then close drawer
-  changeLanguage(lang.languageCodeHL, lang.languageCodeJF, closeRightDrawer);
+
+  changeLanguage(lang.languageCodeHL, lang.languageCodeJF)
+    .then(() => console.debug("[lang] nav ok"))
+    .catch(e => console.warn("[lang] nav failed", e))
+    .finally(() => { console.debug("[lang] finally close"); closeRightDrawer(); });
 }
 provide("handleLanguageSelect", handleLanguageSelect); // expose for inject-usage
 

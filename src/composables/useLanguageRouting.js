@@ -1,38 +1,74 @@
+// src/composables/useLanguageRouting.js
 import { useRouter, useRoute } from "vue-router";
 
 export function useLanguageRouting() {
   const router = useRouter();
-  const route = useRoute();
+  const route  = useRoute();
 
-  function routeHasLangParams(r) {
-    return r && r.params && ("languageCodeHL" in r.params || "languageCodeJF" in r.params);
+  function hasParam(key) {
+    return route && route.params &&
+      Object.prototype.hasOwnProperty.call(route.params, key);
+  }
+  function routeHasLangParams() {
+    return hasParam("languageCodeHL") || hasParam("languageCodeJF");
   }
 
   function buildNextLocation(hl, jf) {
-    const name = route.name;
-    const params = Object.assign({}, route.params);
-    const query  = Object.assign({}, route.query);
-    const hash   = route.hash || "";
-
-    if (routeHasLangParams(route)) {
-      params.languageCodeHL = hl;
-      params.languageCodeJF = jf;
-      return { name, params, query, hash };
+    const name = route.name || null;
+    const hash = route.hash || "";
+    const curQ = Object.assign({}, route.query || {});
+    const curP = Object.assign({}, route.params || {});
+    if (routeHasLangParams()) {
+      const nextParams = Object.assign({}, curP, {
+        languageCodeHL: String(hl || curP.languageCodeHL || ""),
+        languageCodeJF: String(jf || curP.languageCodeJF || "")
+      });
+      return name
+        ? { name, params: nextParams, query: curQ, hash }
+        : { path: route.path, params: nextParams, query: curQ, hash };
     } else {
-      query.hl = hl;
-      query.jf = jf;
-      return { name, params, query, hash };
+      const nextQuery = Object.assign({}, curQ);
+      if (hl) nextQuery.hl = String(hl);
+      if (jf) nextQuery.jf = String(jf);
+      return name
+        ? { name, params: curP, query: nextQuery, hash }
+        : { path: route.path, query: nextQuery, hash };
     }
   }
 
-  function changeLanguage(hl, jf, onAfter) {
-    const loc = buildNextLocation(hl, jf);
-    router.replace(loc)
-      .then(function () { if (typeof onAfter === "function") onAfter(); })
-      .catch(function (err) {
-        console.warn("[lang] navigation failed", err);
-        if (typeof onAfter === "function") onAfter();
+  function sameLocation(a, b) {
+    const sameNameOrPath =
+      (a.name && b.name && a.name === b.name) ||
+      (!a.name && !b.name && a.path === b.path);
+    function J(x){ try { return JSON.stringify(x || {}); } catch(e){ return ""; } }
+    return sameNameOrPath &&
+      J(a.params) === J(b.params) &&
+      J(a.query)  === J(b.query)  &&
+      String(a.hash || "") === String(b.hash || "");
+  }
+
+  function changeLanguage(hl, jf) {
+    const next = buildNextLocation(hl, jf);
+    console.debug("[lang] pushing to", next);
+
+    const cur = {
+      name: route.name || null,
+      path: route.path,
+      params: route.params || {},
+      query: route.query || {},
+      hash: route.hash || ""
+    };
+
+    if (sameLocation(next, cur)) {
+      // bump query so router navigates even if values are same
+      next.query = Object.assign({}, next.query, {
+        _langts: Date.now().toString()
       });
+      console.debug("[lang] same location; adding _langts", next);
+    }
+
+    // IMPORTANT: return the Promise so callers can .finally(...)
+    return router.push(next);
   }
 
   return { changeLanguage };
